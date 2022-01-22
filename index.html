@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Play Ground</title>
+    <style>
+        .container {
+            margin: 20px auto;
+            background: rgb(167, 187, 145);
+            min-height: 100VH;
+            padding: 2REM;
+            rotation: 180deg;
+        }
+
+        #barContainer {
+            display: flex;
+            align-items: flex-end;
+            align-content: center;
+            justify-content: flex-start;display: flex;
+            align-items: flex-end;
+            align-content: center;
+            justify-content: flex-start;
+
+        }
+
+        #barContainer > li {
+            background: #000;
+            margin: 6px;
+            width: 31px;
+            list-style-type: none;
+            color: rgb(250, 250, 250);
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <button id="newArray">Create New Array</button>
+    <br>
+    <div style="display:inline;color: #a710c2;padding: 10px;margin: 10px">
+        <label for="time" style="background:#000; padding: 4px;border-radius: 10%">Speed</label>
+        <input class="input-range" type="range" value="1" min="0" max="100">
+    </div>
+
+    <br>
+    <div id="barContainer">
+
+    </div>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $('#time').on('change',(this)=>{
+            console.log(this)
+        })
+        var array = [];
+        var time = 500;
+        var sortedArray = [];
+        $('#newArray').on('click', () => {
+            time=500;
+            console.log("vuda")
+            createArray();
+            sortBar();
+            setTimeout(()=>{
+
+
+                $('#0').css("background-color", "green");
+
+
+            },time)
+        })
+        const createArray = () => {
+            array = [];
+            sortedArray = [];
+
+            let limit = Math.round(Math.random(2, 122) * 40)+1;
+            while (limit) {
+                if (limit === 0) break;
+                array.push(Math.round(Math.random(2, 122) * 50)+1)
+                limit--;
+            }
+            console.log(array);
+            createBar();
+
+            //animateBar();
+
+        }
+                const createBar = () => {
+            $('#barContainer').html('');
+            array.map((num, index) => {
+
+                let node = $("<li></li>").css("height", num * 10 + "px").text(num);
+                node.attr('id', index);
+                $('#barContainer').append(node);
+            })
+
+        }
+        const sortBar = () => {
+            var count = 0;
+            for (let step = 0; step < array.length - 1; step++) {
+                console.log(step)
+                console.log("Array")
+                console.log(array.length)
+
+                for (let i = 0; i < array.length-step-1; i++) {
+                    time=time+20;
+                    setTimeout(()=>{
+                        if (array[i]>array[i+1]){
+                            let temp=array[i+1];
+                            array[i+1]=array[i];
+                            array[i]=temp;
+                            $('#'+i).css("height",  array[i] * 10 + "px").text(array[i]);
+                            $('#'+(i+1)).css("height",  array[i+1] * 10 + "px").text(array[i+1]);
+                        }
+                        $('#'+i).css("background-color", "red");
+                        $('#'+(i+1)).css("background-color", "blue");
+                        $('#'+(i-1)).css("background-color", "black");
+
+
+
+                    },time)
+
+                }//end of second for loop
+                setTimeout(()=>{
+
+                    $('#'+(array.length-step-1)).css("background-color", "green");
+                    $('#'+(array.length-step-2)).css("background-color", "black");
+
+
+                },time=time+10)
+
+
+                }
+            }
+
+
+
+    });
+
+</script>
+</body>
+</html>
