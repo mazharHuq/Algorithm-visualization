@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <style>
+     
+      .mother{
+          position: relative;
+          min-height: 70vh;
+        
+          padding: 500px;
+      }
+      .mother>*{
+          background: rgb(203, 153, 153);
+          position: absolute;
+        height: 260px;
+        width: 25px;
+        list-style: none;
+      }
+     
+    </style>
+
+        <div class="mother">
+                
+
+                
+        </div>
+
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="/index.js"></script>
+    <script>
+      $(document).ready(function () {
+        const createArray = () => {
+           let  array = [];
+
+            let limit = 8;
+            while (limit) {
+                if (limit === 0) break;
+                array.push(Math.round(Math.random(2, 122) * 50)+1)
+                limit--;
+            }
+            return array;
+
+        }
+
+
+
+        const arr = createArray();
+        var lls=0;
+        arr.forEach((value, index) => {
+                lls+=40;
+          let node = $("<li></li>")
+            .css({ height: value * 10 + "px",
+                left: lls+"px" 
+        })
+            .text(value);
+          node.attr("id", index);
+          $(".mother").append(node);
+          
+        });
+       
+        console.log(arr);
+       const sortArr=[];
+       const array=arr;
+       for (let step = 0; step < array.length - 1; step++) {
+                for (let i = 0; i < array.length-step-1; i++) {
+               
+                    if (array[i]>array[i+1]){
+                        let temp=array[i+1];
+                            array[i+1]=array[i];
+                            array[i]=temp;
+                    sortArr.push([i,i+1]);
+                    console.log(arr);
+                }else{
+                    sortArr.push([i,i]);
+                }
+            }
+        }
+        console.log("d",arr);
+        const findValue = (elementName, type) => {
+          var element = document.getElementById(elementName);
+          let style = window.getComputedStyle(element);
+          let top = style.getPropertyValue(type);
+          //return x.offsetWidth;
+          return top;
+        };
+        const show=(val,index)=>{
+       
+            let left1 = findValue(val[0], "left");
+            let left2 = findValue(val[1], "left");
+            
+        
+        $("#"+val[1]).animate({ left: left1, color: "white" },500);
+        
+          $("#"+val[0]).animate({ left: left2 , backgroundColor: "green"},500); 
+          $("#"+val[1]).attr('id',val[0]);
+          $("#"+val[0]).attr('id',val[1]);
+        }
+        var timeout=0;
+        sortArr.forEach((val,index)=>{
+            timeout+=1000;
+           setTimeout(() => {
+               show(val,index);
+               console.log("Printing "+ val[0],val[1]);
+           }, timeout);
+            
+         // console.log(left1, left2);
+         
+            
+
+        })
+        console.log(sortArr);
+
+
+
+      
+      });
+    </script>
+  </body>
+</html>
