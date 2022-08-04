@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #grid {
+            border: 1px solid rgb(24, 179, 114);
+          
+            display: grid;
+           
+        }
+        .cell{
+          
+         
+            border: 1px solid lightgray;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <button id="#bfs-btn">BFS Grid</button>
+    <div id="grid"></div>
+    <script type="text/javascript" src="./js/grid.js"></script>
+    <script>
+        //build 40 x 40 grid with js array and visible graph
+        const height = 20;
+        const width = 20;
+        const cellSize = 5;
+        const grid = new Grid(height,width,cellSize);
+
+        grid.bfsUntilEnd(10,12,"green" ,3,4);
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+    </script>
+
+
+
+</body>
+</html>
