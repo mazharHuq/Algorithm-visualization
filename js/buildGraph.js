@@ -205,6 +205,82 @@ class buildGraph {
       }
     }
 
+    getUnWeightedDijkstraSteps(source, destination) {
+      // queue structure using array
+      var queue = [];
+  
+      this.visited = {};
+      this.visited[source] = true;
+  
+      queue.push(source);
+  
+      let flag = 0;
+      let steps = [];
+      let step = {};
+      let path = {};
+      let stepStack = [];
+  
+      while (queue.length > 0) {
+        let u = queue.pop();
+        flag = 0;
+        if (stepStack.length > 0) {
+          step = stepStack.pop();
+          steps.push(step);
+        }
+  
+        for (var i = 0; i < grid[u].length; i++) {
+          if (!this.visited.hasOwnProperty(grid[u][i][0])) {
+            console.log(grid[u][i][0]);
+            queue.push(grid[u][i][0]);
+            this.visited[grid[u][i][0]] = true;
+  
+            step = {};
+            step["fromNodeID"] = u + "";
+            step["toNodeID"] = grid[u][i][0] + "";
+            step["isPath"] = false;
+            stepStack.push(step);
+  
+            path[grid[u][i][0]] = u + "";
+  
+            if (grid[u][i][0] == destination) {
+              steps.push(step);
+              flag = 1;
+              break;
+            }
+          }
+        }
+  
+        if (flag) break;
+      }
+  
+      let nodeOrder = [];
+      if (flag) {
+        // shortest path exist
+  
+        let stack = [];
+        stack.push(destination);
+        nodeOrder.push(destination + "");
+  
+        while (1) {
+          if (!path.hasOwnProperty(destination)) {
+            break;
+          }
+          nodeOrder.push(path[destination] + "");
+          destination = path[destination];
+        }
+  
+        for (var inx = 0; inx < nodeOrder.length - 1; inx++) {
+          for (var i = 0; i < steps.length; i++) {
+            if (
+              steps[i].toNodeID == nodeOrder[inx] &&
+              steps[i].fromNodeID == nodeOrder[inx + 1]
+            ) {
+              steps[i]["isPath"] = true;
+            }
+          }
+        }
+      }
+
     return steps;
   }
 }
