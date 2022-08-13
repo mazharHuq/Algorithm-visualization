@@ -196,14 +196,15 @@ class buildGraph {
       for (var inx = 0; inx < nodeOrder.length - 1; inx++) {
         for (var i = 0; i < steps.length; i++) {
           if (
-            steps[i].toNodeID == nodeOrder[inx] &&
-            steps[i].fromNodeID == nodeOrder[inx + 1]
+              steps[i].toNodeID == nodeOrder[inx] &&
+              steps[i].fromNodeID == nodeOrder[inx + 1]
           ) {
             steps[i]["isPath"] = true;
           }
         }
       }
     }
+  }
 
     getUnWeightedDijkstraSteps(source, destination) {
       // queue structure using array
