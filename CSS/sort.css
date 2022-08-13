@@ -1,0 +1,36 @@
+.mother {
+    position: relative;
+  
+   
+ 
+
+}
+button{
+
+   padding: 5px;
+   background-color: forestgreen;
+    color: white;
+border-radius: 10px;
+}
+.mother>* {
+    background: #81b7d2;
+    position: absolute;
+    list-style: none;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    transform: rotate(180deg);
+    bottom: 0;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-left: .5rem;
+    color: antiquewhite;
+
+}
+li>span {
+    font-weight: 600;
+    vertical-align: top;
+    transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    margin-right: 3px;
+}
