@@ -7,9 +7,11 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>ProjectDaVisualizer</title>
-    <meta name="description" content="ProjectDaVisualizer/team Portolio" />
-
+    <title>ProjectDa Algorithm Visualizer</title>
+    <meta
+      name="description"
+      content="JPhotography Minimal Photographey/Photographer Portolio"
+    />
     <link
       href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Raleway:100,300,400,600,700"
       rel="stylesheet"
@@ -26,12 +28,14 @@
       integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../CSS/style.css" />
+    <link rel="stylesheet" href="CSS/style.css" />
   </head>
   <body>
     <header class="container-fluid">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="home.html">ProjectDaVisualizer</a>
+        <a class="navbar-brand" href="UI/Pages/home.html"
+          >ProjectDaVisualizer</a
+        >
         <button
           class="navbar-toggler"
           type="button"
@@ -49,27 +53,46 @@
         <div class="collapse navbar-collapse" id="navbarDefault">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="home.html">HOME </a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="about.html"
-                >ABOUT Us <span class="sr-only">(current)</span></a
-              >
+              <a class="nav-link" href="UI/Pages/home.html">HOME </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">CONTACT</a>
+              <a class="nav-link" href="about.html">ABOUT</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="contact.html"
+                >CONTACT <span class="sr-only">(current)</span></a
+              >
             </li>
           </ul>
         </div>
       </nav>
     </header>
 
+    <!-- Corner Borders -->
+    <section class="borders">
+      <div class="brTR"></div>
+      <div class="brTL"></div>
+      <div class="brBL"></div>
+      <div class="brBR"></div>
+    </section>
+
+    <section class="contact">
+      <div class="container">
+        <div class="section-title">
+          <h2>Contact.!</h2>
+          <p>Get in touch with us ...</p>
+          <h1>Coming Soon.....!</h1>
+        </div>
+    </section>
+
     <footer>
       <div class="container-fluid">
         <div class="footer-info">
           <div class="footer-title">
             <h2>ProjectDaVisualizer</h2>
-            <p>© 2022 Copyright: Team ProjectDaVisualizer</p>
+            <p>
+            © 2022 Copyright: Team ProjectDaVisualizer
+            </p>
           </div>
           <div class="footer-social">
             <a href=""><span>About</span></a>
@@ -81,7 +104,7 @@
       </div>
     </footer>
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -97,6 +120,12 @@
       integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
       crossorigin="anonymous"
     ></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHgTY6We404HmD0avnzKNe73v0oQfQMI4&callback=initMap"
+      async
+      defer
+    ></script>
     <script src="js/custom.js"></script>
+    
   </body>
 </html>
