@@ -440,7 +440,7 @@ Home Page
   pointer-events: none;
   right: 0px;
   box-shadow: inset 0px 0px 60px rgba(0, 0, 0, 0.2),
-  inset 0px 0px 60px rgba(0, 0, 0, 0.2);
+    inset 0px 0px 60px rgba(0, 0, 0, 0.2);
   position: absolute;
   transition: box-shadow 0.2s ease-in-out 0s;
   left: 0px;
