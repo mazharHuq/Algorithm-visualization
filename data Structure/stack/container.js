@@ -63,19 +63,23 @@ class Dom {
 
   invaildInput() {
     setTimeout(function () {
-      document.getElementById("push-item").style.background = "";
+      document.getElementById("push-item").style.border = "";
     }, 500);
-    document.getElementById("push-item").style.background = "#4433ff";
+    document.getElementById("push-item").style.border = "2px solid #bb3371";
+  }
+  peak_element(value) {
+    this.show_message_on_display("Peak element is : " + value);
   }
 
   containerFull(array) {
-    document.getElementById("stack").style.background = "#4433ff";
+    //document.getElementById("stack").style.background = "#4433ff";
 
     this.show_message_on_display("The container is full");
   }
 
   containerEmpty() {
-    document.getElementById("stack").style.background = "#ba9393";
+    /*document.getElementById("stack").style.backgroundImage =
+      "linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);";*/
     this.show_message_on_display("The container is empty");
   }
   containerIsNotEmpty() {

@@ -70,8 +70,8 @@ class Stack {
 
   ispeak() {
     if (this.array[this.counter] != undefined)
-      alert("Element at Peak is : " + this.array[this.counter]);
-    else alert("Stack is empty.");
+      this.dom.peak_element(this.array[this.counter]);
+    else this.dom.containerEmpty();
   }
 
   isempty() {

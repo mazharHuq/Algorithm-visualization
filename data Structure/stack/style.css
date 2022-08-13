@@ -15,6 +15,7 @@
   }
   
   .wrapper {
+    
     margin: 0;
     padding: 0;
     width: 100vw;
@@ -72,10 +73,15 @@
     margin: 20px;
     padding: 20px 30px;
     border-radius: 25px;
-    background: #222;
+    background: rgb(201, 188, 188);
     box-shadow: 5px 5px 10px #181818, -5px -5px 10px #2c2c2cd8;
   }
+
+           
+ 
+
   #canvas {
+    background-image:linear-gradient(to right, #86b2d0 0%, #89a5c2  51%, #97b2c4  100%);
     grid-column: 2/4;
     grid-row: 1/2;
     order: 2;
@@ -114,13 +120,13 @@
   h5,
   h6 {
     text-align: center;
-    color: rgba(255, 208, 0, 0.836);
+    color: rgba(0, 0, 0, 0.836);
     font-weight: 700;
     margin: 10px;
-    text-shadow: 2px 2px 5px #181818, -2px -2px 5px #2c2c2cd8;
+    /*text-shadow: 2px 2px 5px #181818, -2px -2px 5px #2c2c2cd8;*/
   }
   #label1 {
-    color: rgb(255, 208, 0);
+    color: rgb(86, 81, 60);
     font-size: 18px;
     transition: 0.8s ease-in;
     text-align: center;
@@ -134,9 +140,12 @@
   
   /* ========= controls ========= */
   
+
+          
+
   .input {
     align-items: center;
-    background: #2c2c2c;
+    background-image:linear-gradient(to right, #E0EAFC 0%, #CFDEF3  51%, #E0EAFC  100%);
     width: 70%;
     margin: 10px 20px;
     outline: none;
@@ -180,6 +189,9 @@
   .values {
     letter-spacing: 2px;
   }
+
+  /* ========= Button  ========= */
+
   .btn-container {
     padding: 0px 40px;
     margin: 20px;
@@ -202,22 +214,94 @@
     transition: 0.5s ease;
     box-shadow: 10px 10px 10px #0e0e0e, -7px -7px 10px #333333d8;
   }
-  .btn-yellow {
-    background: rgb(255, 208, 0);
-    color: #222;
-  }
+  
+
+           
   .btn-green {
-    background: #28a745;
-    color: #eee;
+    background-image: linear-gradient(to right, #348F50 0%, #56B4D3  51%, #348F50  100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
   }
-  .btn-red {
-    background: #ff0730;
-    color: #eee;
-  }
-  .btn-blue {
-    background: rgb(0, 122, 255);
+
+  .btn-green:hover {
+    background-position: right center; /* change the direction of the change here */
     color: #fff;
+    text-decoration: none;
   }
+
+
+         
+  .btn-red {
+    background-image: linear-gradient(to right, #CB356B 0%, #BD3F32  51%, #CB356B  100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+  }
+
+  .btn-red:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+ 
+           
+  .btn-yellow {
+    background-image: linear-gradient(to right, #159957 0%, #155799  51%, #159957  100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+  }
+
+  .btn-yellow:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+
+           
+  .btn-blue {
+    background-image: linear-gradient(to right, #4568DC 0%, #B06AB3  51%, #4568DC  100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+  }
+
+  .btn-blue:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+ 
+  /*  === Button ends here === */
   
   #code {
     padding: 10px 20px;
@@ -226,7 +310,7 @@
   }
   #code-panel {
     height: 300px;
-    border-left: 3px solid #333;
+    border-left: 3px solid rgb(208, 198, 198);
     padding: 5px 10px;
     font-size: 16px;
     line-height: 22px;
@@ -247,7 +331,7 @@
     border-radius: 4px;
   }
   ::-webkit-scrollbar-thumb {
-    background: #444;
+    background: rgb(114, 127, 134);
     border-radius: 4px;
   }
   ::-webkit-scrollbar-thumb:hover {
@@ -520,7 +604,7 @@
     display: block;
     height: 60px;
     padding: 5px;
-    background: #101010;
+    background-image:linear-gradient(to right, #91a8b7 0%, #8bbccf  100%, #86abc3  100%);
     width: 540px;
     border-radius: 20px;
     margin-bottom: 10px;
@@ -538,9 +622,12 @@
     padding: 5px;
     margin: 5px;
     border-radius: 10px;
-    background: rgba(0, 122, 255, 0.2);
-    color: rgba(0, 123, 255, 0.494);
-    box-shadow: 5px 5px 10px #000b20,
+    background: rgba(234, 229, 181, 0.766);
+    color: rgb(75, 75, 173);
+    font-size: 25px;
+    text-align: center;
+    font-weight: 700;
+    box-shadow: 1px 1px 1px #545050,
                 -2px -2px 5px #b0f3ff33;
     animation: flip 0.5s cubic-bezier(0.07, 0.84, 0.96, 0.23) forwards;
     animation-timing-function: ease-in;
@@ -561,7 +648,7 @@
     width: 200px;
     height: 350px;
     vertical-align: bottom;
-    background: #101010;
+    background-image:linear-gradient(to right, #91a8b7 0%, #8bbccf  100%, #86abc3  100%);
     border-radius: 20px;
     box-shadow: 5px 5px 10px #181818, -5px -5px 10px #4e4e4e4f;
     margin-left: 0px;
@@ -577,7 +664,10 @@
     border-radius: 5px;
     box-shadow: 0 1px 6px rgba(253, 253, 253, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
     background: rgba(234, 229, 181, 0.766);
-    color: rgb(0, 122, 255);
+    color: rgb(75, 75, 173);
+    font-size: 20px;
+    text-align: center;
+    font-weight: 700;
     animation: flip 0.5s cubic-bezier(0.07, 0.84, 0.96, 0.23) forwards;
     animation-timing-function: ease-in;
     animation-delay: 0ms;
@@ -604,8 +694,8 @@
     height: 250px;
     width: 450px;
     max-width: 500px;
-    background: rgba(0, 185, 43, 0.2);
-    color: #4caf50;
+    background-image:linear-gradient(to right, #91a8b7 0%, #8bbccf  100%, #86abc3  100%);
+    color: #000;
     border-radius: 25px;
     box-shadow: 5px 5px 10px #000c00a8,
                 -2px -2px 10px #3aff4428;
