@@ -817,3 +817,11 @@ footer a:hover {
     font-size: 22px;
   }
 }
+/* algo single page */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
