@@ -1,115 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sorting</title>
-    <link rel="stylesheet" href="/CSS/sort.css">
+    <link rel="stylesheet" href="/CSS/sort.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
+  </head>
 
-<body class="bg-blue-100">
-    <div class="bg-gray-200" style="min-width: 100vh;">
-        <div id="change-val" class="shadow  grid grid-cols-12">
-            <div class="col-span-4 flex items-center justify-center  " style="font-weight:900;">
-                <a href="../index.html">
-                    <h2 style="font-size:large!important;">
-                        ProjectDaVisualizer
-                    </h2>
-                </a>
-                
-            </div>
-            
-            <div class="p-2 col-span-8 " style="display: flex;align-items: baseline;">
-                <button type="button" id="createArray"
-                    class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Create
-                    New Array</button>
-
-                <button type="button" id="sortArray"
-                    class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Insertion
-                    Sort</button>
-                <button type="button" id="stopVisual"
-                    class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                    Stop</button>
-
-                    <button type="button" id="play"
-                    class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                  Play</button>
-
-                  <button type="button" id="previous"
-                  class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                Previous</button>
-                <button type="button" id="next"
-                class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-              Next</button>
-
-            </div>
-        </div>  
-    </div>
-    <div class="shadow p-4 m-4  bg-white" style="position: relative; bottom: 0;min-width: 100vh;min-height:40vh;">
-        <div class="mother absolute bottom-0" style="border-bottom: 5px solid black;">
-
+  <body class="bg-blue-100">
+    <div class="bg-gray-200" style="min-width: 100vh">
+      <div id="change-val" class="shadow grid grid-cols-12">
+        <div
+          class="col-span-4 flex items-center justify-center"
+          style="font-weight: 900"
+        >
+          <a href="../index.html">
+            <h2 style="font-size: large !important">ProjectDaVisualizer</h2>
+          </a>
         </div>
+
+        <div
+          class="p-2 col-span-8"
+          style="display: flex; align-items: baseline"
+        >
+          <button
+            type="button"
+            id="createArray"
+            class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          >
+            Create New Array
+          </button>
+
+          <button
+            type="button"
+            id="sortArray"
+            class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          >
+            Insertion Sort
+          </button>
+          <button
+            type="button"
+            id="stopVisual"
+            class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          >
+            Stop
+          </button>
+
+          <button
+            type="button"
+            id="play"
+            class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          >
+            Play
+          </button>
+
+          <button
+            type="button"
+            id="previous"
+            class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          >
+            Previous
+          </button>
+          <button
+            type="button"
+            id="next"
+            class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          >
+            Next
+          </button>
+        </div>
+      </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <div
+      class="shadow p-4 m-4 bg-white"
+      style="position: relative; bottom: 0; min-width: 100vh; min-height: 40vh"
+    >
+      <div
+        class="mother absolute bottom-0"
+        style="border-bottom: 5px solid black"
+      ></div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-   
 
     <script type="module">
-        import Sort from "../js/sort/sort.js"
-        $(document).ready(function () {
-            let sortButton = $('#sortArray');
-            const container = document.querySelector('.mother');
+      import Sort from "../js/sort/sort.js";
+      $(document).ready(function () {
+        let sortButton = $("#sortArray");
+        const container = document.querySelector(".mother");
 
-           
-            let sort = new Sort(container, []);
-            $('#speed').on('change', function () {
-                let speed = $(this).val();
-              sort.speed = speed+1;
-              
-            });
-
-            sortButton.click(function () {
-                console.log("Starting ")
-                sort.currentStep=0;
-                sort.setVisualizeStatus(true);
-                sort.visuaLizeBubbleSort();
-            });
-            $("#stopVisual").click(function () {
-                sort.setVisualizeStatus(false);
-            });
-            $("#play").click(function () {
-                sort.setVisualizeStatus(true);
-                sort.visuaLizeBubbleSort();
-               
-            }
-            );
-            $("#previous").click(function () {
-                let  status=sort.visualizeStatus;
-                sort.setVisualizeStatus(false);
-               sort.goBack();
-              
-            }
-            );
-            $("#next").click(function () {
-                
-                let  status=sort.visualizeStatus;
-                sort.setVisualizeStatus(false);
-               sort.goForward();
-              
-            }
-            );
-            $("#createArray").click(function () {
-                sort.reset();
-            }
-            );
-
-
+        let sort = new Sort(container, []);
+        $("#speed").on("change", function () {
+          let speed = $(this).val();
+          sort.speed = speed + 1;
         });
-    </script>
-</body>
 
+        sortButton.click(function () {
+          console.log("Starting ");
+          sort.currentStep = 0;
+          sort.setVisualizeStatus(true);
+          sort.visuaLizeBubbleSort();
+        });
+        $("#stopVisual").click(function () {
+          sort.setVisualizeStatus(false);
+        });
+        $("#play").click(function () {
+          sort.setVisualizeStatus(true);
+          sort.visuaLizeBubbleSort();
+        });
+        $("#previous").click(function () {
+          let status = sort.visualizeStatus;
+          sort.setVisualizeStatus(false);
+          sort.goBack();
+        });
+        $("#next").click(function () {
+          let status = sort.visualizeStatus;
+          sort.setVisualizeStatus(false);
+          sort.goForward();
+        });
+        $("#createArray").click(function () {
+          sort.reset();
+        });
+      });
+    </script>
+  </body>
 </html>
