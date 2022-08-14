@@ -1,150 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Play Ground</title>
-    <style>
-        .container {
-            margin: 20px auto;
-            background: rgb(167, 187, 145);
-            min-height: 100VH;
-            padding: 2REM;
-            rotation: 180deg;
-        }
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>ProjectDa Algorithm Visualizer Somapti</title>
+    <meta name="description" content="" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Raleway:100,300,400,600,700"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+      integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+      integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
+      crossorigin="anonymous"
+    />
 
-        #barContainer {
-            display: flex;
-            align-items: flex-end;
-            align-content: center;
-            justify-content: flex-start;display: flex;
-            align-items: flex-end;
-            align-content: center;
-            justify-content: flex-start;
+    <link rel="stylesheet" href="../CSS/style.css" />
+  </head>
+  <body>
+    <header class="container-fluid vs-container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">ProjectDaVisualizer</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarDefault"
+          aria-controls="navbarDefault"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="icon-bar i1"></span>
+          <span class="icon-bar i2"></span>
+          <span class="icon-bar i3"></span>
+        </button>
 
-        }
+        <div class="collapse navbar-collapse" id="navbarDefault">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html"
+                >HOME <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">ABOUT Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">CONTACT</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-        #barContainer > li {
-            background: #000;
-            margin: 6px;
-            width: 31px;
-            list-style-type: none;
-            color: rgb(250, 250, 250);
-            text-align: center;
+      <div id="hero-text">
+        <div class="container">
+          <h1>ProjectDaVisualizer...</h1>
+          <h5>Using animation to visualize data structures and algorithms</h5>
+        </div>
+      </div>
+    </header>
 
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    <button id="newArray">Create New Array</button>
-    <br>
-    <div style="display:inline;color: #a710c2;padding: 10px;margin: 10px">
-        <label for="time" style="background:#000; padding: 4px;border-radius: 10%">Speed</label>
-        <input class="input-range" type="range" value="1" min="0" max="100">
-    </div>
+    <!-- Corner Borders -->
+    <section class="borders">
+      <div class="brTR"></div>
+      <div class="brTL"></div>
+      <div class="brBL"></div>
+      <div class="brBR"></div>
+    </section>
 
-    <br>
-    <div id="barContainer">
+    <section class="gallery">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="controls">
+            <button type="button" class="control" data-filter="all">All</button>
+            <button type="button" class="control" data-filter=".sorting">
+              Sorting
+            </button>
+            <button type="button" class="control" data-filter=".graph-travarsal">
+              Graph Travarsal
+            </button>
+            <button type="button" class="control" data-filter=".path-finding">
+              Path Finding
+            </button>
+            <button type="button" class="control" data-filter=".data-structure">
+              Data Structure
+            </button>
+            <button type="button" class="control" data-filter=".geometry">
+              Geometry
+            </button>
+          </div>
+        </div>
 
-    </div>
+        <div class="row">
+          <div class="fw mix-container home-main">
+            <div class="mix sorting">
+              <a href="/Algorithm-visualization/insertion.html" class="thumb-a">
+                <div class="item-hover">
+                  <div class="hover-text"><h3>Insertion Sorting Algorithm</h3></div>
+                </div>
+                <div class="item-img">
+                  <img src="../Images/sortingAlgorithm/insertionSort.jpg" alt="" />
+                </div>
+              </a>
+            </div>
+            <div class="mix sorting">
+              <a href="/Algorithm-visualization/selection.html" class="thumb-a">
+                <div class="item-hover">
+                  <div class="hover-text"><h3>Selection Sorting Algorithm</h3></div>
+                </div>
+                <div class="item-img">
+                  <img src="../Images/sortingAlgorithm/selectionsort.jpg" alt="" />
+                </div>
+              </a>
+            </div>
+           <!-- <div class="mix sorting">
+              <a href="./Selection/Selection.html" class="thumb-a">
+                <div class="item-hover">
+                  <div class="hover-text"><h3>Merge Sort Algorithm</h3></div>
+                </div>
+                <div class="item-img">
+                  <img src="../Images/sortingAlgorithm//mergeSort.jpg" alt="" />
+                </div>
+              </a>
+            </div>-->
+         <!--   <div class="mix sorting">
+              <a href="./Selection/Selection.html" class="thumb-a">
+                <div class="item-hover">
+                  <div class="hover-text"><h3>Quick Sort Algorithm</h3></div>
+                </div>
+                <div class="item-img">
+                  <img src="../Images/sortingAlgorithm/quicksort.jpg" alt="" />
+                </div>
+              </a>
+            </div>-->
+            <div class="mix sorting">
+              <a href="./Selection/Selection.html" class="thumb-a">
+                <div class="item-hover">
+                  <div class="hover-text"><h3>Bubble Sort Algorithm</h3></div>
+                </div>
+                <div class="item-img">
+                  <img src="../Images/sortingAlgorithm/bubblesort.jpg" alt="" />
+                </div>
+              </a>
+            </div>
+            <div class="mix data-structure">
+              <a href="#" class="thumb-a">
+                <div class="item-hover">
+                  <div class="hover-text"><h3>Stack Algorithm</h3></div>
+                </div>
+                <div class="item-img">
+                  <img src="../Images/dataStructure/stack.jpeg" alt="" />
+                </div>
+              </a>
+            </div>
+            <div class="mix data-structure">
+              <a href="#" class="thumb-a">
+                <div class="item-hover">
+                  <div class="hover-text"><h3>Qeue Algorithm</h3></div>
+                </div>
+                <div class="item-img">
+                  <img src="../Images/dataStructure/queue.jpg" alt="" />
+                </div>
+              </a>
+            </div>
+            <div class="mix graph-travarsal">
+              <a href="#" class="thumb-a">
+                <div class="item-hover">
+                  <div class="hover-text"><h3>Bfs</h3></div>
+                </div>
+                <div class="item-img">
+                  <img src="../Images/graphtravarsal/bfs.png" alt="" />
+                </div>
+              </a>
+            </div>
+            <div class="mix graph-travarsal">
+              <a href="#" class="thumb-a">
+                <div class="item-hover">
+                  <div class="hover-text"><h3>Dfs</h3></div>
+                </div>
+                <div class="item-img">
+                  <img src="../Images/graphtravarsal/dfs.jpg" alt="" />
+                </div>
+              </a>
+            </div>
+            <div class="mix path-finding">
+              <a href="#" class="thumb-a">
+                <div class="item-hover">
+                  <div class="hover-text"><h3>Shortest Path algorithm</h3></div>
+                </div>
+                <div class="item-img">
+                  <img src="../Images/pathfinding/sssp.png" alt="" />
+                </div>
+              </a>
+            </div>
+            <div class="mix geometry">
+              <a href="#" class="thumb-a">
+                <div class="item-hover">
+                  <div class="hover-text"><h3>convex hall</h3></div>
+                </div>
+                <div class="item-img">
+                  <img src="../Images/graphtravarsal/dfs.jpg" alt="" />
+                </div>
+              </a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <!-- Footer Section -->
+    <footer>
+      <div class="container-fluid">
+        <div class="footer-info">
+          <div class="footer-title">
+            <h2>ProjectDaVisualizer</h2>
+            <p>© 2022 Copyright: Team ProjectDaVisualizer</p>
+          </div>
+          <div class="footer-social">
+            <a href=""><span>About</span></a>
+            <a href=""><span>Team</span></a>
+            <a href=""><span>Terms of use</span></a>
+            <a href=""><span>Privacy Policy</span></a>
+          </div>
+        </div>
+      </div>
+    </footer>
 
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+      integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+      integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/mixitup.min.js"></script>
+    <script src="../js/custom.js"></script>
+    <script>
+      var containerEl = document.querySelector(".mix-container");
 
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-        crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function () {
-        $('#time').on('change',(this)=>{
-            console.log(this)
-        })
-        var array = [];
-        var time = 500;
-        var sortedArray = [];
-        $('#newArray').on('click', () => {
-            time=500;
-            console.log("vuda")
-            createArray();
-            sortBar();
-            setTimeout(()=>{
-
-
-                $('#0').css("background-color", "green");
-
-
-            },time)
-        })
-        const createArray = () => {
-            array = [];
-            sortedArray = [];
-
-            let limit = Math.round(Math.random(2, 122) * 40)+1;
-            while (limit) {
-                if (limit === 0) break;
-                array.push(Math.round(Math.random(2, 122) * 50)+1)
-                limit--;
-            }
-            console.log(array);
-            createBar();
-
-            //animateBar();
-
-        }
-                const createBar = () => {
-            $('#barContainer').html('');
-            array.map((num, index) => {
-
-                let node = $("<li></li>").css("height", num * 10 + "px").text(num);
-                node.attr('id', index);
-                $('#barContainer').append(node);
-            })
-
-        }
-        const sortBar = () => {
-            var count = 0;
-            for (let step = 0; step < array.length - 1; step++) {
-                console.log(step)
-                console.log("Array")
-                console.log(array.length)
-
-                for (let i = 0; i < array.length-step-1; i++) {
-                    time=time+20;
-                    setTimeout(()=>{
-                        if (array[i]>array[i+1]){
-                            let temp=array[i+1];
-                            array[i+1]=array[i];
-                            array[i]=temp;
-                            $('#'+i).css("height",  array[i] * 10 + "px").text(array[i]);
-                            $('#'+(i+1)).css("height",  array[i+1] * 10 + "px").text(array[i+1]);
-                        }
-                        $('#'+i).css("background-color", "red");
-                        $('#'+(i+1)).css("background-color", "blue");
-                        $('#'+(i-1)).css("background-color", "black");
-
-
-
-                    },time)
-
-                }//end of second for loop
-                setTimeout(()=>{
-
-                    $('#'+(array.length-step-1)).css("background-color", "green");
-                    $('#'+(array.length-step-2)).css("background-color", "black");
-
-
-                },time=time+10)
-
-
-                }
-            }
-
-
-
-    });
-
-</script>
-</body>
+      var mixer = mixitup(containerEl, {
+        animation: {
+          effects: "fade scale stagger(50ms)", // Set a 'stagger' effect for the loading animation
+        },
+      });
+    </script>
+  </body>
 </html>

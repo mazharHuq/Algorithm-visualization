@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"name": "Algorithm-visualization",
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.port": 5501
+	}
+}

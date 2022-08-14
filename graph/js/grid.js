@@ -12,14 +12,21 @@ class Grid {
     this.height = height;
     this.cellSize = cellSize;
     this.cells = [];
-    this.init();
+   
     this.colorSequence = [];
     this.pathTrack1 = [];
+   this.startX = 3;
+    this.startY = 4;
+    this.endX = this.width - 1;
+    this.endY = this.height - 1;
+    this.init();
+    console.log("grid initialized");
+
   }
 
   init() {
-    const windowWidth = window.innerWidth * 0.9;
-    const windowHeight = window.innerHeight * 0.9;
+    const windowWidth = window.innerWidth * 0.8;
+    const windowHeight = window.innerHeight * 0.85;
     let gridElement = document.getElementById("grid");
     gridElement.style.width = windowWidth + "px";
     gridElement.style.height = windowHeight + "px";
@@ -33,6 +40,12 @@ class Grid {
         this.cells[i][j] = new Cell(i, j, this.cellSize);
 
         let el = document.createElement("div");
+        el.addEventListener("dragstart", this.dragStart);
+        el.addEventListener("dragover", this.allowDrop);
+        el.addEventListener("dragend", this.dragEnd);
+        el.addEventListener("drop", this.drop);
+
+        el.id = "cell-" + i + "-" + j;
         el.className = "cell";
         el.dataset.x = i;
         el.dataset.y = j;
@@ -43,13 +56,77 @@ class Grid {
         //set background color to white
         el.style.backgroundColor = "white";
         //set a html value to the cell
-        el.innerHTML = i + j;
-
+      
         gridElement.appendChild(el);
 
         //add the cell to the grid
       }
     }
+    console.log(this.startX, this.startY);
+    this.setStart(this.startX, this.startY);
+    this.setEnd(this.endX, this.endY);
+    
+  }
+  //function for drag and drop the start and end cell
+  dragStart(event) {
+    console.log("dragstart");
+    event.dataTransfer.setData("text", event.target.id);
+  }
+  dragEnd(event) {
+    event.preventDefault();
+    console.log("dragEnd");
+  }
+  //function for allowing the cell to be dropped
+  allowDrop(event) {
+    event.preventDefault();
+    console.log("allowDrop");
+  }
+  //function for dropping the cell
+  drop(event) {
+    console.log("drop");
+    event.preventDefault();
+    let data = event.dataTransfer ;
+    console.log(data);
+    let id = data.getData("text");
+    let cellElement = document.getElementById(id);
+   
+   
+   let text = cellElement.innerHTML;
+   event.target.innerHTML = text;
+   if(text == "S"){
+    event.target.style.backgroundColor = "green";
+    this.startX = event.target.dataset.x;
+    this.startY = event.target.dataset.y;
+    console.log(this.startX, this.startY);
+   }else if(text == "E"){
+    this.endX = event.target.dataset.x;
+    this.endY = event.target.dataset.y;
+    console.log(this.endX, this.endY);
+      event.target.style.backgroundColor = "red";
+      console.log("chnged");
+    }
+    cellElement.style.backgroundColor = "white";
+    cellElement.innerHTML = "";
+    console.log(this.startX, this.startY);
+    console.log(this.endX, this.endY);
+    
+  }
+
+
+  //set the start and end cell
+  setStart(x, y) {
+    console.log(x, y);
+    
+   document.querySelector("[data-x='" + x + "'][data-y='" + y + "']").style.backgroundColor = "green";
+   document.querySelector("[data-x='" + x + "'][data-y='" + y + "']").innerHTML = "S";
+  }
+  setEnd(x, y) {
+    
+    document.querySelector("[data-x='" + x + "'][data-y='" + y + "']").innerHTML = "E";
+    this.endX=x;
+    this.endY;
+
+    document.querySelector("[data-x='" + x + "'][data-y='" + y + "']").style.backgroundColor = "red";
   }
 
   //await the cell to be colored
@@ -65,7 +142,12 @@ class Grid {
     });
   }
   //color cell with bfs algorithm  until finding the end cell
-  async bfsUntilEnd(x, y, color, a, b) {
+  async bfsUntilEnd( color) {
+    let x=this.startX;
+    let  y=this.startY;
+    let a=this.endX;
+     let b=this.endY;
+    console.log(x, y, a, b);
     let colorSequence = [];
     log("bfsUntilEnd");
     let queue = [];
@@ -138,16 +220,6 @@ class Grid {
         }
       }
     }
-    /*
-    if (isDestinationFound) {
-      while (pathTrack[a][b] != [[x][y]]) {
-        let _a = pathTrack[a][b][0];
-        let _b = pathTrack[a][b][1];
-        a = _a;
-        b = _b;
-        console.log(a, b);
-      }
-    }*/
   }
 
   //color cell with dfs algorithm  until finding the end cell

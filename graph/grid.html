@@ -12,7 +12,23 @@
         display: grid;
       }
       .cell {
-        border: 1px solid lightgray;
+        border: 1px solid #afd8f8;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+      }
+     .control {
+      padding: 10px;
+      background: #afd8f8;
+        border: 1px solid #afd8f8;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 1px 1px 1px 1px #afd8f8;
+      }
+      button{
+       
+        border: 1px solid #afd8f8;
         text-align: center;
         align-items: center;
         justify-content: center;
@@ -21,7 +37,15 @@
   </head>
 
   <body>
-    <button id="#bfs-btn">BFS Grid</button>
+    <div class="control">
+      <button onclick="generate()">Generate</button>
+
+      <button id="bfs-btn">BFS Grid</button>
+      <button id="dfs-btn">DFS Grid</button>
+    
+
+    </div>
+   
     <div id="grid"></div>
     <script type="text/javascript" src="./js/grid.js"></script>
     <script>
@@ -30,8 +54,23 @@
       const width = 40;
       const cellSize = 5;
       const grid = new Grid(height, width, cellSize);
+      var isRunning = false;
+      var isBfs = false;
+      var isDfs = false;
+      var isStartingNode = false;
+      var isEndingNode = false;
 
-      grid.DfsUntilEnd(18, 19, "green", 05, 1);
+
+   document.getElementById("bfs-btn").onclick = function() {
+    isBfs = true;
+    isDfs = false;
+    isRunning = false;
+    grid.bfsUntilEnd("blue");
+   }
+      
+      
+
+     // grid.DfsUntilEnd(18, 19, "green", 05, 1);
     </script>
   </body>
 </html>

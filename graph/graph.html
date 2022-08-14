@@ -19,8 +19,10 @@
   </head>
   <body>
     <div id="container"></div>
-    <script type="text/javascript" src="./js/buildGraph.js"></script>
-    <script type="text/javascript" src="./js/visualizeGraphAlog.js"></script>
+
+    <script type="text/javascript" src="../js/priorityQueue.js"></script>
+    <script type="text/javascript" src="../js/buildGraph.js"></script>
+    <script type="text/javascript" src="../js/visualizeGraphAlog.js"></script>
     <script type="text/javascript">
       let graphInfob = {
         edgeColor: "#548694",
@@ -41,7 +43,11 @@
       grid["4"] = [[5, 2]];
 
       let graph = new buildGraph(graphInfob, grid);
-      var steps = graph.getUnWeightedDfsSteps(1, 5);
+      var steps = graph.getWeightedDijkstraSteps(1, 5);
+
+      //var steps = graph.getWeightedDFS(1, 5);
+
+      //var steps = graph.getWeightedBFS(1, 5);
 
       var container = document.getElementById("container");
 
