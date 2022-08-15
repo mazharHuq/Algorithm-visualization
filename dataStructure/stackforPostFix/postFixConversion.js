@@ -4,6 +4,19 @@ class PostFix {
     this.array = [];
     this.postFixArray = [];
     this.counter = 0;
+    this.root = 0;
+    let graphInfob = {
+      edgeColor: "#548694",
+      isDirected: true,
+      isWeighted: true,
+    };
+    this.grid = {};
+    let graph;
+    this.map = [];
+  }
+
+  setGraph() {
+    this.graph = new buildGraph(this.graphInfob, this.grid);
   }
   box_create(array) {
     if (array) {
@@ -60,8 +73,7 @@ class PostFix {
         } else {
           while (st.length > 0) {
             let top = st.pop();
-            if (this.rank(top) < this.rank(str[i]) && top != "(") {
-              console.log(top);
+            if (this.rank(top) > this.rank(str[i]) && top != "(") {
               console.log(this.rank(top), this.rank(str[i]));
               ret += top;
               this.showOnPostFixBox(top);
@@ -74,9 +86,48 @@ class PostFix {
         }
       }
       while (st.length > 0) {
-        this.showOnPostFixBox(st.pop());
+        let top = st.pop();
+        ret += top;
+        this.showOnPostFixBox(top);
       }
-      console.log(ret);
+      return ret;
+    } else {
+      this.stack.invaildInput();
+    }
+  }
+
+  makeGraph(array) {
+    if (array) {
+      this.array = array;
+      let grid = {};
+      let stackArray = [];
+      let nodeNumber = 1;
+      this.map = {};
+      console.log(array);
+      for (let i = 0; i < array.length; i++) {
+        if (array[i] >= "a" && array[i] <= "z") {
+          stackArray.push([nodeNumber, array[i]]);
+          this.map[nodeNumber] = [array[i]];
+          nodeNumber++;
+        } else {
+          let a = stackArray.pop()[0];
+          let b = stackArray.pop()[0];
+          let node = "" + nodeNumber;
+          grid[node] = [
+            [a, 1],
+            [b, 1],
+          ];
+          this.map[nodeNumber] = array[i];
+          stackArray.push([nodeNumber, array[i]]);
+          nodeNumber++;
+        }
+      }
+      if (stackArray.length > 0) {
+        this.root = stackArray.pop()[0];
+      }
+      this.grid = grid;
+      console.log(grid);
+      return grid;
     } else {
       this.stack.invaildInput();
     }
@@ -88,6 +139,65 @@ $(document).ready(function () {
   $("#postFix").click(function () {
     let value = document.getElementById("push-item").value;
     postFix.box_create(value);
-    postFix.postFixConversion(value);
+    let postExpression = postFix.postFixConversion(value);
+    postFix.makeGraph(postExpression);
+    postFix.setGraph(postFix.grid);
+
+    let graphInfob = {
+      edgeColor: "#548694",
+
+      isDirected: false,
+      isWeighted: false,
+    };
+
+    let grid = postFix.grid;
+    let graph = new buildGraph(graphInfob, grid);
+    graph.setLebelMap(postFix.map);
+    var steps = []; //graph.getUnWeightedBfsSteps(1, 5);
+
+    //var steps = graph.getWeightedBFS(1, 5);
+
+    var container = document.getElementById("graph");
+
+    var options = {
+      clickToUse: true,
+      physics: { enabled: true },
+      edges: {
+        color: { inherit: false },
+      },
+      nodes: {
+        color: "#2d8ad6",
+      },
+      layout: {
+        hierarchical: {
+          enabled: false,
+        },
+      },
+    };
+
+    let visDfs = new visualizeGraphAlog(steps, "#FF0AB1", "#548694", true);
+    visDfs.init(container, graph.getGraph(), options);
+
+    let isFirstStep = true;
+
+    function startAnimation() {
+      if (!isFirstStep) {
+        visDfs.releaseStep();
+      }
+
+      if (!visDfs.isStepAvailable()) {
+        clearInt();
+        return;
+      }
+
+      visDfs.nextStep();
+      isFirstStep = false;
+    }
+
+    const myInt = setInterval(startAnimation, 2000);
+
+    function clearInt() {
+      clearInterval(myInt);
+    }
   });
 });

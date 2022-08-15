@@ -1,7 +1,20 @@
 <html>
   <head>
     <title>Stack using Array</title>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"
+    ></script>
     <link rel="stylesheet" href="../stackforPostFix/style.css" />
+    <style type="text/css">
+      #graph {
+        margin: 0 auto;
+        width: 80%;
+        height: 600px;
+        border: 1px solid lightgray;
+        border-radius: 6px;
+      }
+    </style>
   </head>
 
   <body>
@@ -145,6 +158,7 @@
             </div>-->
           </div>
         </div>
+        <div id="graph"></div>
         <!-- =============== draggable box ends here ============ -->
 
         <!-- ========= code area ends here ======== -->
@@ -157,9 +171,16 @@
     ></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
+    <script type="text/javascript" src="/js/priorityQueue.js"></script>
+    <script type="text/javascript" src="/js/buildGraph.js"></script>
+    <script type="text/javascript" src="/js/visualizeGraphAlog.js"></script>
     <script src="../stackforPostFix/container.js"></script>
     <script src="../stackforPostFix/operationExplaination.js"></script>
     <script src="../stackforPostFix/stack.js"></script>
     <script src="../stackforPostFix/postFixConversion.js"></script>
+
+    <script type="text/javascript">
+      //var steps = graph.getWeightedDijkstraSteps(1, 5);
+    </script>
   </body>
 </html>
