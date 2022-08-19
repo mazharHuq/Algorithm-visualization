@@ -1,0 +1,186 @@
+<html>
+  <head>
+    <title>Stack using Array</title>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"
+    ></script>
+    <link rel="stylesheet" href="../stackforPostFix/style.css" />
+    <style type="text/css">
+      #graph {
+        margin: 0 auto;
+        width: 80%;
+        height: 600px;
+        border: 1px solid lightgray;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Wrapper for whole HTML document -->
+    <div class="wrapper">
+      <div id="container">
+        <!-- ======= This is Canvas area ========= -->
+        <div id="canvas" class="box box-full">
+          <h1 style="text-align: center; color: #000000">
+            Implementation of stack using array
+          </h1>
+
+          <!-- Canvas Element to draw Animations -->
+          <div id="canvas-wrapper">
+            <div id="target">
+              <div id="form-row">
+                <div id="array-wrapper">
+                  <div id="array"></div>
+                </div>
+              </div>
+              <span
+                style="
+                  position: relative;
+                  display: block;
+                  font-size: 20px;
+                  font-weight: bold;
+                  color: #000000;
+                  margin: 10px 250px;
+                "
+                >Array</span
+              >
+              <div id="lowerbound">
+                <div id="stack-wrapper">
+                  <div id="stack"></div>
+                  <span
+                    style="
+                      position: relative;
+                      display: block;
+                      font-weight: bold;
+                      color: #000000;
+                      font-size: 20px;
+                      margin: 10px 70px;
+                    "
+                    >Stack</span
+                  >
+                </div>
+
+                <!-- =============== current step explanation =============== -->
+                <div id="algo-box">
+                  <li id="current_algo" class="algo-steps">
+                    >> INIT_STACK (STACK, TOP) <br />
+                    <br />
+
+                    Algorithm to initialize a stack using array. <br />
+                    TOP points to the top-most element of stack.<br />
+                    <br /><br />
+                  </li>
+                </div>
+              </div>
+              <div id="postFix-wrapper">
+                <div id="postFixArray"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--======== Canvas area ends here ====== -->
+
+        <!-- ================ input box =============== -->
+        <div id="container">
+          <!-- Form Inputs -->
+          <div class="inputs">
+            <h2 style="text-align: center; color: #000000; padding-top: 5px">
+              Enter the Equation
+            </h2>
+            <!-- ====== pushing element ====== -->
+            <div class="form-row">
+              <input
+                type="text"
+                id="push-item"
+                name="push-item"
+                class="input"
+                placeholder="Enter Element"
+                required
+              />
+            </div>
+
+            <!-- ======== popping element ======== -->
+            <div class="form-row">
+              <input
+                type="submit"
+                id="postFix"
+                style="width: 100%"
+                name="push-btn"
+                value="Post Fix Equation"
+                class="btn btn-green push-btn"
+              />
+
+              <input
+                type="hidden"
+                id="push-btn"
+                name="push-btn"
+                value="Push"
+                class="btn btn-green push-btn"
+              />
+              <input
+                type="hidden"
+                id="pop-back-item"
+                name="pop-item"
+                value="Pop "
+                class="btn btn-red pop-btn"
+              />
+            </div>
+
+            <!-- ========== InputForm ========== -->
+            <div class="form-row">
+              <input
+                type="hidden"
+                id="isPeak-item"
+                name="ispeak"
+                value="Peak"
+                ;
+                class="btn btn-yellow"
+              />
+              <input
+                type="hidden"
+                id="isEmpty-item"
+                name="isempty"
+                value="IsEmpty?"
+                class="btn btn-blue"
+              />
+            </div>
+
+            <!--<div class="form-row">
+              <input
+                type="button"
+                id="pop-front-item"
+                name="pop-front-item"
+                value="Pop_front"
+                class="btn btn-red"
+              />
+            </div>-->
+          </div>
+        </div>
+        <div id="graph"></div>
+        <!-- =============== draggable box ends here ============ -->
+
+        <!-- ========= code area ends here ======== -->
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="/js/priorityQueue.js"></script>
+    <script type="text/javascript" src="/js/buildGraph.js"></script>
+    <script type="text/javascript" src="/js/visualizeGraphAlog.js"></script>
+    <script src="../stackforPostFix/container.js"></script>
+    <script src="../stackforPostFix/operationExplaination.js"></script>
+    <script src="../stackforPostFix/stack.js"></script>
+    <script src="../stackforPostFix/postFixConversion.js"></script>
+
+    <script type="text/javascript">
+      //var steps = graph.getWeightedDijkstraSteps(1, 5);
+    </script>
+  </body>
+</html>
