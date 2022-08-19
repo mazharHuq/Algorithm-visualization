@@ -34,3 +34,43 @@ li>span {
     -moz-transform: rotate(-180deg);
     margin-right: 3px;
 }
+#status {
+    bottom: 255px;
+    right: 43px;
+    height: 54px;
+    white-space: normal;
+}
+.panel {
+    position: fixed;
+    color: #fff;
+    width: 0;
+    overflow: hidden;
+    background: #777;
+    white-space: nowrap;
+}
+#codetrace {
+    bottom: 60px;
+    right: 43px;
+    height: 192px;
+    font-family: courier new,Courier,monospace;
+    background-color: #81b7d2;
+}
+#right-bar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 40px;
+    background: #000;
+    z-index: -2;
+}
+#codetrace-hide {
+    bottom: 60px;
+    right: 0;
+    padding: 88px 14px 88px 15px;
+    transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+}
