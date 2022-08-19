@@ -1,4 +1,5 @@
 import Bar from './bar.js';
+import Explanation from './explaination.js';
 
 class Sort {
     /*
@@ -22,9 +23,12 @@ class Sort {
         this.visualizeStatus = false;
         this.currentStep = 0;
         this.speed = 50;
+        this.explanation=new Explanation(this.container);
 
     }
     render() {
+        
+        
         this.generateRandomArray();
         console.log(this.arr);
         this.container.innerHTML = '';
@@ -37,7 +41,7 @@ class Sort {
         }
     }
     generateRandomArray() {
-        let limit = Math.round(Math.random(2, 122) * 40) + 1;
+        let limit = Math.round(Math.random(2, 122) * 20) + 1;
         while (limit) {
             if (limit === 0) break;
             this.arr.push(Math.round(Math.random(2, 122) * 50) + 1)
@@ -194,6 +198,8 @@ class Sort {
     }
 
     async visuaLizeBubbleSort() {
+        this.explanation.showExplanation();
+        this.explanation.setMessage('Bubble Sort');
         this.bubbleSort();
         for (let i = this.currentStep; i < this.step.length; i++) {
             let time = parseInt(10000 / this.speed);
@@ -202,12 +208,19 @@ class Sort {
                 if (this.step[i].type === 'swap') {
                     let firstNode = this.step[i].firstNode;
                     let secondNode = this.step[i].secondNode;
+                    let firstNodeValue=document.querySelector(`[data-index="${firstNode}"]`).innerHTML;
+                    let secondNodeValue=document.querySelector(`[data-index="${secondNode}"]`).innerHTML;
+                    this.explanation.setMessage(`Swap ${firstNodeValue} and ${secondNodeValue}`);
                     await this.swap(this.step[i].firstNode, this.step[i].secondNode, this.color.targetColor, time);
                     await this._initializeColor(firstNode, secondNode, this.color.initialColor, time / 3);
                 } else if (this.step[i].type === 'check') {
+                   let firstNodeValue=document.querySelector(`[data-index="${this.step[i].firstNode}"]`).innerHTML;
+                     let secondNodeValue=document.querySelector(`[data-index="${this.step[i].secondNode}"]`).innerHTML;
+                    this.explanation.setMessage(`Check ${firstNodeValue} and ${secondNodeValue}`);
                     await this.checkTwoNodes(this.step[i].firstNode, this.step[i].secondNode, time);
                     await this._initializeColor(this.step[i].firstNode, this.step[i].secondNode, this.color.initialColor, time / 3);
                 } else if (this.step[i].type === 'sorted') {
+                    this.explanation.setMessage(`Sorted ${this.step[i].secondNode}`);
                     await this.colorNodes(this.step[i].secondNode, this.color.finalColor, time);
                     console.log(this.step[i].secondNode);
                 }
@@ -235,6 +248,7 @@ class Sort {
         }
         );
     }
+
 
    
 

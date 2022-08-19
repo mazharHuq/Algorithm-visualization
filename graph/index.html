@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorting</title>
+    <link rel="stylesheet" href="/CSS/sort.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+
+        body {
+            font-family: "IBM Plex Mono", monospace;
+        }
+    </style>
+    <style>
+        #grid {
+            border: 1px solid rgb(24, 179, 114);
+
+            display: grid;
+        }
+
+        .cell {
+            border: 1px solid #e6eff6;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .control {
+            padding: 10px;
+            background: #afd8f8;
+            border: 1px solid #afd8f8;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 1px 1px 1px 1px #afd8f8;
+        }
+
+        button {
+            border: 1px solid #afd8f8;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Raleway:100,300,400,600,700"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="bg-blue-100">
+    <nav class="shadow bg-white">
+        <div class="mx-auto container">
+            <div class="flex justify-between items-center px-4 py-2">
+                <div class="flex items-center">
+                    <h1 class="font-bold text-2xl ml-2">VisualAlgorithm</h1>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <div class="font-bold text-lg">
+                        <label>Select Algorithm</label>
+                        <select id="selectAlgorithm"
+                            class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2">
+                            <option value="">Select An Algorithm</option>
+                            <option value="bubbleSort">Bubble Sort</option>
+                            <option value="selectionSort">Selection Sort</option>
+                            <option value="insertionSort">Insertion Sort</option>
+                        </select>
+                    </div>
+
+                    <button id="start"
+                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">
+                        Visualize
+                    </button>
+                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">
+                        Visualize
+                    </button>
+
+                    <div>
+                        <!-- Button for creating random array -->
+                        <button type="button" id="randomArray"
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
+                            Random Array
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="grid"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./js/grid.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+    <script type="module">
+        $(document).ready(function () {
+            const startButton = $("#start");
+            var START_X = 4;
+            var START_Y = 16;
+            var END_X = 23;
+            var END_Y = 20;
+            startButton.attr("data-startX", START_X);
+            startButton.attr("data-startY", START_Y);
+            startButton.attr("data-endX", END_X);
+            startButton.attr("data-endY", END_Y);
+            const height = 30;
+            const width = 30;
+            const cellSize = 3;
+            const grid = new Grid(height, width, cellSize,startButton,START_X,START_Y,END_X,END_Y);
+          
+            var isRunning = false;
+            var isBfs = false;
+            var isDfs = false;
+            var isStartingNode = false;
+            var isEndingNode = false;
+            startButton.click(() => {
+                let x=parseInt(startButton.attr("data-startX"));
+                let y=parseInt(startButton.attr("data-startY"));
+                let endX=parseInt(startButton.attr("data-endX"));
+                let endY=parseInt(startButton.attr("data-endY"));
+                console.log(x,y,endX,endY);
+                grid.showStartingPoint();
+                 grid.bfsUntilEnd("darkgreen",x,y,endX,endY);
+            });
+        });
+    </script>
+</body>
+
+</html>
