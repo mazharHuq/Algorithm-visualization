@@ -18,6 +18,7 @@ class PostFix {
   setGraph() {
     this.graph = new buildGraph(this.graphInfob, this.grid);
   }
+
   box_create(array) {
     if (array) {
       this.stack.box_create(array);
@@ -26,21 +27,38 @@ class PostFix {
     }
   }
 
-  showOnPostFixBox(value) {
-    if (value) {
-      $("#postFixArray").append(
-        '<div id="r' +
-          this.counter +
-          1 +
-          '" class="stack_box">  ' +
-          value +
-          " </div>"
-      );
-      this.counter++;
-    } else {
-      this.stack.invaildInput();
-    }
+  showOnPostFixBox(value, id) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (value) {
+          $("#a" + id).css("border", "2px solid #548694");
+          $("#postFixArray").append(
+            '<div id="r' +
+              this.counter +
+              1 +
+              '" class="stack_box">  ' +
+              value +
+              " </div>"
+          );
+          this.showIterationOnArray(id);
+          this.counter++;
+        } else {
+          this.stack.invaildInput();
+        }
+        resolve("done");
+      }, 1000);
+    });
   }
+
+  showIterationOnArray(id) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        $("#a" + id).css("border", "2px solid #548694");
+        resolve("done");
+      }, 0);
+    });
+  }
+
   rank(value) {
     if ("^" == value) return 5;
     else if ("/" == value) return 4;
@@ -48,14 +66,15 @@ class PostFix {
     else return 2;
   }
 
-  postFixConversion(str) {
+  async postFixConversion(str) {
     if (array) {
       $("#postFixArray").empty();
       let ret = "";
       let st = [];
       for (let i = 0; i < str.length; i++) {
+        //await this.showIterationOnArray(i);
         if (str[i] >= "a" && str[i] <= "z") {
-          this.showOnPostFixBox(str[i]);
+          await this.showOnPostFixBox(str[i], i);
           ret += str[i];
         } else if (str[i] == "(") {
           st.push(str[i]);
@@ -67,7 +86,7 @@ class PostFix {
               break;
             }
             ret += top;
-            this.showOnPostFixBox(top);
+            await this.showOnPostFixBox(top, i);
           }
           if (st.length > 0) st.pop();
         } else {
@@ -76,7 +95,7 @@ class PostFix {
             if (this.rank(top) > this.rank(str[i]) && top != "(") {
               console.log(this.rank(top), this.rank(str[i]));
               ret += top;
-              this.showOnPostFixBox(top);
+              await this.showOnPostFixBox(top, i);
             } else {
               st.push(top);
               break;
@@ -88,7 +107,7 @@ class PostFix {
       while (st.length > 0) {
         let top = st.pop();
         ret += top;
-        this.showOnPostFixBox(top);
+        await this.showOnPostFixBox(top, this.array.length - 1);
       }
       return ret;
     } else {
