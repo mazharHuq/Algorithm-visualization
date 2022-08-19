@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Graph Test</title>
+    <script
+            type="text/javascript"
+            src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"
+    ></script>
+
+    <style type="text/css">
+        #container {
+            margin: 0 auto;
+            width: 80%;
+            height: 600px;
+            border: 1px solid lightgray;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+
+<script type="text/javascript" src="../js/priorityQueue.js"></script>
+<script type="text/javascript" src="../js/buildGraph.js"></script>
+<script type="text/javascript" src="../js/visualizeGraphAlog.js"></script>
+<script type="text/javascript">
+    let graphInfob = {
+        edgeColor: "#548694",
+        isDirected: true,
+        isWeighted: true,
+    };
+
+    let grid = {};
+    grid["1"] = [
+        [2, 10],
+        [3, 5],
+    ];
+    grid["2"] = [
+        [4, 3],
+        [5, 3],
+    ];
+    grid["3"] = [[4, 2]];
+    grid["4"] = [[5, 2]];
+
+    let graph = new buildGraph(graphInfob, grid);
+    //var steps = graph.getWeightedDijkstraSteps(1, 5);
+
+    //var steps = graph.getWeightedDFS(1, 5);
+
+    //var steps = graph.getWeightedBFS(1, 5);
+
+    var container = document.getElementById("container");
+
+    var options = {
+        clickToUse: true,
+        physics: { enabled: false },
+        edges: {
+            color: { inherit: false },
+        },
+        nodes: {
+            color: "#2d8ad6",
+        },
+        layout: {
+            hierarchical: {
+                enabled: false,
+            },
+        },
+    };
+
+    let visDfs = new visualizeGraphAlog(steps, "#FF0AB1", "#548694", true);
+    visDfs.init(container, graph.getGraph(), options);
+
+    let isFirstStep = true;
+
+    function startAnimation() {
+        if (!isFirstStep) {
+            visDfs.releaseStep();
+        }
+
+        if (!visDfs.isStepAvailable()) {
+            clearInt();
+            return;
+        }
+
+        visDfs.nextStep();
+        isFirstStep = false;
+    }
+
+    const myInt = setInterval(startAnimation, 2000);
+
+    function clearInt() {
+        clearInterval(myInt);
+    }
+</script>
+</body>
+</html>
