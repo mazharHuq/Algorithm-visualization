@@ -7,26 +7,27 @@ class Grid {
    *@param {number} y
    *@return {Cell}
    */
-  constructor(width, height, cellSize) {
+  constructor(width, height, cellSize,startButton,startX,startY,endX,endY) {
     this.width = width;
     this.height = height;
     this.cellSize = cellSize;
     this.cells = [];
+    this.startButton =document.getElementById("start");
    
     this.colorSequence = [];
     this.pathTrack1 = [];
-   this.startX = 3;
-    this.startY = 4;
-    this.endX = this.width - 1;
-    this.endY = this.height - 1;
+    this.startX = startX;
+    this.startY = startY;
+    this.endX = endX;
+    this.endY = endY;
     this.init();
     console.log("grid initialized");
 
   }
 
   init() {
-    const windowWidth = window.innerWidth * 0.8;
-    const windowHeight = window.innerHeight * 0.85;
+    const windowWidth = window.innerWidth * 0.7;
+    const windowHeight = window.innerHeight * 0.8;
     let gridElement = document.getElementById("grid");
     gridElement.style.width = windowWidth + "px";
     gridElement.style.height = windowHeight + "px";
@@ -97,13 +98,16 @@ class Grid {
     event.target.style.backgroundColor = "green";
     this.startX = event.target.dataset.x;
     this.startY = event.target.dataset.y;
-    console.log(this.startX, this.startY);
+    $("#start").attr("data-startX",event.target.dataset.x);
+    $("#start").attr("data-startY",event.target.dataset.y);
+
    }else if(text == "E"){
     this.endX = event.target.dataset.x;
     this.endY = event.target.dataset.y;
-    console.log(this.endX, this.endY);
-      event.target.style.backgroundColor = "red";
-      console.log("chnged");
+    event.target.style.backgroundColor = "red";
+    $("#start").attr("data-endX",this.endX);
+    $("#start").attr("data-endY",this.endY);
+     
     }
     cellElement.style.backgroundColor = "white";
     cellElement.innerHTML = "";
@@ -127,6 +131,7 @@ class Grid {
     this.endY;
 
     document.querySelector("[data-x='" + x + "'][data-y='" + y + "']").style.backgroundColor = "red";
+
   }
 
   //await the cell to be colored
@@ -138,15 +143,16 @@ class Grid {
         );
         cellElement.style.backgroundColor = color;
         resolve("colored");
-      }, 25);
+      }, 30);
     });
   }
+  showStartingPoint(){
+    console.log(this.startX, this.startY);
+    
+  }
   //color cell with bfs algorithm  until finding the end cell
-  async bfsUntilEnd( color) {
-    let x=this.startX;
-    let  y=this.startY;
-    let a=this.endX;
-     let b=this.endY;
+  async bfsUntilEnd( color,x,y,a,b) {
+    
     console.log(x, y, a, b);
     let colorSequence = [];
     log("bfsUntilEnd");
@@ -214,6 +220,7 @@ class Grid {
         let neighborElement = document.querySelector(
           "[data-x='" + neighborX + "'][data-y='" + neighborY + "']"
         );
+       
         if (neighborElement.dataset.visited == "false") {
           queue.push([neighborX, neighborY]);
           pathTrack[neighborX][neighborY] = [currentX, currentY];
