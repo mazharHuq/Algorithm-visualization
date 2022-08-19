@@ -5,12 +5,22 @@ class buildGraph {
     this.priorityQueue = new PriorityQueue();
     this.grid = _grid;
     this.graphInfo = _graphInfo;
+    this.isLabeled = false;
+    this.labelMap = [];
   }
 
+  setLebelMap(labelMap) {
+    this.labelMap = labelMap;
+    this.isLabeled = true;
+  }
   makeNode(nodeNum) {
     var node = {};
     node["id"] = nodeNum + "";
-    node["label"] = nodeNum + "";
+    if (this.isLabeled == false) {
+      node["label"] = nodeNum + "";
+    } else {
+      node["label"] = this.labelMap[nodeNum] + "";
+    }
     this.visited[nodeNum] = true;
 
     return node;
@@ -22,29 +32,29 @@ class buildGraph {
     var edge = {};
     this.visited = {};
 
-    for (var i in grid) {
+    for (var i in this.grid) {
       // parent/index node
       if (!this.visited.hasOwnProperty(i)) {
         nodes.push(this.makeNode(i));
       }
 
       // child node
-      for (var j = 0; j < grid[i].length; j++) {
+      for (var j = 0; j < this.grid[i].length; j++) {
         // child nodes
-        if (!this.visited.hasOwnProperty(grid[i][j][0])) {
-          nodes.push(this.makeNode(grid[i][j][0]));
+        if (!this.visited.hasOwnProperty(this.grid[i][j][0])) {
+          nodes.push(this.makeNode(this.grid[i][j][0]));
         }
 
         // build edge
         edge = {};
 
-        edge["id"] = i + "" + grid[i][j][0];
+        edge["id"] = i + "" + this.grid[i][j][0];
         edge["to"] = i + "";
-        edge["from"] = grid[i][j][0] + "";
+        edge["from"] = this.grid[i][j][0] + "";
         edge["color"] = this.graphInfo.edgeColor;
 
         if (this.graphInfo.isWeighted) {
-          edge["label"] = grid[i][j][1] + "";
+          edge["label"] = this.grid[i][j][1] + "";
         }
 
         if (this.graphInfo.isDirected) {
