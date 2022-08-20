@@ -52,6 +52,7 @@ class Sort {
     }
     setVisualizeStatus(status) {
         this.visualizeStatus = status;
+
     }
 
 
@@ -202,7 +203,7 @@ class Sort {
     async visuaLizeBubbleSort() {
         this.explanation.showExplanation();
         this.explanation.setMessage('Bubble Sort');
-        this.bubbleSort();
+
         for (let i = this.currentStep; i < this.step.length; i++) {
             let time = parseInt(10000 / this.speed);
             if (this.visualizeStatus === true) {
@@ -226,10 +227,12 @@ class Sort {
                     await this.colorNodes(this.step[i].secondNode, this.color.finalColor, time);
                     console.log(this.step[i].secondNode);
                 }
+                console.log(this.currentStep);
 
             } else {
                 break;
             }
+            console.log(this.visualizeStatus);
 
 
         }
@@ -260,6 +263,18 @@ class Sort {
         this.step = [];
         this.render(false);
 
+    }
+
+    setAlgorithm(selectedAlgorithm) {
+        this.algorithm = selectedAlgorithm;
+        console.log()
+    }
+    startVisualize() {
+        if(this.algorithm==='bubbleSort'){
+            this.bubbleSort();
+            this.visualizeStatus = true;
+            this.visuaLizeBubbleSort();
+        }
     }
 }
 export default Sort;
