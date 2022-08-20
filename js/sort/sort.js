@@ -26,10 +26,11 @@ class Sort {
         this.explanation=new Explanation(this.container);
 
     }
-    render() {
+    render(arrayGenerate = true) {
         
-        
+        if(arrayGenerate){
         this.generateRandomArray();
+        }
         $("#array-input").val(this.arr.join(','));
         console.log(this.arr);
         this.container.innerHTML = '';
@@ -252,11 +253,12 @@ class Sort {
 
 
     setArray(array) {
+        this.arr=[];
         this.arr = array;
         this.visualizeStatus = false;
         this.currentStep = 0;
         this.step = [];
-        this.render();
+        this.render(false);
 
     }
 }
