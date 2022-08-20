@@ -230,10 +230,17 @@
                //take input from user
                 let input = $('#array-input').val();
                 let array = input.split(',');
-                sort.reset();
+
                 sort.setArray(array);
             }
             );
+            $("#array-input").onkeydown = function (e) {
+                if (e.keyCode == 13) {
+                    $("#generateBar").click();
+                }
+            }
+
+
 
 
         });
