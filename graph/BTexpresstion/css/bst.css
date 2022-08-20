@@ -1,0 +1,218 @@
+@charset "utf-8";
+
+/*all action pullout (input) stuff here*/
+#find-min {
+	position: fixed;
+	bottom: 146px;
+	left: 196px;
+	background: #777;
+	width: 0px;
+	color: white;
+	overflow: hidden;
+}
+	#find-min p {
+		padding: 7px 8px 8px;
+	}
+#find-max {
+	position: fixed;
+	bottom: 146px;
+	left: 264px;
+	background: #777;
+	width: 0px;
+	color: white;
+	overflow: hidden;
+}
+	#find-max p {
+		padding: 7px 8px 8px;
+	}
+#search-input {
+	position: fixed;
+	bottom: 146px;
+	left: 336px;
+	background: #777;
+	width: 0px;
+	overflow: hidden;
+}
+	#search-input input {
+		width: 40px;
+		background: black;
+		color: white;
+		padding: 8px 8px 8px;
+	}
+	#search-go {
+		position: fixed;
+		bottom: 146px;
+		left: 368px;
+		width: 0px;
+		background: #777;
+		color: white;
+		overflow: hidden;
+	}
+		#search-go p {
+			padding: 7px 8px 8px;
+		}
+		
+#insert-input {
+	position: fixed;
+	bottom: 119px;
+	left: 196px;
+	background: #777;
+	width: 0px;
+	overflow: hidden;
+}
+	#insert-input input {
+		width: 140px;
+		background: black;
+		color: white;
+		padding: 6px 8px 5px;
+	}
+	#insert-go {
+		position: fixed;
+		bottom: 119px;
+		left: 328px;
+		width: 0px;
+		background: #777;
+		color: white;
+		overflow: hidden;
+	}
+		#insert-go p {
+			padding: 5px 8px;
+		}
+		
+#remove-input {
+	position: fixed;
+	bottom: 92px;
+	left: 196px;
+	background: #777;
+	width: 0px;
+	overflow: hidden;
+}
+	#remove-input input {
+		background: black;
+		color: white;
+		padding: 6px 8px 5px;
+	}
+	#remove-go {
+		position: fixed;
+		bottom: 92px;
+		left: 328px;
+		width: 0px;
+		background: #777;
+		color: white;
+		overflow: hidden;
+	}
+		#remove-go p {
+			padding: 5px 8px;
+		}
+		
+/*all action pullout (error) stuff here*/
+.err {
+	position: fixed;
+	color: red;
+}
+#search-err { /* currently unused*/
+	bottom: 146px;
+	left: 272px;
+	padding: 5px 0px;
+}
+#insert-err {
+	bottom: 119px;
+	left: 372px;
+	padding: 5px 0px;
+}
+#remove-err { /* currently unused*/
+	bottom: 92px;
+	left: 372px;
+	padding: 5px 0px;
+}
+#inorder-err { /* currently unused*/
+	bottom: 60px;
+	left: 201px;
+	padding: 8px 0px 7px;
+}
+
+/*all tutorial stuff here*/
+#bst-tutorial-1 {
+	top: 60px;
+	left: 60px;
+	width: 250px;
+}
+#bst-tutorial-2 {
+	top: 60px;
+	left: 220px;
+	width: 230px;
+}
+	#bst-tutorial-2:before {
+		bottom: 100%;
+		left: 50%;
+		border-bottom-color: black;
+		margin-left: -10px;
+	}
+#bst-tutorial-3 {
+	bottom: 200px;
+	left: 60px;
+	width: 220px;
+}
+	#bst-tutorial-3:before {
+		top: 100%;
+		left: 20%;
+		border-top-color: black;
+		margin-left: -10px;
+	}
+#bst-tutorial-4 {
+	top: 300px;
+	left: 50%;
+	width: 200px;
+	margin-left: -110px;
+}
+	#bst-tutorial-4:before {
+		bottom: 100%;
+		left: 50%;
+		border-bottom-color: black;
+		margin-left: -10px;
+	}
+#bst-tutorial-5 {
+	bottom: 335px;
+	right: 150px;
+	width: 200px;
+}
+	#bst-tutorial-5:before {
+		top: 100%;
+		left: 20%;
+		border-top-color: black;
+		margin-left: -10px;
+	}
+#bst-tutorial-6 {
+	bottom: 275px;
+	right: 170px;
+	width: 180px;
+}
+	#bst-tutorial-6:before {
+		top: 100%;
+		left: 20%;
+		border-top-color: black;
+		margin-left: -10px;
+	}
+#bst-tutorial-7 {
+	bottom: 70px;
+	left: 50%;
+	width: 220px;
+	margin-left: -120px;
+}
+	#bst-tutorial-7:before {
+		top: 100%;
+		left: 50%;
+		border-top-color: black;
+		margin-left: -10px;
+	}
+#bst-tutorial-8 {
+	top: 70px;
+	right: 60px;
+	width: 150px;
+}
+	#bst-tutorial-8:before {
+		bottom: 100%;
+		left: 50%;
+		border-bottom-color: black;
+		margin-left: -10px;
+	}

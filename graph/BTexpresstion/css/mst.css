@@ -1,0 +1,143 @@
+@charset "utf-8";
+
+/*all action pullout (input) stuff here*/
+#samples-submenu {
+	position: fixed;
+	bottom: 119px;
+	left: 196px;
+	width: 0px;
+	height: 32px;
+	overflow: hidden;
+}
+	#samples-submenu .execAction {
+		display: inline-block;
+		background: #777;
+		margin-right: 3px;
+		color: white;
+	}
+		#samples-submenu .execAction p {
+			padding: 8px 8px 7px;
+		}
+
+#prims-input {
+	position: fixed;
+	bottom: 60px;
+	left: 196px;
+	background: #777;
+	width: 0px;
+	overflow: hidden;
+}
+	#prims-input input {
+		width: 40px;
+		background: black;
+		color: white;
+		padding: 8px;
+	}
+	#prims-go {
+		position: fixed;
+		bottom: 60px;
+		left: 228px;
+		width: 0px;
+		background: #777;
+		color: white;
+		overflow: hidden;
+	}
+		#prims-go p {
+			padding: 8px 8px 7px;
+		}
+
+/*all action pullout (error) stuff here*/
+.err {
+	position: fixed;
+	color: red;
+}
+#samples-err {
+	bottom: 119px;
+	left: 201px;
+	padding: 8px 0px 7px;
+}
+#kruskals-err {
+	bottom: 92px;
+	left: 201px;
+	padding: 5px 0px;
+}
+#prims-err {
+	bottom: 60px;
+	left: 272px;
+	padding: 8px 0px 7px;
+}
+
+/*all tutorial stuff here*/
+#heap-tutorial-1 {
+	top: 60px;
+	left: 60px;
+	width: 250px;
+}
+#heap-tutorial-2 {
+	bottom: 230px;
+	left: 60px;
+	width: 220px;
+}
+	#heap-tutorial-2:before {
+		top: 100%;
+		left: 20%;
+		border-top-color: black;
+		margin-left: -10px;
+	}
+#heap-tutorial-3 {
+	top: 300px;
+	left: 50%;
+	width: 200px;
+	margin-left: -110px;
+}
+	#heap-tutorial-3:before {
+		bottom: 100%;
+		left: 50%;
+		border-bottom-color: black;
+		margin-left: -10px;
+	}
+#heap-tutorial-4 {
+	bottom: 335px;
+	right: 150px;
+	width: 200px;
+}
+	#heap-tutorial-4:before {
+		top: 100%;
+		left: 20%;
+		border-top-color: black;
+		margin-left: -10px;
+	}
+#heap-tutorial-5 {
+	bottom: 275px;
+	right: 170px;
+	width: 180px;
+}
+	#heap-tutorial-5:before {
+		top: 100%;
+		left: 20%;
+		border-top-color: black;
+		margin-left: -10px;
+	}
+#heap-tutorial-6 {
+	bottom: 70px;
+	left: 50%;
+	width: 220px;
+	margin-left: -120px;
+}
+	#heap-tutorial-6:before {
+		top: 100%;
+		left: 50%;
+		border-top-color: black;
+		margin-left: -10px;
+	}
+#heap-tutorial-7 {
+	top: 70px;
+	right: 60px;
+	width: 150px;
+}
+	#heap-tutorial-7:before {
+		bottom: 100%;
+		left: 50%;
+		border-bottom-color: black;
+		margin-left: -10px;
+	}
