@@ -8,10 +8,10 @@ class Sort {
     *@param {string} targetColor - color of the bar when it is sorted
     *@param {string} container - container of the bar
     **/
-    constructor(container, bar) {
+    constructor(container,arr) {
         this.container = container;
-        this.bar = bar;
-        this.arr = [];
+        this.arr = arr;
+        this.bar = [];
         this.step = [];
         this.color = {
             initialColor: 'gray',
@@ -30,6 +30,7 @@ class Sort {
         
         
         this.generateRandomArray();
+        $("#array-input").val(this.arr.join(','));
         console.log(this.arr);
         this.container.innerHTML = '';
         let left = 0;
@@ -250,7 +251,13 @@ class Sort {
     }
 
 
-   
+    setArray(array) {
+        this.arr = array;
+        this.visualizeStatus = false;
+        this.currentStep = 0;
+        this.step = [];
+        this.render();
 
+    }
 }
 export default Sort;
