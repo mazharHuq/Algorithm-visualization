@@ -64,10 +64,10 @@
         <div class="array-container container mx-auto flex space-x-3 items-center font-mono">
             <label for="array-input" class="font-bold text-xl">Array</label>
     
-                <input id="array-input" type="text" class="w-full text-lg bg-gray-100  p-3" value="2,3,3,4,532,12,12">
+                <input id="array-input" type="text" class="w-full text-lg bg-gray-100  p-3" value="">
     
-            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">
-               Generate
+            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg" id="generateBar">
+               Generate Bar
             </button>
         </div>
     </div>
@@ -224,6 +224,14 @@
                 $('#bestCase').html(selectedAlgorithm.worstTime);
                 $('#spaceComplexity').html(selectedAlgorithm.spaceComplexity);
 
+            }
+            );
+            $("#generateBar").on('click', function () {
+               //take input from user
+                let input = $('#array-input').val();
+                let array = input.split(',');
+                sort.reset();
+                sort.setArray(array);
             }
             );
 
