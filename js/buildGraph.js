@@ -1,4 +1,5 @@
 class buildGraph {
+  graph = {};
   constructor(_graphInfo, _grid) {
     this.visited = {};
     //this.steps = [];
@@ -7,6 +8,11 @@ class buildGraph {
     this.graphInfo = _graphInfo;
     this.isLabeled = false;
     this.labelMap = [];
+  }
+
+  setGrid(_grid) {
+    this.grid = _grid;
+    console.log("working");
   }
 
   setLebelMap(labelMap) {
