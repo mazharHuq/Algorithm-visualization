@@ -83,41 +83,37 @@
                 class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2"
               >
                 <option value="">Select An Algorithm</option>
-                <option value="bubbleSort">Bubble Sort</option>
-                <option value="selectionSort">Selection Sort</option>
-                <option value="insertionSort">Insertion Sort</option>
+                <option value="bfs">Breadth-first search</option>
+                <option value="dfs">Depth-first search</option>
+                <option value="dijkstra">Dijkstra</option>
               </select>
             </div>
-
+            <input
+              type="text"
+              id="startNode"
+              value="Source"
+              class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
+            />
+            <input
+              type="text"
+              id="startNode"
+              value="Destination"
+              class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
+            />
             <button
               id="start"
               class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
             >
               Visualize
             </button>
-            <button
-              class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
-            >
-              Visualize
-            </button>
-
-            <div>
-              <!-- Button for creating random array -->
-              <button
-                type="button"
-                id="randomArray"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
-              >
-                Random Array
-              </button>
-            </div>
           </div>
         </div>
       </div>
     </nav>
     <div class="shadow grid grid-cols-12 space-x-2">
-      <div class="col-span-2">
+      <div class="col-span-2" style="margin-left: 100px">
         <!-- Take Graph  Input and generate from Here -->
+        Graph Data
         <div
           class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2"
         >
@@ -190,6 +186,7 @@
         </div>
       </div>
     </div>
+
     <script
       src="https://code.jquery.com/jquery-3.6.0.js"
       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -203,10 +200,60 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script
+      type="text/javascript"
+      src="../graph/js/graphAlgorithmDetails.js"
+    ></script>
     <script type="text/javascript" src="../js/priorityQueue.js"></script>
     <script type="text/javascript" src="../js/buildGraph.js"></script>
     <script type="text/javascript" src="../js/visualizeGraphAlog.js"></script>
     <script type="text/javascript">
+      let grid = {};
+
+      let graphInfob = {
+        edgeColor: "#548694",
+        isDirected: true,
+        isWeighted: true,
+      };
+
+      var options = {
+        clickToUse: true,
+        physics: { enabled: false },
+        edges: {
+          color: { inherit: false },
+        },
+        nodes: {
+          color: "#93b7f9",
+        },
+        layout: {
+          hierarchical: {
+            enabled: false,
+          },
+        },
+      };
+
+      grid["1"] = [
+        [2, 10],
+        [3, 5],
+      ];
+      grid["2"] = [
+        [4, 3],
+        [5, 3],
+      ];
+      grid["3"] = [[4, 2]];
+      grid["4"] = [[5, 2]];
+
+      var graph = new buildGraph(graphInfob, grid);
+      //var steps = graph.getWeightedDijkstraSteps(1, 5);
+
+      var steps = graph.getUnWeightedDfsSteps(1, 5);
+
+      //var steps = graph.getWeightedBFS(1, 5);
+
+      var container = document.getElementById("container");
+      let visDfs = new visualizeGraphAlog(steps, "#FF0AB1", "#548694", true);
+      visDfs.init(container, graph.getGraph(), options);
+
       var editor = ace.edit("editor");
       editor.setTheme("ace/theme/light");
       //   editor.session.setMode("ace/mode/algorithm");
@@ -218,9 +265,15 @@
       var currentValue = editor.getValue();
       var newNode = {};
       var extactedData;
+
+      function dbg(value) {
+        console.log(value); // eslint-disable-line no-console
+      }
+
       editor.on("change", function (delta) {
         //get value type
         var value = editor.getValue();
+
         value = value.replaceAll(" ", ",");
         var newValue = "";
         for (var i = 0; i < value.length; i++) {
@@ -231,11 +284,34 @@
         if (newValue.length && newValue[newValue.length - 1] == ",") {
           newValue = newValue.substring(0, newValue.length - 1);
         }
-        console.log("newValue", newValue);
         var valueType = newValue.split(/\r?\n/);
         extactedData = valueType;
-        console.log(valueType);
-        //console.log(value);
+
+        let gridData = {};
+
+        for (let i = 0; i < extactedData.length; i++) {
+          if (extactedData[i].length == 0) continue;
+          let row = extactedData[i].split(",");
+          gridData[row[0]] = [];
+          let lim = row.length > 2 ? 2 : row.length;
+          for (let j = 0; j < row.length > 2; j++) {
+            gridData[row[j]] = [];
+          }
+        }
+
+        for (let i = 0; i < extactedData.length; i++) {
+          if (extactedData[i].length == 0) continue;
+          let row = extactedData[i].split(",");
+          if (row.length == 0) continue;
+          if (row.length === 1) continue;
+          else if (row.length === 2) gridData[row[0]].push([row[1], 0]);
+          else gridData[row[0]].push([row[1], row[2]]);
+        }
+
+        //grid = gridData;
+        //dbg(grid);
+        //graph.setGrid(grid);
+        //visDfs.init(container, graph.getGraph(), options);
       });
 
       editor.session.on("change", function (delta) {
@@ -245,61 +321,27 @@
         //  console.log(delta.start, delta.end, delta.lines, delta.action);
       });
       $("#start").click(function () {
-        var text = editor.getValue();
+        //select start node and end node and calling method;
+        var start = $("#startNode").val();
+        var end = $("#endNode").val();
+        var steps = graph.getUnWeightedBfsSteps(start, end);
+        visDfs.init(container, graph.getGraph(), options);
       });
 
-      let graphInfob = {
-        edgeColor: "#548694",
-        isDirected: true,
-        isWeighted: true,
-      };
-
-      let grid = {};
+      $("#selectAlgorithm").on("change", function () {
+        let algorithm = $(this).val();
+        let selectedAlgorithm = new graphAlgorithmDetails(algorithm);
+        $("#algorithm-title").html(selectedAlgorithm.algorithmName);
+        $("#algorithm-summary").html(selectedAlgorithm.algorithmSummary);
+        $("#algorithm-description").html(
+          selectedAlgorithm.algorithmDescription
+        );
+        $("#worstCase").html(selectedAlgorithm.bestTime);
+        $("#averageCase").html(selectedAlgorithm.averageTime);
+        $("#bestCase").html(selectedAlgorithm.worstTime);
+        $("#spaceComplexity").html(selectedAlgorithm.spaceComplexity);
+      });
       /*
-      grid["1"] = [
-        [2, 10],
-        [3, 5],
-      ];
-      grid["2"] = [
-        [4, 3],
-        [5, 3],
-      ];
-      grid["3"] = [[4, 2]];
-      grid["4"] = [[5, 2]];
-      */
-      alert("hello");
-      for (valueR in extactedData) {
-        console.log("lsjdlf" + valueR);
-      }
-
-      let graph = new buildGraph(graphInfob, grid);
-      //var steps = graph.getWeightedDijkstraSteps(1, 5);
-
-      var steps = graph.getUnWeightedDfsSteps(1, 5);
-
-      //var steps = graph.getWeightedBFS(1, 5);
-
-      var container = document.getElementById("container");
-
-      var options = {
-        clickToUse: true,
-        physics: { enabled: false },
-        edges: {
-          color: { inherit: false },
-        },
-        nodes: {
-          color: "#2d8ad6",
-        },
-        layout: {
-          hierarchical: {
-            enabled: false,
-          },
-        },
-      };
-
-      let visDfs = new visualizeGraphAlog(steps, "#FF0AB1", "#548694", true);
-      visDfs.init(container, graph.getGraph(), options);
-
       let isFirstStep = true;
 
       function startAnimation() {
@@ -321,6 +363,7 @@
       function clearInt() {
         clearInterval(myInt);
       }
+      */
     </script>
   </body>
 </html>
