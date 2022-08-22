@@ -2,16 +2,10 @@
 // Also includes AVL tree
 
 var BST = function (expression) {
+  console.log("expression: " + expression);
+  clearScreen();
   var self = this;
   var graphWidget = new GraphWidget();
-  var isAVL = false;
-
-  var valueRange = [1, 100]; // Range of valid values of BST vertexes allowed
-  var maxHeightAllowed = 10;
-
-  var initialArray = [15, 6, 23, 4, 7, 71, 5, 50];
-  var arrayValue = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  var initialAvlArray = [15, 6, 50, 4, 7, 23, 71, 5];
   var expression = expression;
 
   /*
@@ -394,7 +388,7 @@ var BST = function (expression) {
       );
     }
 
-    var xIncrement = 100;
+    var xIncrement = 400;
     var yIncrement = 450;
     function getNewNode(node) {
       let newNode = {
@@ -454,11 +448,12 @@ var BST = function (expression) {
       internalBst[nodeNo] = getNewNode(internalBst[N]);
       addVertexToGraph(nodeNo);
     }
+
     preOrder(rootNode);
-    xIncrement = 100;
+    xIncrement = 400;
     yIncrement = 500;
     inOrder(rootNode);
-    xIncrement = 100;
+    xIncrement = 400;
     yIncrement = 550;
     postOrder(rootNode);
   }
@@ -588,104 +583,6 @@ var BST = function (expression) {
 
       updatePosition(internalBst[currentVertex]["leftChild"]);
       updatePosition(internalBst[currentVertex]["rightChild"]);
-    }
-  }
-
-  function populatePseudocode(act) {
-    switch (act) {
-      case 0: // Insert
-        document.getElementById("code1").innerHTML = "if found insertion point";
-        document.getElementById("code2").innerHTML =
-          "&nbsp&nbspcreate new node";
-        document.getElementById("code3").innerHTML =
-          "if value to be inserted < this key";
-        document.getElementById("code4").innerHTML = "&nbsp&nbspgo left";
-        document.getElementById("code5").innerHTML = "else go right";
-        document.getElementById("code6").innerHTML = "";
-        document.getElementById("code7").innerHTML = "";
-        break;
-      case 1: // findMax
-        document.getElementById("code1").innerHTML =
-          "if this is null return empty";
-        document.getElementById("code2").innerHTML = "if right != null";
-        document.getElementById("code3").innerHTML = "&nbsp&nbspgo right";
-        document.getElementById("code4").innerHTML = "else return this key";
-        document.getElementById("code5").innerHTML = "";
-        document.getElementById("code6").innerHTML = "";
-        document.getElementById("code7").innerHTML = "";
-        break;
-      case 2: // findMin
-        document.getElementById("code1").innerHTML =
-          "if this is null return empty";
-        document.getElementById("code2").innerHTML = "else if left != null";
-        document.getElementById("code3").innerHTML = "&nbsp&nbspgo left";
-        document.getElementById("code4").innerHTML = "else return this key";
-        document.getElementById("code5").innerHTML = "";
-        document.getElementById("code6").innerHTML = "";
-        document.getElementById("code7").innerHTML = "";
-        break;
-      case 3: // in-order traversal
-        document.getElementById("code1").innerHTML = "if this is null";
-        document.getElementById("code2").innerHTML = "&nbsp;&nbsp;return";
-        document.getElementById("code3").innerHTML = "inOrder(left)";
-        document.getElementById("code4").innerHTML =
-          "visit this, then inOrder(right)";
-        document.getElementById("code5").innerHTML = "";
-        document.getElementById("code6").innerHTML = "";
-        document.getElementById("code7").innerHTML = "";
-        break;
-      case 4: // search
-        document.getElementById("code1").innerHTML = "if this == null";
-        document.getElementById("code2").innerHTML = "&nbsp;&nbsp;return null";
-        document.getElementById("code3").innerHTML =
-          "else if this key == search value";
-        document.getElementById("code4").innerHTML = "&nbsp;&nbsp;return this";
-        document.getElementById("code5").innerHTML =
-          "else if this key < search value";
-        document.getElementById("code6").innerHTML = "&nbsp;&nbsp;search right";
-        document.getElementById("code7").innerHTML = "else search left";
-        break;
-      case 5: // remove
-        document.getElementById("code1").innerHTML = "search for v";
-        document.getElementById("code2").innerHTML = "if v is a leaf";
-        document.getElementById("code3").innerHTML =
-          "&nbsp;&nbsp;delete leaf v";
-        document.getElementById("code4").innerHTML = "else if v has 1 child";
-        document.getElementById("code5").innerHTML = "&nbsp;&nbsp;bypass v";
-        document.getElementById("code6").innerHTML =
-          "else replace v with successor";
-        document.getElementById("code7").innerHTML = "";
-        break;
-      case 6: // insert with rotations
-        document.getElementById("code1").innerHTML = "insert v";
-        document.getElementById("code2").innerHTML =
-          "check balance factor of this and its children";
-        document.getElementById("code3").innerHTML =
-          "&nbsp;&nbsp;case1: this.rotateRight";
-        document.getElementById("code4").innerHTML =
-          "&nbsp;&nbsp;case2: this.left.rotateLeft, this.rotateRight";
-        document.getElementById("code5").innerHTML =
-          "&nbsp;&nbsp;case3: this.rotateLeft";
-        document.getElementById("code6").innerHTML =
-          "&nbsp;&nbsp;case4: this.right.rotateRight, this.rotateLeft";
-        document.getElementById("code7").innerHTML =
-          "&nbsp;&nbsp;this is balanced";
-        break;
-      case 7: // remove with rotations
-        document.getElementById("code1").innerHTML = "remove v";
-        document.getElementById("code2").innerHTML =
-          "check balance factor of this and its children";
-        document.getElementById("code3").innerHTML =
-          "&nbsp;&nbsp;case1: this.rotateRight";
-        document.getElementById("code4").innerHTML =
-          "&nbsp;&nbsp;case2: this.left.rotateLeft, this.rotateRight";
-        document.getElementById("code5").innerHTML =
-          "&nbsp;&nbsp;case3: this.rotateLeft";
-        document.getElementById("code6").innerHTML =
-          "&nbsp;&nbsp;case4: this.right.rotateRight, this.rotateLeft";
-        document.getElementById("code7").innerHTML =
-          "&nbsp;&nbsp;this is balanced";
-        break;
     }
   }
   init(expression);

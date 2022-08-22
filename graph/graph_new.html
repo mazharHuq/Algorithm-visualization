@@ -308,10 +308,10 @@
           else gridData[row[0]].push([row[1], row[2]]);
         }
 
-        //grid = gridData;
-        //dbg(grid);
-        //graph.setGrid(grid);
-        //visDfs.init(container, graph.getGraph(), options);
+        grid = gridData;
+        dbg(grid);
+        graph.setGrid(grid);
+        visDfs.init(container, graph.getGraph(), options);
       });
 
       editor.session.on("change", function (delta) {
