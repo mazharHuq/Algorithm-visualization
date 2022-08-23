@@ -66,14 +66,15 @@
       referrerpolicy="no-referrer"
     />
   </head>
+
   <body>
     <nav class="shadow bg-white">
       <div class="mx-auto container">
         <div class="flex justify-between items-center px-4 py-2">
           <div class="flex items-center">
-            <a href="../index.html"
-              ><h1 class="font-bold text-2xl ml-2">VisualAlgorithm</h1></a
-            >
+            <a href="../index.html">
+              <h1 class="font-bold text-2xl ml-2">VisualAlgorithm</h1>
+            </a>
           </div>
           <div class="flex items-center space-x-2">
             <div class="font-bold text-lg">
@@ -262,9 +263,6 @@
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true,
       });
-      var currentValue = editor.getValue();
-      var newNode = {};
-      var extactedData;
 
       function dbg(value) {
         console.log(value); // eslint-disable-line no-console
@@ -272,54 +270,80 @@
 
       editor.on("change", function (delta) {
         //get value type
-        var value = editor.getValue();
+        let value = editor.getValue();
 
-        value = value.replaceAll(" ", ",");
-        var newValue = "";
-        for (var i = 0; i < value.length; i++) {
-          if (i == 0 && value[i] == ",") continue;
-          if (value[i - 1] == "," && value[i] == ",") continue;
-          newValue += value[i];
-        }
-        if (newValue.length && newValue[newValue.length - 1] == ",") {
-          newValue = newValue.substring(0, newValue.length - 1);
-        }
-        var valueType = newValue.split(/\r?\n/);
-        extactedData = valueType;
-
-        let gridData = {};
-
-        for (let i = 0; i < extactedData.length; i++) {
-          if (extactedData[i].length == 0) continue;
-          let row = extactedData[i].split(",");
-          gridData[row[0]] = [];
-          let lim = row.length > 2 ? 2 : row.length;
-          for (let j = 0; j < row.length > 2; j++) {
-            gridData[row[j]] = [];
+        if (value.length == undefined) {
+        } else if (value.length > 0) {
+          value = value.replaceAll(" ", ",");
+          var newValue = "";
+          for (var i = 0; i < value.length; i++) {
+            if (i == 0 && value[i] == ",") continue;
+            if (value[i - 1] == "," && value[i] == ",") continue;
+            newValue += value[i];
           }
-        }
+          if (newValue.length && newValue[newValue.length - 1] == ",") {
+            newValue = newValue.substring(0, newValue.length - 1);
+          }
+          var valueType = newValue.split(/\r?\n/);
+          extactedData = valueType;
 
-        for (let i = 0; i < extactedData.length; i++) {
-          if (extactedData[i].length == 0) continue;
-          let row = extactedData[i].split(",");
-          if (row.length == 0) continue;
-          if (row.length === 1) continue;
-          else if (row.length === 2) gridData[row[0]].push([row[1], 0]);
-          else gridData[row[0]].push([row[1], row[2]]);
-        }
+          let gridData = {};
 
-        //grid = gridData;
-        //dbg(grid);
-        //graph.setGrid(grid);
-        //visDfs.init(container, graph.getGraph(), options);
+          for (let i = 0; i < extactedData.length; i++) {
+            if (extactedData[i].length == 0) continue;
+            extactedData[i] = extactedData[i].replaceAll(",", " ");
+            extactedData[i] = extactedData[i].trim();
+            let row = extactedData[i].split(" ");
+            dbg(row);
+            gridData[row[0]] = [];
+            let lim = row.length > 2 ? 2 : row.length;
+            for (let j = 0; j < lim; j++) {
+              gridData[row[j]] = [];
+            }
+          }
+
+          let map = [];
+          for (let i = 0; i < extactedData.length; i++) {
+            if (extactedData[i].length == 0) continue;
+            let row = extactedData[i].split(" ");
+            if (row.length == 0) continue;
+            if (row.length === 1) continue;
+            else if (row.length === 2) {
+              let key = [row[0], row[1]];
+              if (map[key] == undefined) {
+                map[key] = 1;
+                gridData[row[0]].push([row[1], 0]);
+              } else {
+                for (let j = 0; j < gridData[row[0]].length; j++) {
+                  if (gridData[row[0]][j][0] == row[1]) {
+                    //gridData[row[0]][j][1] = 0;
+                  }
+                }
+              }
+              //gridData[row[0]].push([row[1], 0]);
+            } else {
+              let key = [row[0], row[1]];
+              if (map[key] == undefined) {
+                map[key] = 1;
+                gridData[row[0]].push([row[1], row[2]]);
+              } else {
+                for (let j = 0; j < gridData[row[0]].length; j++) {
+                  if (gridData[row[0]][j][0] == row[1]) {
+                    gridData[row[0]][j][1] = row[2];
+                  }
+                }
+              }
+              //gridData[row[0]].push([row[1], row[2]]);
+            }
+          }
+
+          grid = gridData;
+          dbg(grid);
+          graph.setGrid(grid);
+          visDfs.init(container, graph.getGraph(), options);
+        }
       });
 
-      editor.session.on("change", function (delta) {
-        var text = editor.getValue();
-
-        // delta.start, delta.end, delta.lines, delta.action
-        //  console.log(delta.start, delta.end, delta.lines, delta.action);
-      });
       $("#start").click(function () {
         //select start node and end node and calling method;
         var start = $("#startNode").val();
@@ -342,28 +366,28 @@
         $("#spaceComplexity").html(selectedAlgorithm.spaceComplexity);
       });
       /*
-      let isFirstStep = true;
+    let isFirstStep = true;
 
-      function startAnimation() {
-        if (!isFirstStep) {
-          visDfs.releaseStep();
-        }
-
-        if (!visDfs.isStepAvailable()) {
-          clearInt();
-          return;
-        }
-
-        visDfs.nextStep();
-        isFirstStep = false;
+    function startAnimation() {
+      if (!isFirstStep) {
+        visDfs.releaseStep();
       }
 
-      const myInt = setInterval(startAnimation, 2000);
-
-      function clearInt() {
-        clearInterval(myInt);
+      if (!visDfs.isStepAvailable()) {
+        clearInt();
+        return;
       }
-      */
+
+      visDfs.nextStep();
+      isFirstStep = false;
+    }
+
+    const myInt = setInterval(startAnimation, 2000);
+
+    function clearInt() {
+      clearInterval(myInt);
+    }
+    */
     </script>
   </body>
 </html>
