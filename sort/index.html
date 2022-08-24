@@ -42,10 +42,7 @@
                         </select>
                    </div>
     
-                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">
-                        Visualize
-                    </button>
-                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">
+                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg" id="startVisualize">
                         Visualize
                     </button>
     
@@ -98,7 +95,7 @@
                     <button class="">
                         <i class="fa-solid fa-backward-step fa-2x"></i>
                     </button>
-                    <button id="sortArray" class="">
+                    <button id="play" class="">
                         <i class="fa-solid fa-circle-play fa-2x"></i>
                     </button>
                     <button  id="sortArrayPause" class="hidden">
@@ -115,7 +112,7 @@
     </div>
 
     <!-- Algorithm Details -->
-    <div class="details shadow bg-white p-4 mx-auto ">
+    <div id="algorithmDetails" class="details hidden shadow bg-white p-4 mx-auto ">
         <div class="intro-y px-4 my-3 bg-green-500 py-4 text-3xl font-bold">
             <h2 id="algorithm-title">Bubble Sort</h2> 
         </div>
@@ -164,8 +161,12 @@
         import Sort from "../js/sort/sort.js"
         import sortingAlgorithmDetails from "../js/sort/sortingAlgorithmDetails.js"
         $(document).ready(function () {
-            let sortButton = $('#sortArray');
+            let sortButtonPause = $('#sortArrayPause');
+            let sortButtonResume = $('#sortArrayResume');
+            let startVisualize = $('#startVisualize');
             const container = document.querySelector('.mother');
+            var selectedAlgorithm = "";
+            var currentStep = 0;
 
            
             let sort = new Sort(container, []);
@@ -174,23 +175,32 @@
               sort.speed = speed+1;
               
             });
-
-            sortButton.click(function () {
-                console.log("Starting ");
-                $(this).addClass('hidden');
-                $('#sortArrayPause').removeClass('hidden');
-                sort.currentStep=0;
-                sort.setVisualizeStatus(true);
-                sort.visuaLizeBubbleSort();
+            startVisualize.on('click', function () {
+               selectedAlgorithm=$("#selectAlgorithm").val();
+               if(selectedAlgorithm){
+                    sort.setAlgorithm(selectedAlgorithm);
+                    sort.startVisualize();
+                    $("#sortArrayPause").removeClass('hidden');
+                    $("#play").addClass('hidden');
+               }else {
+                   alert("Please select an algorithm");
+               }
             });
+
+
+
             $("#sortArrayPause").click(function () {
                 sort.setVisualizeStatus(false);
                 $(this).addClass('hidden');
-                $('#sortArray').removeClass('hidden');
+                $("#play").removeClass('hidden');
+                console.log(sort.step);
+
             });
             $("#play").click(function () {
                 sort.setVisualizeStatus(true);
                 sort.visuaLizeBubbleSort();
+                $(this).addClass('hidden');
+                $('#sortArrayPause').removeClass('hidden');
                
             }
             );
@@ -214,7 +224,13 @@
             }
             );
             $("#selectAlgorithm").on('change', function () {
+
                 let algorithm = $(this).val();
+                if(algorithm){
+                    $("#algorithmDetails").removeClass()
+                }else {
+                    $("#algorithmDetails").addClass('hidden')
+                }
                 let selectedAlgorithm = new sortingAlgorithmDetails(algorithm);
                 $('#algorithm-title').html(selectedAlgorithm.algorithmName);
                 $('#algorithm-summary').html(selectedAlgorithm.algorithmSummary);
@@ -234,11 +250,22 @@
                 sort.setArray(array);
             }
             );
-            $("#array-input").onkeydown = function (e) {
-                if (e.keyCode == 13) {
-                    $("#generateBar").click();
-                }
+            var previousInput = '';
+            $("#array-input").on('keydown', function (event) {
+                    var key = window.event ? event.keyCode : event.which;
+                    if (event.keyCode === 8 || event.keyCode === 46 || event.keyCode===188) {
+                        previousInput = $(this).val();
+                        if((previousInput.length===0 || previousInput[previousInput.length-1]===',')&&event.keyCode===188) return false;
+                        else return true;
+
+                    } else if ( key < 48 || key > 57) {
+                        console.log(key);
+                        return false;
+                    } else {
+                        return true;
+                    }
             }
+            );
 
 
 
