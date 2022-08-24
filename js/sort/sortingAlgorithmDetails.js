@@ -1,20 +1,20 @@
 class sortingAlgorithmDetails {
-    constructor(sortFunction) {
-       
-        this.sortFunction = sortFunction;
-        this.algorithmName = "";
-        this.algorithmDescription = "";
-        this.algorithmSummary = "";
-        this.bestTime = "";
-        this.averageTime = "";
-        this.worstTime = "";
-        this.spaceComplexity = "";
-        console.log(this.sortFunction);
-        this.bubbleSort = {
-            name: "Bubble Sort",
-            algorithm: "Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
-            complexity: "",
-            description:`<div class="card">
+  constructor(sortFunction) {
+    this.sortFunction = sortFunction;
+    this.algorithmName = "";
+    this.algorithmDescription = "";
+    this.algorithmSummary = "";
+    this.bestTime = "";
+    this.averageTime = "";
+    this.worstTime = "";
+    this.spaceComplexity = "";
+    console.log(this.sortFunction);
+    (this.bubbleSort = {
+      name: "Bubble Sort",
+      algorithm:
+        "Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
+      complexity: "",
+      description: `<div class="card">
             How Bubble Sort Works?<br>
                 Consider an array arr[] = {5, 1, 4, 2, 8}<br>
                 First Pass: <br>
@@ -40,16 +40,17 @@ class sortingAlgorithmDetails {
                 ( 1 2 4 5 8 ) –> ( 1 2 4 5 8 ) <br>
                 ( 1 2 4 5 8 ) –> ( 1 2 4 5 8 )<br>
                     </div>`,
-            averageTime: "O(n^2)",
-            worstTime: "O(n^2)",
-            bestTime: "O(n)",
-            spaceComplexity: "O(1)",
-        },
-        this.selectionSort = {
-            name: "Selection Sort",
-            algorithm: "Selection Sort is a sorting algorithm in which the smallest element is selected from the array and swapped with the first element. The same is repeated for the remaining elements. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
-            complexity: "",
-            description:`<div class="card">
+      averageTime: "O(n^2)",
+      worstTime: "O(n^2)",
+      bestTime: "O(n)",
+      spaceComplexity: "O(1)",
+    }),
+      (this.selectionSort = {
+        name: "Selection Sort",
+        algorithm:
+          "Selection Sort is a sorting algorithm in which the smallest element is selected from the array and swapped with the first element. The same is repeated for the remaining elements. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
+        complexity: "",
+        description: `<div class="card">
             How Selection Sort Works?<br>
             Lets consider the following array as an example: arr[] = {64, 25, 12, 22, 11}<br>
 
@@ -81,16 +82,17 @@ class sortingAlgorithmDetails {
             At last the largest value present in the array automatically get placed at the last position in the array<br>
             The resulted array is the sorted array. <br>
                `,
-            averageTime: "O(n^2)",
-            worstTime: "O(n^2)",
-            bestTime: "O(n^2)",
-            spaceComplexity: "O(1)",
-        },
-        this.insertionSort = {
-            name: "Insertion Sort",
-            algorithm: "Insertion Sort is a sorting algorithm in which the smallest element is selected from the array and swapped with the first element. The same is repeated for the remaining elements. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
-            complexity: "",
-            description:`<div class="card">
+        averageTime: "O(n^2)",
+        worstTime: "O(n^2)",
+        bestTime: "O(n^2)",
+        spaceComplexity: "O(1)",
+      }),
+      (this.insertionSort = {
+        name: "Insertion Sort",
+        algorithm:
+          "Insertion Sort is a sorting algorithm in which the smallest element is selected from the array and swapped with the first element. The same is repeated for the remaining elements. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
+        complexity: "",
+        description: `<div class="card">
             How Insertion Sort Works?<br>
             Lets consider the following array as an example: arr[] = {64, 25, 12, 22, 11}<br>
             <br>
@@ -123,47 +125,47 @@ class sortingAlgorithmDetails {
             automatically get placed at the last position in the array<br>
             The resulted array is the sorted array. <br>
             `,
-            averageTime: "O(n^2)",
-            worstTime: "O(n^2)",
-            bestTime: "O(n)",
-            spaceComplexity: "O(1)",
-        },
+        averageTime: "O(n^2)",
+        worstTime: "O(n^2)",
+        bestTime: "O(n)",
+        spaceComplexity: "O(1)",
+      }),
+      (this.BreadthFirstSearch = {
+        name: "Breadth First Search",
+        algorithm:
+          "Breadth First Search is a search algorithm that traverses nodes in a tree level by level.",
+        complexity: "",
+        description: `<div class="card">`,
+      }),
+      this.render();
+  }
 
-        this.render();
+  render() {
+    if (this.sortFunction == "bubbleSort") {
+      this.algorithmName = this.bubbleSort.name;
+      this.algorithmDescription = this.bubbleSort.description;
+      this.algorithmSummary = this.bubbleSort.algorithm;
+      this.bestTime = this.bubbleSort.bestTime;
+      this.worstTime = this.bubbleSort.worstTime;
+      this.averageTime = this.bubbleSort.averageTime;
+      this.spaceComplexity = this.bubbleSort.spaceComplexity;
+    } else if (this.sortFunction == "selectionSort") {
+      this.algorithmName = this.selectionSort.name;
+      this.algorithmDescription = this.selectionSort.description;
+      this.algorithmSummary = this.selectionSort.algorithm;
+      this.bestTime = this.selectionSort.bestTime;
+      this.averageTime = this.selectionSort.averageTime;
+      this.worstTime = this.selectionSort.worstTime;
+      this.spaceComplexity = this.selectionSort.spaceComplexity;
+    } else if (this.sortFunction == "insertionSort") {
+      this.algorithmName = this.insertionSort.name;
+      this.algorithmDescription = this.insertionSort.description;
+      this.algorithmSummary = this.insertionSort.algorithm;
+      this.bestTime = this.insertionSort.bestTime;
+      this.averageTime = this.insertionSort.averageTime;
+      this.worstTime = this.insertionSort.worstTime;
+      this.spaceComplexity = this.insertionSort.spaceComplexity;
     }
-
-    render(){
-        if(this.sortFunction == "bubbleSort"){
-             this.algorithmName = this.bubbleSort.name;
-             this.algorithmDescription = this.bubbleSort.description;
-            this.algorithmSummary = this.bubbleSort.algorithm;
-            this.bestTime = this.bubbleSort.bestTime;
-            this.worstTime = this.bubbleSort.worstTime;
-            this.averageTime = this.bubbleSort.averageTime;
-            this.spaceComplexity = this.bubbleSort.spaceComplexity;
-
-        }else if(this.sortFunction == "selectionSort"){
-            this.algorithmName = this.selectionSort.name;
-            this.algorithmDescription = this.selectionSort.description;
-            this.algorithmSummary = this.selectionSort.algorithm;
-            this.bestTime = this.selectionSort.bestTime;
-            this.averageTime = this.selectionSort.averageTime;
-            this.worstTime = this.selectionSort.worstTime;
-            this.spaceComplexity = this.selectionSort.spaceComplexity;
-
-        }else if(this.sortFunction == "insertionSort"){
-            this.algorithmName = this.insertionSort.name;
-            this.algorithmDescription = this.insertionSort.description;
-            this.algorithmSummary = this.insertionSort.algorithm;
-            this.bestTime = this.insertionSort.bestTime;
-            this.averageTime = this.insertionSort.averageTime;
-            this.worstTime = this.insertionSort.worstTime;
-            this.spaceComplexity = this.insertionSort.spaceComplexity;
-        }
-    }
-
-
-
-
+  }
 }
 export default sortingAlgorithmDetails;
