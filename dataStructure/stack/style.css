@@ -4,7 +4,7 @@
     font-family: "Sen", sans-serif;
     letter-spacing: 2px;
   }
-  
+
   html,
   body {
     background: rgb(253, 253, 253);
@@ -13,16 +13,16 @@
     letter-spacing: 2px;
     overflow-x: auto;
   }
-  
+
   .wrapper {
-    
+
     margin: 0;
     padding: 0;
     width: 100vw;
     max-width: 100vw;
   }
   #container {
-    margin: 10px 20px;
+
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
   }
@@ -68,7 +68,7 @@
     font-size: 18px;
     color: #666;
   }
-  
+
   .box {
     margin: 20px;
     padding: 20px 30px;
@@ -77,8 +77,8 @@
     box-shadow: 5px 5px 10px #181818, -5px -5px 10px #2c2c2cd8;
   }
 
-           
- 
+
+
 
   #canvas {
     background-image:linear-gradient(to right, #86b2d0 0%, #89a5c2  51%, #97b2c4  100%);
@@ -92,14 +92,14 @@
     justify-content: space-between;
     vertical-align: baseline;
   }
-  
+
   #target {
-    height: 480px;
+    height: 500px;
     width: 750px;
     padding: 20px;
     border-radius: 10px;
   }
-  
+
   /* ======= canvas ends ======= */
   #lowerbound{
     display: grid;
@@ -107,7 +107,7 @@
     grid-gap: 40px;
     padding: 0px;
   }
-  
+
   #code {
     grid-column: 1/2;
     grid-row: 1/2;
@@ -137,11 +137,11 @@
     transition: 0.8s ease-in;
     text-align: center;
   }
-  
-  /* ========= controls ========= */
-  
 
-          
+  /* ========= controls ========= */
+
+
+
 
   .input {
     align-items: center;
@@ -209,23 +209,24 @@
     font-family: "Sen", sans-serif;
     font-weight: 700;
     margin: 10px;
+    cursor: pointer;
   }
   .btn:hover {
     transition: 0.5s ease;
     box-shadow: 10px 10px 10px #0e0e0e, -7px -7px 10px #333333d8;
   }
-  
 
-           
+
+
   .btn-green {
-    background-image: linear-gradient(to right, #348F50 0%, #56B4D3  51%, #348F50  100%);
+    background-image: linear-gradient(to right, #348F50 0%, #56B4D3  51%, #348F50  100%) !important;
     margin: 10px;
     padding: 15px 45px;
     text-align: center;
     text-transform: uppercase;
     transition: 0.5s;
     background-size: 200% auto;
-    color: white;            
+    color: white;
     box-shadow: 0 0 20px #eee;
     border-radius: 10px;
     display: block;
@@ -238,16 +239,16 @@
   }
 
 
-         
+
   .btn-red {
-    background-image: linear-gradient(to right, #CB356B 0%, #BD3F32  51%, #CB356B  100%);
+    background-image: linear-gradient(to right, #CB356B 0%, #BD3F32  51%, #CB356B  100%)!important;
     margin: 10px;
     padding: 15px 45px;
     text-align: center;
     text-transform: uppercase;
     transition: 0.5s;
     background-size: 200% auto;
-    color: white;            
+    color: white;
     box-shadow: 0 0 20px #eee;
     border-radius: 10px;
     display: block;
@@ -258,17 +259,17 @@
     color: #fff;
     text-decoration: none;
   }
- 
-           
+
+
   .btn-yellow {
-    background-image: linear-gradient(to right, #159957 0%, #155799  51%, #159957  100%);
+    background-image: linear-gradient(to right, #159957 0%, #155799  51%, #159957  100%) !important;
     margin: 10px;
     padding: 15px 45px;
     text-align: center;
     text-transform: uppercase;
     transition: 0.5s;
     background-size: 200% auto;
-    color: white;            
+    color: white;
     box-shadow: 0 0 20px #eee;
     border-radius: 10px;
     display: block;
@@ -280,16 +281,16 @@
     text-decoration: none;
   }
 
-           
+
   .btn-blue {
-    background-image: linear-gradient(to right, #4568DC 0%, #B06AB3  51%, #4568DC  100%);
+    background-image: linear-gradient(to right, #4568DC 0%, #B06AB3  51%, #4568DC  100%)!important;
     margin: 10px;
     padding: 15px 45px;
     text-align: center;
     text-transform: uppercase;
     transition: 0.5s;
     background-size: 200% auto;
-    color: white;            
+    color: white;
     box-shadow: 0 0 20px #eee;
     border-radius: 10px;
     display: block;
@@ -300,9 +301,9 @@
     color: #fff;
     text-decoration: none;
   }
- 
+
   /*  === Button ends here === */
-  
+
   #code {
     padding: 10px 20px;
     height: 650px;
@@ -321,9 +322,9 @@
     scrollbar-width: thin;
     scrollbar-color: #444 transparent;
   }
-  
+
   /* Scrollbars */
-  
+
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -359,7 +360,7 @@
     border-radius: 5px;
     transition: 0.5s ease;
   }
-  
+
   /* ============ draggable div functionality ============= */
   .drag {
     color: #aaa;
@@ -374,14 +375,14 @@
     margin: 15px;
     cursor: move;
   }
-  
+
   .drag:hover,
   .drag:focus {
     color: rgb(255, 208, 0);
     text-decoration: none;
     cursor: pointer;
   }
-  
+
   .current-step {
     display: block;
     height: 150px;
@@ -396,7 +397,7 @@
     background: #4caf5023;
     overflow: scroll;
   }
-  
+
   .check {
     margin-top: 10px;
     font-size: 16px;
@@ -406,7 +407,7 @@
     background: #ffee0023;
     border-radius: 10px;
   }
-  
+
   .hide {
     visibility: hidden;
     display: none;
@@ -414,7 +415,7 @@
   .show {
     visibility: visible;
   }
-  
+
   /* ================ Dashboard Data Card like Designs for Live Data =============== */
   #step-tracker {
     display: flex;
@@ -499,7 +500,7 @@
   #last {
     color: #ff0730;
   }
-  
+
   /* =========== array box designs ========== */
   .index {
     margin-top: -40px;
@@ -541,7 +542,7 @@
     color: rgb(0, 122, 255);
     background: rgb(0, 122, 255, 0.2);
   }
-  
+
   /* ============= draggable div ============= */
   #moveable {
     position: absolute;
@@ -589,7 +590,7 @@
   .push-btn, .pop-btn{
     width: 50%;
   }
-  
+
   .flip {
     animation: flip 1s cubic-bezier(0.07, 0.84, 0.96, 0.23) forwards;
     animation-timing-function: ease-in;
@@ -598,7 +599,7 @@
     animation-fill-mode: forwards;
     transform-origin: 50%;
   }
-  
+
   /* ============= Stack designs ============== */
   #array-wrapper {
     display: block;
@@ -707,7 +708,7 @@
     font-weight: 700px;
     line-height: 28px;
   }
-  
+
   /* ================= styles for question popup =============== */
   .question-modal{
     display: none;
@@ -781,15 +782,15 @@
   .blur{
     filter: blur(20px);
   }
-  
-  .container{
-    
-    margin: 200px 20px;
+
+  .container1{
+
+
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
-  
+
   }
-  
+
   
   
   
