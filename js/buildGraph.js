@@ -317,6 +317,8 @@ class buildGraph {
     let step = {};
     let path = {};
     let stepStack = [];
+    let parent = [];
+    let costs = [];
 
     while (priorityQueue.values.length > 0) {
       let uu = priorityQueue.dequeue().val;
@@ -324,16 +326,16 @@ class buildGraph {
         continue;
       }
       let u = uu[0];
-      if (u == source) {
-        step = {};
-        step["fromNodeID"] = u + "";
-        step["toNodeID"] = u + "";
-        step["isPath"] = false;
-        steps.push(step);
-      }
       let cost = uu[1];
       if (this.visited.hasOwnProperty(u)) {
         continue;
+      }
+      if (u != source) {
+        step = {};
+        step["fromNodeID"] = parent[u] + "";
+        step["toNodeID"] = u + "";
+        step["isPath"] = false;
+        steps.push(step);
       }
       this.visited[source] = true;
       flag = 0;
