@@ -66,14 +66,15 @@
       referrerpolicy="no-referrer"
     />
   </head>
+
   <body>
     <nav class="shadow bg-white">
       <div class="mx-auto container">
         <div class="flex justify-between items-center px-4 py-2">
           <div class="flex items-center">
-            <a href="../index.html"
-              ><h1 class="font-bold text-2xl ml-2">VisualAlgorithm</h1></a
-            >
+            <a href="../index.html">
+              <h1 class="font-bold text-2xl ml-2">VisualAlgorithm</h1>
+            </a>
           </div>
           <div class="flex items-center space-x-2">
             <div class="font-bold text-lg">
@@ -96,7 +97,7 @@
             />
             <input
               type="text"
-              id="startNode"
+              id="endNode"
               value="Destination"
               class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
             />
@@ -200,6 +201,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script type="text/javascript" src="/graph/js/helper.js"></script>
     <script
       type="text/javascript"
       src="../graph/js/graphAlgorithmDetails.js"
@@ -207,6 +209,10 @@
     <script type="text/javascript" src="../js/priorityQueue.js"></script>
     <script type="text/javascript" src="../js/buildGraph.js"></script>
     <script type="text/javascript" src="../js/visualizeGraphAlog.js"></script>
+    <script
+      type="text/javascript"
+      src="../graph/js/selectionHelper.js"
+    ></script>
     <script type="text/javascript">
       let grid = {};
 
@@ -242,12 +248,13 @@
       ];
       grid["3"] = [[4, 2]];
       grid["4"] = [[5, 2]];
+      grid["5"] = [];
 
       var graph = new buildGraph(graphInfob, grid);
       //var steps = graph.getWeightedDijkstraSteps(1, 5);
 
       var steps = graph.getUnWeightedDfsSteps(1, 5);
-
+      dbg(steps);
       //var steps = graph.getWeightedBFS(1, 5);
 
       var container = document.getElementById("container");
@@ -262,70 +269,54 @@
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true,
       });
-      var currentValue = editor.getValue();
-      var newNode = {};
-      var extactedData;
 
       function dbg(value) {
         console.log(value); // eslint-disable-line no-console
       }
 
       editor.on("change", function (delta) {
-        //get value type
-        var value = editor.getValue();
+        let value = editor.getValue();
 
-        value = value.replaceAll(" ", ",");
-        var newValue = "";
-        for (var i = 0; i < value.length; i++) {
-          if (i == 0 && value[i] == ",") continue;
-          if (value[i - 1] == "," && value[i] == ",") continue;
-          newValue += value[i];
+        if (value.length == undefined) {
+        } else if (value.length > 0) {
+          grid = getGrid(value);
+          dbg(grid);
+          graph.setGrid(grid);
+          visDfs.init(container, graph.getGraph(), options);
         }
-        if (newValue.length && newValue[newValue.length - 1] == ",") {
-          newValue = newValue.substring(0, newValue.length - 1);
-        }
-        var valueType = newValue.split(/\r?\n/);
-        extactedData = valueType;
-
-        let gridData = {};
-
-        for (let i = 0; i < extactedData.length; i++) {
-          if (extactedData[i].length == 0) continue;
-          let row = extactedData[i].split(",");
-          gridData[row[0]] = [];
-          let lim = row.length > 2 ? 2 : row.length;
-          for (let j = 0; j < row.length > 2; j++) {
-            gridData[row[j]] = [];
-          }
-        }
-
-        for (let i = 0; i < extactedData.length; i++) {
-          if (extactedData[i].length == 0) continue;
-          let row = extactedData[i].split(",");
-          if (row.length == 0) continue;
-          if (row.length === 1) continue;
-          else if (row.length === 2) gridData[row[0]].push([row[1], 0]);
-          else gridData[row[0]].push([row[1], row[2]]);
-        }
-
-        //grid = gridData;
-        //dbg(grid);
-        //graph.setGrid(grid);
-        //visDfs.init(container, graph.getGraph(), options);
       });
+      /*
+    1 2
+2 3
+3 4
+4 5
+5 6
+2 4
+5 7
+7 8
+6 8
+*/
 
-      editor.session.on("change", function (delta) {
-        var text = editor.getValue();
-
-        // delta.start, delta.end, delta.lines, delta.action
-        //  console.log(delta.start, delta.end, delta.lines, delta.action);
-      });
       $("#start").click(function () {
         //select start node and end node and calling method;
-        var start = $("#startNode").val();
-        var end = $("#endNode").val();
-        var steps = graph.getUnWeightedBfsSteps(start, end);
-        visDfs.init(container, graph.getGraph(), options);
+        let source = parseInt($("#startNode").val());
+        let destination = parseInt($("#endNode").val());
+        let select = "BFS";
+
+        if (select == "BFS") {
+          steps = graph.getUnWeightedBfsSteps(source, destination);
+          visDfs.setSteps(steps);
+          visDfs.init(container, graph.getGraph(), options);
+        } else if (select == "DFS") {
+          steps = graph.getUnWeightedDfsSteps(source, destination);
+          visDfs.setSteps(steps);
+          visDfs.init(container, graph.getGraph(), options);
+        } else if (select == "Dijkstra") {
+          steps = graph.getWeightedDijkstraSteps(source, destination);
+          visDfs.setSteps(steps);
+          visDfs.init(container, graph.getGraph(), options);
+        }
+        visualize();
       });
 
       $("#selectAlgorithm").on("change", function () {
@@ -341,29 +332,30 @@
         $("#bestCase").html(selectedAlgorithm.worstTime);
         $("#spaceComplexity").html(selectedAlgorithm.spaceComplexity);
       });
-      /*
-      let isFirstStep = true;
 
-      function startAnimation() {
-        if (!isFirstStep) {
-          visDfs.releaseStep();
+      function visualize() {
+        let isFirstStep = true;
+
+        function startAnimation() {
+          if (!isFirstStep) {
+            visDfs.releaseStep();
+          }
+
+          if (!visDfs.isStepAvailable()) {
+            clearInt();
+            return;
+          }
+
+          visDfs.nextStep();
+          isFirstStep = false;
         }
 
-        if (!visDfs.isStepAvailable()) {
-          clearInt();
-          return;
+        const myInt = setInterval(startAnimation, 2000);
+
+        function clearInt() {
+          clearInterval(myInt);
         }
-
-        visDfs.nextStep();
-        isFirstStep = false;
       }
-
-      const myInt = setInterval(startAnimation, 2000);
-
-      function clearInt() {
-        clearInterval(myInt);
-      }
-      */
     </script>
   </body>
 </html>

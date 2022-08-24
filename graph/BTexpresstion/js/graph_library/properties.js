@@ -7,10 +7,8 @@
  * Widget
  */
 
-const MAIN_SVG_WIDTH = 900;
-const MAIN_SVG_HEIGHT = 700;
-const PSEUDOCODE_SVG_WIDTH = 300;
-const PSEUDOCODE_SVG_HEIGHT = 400;
+const MAIN_SVG_WIDTH = 1200;
+const MAIN_SVG_HEIGHT = 600;
 
 /*
  * GraphVertexWidget
