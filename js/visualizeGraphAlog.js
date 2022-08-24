@@ -22,6 +22,10 @@ class visualizeGraphAlog {
     this.pathColor = "#FFFF12";
   }
 
+  setSteps(_steps) {
+    this.steps = _steps;
+    this.stepCount = 0;
+  }
   /**
    *
    * @param {DOM obj} container the div element that render the graph

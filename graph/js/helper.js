@@ -1,3 +1,4 @@
+/// data extraction from the editor
 function getGrid(value) {
   value = value.replaceAll(" ", ",");
   var newValue = "";
