@@ -1,9 +1,80 @@
+/// PQ
+//helper class for PriorityQueue
+class Node {
+  constructor(val, priority) {
+    this.val = val;
+    this.priority = priority;
+  }
+}
+
+class PriorityQueue {
+  constructor() {
+    this.values = [];
+  }
+  enqueue(val, priority) {
+    let newNode = new Node(val, priority);
+    this.values.push(newNode);
+    this.bubbleUp();
+  }
+  bubbleUp() {
+    let idx = this.values.length - 1;
+    const element = this.values[idx];
+    while (idx > 0) {
+      let parentIdx = Math.floor((idx - 1) / 2);
+      let parent = this.values[parentIdx];
+      if (element.priority >= parent.priority) break;
+      this.values[parentIdx] = element;
+      this.values[idx] = parent;
+      idx = parentIdx;
+    }
+  }
+  dequeue() {
+    const min = this.values[0];
+    const end = this.values.pop();
+    if (this.values.length > 0) {
+      this.values[0] = end;
+      this.sinkDown();
+    }
+    return min;
+  }
+  sinkDown() {
+    let idx = 0;
+    const length = this.values.length;
+    const element = this.values[0];
+    while (true) {
+      let leftChildIdx = 2 * idx + 1;
+      let rightChildIdx = 2 * idx + 2;
+      let leftChild, rightChild;
+      let swap = null;
+
+      if (leftChildIdx < length) {
+        leftChild = this.values[leftChildIdx];
+        if (leftChild.priority < element.priority) {
+          swap = leftChildIdx;
+        }
+      }
+      if (rightChildIdx < length) {
+        rightChild = this.values[rightChildIdx];
+        if (
+          (swap === null && rightChild.priority < element.priority) ||
+          (swap !== null && rightChild.priority < leftChild.priority)
+        ) {
+          swap = rightChildIdx;
+        }
+      }
+      if (swap === null) break;
+      this.values[idx] = this.values[swap];
+      this.values[swap] = element;
+      idx = swap;
+    }
+  }
+}
+
 class buildGraph {
   graph = {};
   constructor(_graphInfo, _grid) {
     this.visited = {};
     //this.steps = [];
-    this.priorityQueue = new PriorityQueue();
     this.grid = _grid;
     this.graphInfo = _graphInfo;
     this.isLabeled = false;
@@ -74,7 +145,12 @@ class buildGraph {
     return { nodes: new vis.DataSet(nodes), edges: new vis.DataSet(edges) };
   }
 
+  dbg(msg) {
+    console.log(msg);
+  }
   getUnWeightedBfsSteps(source, destination) {
+    this.dbg(source);
+    this.dbg(destination);
     // queue structure using array
     var queue = [];
 
@@ -90,9 +166,12 @@ class buildGraph {
 
     while (queue.length > 0) {
       let u = queue.shift();
+      this.dbg(u);
 
       flag = 0;
-
+      if (u == null || u == undefined || u == "") {
+        continue;
+      }
       for (let i = 0; i < grid[u].length; i++) {
         if (!this.visited.hasOwnProperty(grid[u][i][0])) {
           queue.push(grid[u][i][0]);
@@ -222,17 +301,16 @@ class buildGraph {
         }
       }
     }
-
+    this.dbg("steps");
     return steps;
   }
 
   getWeightedDijkstraSteps(source, destination) {
     // priorityQuye structure using array
-    let priorityQueue = this.priorityQueue;
+    let priorityQueue = new PriorityQueue();
     this.visited = {};
-    this.visited[source] = true;
 
-    priorityQueue.push(source);
+    priorityQueue.enqueue([source, 0]);
 
     let flag = 0;
     let steps = [];
@@ -240,13 +318,30 @@ class buildGraph {
     let path = {};
     let stepStack = [];
 
-    while (priorityQueue.size() > 0) {
-      let u = priorityQueue.pop();
-      console.log(u);
+    while (priorityQueue.values.length > 0) {
+      let uu = priorityQueue.dequeue().val;
+      if (uu == NaN || uu == undefined || uu == "") {
+        continue;
+      }
+      let u = uu[0];
+      if (u == source) {
+        step = {};
+        step["fromNodeID"] = u + "";
+        step["toNodeID"] = u + "";
+        step["isPath"] = false;
+        steps.push(step);
+      }
+      let cost = uu[1];
+      if (this.visited.hasOwnProperty(u)) {
+        continue;
+      }
+      this.visited[source] = true;
       flag = 0;
 
       for (var i = 0; i < grid[u].length; i++) {
         if (!this.visited.hasOwnProperty(grid[u][i][0])) {
+          priorityQueue.enqueue([grid[u][i][0], cost + grid[u][i][1]]);
+
           console.log(grid[u][i][0]);
           priorityQueue.push(grid[u][i][0]);
           this.visited[grid[u][i][0]] = true;
@@ -260,7 +355,7 @@ class buildGraph {
           path[grid[u][i][0]] = u + "";
 
           if (grid[u][i][0] == destination) {
-            steps.push(step);
+            steps.enqueue(step);
             flag = 1;
             break;
           }
