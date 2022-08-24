@@ -301,7 +301,7 @@
         //select start node and end node and calling method;
         let source = parseInt($("#startNode").val());
         let destination = parseInt($("#endNode").val());
-        let select = "Dijkstra";
+        let select = "BFS";
 
         if (select == "BFS") {
           steps = graph.getUnWeightedBfsSteps(source, destination);

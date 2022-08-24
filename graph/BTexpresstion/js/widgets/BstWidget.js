@@ -220,14 +220,10 @@ var BST = function (expression) {
       if (value == "/") return 4;
       if (value == "+") return 3;
       if (value == "-") return 3;
-      if (value == "=") return 2;
+      if (value == "==") return 2;
       if (value == "!") return 1;
       if (value == "&") return 0;
       if (value == "|") return 0;
-      if (value == ">") return 0;
-      if (value == "<") return 0;
-      if (value == ")") return 0;
-      if (value == "(" || value == "{" || value == "}") return -1;
       return -2;
     }
     function isOperator(value) {
@@ -236,7 +232,7 @@ var BST = function (expression) {
       if (value == "/") return true;
       if (value == "+") return true;
       if (value == "-") return true;
-      if (value == "=") return true;
+      if (value == "==") return true;
       if (value == "!") return true;
       if (value == "&") return true;
       if (value == "|") return true;
@@ -295,6 +291,7 @@ var BST = function (expression) {
         else if (isOperator(postfix[i])) {
           let right = stack.pop();
           let left = stack.pop();
+
           ++nodeNumber;
           if (grid[left[0]][2][1] == 0) {
             grid[left[0]][2][1] = left[1];

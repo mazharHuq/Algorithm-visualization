@@ -1,29 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sorting</title>
-    <link rel="stylesheet" href="/CSS/sort.css">
+    <link rel="stylesheet" href="/CSS/sort.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
-        body {
-           
-            font-family: 'IBM Plex Mono', monospace;
-        }
-
+      @import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+      body {
+        font-family: "IBM Plex Mono", monospace;
+      }
     </style>
     <link
-            href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Raleway:100,300,400,600,700"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Raleway:100,300,400,600,700"
+      rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
 
-</head>
+  <body class="bg-blue-100">
+    <nav class="shadow bg-white">
+      <div class="mx-auto container">
+        <div class="flex justify-between items-center px-4 py-2">
+          <div class="flex items-center">
+            <h1 class="font-bold text-2xl ml-2">VisualAlgorithm</h1>
+          </div>
+          <div class="flex items-center space-x-2">
+            <div class="font-bold text-lg">
+              <label>Select Algorithm</label>
+              <select
+                id="selectAlgorithm"
+                class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2"
+              >
+                <option value="">Select An Algorithm</option>
+                <option value="bubbleSort">Bubble Sort</option>
+                <option value="selectionSort">Selection Sort</option>
+                <option value="insertionSort">Insertion Sort</option>
+              </select>
+            </div>
 
+            <button
+              class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
+            >
+              Visualize
+            </button>
+            <button
+              class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
+            >
+              Visualize
+            </button>
+
+<<<<<<< HEAD
+            <div>
+              <!-- Button for creating random array -->
+              <button
+                type="button"
+                id="randomArray"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
+              >
+                Random Array
+              </button>
+=======
 <body class="bg-blue-100">
     <nav class=" shadow bg-white">
         <div class="mx-auto container">
@@ -53,39 +98,76 @@
                         </button>
                     </div>
                 </div>
+>>>>>>> 0c2cf1d9e8cb947bf7b15377a15c34bfdd1c650a
             </div>
+          </div>
         </div>
-    
+      </div>
     </nav>
     <div class="top-bar shadow mt-2 bg-white">
-        <div class="array-container container mx-auto flex space-x-3 items-center font-mono">
-            <label for="array-input" class="font-bold text-xl">Array</label>
-    
-                <input id="array-input" type="text" class="w-full text-lg bg-gray-100  p-3" value="">
-    
-            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg" id="generateBar">
-               Generate Bar
-            </button>
-        </div>
-    </div>
-    <div class="shadow p-4 m-4  bg-white" style="position: relative; bottom: 0;min-width: 90vh;min-height:40vh;">
-        <div class="mother absolute bottom-0" style="border-bottom: 5px solid black;">
+      <div
+        class="array-container container mx-auto flex space-x-3 items-center font-mono"
+      >
+        <label for="array-input" class="font-bold text-xl">Array</label>
 
-        </div>
-        <div class="explanation bg-gray-100 h-60 p-2" style="position: absolute;right:0;">
-            <div class="explanation-container">
-                <div class="explanation-title">
-                    <h1 class="font-bold text-2xl">Explanation</h1>
-                </div>
-                <div class="explanation-content">
-                    <p class="text-lg">
-                        This is the explanation of the algorithm.
-                    </p>
-                </div>
-            </div>
-    
-        </div>
+        <input
+          id="array-input"
+          type="text"
+          class="w-full text-lg bg-gray-100 p-3"
+          value=""
+        />
+
+        <button
+          class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
+          id="generateBar"
+        >
+          Generate Bar
+        </button>
+      </div>
     </div>
+    <div
+      class="shadow p-4 m-4 bg-white"
+      style="position: relative; bottom: 0; min-width: 90vh; min-height: 40vh"
+    >
+      <div
+        class="mother absolute bottom-0"
+        style="border-bottom: 5px solid black"
+      ></div>
+      <div
+        class="explanation bg-gray-100 h-60 p-2"
+        style="position: absolute; right: 0"
+      >
+        <div class="explanation-container">
+          <div class="explanation-title">
+            <h1 class="font-bold text-2xl">Explanation</h1>
+          </div>
+          <div class="explanation-content">
+            <p class="text-lg">This is the explanation of the algorithm.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+<<<<<<< HEAD
+
+    <div style="" class="mediaControl shadow bg-white bottom-0 w-full">
+      <div class="container flex justify-center mx-auto">
+        <div class="flex items-center px-4 py-2">
+          <div class="flex items-center space-x-8">
+            <button class="">
+              <i class="fa-solid fa-backward-step fa-2x"></i>
+            </button>
+            <button id="sortArray" class="">
+              <i class="fa-solid fa-circle-play fa-2x"></i>
+            </button>
+            <button id="sortArrayPause" class="hidden">
+              <i class="fa-solid fa-circle-pause fa-2x"></i>
+            </button>
+
+            <button class="">
+              <i class="fa-solid fa-forward-step fa-2x"></i>
+            </button>
+          </div>
+=======
  
     <div style="" class="mediaControl  shadow bg-white  bottom-0 w-full">
         <div class="container flex justify-center mx-auto">
@@ -108,56 +190,72 @@
                     </button>
                 </div>
             </div>
+>>>>>>> 0c2cf1d9e8cb947bf7b15377a15c34bfdd1c650a
         </div>
+      </div>
     </div>
 
     <!-- Algorithm Details -->
+<<<<<<< HEAD
+    <div class="details shadow bg-white p-4 mx-auto">
+      <div class="intro-y px-4 my-3 bg-green-500 py-4 text-3xl font-bold">
+        <h2 id="algorithm-title">Bubble Sort</h2>
+      </div>
+      <div class="grid grid-cols-12 space-x-2">
+        <div class="col-span-8 bg-gray-100">
+          <div class="intro-y px-4 my-3 py-4 text-xl font-bold">
+            <h2>Algorithm</h2>
+            <p class="text-sm" id="algorithm-summary"></p>
+          </div>
+          <div class="intro-y px-4 my-3 py-4 text-xl font-medium">
+            <h2>Description</h2>
+            <p class="text-sm font-thin" id="algorithm-description"></p>
+          </div>
+=======
     <div id="algorithmDetails" class="details hidden shadow bg-white p-4 mx-auto ">
         <div class="intro-y px-4 my-3 bg-green-500 py-4 text-3xl font-bold">
             <h2 id="algorithm-title">Bubble Sort</h2> 
+>>>>>>> 0c2cf1d9e8cb947bf7b15377a15c34bfdd1c650a
         </div>
-        <div class="grid grid-cols-12 space-x-2">
-            <div class="col-span-8 bg-gray-100">
-                <div class="intro-y px-4 my-3  py-4 text-xl font-bold">
-                    <h2>Algorithm</h2> 
-                    <p class="text-sm" id="algorithm-summary">
-
-                    </p>
-                </div>
-                <div class="intro-y px-4 my-3  py-4 text-xl font-medium">
-                    <h2>Description</h2> 
-                    <p class="text-sm font-thin" id="algorithm-description">
-
-                    </p>    
-                </div>
-              
-            </div>
-            <div class="col-span-4 bg-gray-100">
-                <div class="intro-y text-2xl font-bold p-3 border-b">
-                    <h2>Performance</h2>
-                </div>
-                <div class="intro-y px-4 my-3  py-4 text-xl font-bold">
-                    <h2>Time Complexity</h2> 
-                    <h4 class="text-sm" id="worstCase">Worst Case : O(n <sup>2</sup>)</h4>
-                    <h4 class="text-sm" id="averageCase">Average Case : O(n <sup>2</sup>)</h4>
-                    <h4 class="text-sm" id="bestCase">Best Case : O(n <sup>2</sup>)</h4>
-                </div>
-                <div class="intro-y px-4 my-3  py-4 text-xl ">
-                    <h2>Space Complexity</h2> 
-                    <h4 class="text-sm" id="spaceComplexity">Worst Case : O(n <sup>2</sup>)</h4>
-                  
-                </div>
-            </div>
+        <div class="col-span-4 bg-gray-100">
+          <div class="intro-y text-2xl font-bold p-3 border-b">
+            <h2>Performance</h2>
+          </div>
+          <div class="intro-y px-4 my-3 py-4 text-xl font-bold">
+            <h2>Time Complexity</h2>
+            <h4 class="text-sm" id="worstCase">
+              Worst Case : O(n <sup>2</sup>)
+            </h4>
+            <h4 class="text-sm" id="averageCase">
+              Average Case : O(n <sup>2</sup>)
+            </h4>
+            <h4 class="text-sm" id="bestCase">Best Case : O(n <sup>2</sup>)</h4>
+          </div>
+          <div class="intro-y px-4 my-3 py-4 text-xl">
+            <h2>Space Complexity</h2>
+            <h4 class="text-sm" id="spaceComplexity">
+              Worst Case : O(n <sup>2</sup>)
+            </h4>
+          </div>
         </div>
+      </div>
     </div>
 
-   
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-   
 
     <script type="module">
+<<<<<<< HEAD
+      import Sort from "../js/sort/sort.js";
+      import sortingAlgorithmDetails from "../js/sort/sortingAlgorithmDetails.js";
+      $(document).ready(function () {
+        let sortButton = $("#sortArray");
+        const container = document.querySelector(".mother");
+=======
         import Sort from "../js/sort/sort.js"
         import sortingAlgorithmDetails from "../js/sort/sortingAlgorithmDetails.js"
         $(document).ready(function () {
@@ -267,11 +365,70 @@
             }
             );
 
+>>>>>>> 0c2cf1d9e8cb947bf7b15377a15c34bfdd1c650a
 
-
-
+        let sort = new Sort(container, []);
+        $("#speed").on("change", function () {
+          let speed = $(this).val();
+          sort.speed = speed + 1;
         });
-    </script>
-</body>
 
+        sortButton.click(function () {
+          console.log("Starting ");
+          $(this).addClass("hidden");
+          $("#sortArrayPause").removeClass("hidden");
+          sort.currentStep = 0;
+          sort.setVisualizeStatus(true);
+          sort.visuaLizeBubbleSort();
+        });
+        $("#sortArrayPause").click(function () {
+          sort.setVisualizeStatus(false);
+          $(this).addClass("hidden");
+          $("#sortArray").removeClass("hidden");
+        });
+        $("#play").click(function () {
+          sort.setVisualizeStatus(true);
+          sort.visuaLizeBubbleSort();
+        });
+        $("#previous").click(function () {
+          let status = sort.visualizeStatus;
+          sort.setVisualizeStatus(false);
+          sort.goBack();
+        });
+        $("#next").click(function () {
+          let status = sort.visualizeStatus;
+          sort.setVisualizeStatus(false);
+          sort.goForward();
+        });
+        $("#randomArray").click(function () {
+          sort.reset();
+        });
+        $("#selectAlgorithm").on("change", function () {
+          let algorithm = $(this).val();
+          let selectedAlgorithm = new sortingAlgorithmDetails(algorithm);
+          $("#algorithm-title").html(selectedAlgorithm.algorithmName);
+          $("#algorithm-summary").html(selectedAlgorithm.algorithmSummary);
+          $("#algorithm-description").html(
+            selectedAlgorithm.algorithmDescription
+          );
+          $("#worstCase").html(selectedAlgorithm.bestTime);
+          $("#averageCase").html(selectedAlgorithm.averageTime);
+          $("#bestCase").html(selectedAlgorithm.worstTime);
+          $("#spaceComplexity").html(selectedAlgorithm.spaceComplexity);
+        });
+        $("#generateBar").on("click", function () {
+          //take input from user
+          let input = $("#array-input").val();
+          let array = input.split(",");
+
+          sort.setArray(array);
+        });
+        $("#array-input").onkeydown = function (e) {
+          if (e.keyCode == 13) {
+            $("#generateBar").click();
+          }
+        };
+      });
+    </script>
+  </body>
 </html>
