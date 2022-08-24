@@ -112,7 +112,7 @@
     </div>
 
     <!-- Algorithm Details -->
-    <div class="details shadow bg-white p-4 mx-auto ">
+    <div id="algorithmDetails" class="details hidden shadow bg-white p-4 mx-auto ">
         <div class="intro-y px-4 my-3 bg-green-500 py-4 text-3xl font-bold">
             <h2 id="algorithm-title">Bubble Sort</h2> 
         </div>
@@ -224,7 +224,13 @@
             }
             );
             $("#selectAlgorithm").on('change', function () {
+
                 let algorithm = $(this).val();
+                if(algorithm){
+                    $("#algorithmDetails").removeClass()
+                }else {
+                    $("#algorithmDetails").addClass('hidden')
+                }
                 let selectedAlgorithm = new sortingAlgorithmDetails(algorithm);
                 $('#algorithm-title').html(selectedAlgorithm.algorithmName);
                 $('#algorithm-summary').html(selectedAlgorithm.algorithmSummary);

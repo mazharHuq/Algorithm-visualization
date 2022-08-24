@@ -183,6 +183,7 @@ $(document).ready(function () {
     const visulaizeSelectionSortTep = async (sortArr,NewArray) => {
         let states=[];
         states = getState(sortArr, NewArray);
+        console.log(states,"states");
       
           for (let index = 0; index < states.length; index++) {
               const element = states[index];
