@@ -20,7 +20,8 @@ class Bar{
         el.setAttribute('data-left',this.left);
         el.setAttribute('data-top',this.top);
         el.setAttribute('data-bottom',this.top+this.value*5);
-        el.setAttribute('data-index',this.index);     
+        el.setAttribute('data-index',this.index);
+        el.setAttribute('id',this.index);
         let text = document.createElement('span');
         text.innerHTML = this.value;
         el.appendChild(text);
