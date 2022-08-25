@@ -318,8 +318,13 @@ class buildGraph {
     let path = {};
     let stepStack = [];
     let parent = [];
-    let costs = [];
+    var costs = [];
 
+    for (let node in this.grid) {
+      parent[node] = null;
+      costs[node] = Number.MAX_VALUE;
+    }
+    costs[source] = 0;
     while (priorityQueue.values.length > 0) {
       let uu = priorityQueue.dequeue().val;
       if (uu == NaN || uu == undefined || uu == "") {
@@ -336,35 +341,27 @@ class buildGraph {
         step["toNodeID"] = u + "";
         step["isPath"] = false;
         steps.push(step);
+        path[u] = parent[u] + "";
+      }
+      if (u == destination) {
+        flag = 1;
+        break;
       }
       this.visited[source] = true;
       flag = 0;
 
       for (var i = 0; i < grid[u].length; i++) {
         if (!this.visited.hasOwnProperty(grid[u][i][0])) {
-          priorityQueue.enqueue([grid[u][i][0], cost + grid[u][i][1]]);
+          let v = grid[u][i][0];
+          let newCost = grid[u][i][1];
+          if (newCost < costs[v] - cost) {
 
-          console.log(grid[u][i][0]);
-          priorityQueue.push(grid[u][i][0]);
-          this.visited[grid[u][i][0]] = true;
-
-          step = {};
-          step["fromNodeID"] = u + "";
-          step["toNodeID"] = grid[u][i][0] + "";
-          step["isPath"] = false;
-          stepStack.push(step);
-
-          path[grid[u][i][0]] = u + "";
-
-          if (grid[u][i][0] == destination) {
-            steps.enqueue(step);
-            flag = 1;
-            break;
+            costs[v] = newCost + cost;
+            parent[v] = u;
+            priorityQueue.enqueue([v, costs[v]]);
           }
         }
       }
-
-      if (flag) break;
     }
 
     let nodeOrder = [];
