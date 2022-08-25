@@ -41,7 +41,7 @@ class Sort {
             let bar = new Bar(this.container, this.arr[i], left, top, i, this.color.initialColor);
             this.bar.push(bar);
         }
-       await this.mergeSort(this.arr);
+
     }
 
     generateRandomArray() {
@@ -311,6 +311,15 @@ class Sort {
             this.insertionSort();
             // this.visualizeStatus = true;
             //this.visuaLizeInsertionSort();
+        }else if (this.algorithm === 'selectionSort') {
+            this.selectionSort();
+            // this.visualizeStatus = true;
+            //this.visuaLizeSelectionSort();
+        }
+        else if (this.algorithm === 'mergeSort') {
+            this.mergeSort();
+            // this.visualizeStatus = true;
+            //this.visuaLizeMergeSort();
         }
     }
 
@@ -369,14 +378,20 @@ class Sort {
         if (left < right) {
             let mid = Math.floor((left + right) / 2);
             for (let i = left; i <mid ; i++) {
-
+                this.step.push({
+                    type: 'color',
+                    firstNode: i
+                });
                 await this.colorNodes(i, this.color.targetColor, this.speed);
             }
 
             await this.mergeSortHelper(arr, left, mid);
 
             for (let i = mid + 1; i <= right; i++) {
-
+                this.step.push({
+                    type: 'color',
+                    firstNode: i
+                });
                 await this.colorNodes(i, "red", this.speed);
             }
 
@@ -407,7 +422,10 @@ class Sort {
                 });
                 arr[k] = leftArr[i];
                 i++;
-
+                this.step.push({
+                    type: 'goUp',
+                    firstNode: k,
+                });
                 await this.goUp(k, this.speed);
 
             } else {
@@ -417,6 +435,10 @@ class Sort {
                 });
                 arr[k] = rightArr[j];
                 j++;
+                this.step.push({
+                    type: 'goUp',
+                    firstNode: k,
+                });
 
                 await this.goUp(k, this.speed);
             }
@@ -431,6 +453,15 @@ class Sort {
 
             arr[k] = leftArr[i];
             i++;
+
+            this.step.push({
+                type: 'color',
+                firstNode: k,
+            });
+            this.step.push({
+                type: 'goUp',
+                firstNode: k,
+            });
             await this.colorNodes(k, "black", this.speed);
             await this.goUp(k, this.speed);
             k++;
@@ -443,6 +474,11 @@ class Sort {
             });
             arr[k] = rightArr[j];
             j++;
+            this.step.push({
+                type: 'color',
+                firstNode: k,
+            });
+            this.step.push({type: 'goUp', firstNode: k});
             await this.colorNodes(k, "black", this.speed);
             await this.goUp(k, this.speed);
             k++;

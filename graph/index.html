@@ -23,10 +23,17 @@
         }
 
         .cell {
-            border: 1px solid #e6eff6;
+            border: 1px solid #6b9dc5;
             text-align: center;
             align-items: center;
             justify-content: center;
+
+        }
+        .start {
+            background-color: rgb(24, 179, 114);
+        }
+        .end {
+            background-color: rgb(255, 0, 0);
         }
 
         .control {
@@ -53,7 +60,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="bg-blue-100">
+<body class="bg-gray-900">
     <nav class="shadow bg-white">
         <div class="mx-auto container">
             <div class="flex justify-between items-center px-4 py-2">
@@ -66,9 +73,8 @@
                         <select id="selectAlgorithm"
                             class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2">
                             <option value="">Select An Algorithm</option>
-                            <option value="bubbleSort">Bubble Sort</option>
-                            <option value="selectionSort">Selection Sort</option>
-                            <option value="insertionSort">Insertion Sort</option>
+                            <option value="bfs">BFS</option>
+                            <option value="dfs">DFS</option>
                         </select>
                     </div>
 
@@ -76,23 +82,26 @@
                         class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">
                         Visualize
                     </button>
-                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">
-                        Visualize
+                    <button id="set-obstacles"
+                            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">
+                        Set Obstacles
                     </button>
-
-                    <div>
-                        <!-- Button for creating random array -->
-                        <button type="button" id="randomArray"
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
-                            Random Array
-                        </button>
+                    <div class="font-bold text-lg">
+                        <label>Speed</label>
+                        <select id="speed"
+                                class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2">
+                            <option value="1">First</option>
+                            <option value="20">Medium</option>
+                            <option value="30">Slow</option>
+                        </select>
+                    </div>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
 
-    <div id="grid"></div>
+    <div class="mx-auto mt-3" id="grid"></div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -102,6 +111,8 @@
     <script type="module">
         $(document).ready(function () {
             const startButton = $("#start");
+            const setObstaclesButton = $("#set-obstacles");
+            const speed = $("#speed");
             var START_X = 4;
             var START_Y = 16;
             var END_X = 23;
@@ -116,18 +127,50 @@
             const grid = new Grid(height, width, cellSize,startButton,START_X,START_Y,END_X,END_Y);
           
             var isRunning = false;
+            var isHoverable = false;
             var isBfs = false;
             var isDfs = false;
             var isStartingNode = false;
             var isEndingNode = false;
+            setObstaclesButton.click(function () {
+                if(isHoverable){
+                    isHoverable = false;
+                    setObstaclesButton.text("Set Obstacles");
+                }else {
+                    isHoverable = true;
+                    setObstaclesButton.text("Remove Obstacles");
+                }
+
+
+                grid.setHoverable(isHoverable);
+            });
+            speed.change(function () {
+                grid.setSpeed(speed.val());
+            }).trigger("change");
             startButton.click(() => {
+                let algorithm = $("#selectAlgorithm").val();
+                if (algorithm == "bfs") {
+                    isBfs = true;
+                    isDfs = false;
+                } else if (algorithm == "dfs") {
+                    isDfs = true;
+                    isBfs = false;
+                } else {
+                    isBfs = false;
+                    isDfs = false;
+                    alert("Please select an algorithm");
+                    return;
+                }
                 let x=parseInt(startButton.attr("data-startX"));
                 let y=parseInt(startButton.attr("data-startY"));
                 let endX=parseInt(startButton.attr("data-endX"));
                 let endY=parseInt(startButton.attr("data-endY"));
-                console.log(x,y,endX,endY);
-                grid.showStartingPoint();
-                 grid.bfsUntilEnd("darkgreen",x,y,endX,endY);
+                if(isBfs){
+                    grid.bfsUntilEnd("darkgreen",x,y,endX,endY);
+                }else if(isDfs){
+                    grid.DfsUntilEnd("darkgreen",x,y,endX,endY);
+                }
+
             });
         });
     </script>
