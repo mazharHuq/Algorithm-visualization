@@ -84,9 +84,9 @@
                 class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2"
               >
                 <option value="">Select An Algorithm</option>
-                <option value="bfs">Breadth-first search</option>
-                <option value="dfs">Depth-first search</option>
-                <option value="dijkstra">Dijkstra</option>
+                <option value="BFS">Breadth-first search</option>
+                <option value="DFS">Depth-first search</option>
+                <option value="Dijkstra">Dijkstra</option>
               </select>
             </div>
             <input
@@ -206,7 +206,6 @@
       type="text/javascript"
       src="../graph/js/graphAlgorithmDetails.js"
     ></script>
-    <script type="text/javascript" src="../js/priorityQueue.js"></script>
     <script type="text/javascript" src="../js/buildGraph.js"></script>
     <script type="text/javascript" src="../js/visualizeGraphAlog.js"></script>
     <script type="text/javascript">
@@ -249,7 +248,7 @@
       var graph = new buildGraph(graphInfob, grid);
       //var steps = graph.getWeightedDijkstraSteps(1, 5);
 
-      var steps = graph.getUnWeightedDfsSteps(1, 5);
+      var steps = [];//graph.getUnWeightedDfsSteps(1, 5);
       dbg(steps);
       //var steps = graph.getWeightedBFS(1, 5);
 
@@ -284,9 +283,9 @@
 
       $("#start").click(function () {
         //select start node and end node and calling method;
-        let source = parseInt($("#startNode").val());
-        let destination = parseInt($("#endNode").val());
-        let select = "BFS";
+        let source = $("#startNode").val();
+        let destination = $("#endNode").val();
+        let select = $("#selectAlgorithm").val();
 
         if (select == "BFS") {
           steps = graph.getUnWeightedBfsSteps(source, destination);
@@ -300,6 +299,8 @@
           steps = graph.getWeightedDijkstraSteps(source, destination);
           visDfs.setSteps(steps);
           visDfs.init(container, graph.getGraph(), options);
+        } else {
+          alert("Please select an algorithm");
         }
         visualize();
       });
