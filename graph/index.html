@@ -90,9 +90,10 @@
                         <label>Speed</label>
                         <select id="speed"
                                 class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2">
-                            <option value="1">First</option>
+                            <option value="1">Fast</option>
                             <option value="20">Medium</option>
-                            <option value="30">Slow</option>
+                            <option value="90">Slow</option>
+                            <option value=".5">Ultra Fast</option>
                         </select>
                     </div>
                     </div>
@@ -102,6 +103,45 @@
     </nav>
 
     <div class="mx-auto mt-3" id="grid"></div>
+    <!-- Algorithm Details -->
+    <div id="algorithmDetails mt-3" class="details    shadow bg-white p-4 mx-auto ">
+        <div class="intro-y px-4 my-3 bg-green-500 py-4 text-3xl font-bold">
+            <h2 id="algorithm-title">Select Algorithm</h2>
+        </div>
+        <div class="grid grid-cols-12 space-x-2">
+            <div class="col-span-8 bg-gray-100">
+                <div class="intro-y px-4 my-3  py-4 text-xl font-bold">
+                    <h2>Algorithm</h2>
+                    <p class="text-sm" id="algorithm-summary">
+
+                    </p>
+                </div>
+                <div class="intro-y px-4 my-3  py-4 text-xl font-medium">
+                    <h2>Description</h2>
+                    <p class="text-sm font-thin" id="algorithm-description">
+
+                    </p>
+                </div>
+
+            </div>
+            <div class="col-span-4 bg-gray-100">
+                <div class="intro-y text-2xl font-bold p-3 border-b">
+                    <h2>Performance</h2>
+                </div>
+                <div class="intro-y px-4 my-3  py-4 text-xl font-bold">
+                    <h2>Time Complexity</h2>
+                    <h4 class="text-sm" id="worstCase">Worst Case : O(n <sup>2</sup>)</h4>
+                    <h4 class="text-sm" id="averageCase">Average Case : O(n <sup>2</sup>)</h4>
+                    <h4 class="text-sm" id="bestCase">Best Case : O(n <sup>2</sup>)</h4>
+                </div>
+                <div class="intro-y px-4 my-3  py-4 text-xl ">
+                    <h2>Space Complexity</h2>
+                    <h4 class="text-sm" id="spaceComplexity">Worst Case : O(n <sup>2</sup>)</h4>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -109,7 +149,9 @@
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
     <script type="module">
+        import sortingAlgorithmDetails from "../js/sort/sortingAlgorithmDetails.js"
         $(document).ready(function () {
+
             const startButton = $("#start");
             const setObstaclesButton = $("#set-obstacles");
             const speed = $("#speed");
@@ -172,6 +214,26 @@
                 }
 
             });
+
+            $("#selectAlgorithm").on('change', function () {
+
+                    let algorithm = $(this).val();
+                    if(algorithm){
+                        $("#algorithmDetails").removeClass()
+                    }else {
+                        $("#algorithmDetails").addClass('hidden')
+                    }
+                    let selectedAlgorithm = new sortingAlgorithmDetails(algorithm);
+                    $('#algorithm-title').html(selectedAlgorithm.algorithmName);
+                    $('#algorithm-summary').html(selectedAlgorithm.algorithmSummary);
+                    $('#algorithm-description').html(selectedAlgorithm.algorithmDescription);
+                    $('#worstCase').html(selectedAlgorithm.bestTime);
+                    $('#averageCase').html(selectedAlgorithm.averageTime);
+                    $('#bestCase').html(selectedAlgorithm.worstTime);
+                    $('#spaceComplexity').html(selectedAlgorithm.spaceComplexity);
+
+                }
+            );
         });
     </script>
 </body>

@@ -9,7 +9,7 @@ class Grid {
      *@return {Cell}
      */
     obstacle = [];
-    speed = 10;
+    speed = 1;
 
     constructor(width, height, cellSize, startButton, startX, startY, endX, endY) {
         this.startIcon = "🏍";
@@ -29,8 +29,9 @@ class Grid {
     }
 
     init() {
-        const windowWidth = window.innerWidth*0.9;
-        const windowHeight = window.innerHeight*.80;
+
+        const windowHeight = window.innerHeight*.90;
+        const windowWidth = window.innerWidth*.60;
         let gridElement = document.getElementById("grid");
         gridElement.style.width = windowWidth + "px";
         gridElement.style.height = windowHeight + "px";
@@ -52,6 +53,7 @@ class Grid {
                 this.cells[i][j] = new Cell(i, j, this.cellSize);
 
                 let el = document.createElement("div");
+                el.addEventListener("mouseenter", this.dragStart);
                 el.addEventListener("dragstart", this.dragStart);
                 el.addEventListener("dragover", this.allowDrop);
                 el.addEventListener("dragend", this.dragEnd);
@@ -106,11 +108,14 @@ class Grid {
         //end icon
         event.preventDefault();
         let data = event.dataTransfer;
+        console.log(event.dataTransfer);
         let id = data.getData("text");
         let cellElement = document.getElementById(id);
         let text = cellElement.innerHTML;
+
         event.target.innerHTML = text;
-        console.log(event.target,data);
+
+
         if (text === "🏍") {
             alert("start cell is set");
             event.target.style.backgroundColor = "green";
@@ -180,7 +185,7 @@ class Grid {
     }
 
     setSpeed(speed) {
-        speed = parseInt(speed);
+        speed = parseFloat(speed).toFixed(3);
         this.speed = parseInt(10 * speed);
     }
 
@@ -246,7 +251,7 @@ class Grid {
 
             // await this.colorCell(currentX, currentY, color);
             cellElement.dataset.visited = true;
-            let neighbors = this.getNeighbors(currentX, currentY);
+            let neighbors = this.getNeighbors2(currentX, currentY);
 
 
             for (let i = 0; i < neighbors.length; i++) {
@@ -377,9 +382,27 @@ class Grid {
 
         return neighbors;
     }
+    getNeighbors2(x, y) {
+        let neighbors = [];
 
-    //function for backtracking the path from the end cell to the start cell
-    async backtrack(x, y, color) {
+
+        if (y < this.height - 1) {
+            neighbors.push([x, y + 1]);
+        }
+        if (x < this.width - 1) {
+            neighbors.push([x + 1, y]);
+        }
+        if (y > 0) {
+            neighbors.push([x, y - 1]);
+        }
+        if (x > 0) {
+            neighbors.push([x - 1, y]);
+        }
+
+
+
+        return neighbors;
+
     }
 }
 
