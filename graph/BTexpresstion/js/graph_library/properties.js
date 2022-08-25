@@ -7,7 +7,7 @@
  * Widget
  */
 
-const MAIN_SVG_WIDTH = 1200;
+var MAIN_SVG_WIDTH = 1900;
 const MAIN_SVG_HEIGHT = 600;
 
 /*
