@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.js"></script>
+    <title>save image test</title>
+    <style>
+      #canvas {
+        height: 600px !important;
+        width: 800px !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div
+      id="example"
+      style="
+        background-color: aquamarine;
+        height: 60px;
+        width: 270px;
+        margin-bottom: 10px;
+      "
+    >
+      <h1>hello world</h1>
+    </div> -->
+
+    <canvas id="canvas"></canvas>
+
+    <button id="dl-png" class="btn btn-primary">save as image</button>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      var barChartData = {
+        labels: ["January", "February", "March", "April"],
+        datasets: [
+          {
+            label: "First Year",
+            fillColor: "rgba(220,220,220,0.5)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: [1, 2, 4, 3, 11, 4, 8],
+          },
+          {
+            label: "Second Year",
+            fillColor: "rgba(151,187,205,0.5)",
+            strokeColor: "rgba(151,187,205,0.8)",
+            highlightFill: "rgba(151,187,205,0.75)",
+            highlightStroke: "rgba(151,187,205,1)",
+            data: [1, 2, 2, 7, 8, 6, 4],
+          },
+        ],
+      };
+      var ctx = $("#canvas");
+      var mychart = new Chart(ctx, { type: "bar", data: barChartData });
+      document.getElementById("dl-png").onclick = function () {
+        const screenshot = document.getElementById("canvas");
+        html2canvas(screenshot).then((canvas) => {
+          const base64image = canvas.toDataURL("images/png");
+          var anchor = document.createElement("a");
+          anchor.setAttribute("href", base64image);
+          anchor.setAttribute("download", "my-image.png");
+          anchor.click();
+          anchor.remove();
+        });
+      };
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </body>
+</html>

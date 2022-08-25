@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="/CSS/sort.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
         body {
-           
+
             font-family: 'IBM Plex Mono', monospace;
         }
 
@@ -25,205 +25,205 @@
 </head>
 
 <body class="bg-blue-100">
-    <nav class=" shadow bg-white">
-        <div class="mx-auto container">
-            <div class="flex justify-between items-center px-4 py-2">
-                <div class="flex items-center">
-                    <h1 class=" font-bold text-2xl ml-2" >VisualAlgorithm</h1>
-                </div>
-                <div class="flex items-center space-x-2 ">
-                   <div class="font-bold text-lg">
-                       <label>Select Algorithm</label>
-                       <select id="selectAlgorithm" class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2">
+<nav class=" shadow bg-white">
+    <div class="mx-auto container">
+        <div class="flex justify-between items-center px-4 py-2">
+            <div class="flex items-center">
+                <h1 class=" font-bold text-2xl ml-2" >VisualAlgorithm</h1>
+            </div>
+            <div class="flex items-center space-x-2 ">
+                <div class="font-bold text-lg">
+                    <label>Select Algorithm</label>
+                    <select id="selectAlgorithm" class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2">
                         <option value="">Select An Algorithm</option>
-                             <option value="bubbleSort">Bubble Sort</option>
-                             <option value="selectionSort">Selection Sort</option>
-                             <option value="insertionSort">Insertion Sort</option>
-                        </select>
-                   </div>
-    
-                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg" id="startVisualize">
-                        Visualize
-                    </button>
-    
-                    <div>
-                        <!-- Button for creating random array -->
-                        <button type="button" id="randomArray" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
-                            Random Array
-                        </button>
-                    </div>
+                        <option value="bubbleSort">Bubble Sort</option>
+                        <option value="selectionSort">Selection Sort</option>
+                        <option value="insertionSort">Insertion Sort</option>
+                    </select>
                 </div>
-            </div>
-        </div>
-    
-    </nav>
-    <div class="top-bar shadow mt-2 bg-white">
-        <div class="array-container container mx-auto flex space-x-3 items-center font-mono">
-            <label for="array-input" class="font-bold text-xl">Array</label>
-    
-                <input id="array-input" type="text" class="w-full text-lg bg-gray-100  p-3" value="">
-    
-            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg" id="generateBar">
-               Generate Bar
-            </button>
-        </div>
-    </div>
-    <div class="shadow p-4 m-4  bg-white" style="position: relative; bottom: 0;min-width: 90vh;min-height:40vh;">
-        <div class="mother absolute bottom-0" style="border-bottom: 5px solid black;">
 
-        </div>
-        <div class="explanation bg-gray-100 h-60 p-2" style="position: absolute;right:0;">
-            <div class="explanation-container">
-                <div class="explanation-title">
-                    <h1 class="font-bold text-2xl">Explanation</h1>
-                </div>
-                <div class="explanation-content">
-                    <p class="text-lg">
-                        This is the explanation of the algorithm.
-                    </p>
-                </div>
-            </div>
-    
-        </div>
-    </div>
- 
-    <div style="" class="mediaControl  shadow bg-white  bottom-0 w-full">
-        <div class="container flex justify-center mx-auto">
-            <div class="flex  items-center px-4 py-2">
-                <div class="flex items-center space-x-8 ">
-    
-                    <button class="">
-                        <i class="fa-solid fa-backward-step fa-2x"></i>
-                    </button>
-                    <button id="play" class="">
-                        <i class="fa-solid fa-circle-play fa-2x"></i>
-                    </button>
-                    <button  id="sortArrayPause" class="hidden">
-                       
-                        <i class="fa-solid fa-circle-pause fa-2x"></i>
-                    </button>
-    
-                    <button class="">
-                        <i class="fa-solid fa-forward-step fa-2x"></i>
+                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg" id="startVisualize">
+                    Visualize
+                </button>
+
+                <div>
+                    <!-- Button for creating random array -->
+                    <button type="button" id="randomArray" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
+                        Random Array
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Algorithm Details -->
-    <div id="algorithmDetails" class="details hidden shadow bg-white p-4 mx-auto ">
-        <div class="intro-y px-4 my-3 bg-green-500 py-4 text-3xl font-bold">
-            <h2 id="algorithm-title">Bubble Sort</h2> 
-        </div>
-        <div class="grid grid-cols-12 space-x-2">
-            <div class="col-span-8 bg-gray-100">
-                <div class="intro-y px-4 my-3  py-4 text-xl font-bold">
-                    <h2>Algorithm</h2> 
-                    <p class="text-sm" id="algorithm-summary">
+</nav>
+<div class="top-bar shadow mt-2 bg-white">
+    <div class="array-container container mx-auto flex space-x-3 items-center font-mono">
+        <label for="array-input" class="font-bold text-xl">Array</label>
 
-                    </p>
-                </div>
-                <div class="intro-y px-4 my-3  py-4 text-xl font-medium">
-                    <h2>Description</h2> 
-                    <p class="text-sm font-thin" id="algorithm-description">
+        <input id="array-input" type="text" class="w-full text-lg bg-gray-100  p-3" value="">
 
-                    </p>    
-                </div>
-              
+        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg" id="generateBar">
+            Generate Bar
+        </button>
+    </div>
+</div>
+<div class="shadow p-4 m-4  bg-white" style="position: relative; bottom: 0;min-width: 90vh;min-height:40vh;">
+    <div class="mother absolute bottom-0" style="border-bottom: 5px solid black;">
+
+    </div>
+    <div class="explanation bg-gray-100 h-60 p-2" style="position: absolute;right:0;">
+        <div class="explanation-container">
+            <div class="explanation-title">
+                <h1 class="font-bold text-2xl">Explanation</h1>
             </div>
-            <div class="col-span-4 bg-gray-100">
-                <div class="intro-y text-2xl font-bold p-3 border-b">
-                    <h2>Performance</h2>
-                </div>
-                <div class="intro-y px-4 my-3  py-4 text-xl font-bold">
-                    <h2>Time Complexity</h2> 
-                    <h4 class="text-sm" id="worstCase">Worst Case : O(n <sup>2</sup>)</h4>
-                    <h4 class="text-sm" id="averageCase">Average Case : O(n <sup>2</sup>)</h4>
-                    <h4 class="text-sm" id="bestCase">Best Case : O(n <sup>2</sup>)</h4>
-                </div>
-                <div class="intro-y px-4 my-3  py-4 text-xl ">
-                    <h2>Space Complexity</h2> 
-                    <h4 class="text-sm" id="spaceComplexity">Worst Case : O(n <sup>2</sup>)</h4>
-                  
-                </div>
+            <div class="explanation-content">
+                <p class="text-lg">
+                    This is the explanation of the algorithm.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div style="" class="mediaControl  shadow bg-white  bottom-0 w-full">
+    <div class="container flex justify-center mx-auto">
+        <div class="flex  items-center px-4 py-2">
+            <div class="flex items-center space-x-8 ">
+
+                <button class="">
+                    <i class="fa-solid fa-backward-step fa-2x"></i>
+                </button>
+                <button id="play" class="">
+                    <i class="fa-solid fa-circle-play fa-2x"></i>
+                </button>
+                <button  id="sortArrayPause" class="hidden">
+
+                    <i class="fa-solid fa-circle-pause fa-2x"></i>
+                </button>
+
+                <button class="">
+                    <i class="fa-solid fa-forward-step fa-2x"></i>
+                </button>
             </div>
         </div>
     </div>
+</div>
 
-   
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
+<!-- Algorithm Details -->
+<div id="algorithmDetails" class="details hidden shadow bg-white p-4 mx-auto ">
+    <div class="intro-y px-4 my-3 bg-green-500 py-4 text-3xl font-bold">
+        <h2 id="algorithm-title">Bubble Sort</h2>
+    </div>
+    <div class="grid grid-cols-12 space-x-2">
+        <div class="col-span-8 bg-gray-100">
+            <div class="intro-y px-4 my-3  py-4 text-xl font-bold">
+                <h2>Algorithm</h2>
+                <p class="text-sm" id="algorithm-summary">
+
+                </p>
+            </div>
+            <div class="intro-y px-4 my-3  py-4 text-xl font-medium">
+                <h2>Description</h2>
+                <p class="text-sm font-thin" id="algorithm-description">
+
+                </p>
+            </div>
+
+        </div>
+        <div class="col-span-4 bg-gray-100">
+            <div class="intro-y text-2xl font-bold p-3 border-b">
+                <h2>Performance</h2>
+            </div>
+            <div class="intro-y px-4 my-3  py-4 text-xl font-bold">
+                <h2>Time Complexity</h2>
+                <h4 class="text-sm" id="worstCase">Worst Case : O(n <sup>2</sup>)</h4>
+                <h4 class="text-sm" id="averageCase">Average Case : O(n <sup>2</sup>)</h4>
+                <h4 class="text-sm" id="bestCase">Best Case : O(n <sup>2</sup>)</h4>
+            </div>
+            <div class="intro-y px-4 my-3  py-4 text-xl ">
+                <h2>Space Complexity</h2>
+                <h4 class="text-sm" id="spaceComplexity">Worst Case : O(n <sup>2</sup>)</h4>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-   
-
-    <script type="module">
-        import Sort from "../js/sort/sort.js"
-        import sortingAlgorithmDetails from "../js/sort/sortingAlgorithmDetails.js"
-        $(document).ready(function () {
-            let sortButtonPause = $('#sortArrayPause');
-            let sortButtonResume = $('#sortArrayResume');
-            let startVisualize = $('#startVisualize');
-            const container = document.querySelector('.mother');
-            var selectedAlgorithm = "";
-            var currentStep = 0;
-
-           
-            let sort = new Sort(container, []);
-            $('#speed').on('change', function () {
-                let speed = $(this).val();
-              sort.speed = speed+1;
-              
-            });
-            startVisualize.on('click', function () {
-               selectedAlgorithm=$("#selectAlgorithm").val();
-               if(selectedAlgorithm){
-                    sort.setAlgorithm(selectedAlgorithm);
-                    sort.startVisualize();
-                    $("#sortArrayPause").removeClass('hidden');
-                    $("#play").addClass('hidden');
-               }else {
-                   alert("Please select an algorithm");
-               }
-            });
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
 
+<script type="module">
+    import Sort from "../js/sort/sort.js"
+    import sortingAlgorithmDetails from "../js/sort/sortingAlgorithmDetails.js"
+    $(document).ready(function () {
+        let sortButtonPause = $('#sortArrayPause');
+        let sortButtonResume = $('#sortArrayResume');
+        let startVisualize = $('#startVisualize');
+        const container = document.querySelector('.mother');
+        var selectedAlgorithm = "";
+        var currentStep = 0;
 
-            $("#sortArrayPause").click(function () {
-                sort.setVisualizeStatus(false);
-                $(this).addClass('hidden');
-                $("#play").removeClass('hidden');
-                console.log(sort.step);
 
-            });
-            $("#play").click(function () {
+        let sort = new Sort(container, []);
+        $('#speed').on('change', function () {
+            let speed = $(this).val();
+            sort.speed = speed+1;
+
+        });
+        startVisualize.on('click', function () {
+            selectedAlgorithm=$("#selectAlgorithm").val();
+            if(selectedAlgorithm){
+                sort.setAlgorithm(selectedAlgorithm);
+                sort.startVisualize();
+                $("#sortArrayPause").removeClass('hidden');
+                $("#play").addClass('hidden');
+            }else {
+                alert("Please select an algorithm");
+            }
+        });
+
+
+
+        $("#sortArrayPause").click(function () {
+            sort.setVisualizeStatus(false);
+            $(this).addClass('hidden');
+            $("#play").removeClass('hidden');
+            console.log(sort.step);
+
+        });
+        $("#play").click(function () {
                 sort.setVisualizeStatus(true);
                 sort.visuaLizeBubbleSort();
                 $(this).addClass('hidden');
                 $('#sortArrayPause').removeClass('hidden');
-               
+
             }
-            );
-            $("#previous").click(function () {
+        );
+        $("#previous").click(function () {
                 let  status=sort.visualizeStatus;
                 sort.setVisualizeStatus(false);
-               sort.goBack();
-              
+                sort.goBack();
+
             }
-            );
-            $("#next").click(function () {
-                
+        );
+        $("#next").click(function () {
+
                 let  status=sort.visualizeStatus;
                 sort.setVisualizeStatus(false);
-               sort.goForward();
-              
+                sort.goForward();
+
             }
-            );
-            $("#randomArray").click(function () {
+        );
+        $("#randomArray").click(function () {
                 sort.reset();
             }
-            );
-            $("#selectAlgorithm").on('change', function () {
+        );
+        $("#selectAlgorithm").on('change', function () {
 
                 let algorithm = $(this).val();
                 if(algorithm){
@@ -241,37 +241,37 @@
                 $('#spaceComplexity').html(selectedAlgorithm.spaceComplexity);
 
             }
-            );
-            $("#generateBar").on('click', function () {
-               //take input from user
+        );
+        $("#generateBar").on('click', function () {
+                //take input from user
                 let input = $('#array-input').val();
                 let array = input.split(',');
 
                 sort.setArray(array);
             }
-            );
-            var previousInput = '';
-            $("#array-input").on('keydown', function (event) {
-                    var key = window.event ? event.keyCode : event.which;
-                    if (event.keyCode === 8 || event.keyCode === 46 || event.keyCode===188) {
-                        previousInput = $(this).val();
-                        if((previousInput.length===0 || previousInput[previousInput.length-1]===',')&&event.keyCode===188) return false;
-                        else return true;
+        );
+        var previousInput = '';
+        $("#array-input").on('keydown', function (event) {
+                var key = window.event ? event.keyCode : event.which;
+                if (event.keyCode === 8 || event.keyCode === 46 || event.keyCode===188) {
+                    previousInput = $(this).val();
+                    if((previousInput.length===0 || previousInput[previousInput.length-1]===',')&&event.keyCode===188) return false;
+                    else return true;
 
-                    } else if ( key < 48 || key > 57) {
-                        console.log(key);
-                        return false;
-                    } else {
-                        return true;
-                    }
+                } else if ( key < 48 || key > 57) {
+                    console.log(key);
+                    return false;
+                } else {
+                    return true;
+                }
             }
-            );
+        );
 
 
 
 
-        });
-    </script>
+    });
+</script>
 </body>
 
 </html>
