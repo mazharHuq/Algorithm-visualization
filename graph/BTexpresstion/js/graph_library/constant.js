@@ -9,9 +9,6 @@ const OBJ_HIDDEN = -1;
 
 const VERTEX_SHAPE_CIRCLE = "circle";
 const VERTEX_SHAPE_RECT = "rect";
-// const VERTEX_SHAPE_ELLIPSE = "ellipse"; // Currently not implemented
-// IDEA: VERTEX_SHAPE_POLYLINE (Very low priority, might not be backward-compatible if implemented)
-
 const VERTEX_DEFAULT = "default";
 const VERTEX_NORMAL_BLUE = "normal_blue";
 const VERTEX_NORMAL_GREEN = "normal_green";
@@ -52,5 +49,3 @@ const ANIMATION_PLAY = 1;
 const ANIMATION_PAUSE = 0;
 const ANIMATION_STOP = -1;
 
-const UPDATE_FORWARD = true;
-const UPDATE_BACKWARD = false;

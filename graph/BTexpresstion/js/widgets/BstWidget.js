@@ -1,12 +1,11 @@
 // Defines a BST object; keeps implementation of BST internally and interact with GraphWidget to display BST visualizations
 // Also includes AVL tree
 
-var BST = function (expression) {
-  console.log("expression: " + expression);
+var BST = function (ex) {
   clearScreen();
   var self = this;
   var graphWidget = new GraphWidget();
-  var expression = expression;
+  var expression = ex;
 
   /*
    * internalBst: Internal representation of BST in this object
@@ -29,184 +28,6 @@ var BST = function (expression) {
 
   this.getGraphWidget = function () {
     return graphWidget;
-  };
-
-  this.generateRandom = function () {};
-
-  this.inorderTraversal = function () {
-    var stateList = [];
-    var vertexTraversed = {};
-    var vertexHighlighted = {};
-    var edgeTraversed = {};
-    var currentState = createState(internalBst);
-    var currentVertexClass;
-    var key;
-
-    currentState["status"] = "The current BST";
-    currentState["lineNo"] = 0;
-
-    stateList.push(currentState);
-
-    if (internalBst["root"] == null) {
-      currentState = createState(internalBst);
-      currentState["status"] = "Tree is empty.";
-      currentState["lineNo"] = 1;
-      stateList.push(currentState);
-
-      currentState = createState(internalBst);
-      currentState["status"] = "Return empty.";
-      currentState["lineNo"] = 2;
-      stateList.push(currentState);
-      return true;
-    } else {
-      currentVertexClass =
-        internalBst[internalBst["root"]]["vertexClassNumber"];
-
-      currentState = createState(internalBst);
-      currentState["vl"][currentVertexClass]["state"] = VERTEX_TRAVERSED;
-      currentState["status"] =
-        "The root " + internalBst["root"] + " is not null";
-      currentState["lineNo"] = 1;
-
-      stateList.push(currentState);
-
-      currentState = createState(internalBst);
-      currentState["vl"][currentVertexClass]["state"] = VERTEX_TRAVERSED;
-      currentState["status"] =
-        "So recurse and check left child of " + internalBst["root"];
-      currentState["lineNo"] = 3;
-      stateList.push(currentState);
-
-      inorderTraversalRecursion(internalBst["root"]);
-    }
-
-    currentState = createState(internalBst);
-    currentState["status"] = "In-order traversal of the whole BST is complete.";
-    currentState["lineNo"] = 0;
-    stateList.push(currentState);
-
-    graphWidget.startAnimation(stateList);
-
-    function showNode(node) {
-      var vertexClass = internalBst[node]["vertexClassNumber"];
-      var vertex = graphWidget.getVertex(vertexClass);
-      vertex.hide();
-    }
-
-    function inorderTraversalRecursion(currentVertex) {
-      var currentVertexLeftChild = internalBst[currentVertex]["leftChild"];
-      var currentVertexRightChild = internalBst[currentVertex]["rightChild"];
-      var currentVertexClass = internalBst[currentVertex]["vertexClassNumber"];
-      console.log(currentVertex);
-      if (currentVertexLeftChild == null) {
-        vertexTraversed[currentVertex] = true;
-        currentState = createState(internalBst, vertexTraversed, edgeTraversed);
-        inorderHighlightVertex();
-        currentState["status"] = "Left child of " + currentVertex + " is empty";
-        currentState["lineNo"] = 1;
-        stateList.push(currentState);
-
-        currentState = createState(internalBst, vertexTraversed, edgeTraversed);
-        inorderHighlightVertex();
-        currentState["status"] = "Return empty";
-        currentState["lineNo"] = 2;
-        stateList.push(currentState);
-      } else {
-        var currentVertexLeftChildClass =
-          internalBst[currentVertexLeftChild]["vertexClassNumber"];
-
-        vertexTraversed[currentVertex] = true;
-        currentState = createState(internalBst, vertexTraversed, edgeTraversed);
-        inorderHighlightVertex();
-        currentState["status"] =
-          "Left child of " +
-          currentVertex +
-          " is " +
-          currentVertexLeftChild +
-          " (not null)";
-        currentState["lineNo"] = 1;
-        stateList.push(currentState);
-        edgeTraversed[currentVertexLeftChildClass] = true;
-        currentState = createState(internalBst, vertexTraversed, edgeTraversed);
-        currentState["el"][currentVertexLeftChildClass][
-          "animateHighlighted"
-        ] = true;
-        inorderHighlightVertex();
-        currentState["status"] =
-          "So recurse and check left child of " + currentVertexLeftChild;
-        currentState["lineNo"] = 3;
-        stateList.push(currentState);
-        inorderTraversalRecursion(currentVertexLeftChild);
-      }
-
-      currentState = createState(internalBst, vertexTraversed, edgeTraversed);
-      vertexHighlighted[currentVertexClass] = true;
-      inorderHighlightVertex();
-      currentState["status"] = "Visit node " + currentVertex + ".";
-      currentState["lineNo"] = 4;
-      stateList.push(currentState);
-
-      if (currentVertexRightChild == null) {
-        vertexTraversed[currentVertex] = true;
-        currentState = createState(internalBst, vertexTraversed, edgeTraversed);
-        inorderHighlightVertex();
-        currentState["status"] =
-          "Right child of " + currentVertex + " is empty";
-        currentState["lineNo"] = 1;
-        stateList.push(currentState);
-
-        currentState = createState(internalBst, vertexTraversed, edgeTraversed);
-        inorderHighlightVertex();
-        currentState["status"] = "Return empty";
-        currentState["lineNo"] = 2;
-        stateList.push(currentState);
-      } else {
-        var currentVertexRightChildClass =
-          internalBst[currentVertexRightChild]["vertexClassNumber"];
-
-        currentState = createState(internalBst, vertexTraversed, edgeTraversed);
-        inorderHighlightVertex();
-        currentState["status"] =
-          "Right child of " +
-          currentVertex +
-          " is " +
-          currentVertexRightChild +
-          " (not null)";
-        currentState["lineNo"] = 1;
-        stateList.push(currentState);
-        edgeTraversed[currentVertexRightChildClass] = true;
-        currentState = createState(internalBst, vertexTraversed, edgeTraversed);
-        currentState["el"][currentVertexRightChildClass][
-          "animateHighlighted"
-        ] = true;
-        inorderHighlightVertex();
-        currentState["status"] =
-          "So recurse and check left child of " + currentVertexRightChild;
-        currentState["lineNo"] = 3;
-        stateList.push(currentState);
-        inorderTraversalRecursion(currentVertexRightChild);
-      }
-
-      currentState = createState(internalBst, vertexTraversed, edgeTraversed);
-      if (currentVertex != internalBst["root"])
-        currentState["el"][currentVertexClass]["state"] = EDGE_HIGHLIGHTED;
-      inorderHighlightVertex();
-
-      currentState["status"] =
-        "In-order traversal of " + currentVertex + " is complete";
-      currentState["lineNo"] = 0;
-      stateList.push(currentState);
-    }
-
-    function inorderHighlightVertex() {
-      var key;
-
-      for (key in vertexHighlighted) {
-        currentState["vl"][key]["state"] = VERTEX_HIGHLIGHTED;
-      }
-    }
-    populatePseudocode(3);
-    return true;
   };
 
   function init(eq) {
@@ -473,76 +294,7 @@ var BST = function (expression) {
     amountVertex = 0;
   }
 
-  /*
-   * internalBstObject: a JS object with the same structure of internalBst. This means the BST doen't have to be the BST stored in this class
-   * vertexTraversed: JS object with the vertexes of the BST which are to be marked as traversed as the key
-   * edgeTraversed: JS object with the edges of the BST which are to be marked as traversed as the key
-   */
-
-  function createState(internalBstObject, vertexTraversed, edgeTraversed) {
-    if (
-      vertexTraversed == null ||
-      vertexTraversed == undefined ||
-      !(vertexTraversed instanceof Object)
-    )
-      vertexTraversed = {};
-    if (
-      edgeTraversed == null ||
-      edgeTraversed == undefined ||
-      !(edgeTraversed instanceof Object)
-    )
-      edgeTraversed = {};
-
-    var state = {
-      vl: {},
-      el: {},
-    };
-
-    var key;
-    var vertexClass;
-
-    for (key in internalBstObject) {
-      if (key == "root") continue;
-
-      vertexClass = internalBstObject[key]["vertexClassNumber"];
-
-      state["vl"][vertexClass] = {};
-
-      state["vl"][vertexClass]["cx"] = internalBstObject[key]["cx"];
-      state["vl"][vertexClass]["cy"] = internalBstObject[key]["cy"];
-      state["vl"][vertexClass]["text"] = internalBst[key]["value"];
-      state["vl"][vertexClass]["state"] = VERTEX_DEFAULT;
-
-      if (internalBstObject[key]["parent"] == null) continue;
-
-      parentChildEdgeId = internalBstObject[key]["vertexClassNumber"];
-
-      state["el"][parentChildEdgeId] = {};
-
-      state["el"][parentChildEdgeId]["vertexA"] =
-        internalBstObject[internalBstObject[key]["parent"]][
-          "vertexClassNumber"
-        ];
-      state["el"][parentChildEdgeId]["vertexB"] =
-        internalBstObject[key]["vertexClassNumber"];
-      state["el"][parentChildEdgeId]["type"] = EDGE_TYPE_UDE;
-      state["el"][parentChildEdgeId]["weight"] = 1;
-      state["el"][parentChildEdgeId]["state"] = EDGE_DEFAULT;
-      state["el"][parentChildEdgeId]["animateHighlighted"] = false;
-    }
-
-    for (key in vertexTraversed) {
-      vertexClass = internalBstObject[key]["vertexClassNumber"];
-      state["vl"][vertexClass]["state"] = VERTEX_TRAVERSED;
-    }
-
-    for (key in edgeTraversed) {
-      state["el"][key]["state"] = EDGE_TRAVERSED;
-    }
-
-    return state;
-  }
-
+  ///Position of node
   function recalculatePosition() {
     calcHeight(internalBst["root"], 0);
     updatePosition(internalBst["root"]);
@@ -582,5 +334,6 @@ var BST = function (expression) {
       updatePosition(internalBst[currentVertex]["rightChild"]);
     }
   }
+
   init(expression);
 };
