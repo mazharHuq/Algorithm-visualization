@@ -78,7 +78,7 @@
           </div>
           <div class="flex items-center space-x-2">
             <div class="font-bold text-lg">
-              <label>Select Algorithm</label>
+
               <select
                 id="selectAlgorithm"
                 class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2"
@@ -89,7 +89,7 @@
                 <option value="Dijkstra">Dijkstra</option>
               </select>
             </div>
-            <input
+       <!--     <input
               type="text"
               id="startNode"
               value="Source"
@@ -100,7 +100,15 @@
               id="endNode"
               value="Destination"
               class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
-            />
+            />-->
+            <select id="startNode" class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2">
+              <option value="">Select Source </option>
+
+            </select>
+            <select id="endNode" class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2">
+              <option value="">Select Destination </option>
+
+            </select>
             <button
               id="start"
               class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
@@ -112,9 +120,25 @@
       </div>
     </nav>
     <div class="shadow grid grid-cols-12 space-x-2">
+
       <div class="col-span-2" style="margin-left: 100px">
         <!-- Take Graph  Input and generate from Here -->
-        Graph Data
+        <div>
+          <input type="checkbox" name="" id="isDirected" value="">
+          <label for="isDirected">
+            Directed Graph
+            </label>
+        </div>
+        <div>
+          <input type="checkbox" name="" id="isWeighted" value="">
+          <label for="isWeighted">
+           Weighted Graph
+            </label>
+        </div>
+        <div>
+          <strong>Node Count :</strong> <span id="nodeCount">5</span>
+        </div>
+        Graph Data :
         <div
           class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2"
         >
@@ -244,6 +268,16 @@
       grid["3"] = [[4, 2]];
       grid["4"] = [[5, 2]];
       grid["5"] = [];
+     const setSourceOption = (nodes,selectElement,optionText) => {
+        let option ='<option value="">'+optionText+'</option>';
+       for(let i=0;i<nodes.length;i++){
+           option+='<option value="'+nodes[i]+'">'+nodes[i]+'</option>';
+       }
+       selectElement.innerHTML=option;
+      }
+      let nodeList=[1,2,3,4,5];
+      setSourceOption(nodeList,document.getElementById('startNode'),'Select Source');
+      setSourceOption(nodeList,document.getElementById('endNode'),'Select Destination');
 
       var graph = new buildGraph(graphInfob, grid);
       //var steps = graph.getWeightedDijkstraSteps(1, 5);
@@ -275,6 +309,13 @@
         if (value.length == undefined) {
         } else if (value.length > 0) {
           grid = getGrid(value);
+         let  op = [];
+
+          for (let val in grid) {
+            op.push(val.valueOf());
+          }
+          setSourceOption(op,document.getElementById('startNode'),'Select Source');
+          setSourceOption(op,document.getElementById('endNode'),'Select Destination');
           dbg(grid);
           graph.setGrid(grid);
           visDfs.init(container, graph.getGraph(), options);
