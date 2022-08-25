@@ -1,211 +1,214 @@
 <!DOCTYPE html>
+<html>
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Expression Tree</title>
-	<link rel="stylesheet" href="/CSS/sort.css">
-	<script src="https://cdn.tailwindcss.com"></script>
-	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expression Tree</title>
+    <link rel="stylesheet" href="/CSS/sort.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
 
-		body {
+        body {
 
-			font-family: 'IBM Plex Mono', monospace;
-		}
-	</style>
-	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Raleway:100,300,400,600,700"
-		rel="stylesheet" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-		integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
+            font-family: 'IBM Plex Mono', monospace;
+        }
+    </style>
+    <style>
+        @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css);
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Raleway:100,300,400,600,700"
+          rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+          integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
 
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Visualizations - Expression Tree</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Visualizations - Expression Tree</title>
 
-	<!--css-->
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/common.css">
-	<link rel="stylesheet" href="css/viz.css">
+    <!--css-->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/viz.css">
 
-	<link rel="stylesheet" href="css/bst.css">
+    <link rel="stylesheet" href="css/bst.css">
 
-	<!--js-->
-	<script src="js/external/jquery-1.10.2.js"></script>
-	<script src="js/external/jquery-ui.js"></script>
-	<script src="js/external/d3.v3.js"></script>
-	<!-- more scripts are below-->
+    <!--js-->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="js/external/jquery-1.10.2.js"></script>
+    <script src="js/external/jquery-ui.js"></script>
+    <script src="js/external/d3.v3.js"></script>
+    <!-- more scripts are below-->
 
-	<!--fonts-->
-	<link href="fonts/silkscreen/stylesheet.css" rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+    <!--fonts-->
+    <link href="fonts/silkscreen/stylesheet.css" rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
 
 </head>
 
 
-
 <body class="bg-blue-100">
-	<nav class=" shadow bg-white">
-		<div class="mx-auto container">
-			<div class="flex justify-between items-center px-4 py-2">
-				<div class="flex items-center">
-					<h1 class=" font-bold text-2xl ml-2">VisualAlgorithm</h1>
-				</div>
-				<div class="flex items-center space-x-2 ">
-					<div class="font-bold text-lg">
-						<label>Select Algorithm</label>
-						<select id="selectAlgorithm"
-							class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2">
-							<option value="">Select An Algorithm</option>
-							<option value="bubbleSort">In-Order Traversal</option>
-							<option value="selectionSort">Pre-Order Traversal</option>
-							<option value="insertionSort">Post-Order Traversal</option>
-						</select>
-					</div>
+<nav class=" shadow bg-white">
+    <div class="mx-auto container">
+        <div class="flex justify-between items-center px-4 py-2">
+            <div class="flex items-center">
+                <h1 class=" font-bold text-2xl ml-2">VisualAlgorithm</h1>
+            </div>
+        </div>
+    </div>
 
-					<button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">
-						Visualize
-					</button>
-				</div>
-			</div>
-		</div>
+</nav>
+<div class="top-bar shadow mt-2 bg-white">
+    <div class="array-container container mx-auto flex space-x-3 items-center font-mono">
+        <label for="expression-Input" class="font-bold text-xl">Enter Expression</label>
 
-	</nav>
-	<div class="top-bar shadow mt-2 bg-white">
-		<div class="array-container container mx-auto flex space-x-3 items-center font-mono">
-			<label for="expression-Input" class="font-bold text-xl">Enter Expression</label>
+        <input id="expression-input" type="text" class="w-full text-lg bg-gray-100  p-3" value="((E+N)+(G+I))+((N+E)+(E+R))">
+        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg" id="buildTree">
+            Build Tree
+        </button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" id="save">
+            Download Tree
+        </button>
+    </div>
+</div>
+<div id="viz"></div>
 
-			<input id="expression-input" type="text" class="w-full text-lg bg-gray-100  p-3" value="">
-			<button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg" id="buildTree">
-				Build Tree
-			</button>
-		</div>
-	</div>
-	<div id="viz"></div>
+<!-- Algorithm Details -->
+<div class="details shadow bg-white p-4 mx-auto ">
+    <div class="intro-y px-4 my-3 bg-green-500 py-4 text-3xl font-bold">
+        <h4 id="algorithm-title">Expression Tree</h4>
+    </div>
+    <div class="grid grid-cols-12 space-x-2">
+        <div class="col-span-8 bg-gray-100">
+            <div class="intro-y text-2xl font-bold p-3 border-b">
+                <h2>Algorithm</h2>
+            </div>
+            <div class="intro-y px-4 my-3  py-4 text-xl font-medium">
+                Now For constructing an expression tree we use a stack. We loop through input expression and do
+                the following for every character.
 
-	<!-- Algorithm Details -->
-	<div class="details shadow bg-white p-4 mx-auto ">
-		<div class="intro-y px-4 my-3 bg-green-500 py-4 text-3xl font-bold">
-			<h4 id="algorithm-title">Expression Tree</h4>
-		</div>
-		<div class="grid grid-cols-12 space-x-2">
-			<div class="col-span-8 bg-gray-100">
-				<div class="intro-y px-4 my-3  py-4 text-xl font-bold">
-					<h2>Algorithm</h2>
-					<p class="text-sm" id="algorithm-summary">
-
-					</p>
-				</div>
-				<div class="intro-y px-4 my-3  py-4 text-xl font-medium">
-					<h2>Description</h2>
-					<p class="text-sm font-mono" id="algorithm-description">
-						The way to write arithmetic expression is known as a notation. An arithmetic expression can be
-						written in three different but equivalent notations, i.e., without changing the essence or
-						output of an expression. These notations are − </br></br>
-
-						Infix Notation</br>
-						Prefix (Polish) Notation </br>
-						Postfix (Reverse-Polish) Notation</br></br>
-						These notations are named as how they use operator in expression.</br></br>
-
-						Infix Notation</br>
-						We write expression in infix notation, e.g. a - b + c, where operators are used in-between
-						operands. It is easy for us humans to read, write, and speak in infix notation but the same does
-						not go well with computing devices. An algorithm to process infix notation could be difficult
-						and costly in terms of time and space consumption.</br></br>
-
-						Prefix Notation</br>
-						In this notation, operator is prefixed to operands, i.e. operator is written ahead of operands.
-						For example, +ab. This is equivalent to its infix notation a + b. Prefix notation is also known
-						as Polish Notation.</br></br>
-
-						Postfix Notation</br>
-						This notation style is known as Reversed Polish Notation. In this notation style, the operator
-						is postfixed to the operands i.e., the operator is written after the operands. For example, ab+.
-						This is equivalent to its infix notation a + b.</br></br>
-					</p>
-				</div>
-
-			</div>
-			<div class="col-span-4 bg-gray-100">
-				<div class="intro-y text-2xl font-bold p-3 border-b">
-					<h2>Performance</h2>
-				</div>
-				<div class="intro-y px-4 my-3  py-4 text-xl font-bold">
-					<h2>Time Complexity</h2>
-					<h4 class="text-sm" id="worstCase">Worst Case : O(n <sup>2</sup>)</h4>
-					<h4 class="text-sm" id="averageCase">Average Case : O(n <sup>2</sup>)</h4>
-					<h4 class="text-sm" id="bestCase">Best Case : O(n <sup>2</sup>)</h4>
-				</div>
-				<div class="intro-y px-4 my-3  py-4 text-xl ">
-					<h2>Space Complexity</h2>
-					<h4 class="text-sm" id="spaceComplexity">Worst Case : O(n <sup>2</sup>)</h4>
-
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<script src="js/graph_library/constant.js"></script>
-	<script src="js/graph_library/properties.js"></script>
-	<script src="js/graph_library/helperObjects.js"></script>
-	<script src="js/graph_library/misc.js"></script>
-	<script src="js/graph_library/Widget.js"></script>
-	<script src="js/graph_library/GraphWidget.js"></script>
-	<script src="js/graph_library/GraphVertexWidget.js"></script>
-	<script src="js/graph_library/GraphEdgeWidget.js"></script>
-	<script src="js/widgets/BstWidget.js"></script>
-
-	<script type="text/javascript">
+                <li>If a character is an operand push that into the stack</li>
+                <li>If a character is an operator pop two values from the stack make them its child and push the
+                    current node again.
+                </li>
+                In the end, the only element of the stack will be the root of an expression tree.
+            </div>
 
 
-		$('#buildTree').on('click', function () {
-			//bstWidget.dummyInit;
-			vertexSvg.remove();
-			edgeSvg.remove();
-			vertexTextSvg.remove();
-			edgeWeightSvg.remove();
-			edgeWeightPathSvg.remove();
+        </div>
+        <div class="col-span-4 bg-gray-100">
+            <div class="intro-y text-2xl font-bold p-3 border-b">
+                <h2>Description</h2>
+            </div>
+            <div class="intro-y px-4 my-3  py-4 text-xl ">
+                The expression tree is a binary tree in which each internal node corresponds to the operator and each
+                leaf node corresponds to the operand in the expression. </br>
+                Inorder traversal of expression tree produces infix version of given postfix expression (same with
+                postorder traversal it gives postfix expression).  <a href="https://www.geeksforgeeks.org/expression-tree/">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/graph_library/constant.js"></script>
+<script src="js/graph_library/properties.js"></script>
+<script src="js/graph_library/misc.js"></script>
+<script src="js/graph_library/Widget.js"></script>
+<script src="js/graph_library/GraphWidget.js"></script>
+<script src="js/graph_library/GraphVertexWidget.js"></script>
+<script src="js/graph_library/GraphEdgeWidget.js"></script>
+<script src="js/widgets/BstWidget.js"></script>
+
+<script type="text/javascript">
+
+    let ex = "((E+N)+(G+I))+((N+E)+(E+R))"
+    let bstWidget = new BST(ex);
 
 
-			vertexSvg = mainSvg.append("g").attr("id", "vertex");
-			edgeSvg = mainSvg.append("g").attr("id", "edge");
-			vertexTextSvg = mainSvg.append("g").attr("id", "vertexText");
-			edgeWeightSvg = mainSvg.append("g").attr("id", "edgeWeight");
-			edgeWeightPathSvg = mainSvg.append("g").attr("id", "edgeWeightPath");
+    var xp = mainSvg.append("text")
+        .attr("x", 300)
+        .attr("y", 455)
+        .attr("text-anchor", "middle")
+        .style("font-size", "20px")
+        .text("Prefix expression :");
 
-			var x = mainSvg.append("text")
-				.attr("x", 300)
-				.attr("y", 455)
-				.attr("text-anchor", "middle")
-				.style("font-size", "20px")
-				.text("Prefix expression :");
+    var yp = mainSvg.append("text")
+        .attr("x", 300)
+        .attr("y", 505)
+        .attr("text-anchor", "middle")
+        .style("font-size", "20px")
+        .text("Infix expression :");
 
-			var x = mainSvg.append("text")
-				.attr("x", 300)
-				.attr("y", 505)
-				.attr("text-anchor", "middle")
-				.style("font-size", "20px")
-				.text("Infix expression :");
+    var zp = mainSvg.append("text")
+        .attr("x", 300)
+        .attr("y", 555)
+        .attr("text-anchor", "middle")
+        .style("font-size", "20px")
+        .text("Postfix expression :");
 
-			var x = mainSvg.append("text")
-				.attr("x", 300)
-				.attr("y", 555)
-				.attr("text-anchor", "middle")
-				.style("font-size", "20px")
-				.text("Postfix expression :");
+    $('#buildTree').on('click', function () {
+        //bstWidget.dummyInit;
+        vertexSvg.remove();
+        edgeSvg.remove();
+        vertexTextSvg.remove();
+        edgeWeightSvg.remove();
+        edgeWeightPathSvg.remove();
+        xp.remove();
+        yp.remove();
+        zp.remove();
 
-			let expression = $('#expression-input').val();
-			let bstWidget = new BST(expression);
 
-			//let gw = bstWidget.getGraphWidget();
-		});
+        vertexSvg = mainSvg.append("g").attr("id", "vertex");
+        edgeSvg = mainSvg.append("g").attr("id", "edge");
+        vertexTextSvg = mainSvg.append("g").attr("id", "vertexText");
+        edgeWeightSvg = mainSvg.append("g").attr("id", "edgeWeight");
+        edgeWeightPathSvg = mainSvg.append("g").attr("id", "edgeWeightPath");
 
-	//playback controls might fit better in viz.js, but put here in case some viz does not use GraphWidgetNew.js
+        xp = mainSvg.append("text")
+            .attr("x", 300)
+            .attr("y", 455)
+            .attr("text-anchor", "middle")
+            .style("font-size", "20px")
+            .text("Prefix expression :");
 
-	</script>
+        yp = mainSvg.append("text")
+            .attr("x", 300)
+            .attr("y", 505)
+            .attr("text-anchor", "middle")
+            .style("font-size", "20px")
+            .text("Infix expression :");
+
+        zp = mainSvg.append("text")
+            .attr("x", 300)
+            .attr("y", 555)
+            .attr("text-anchor", "middle")
+            .style("font-size", "20px")
+            .text("Postfix expression :");
+
+        let expression = $('#expression-input').val();
+        expression = expression.trim();
+        //MAIN_SVG_WIDTH = parseInt(expression.length) * 100;
+        let bstWidget = new BST(expression);
+
+        //let gw = bstWidget.getGraphWidget();
+    });
+
+    document.getElementById("save").onclick = function () {
+        const screenshot = document.getElementById("viz");
+        html2canvas(screenshot).then((canvas) => {
+            const base64image = canvas.toDataURL("images/png");
+            var anchor = document.createElement("a");
+            anchor.setAttribute("href", base64image);
+            anchor.setAttribute("download", "my-image.png");
+            anchor.click();
+            anchor.remove();
+        });
+    };
+
+</script>
 
 </body>
 

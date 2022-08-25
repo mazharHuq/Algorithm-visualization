@@ -1,5 +1,4 @@
 //surprise colour!
-//Referenced to in  home.js and viz.js also
 var colourArray = [
   "#52bc69",
   "#ed5a7d",
