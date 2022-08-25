@@ -310,13 +310,14 @@
         } else if (value.length > 0) {
           grid = getGrid(value);
          let  op = [];
-
           for (let val in grid) {
             op.push(val.valueOf());
           }
+
+          setNodeCount(op.length);
           setSourceOption(op,document.getElementById('startNode'),'Select Source');
           setSourceOption(op,document.getElementById('endNode'),'Select Destination');
-          dbg(grid);
+          graph.setGraphInfo(isWeighted(), isDirected());
           graph.setGrid(grid);
           visDfs.init(container, graph.getGraph(), options);
         }
@@ -359,6 +360,25 @@
         $("#bestCase").html(selectedAlgorithm.worstTime);
         $("#spaceComplexity").html(selectedAlgorithm.spaceComplexity);
       });
+
+      $("#isDirected").on("change", function () {
+        graph.setGraphInfo(isWeighted(), isDirected());
+        visDfs.init(container, graph.getGraph(), options);
+      });
+        $("#isWeighted").on("change", function () {
+            graph.setGraphInfo(isWeighted(), isDirected());
+            visDfs.init(container, graph.getGraph(), options);
+        }
+        );
+        function setNodeCount(count) {
+          document.getElementById("nodeCount").innerHTML = count;
+        }
+      function isWeighted() {
+        return document.getElementById("isWeighted").checked;
+      }
+      function isDirected() {
+        return document.getElementById("isDirected").checked;
+      }
 
       function visualize() {
         let isFirstStep = true;

@@ -90,6 +90,15 @@ class buildGraph {
     this.labelMap = labelMap;
     this.isLabeled = true;
   }
+
+  setGraphInfo(isWeighted, isDirected) {
+    this.graphInfo = {
+      isWeighted: isWeighted,
+      isDirected: isDirected,
+      edgeColor: "red"
+    };
+  }
+
   makeNode(nodeNum) {
     var node = {};
     node["id"] = nodeNum + "";
