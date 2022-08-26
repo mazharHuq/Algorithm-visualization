@@ -451,6 +451,10 @@
         } else if (select == "Dijkstra") {
             graph.setGraphInfo(true, true);
             steps = graph.getWeightedDijkstraSteps(source, destination);
+            if (!isWeighted()) {
+                graph.setGraphInfo(false, true);
+                steps = graph.getUnWeightedBfsSteps(source, destination);
+            }
             visDfs.setSteps(steps);
             visDfs.init(container, graph.getGraph(), options);
 
