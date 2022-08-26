@@ -2,6 +2,7 @@ class Tutorial {
     constructor(tutorial) {
         this.init();
         this.selectedStep = 1;
+        this.tutorialType='sort';
         this.sortTutorialStep = {
             1: {
                 title: "Welcome to the tutorial",
@@ -105,6 +106,73 @@ class Tutorial {
             }
 
         };
+        this.gridTutorialStep={
+            1: {
+                title: "Welcome to the tutorial",
+                text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
+                body: `
+                 <h2 class="text-2xl font-semibold "> This short tutorial will walk you through all the features of this application.</h2>
+                <h3 class="font-bold" >
+                    If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!
+                </h3>
+                
+                `,
+                image: "../Images/bar.png",
+                next: 2,
+                prev: 1,
+                isFinish: false,
+            },   2: {
+                title: "Welcome to the tutorial 2",
+                text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
+                body: `
+                 <h2 class="text-2xl font-semibold "> This short tutorial will walk you through all the features of this application.</h2>
+                <h3 class="font-bold" >
+                    If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!
+                </h3>
+                
+                `,
+                image: "../Images/bar.png",
+                next: 3,
+                prev: 1,
+                isFinish: false,
+            },
+
+        };
+        this.graphTutorialStep={
+            1: {
+                title: "Welcome to the tutorial",
+                text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
+                body: `
+                 <h2 class="text-2xl font-semibold "> This short tutorial will walk you through all the features of this application.</h2>
+                <h3 class="font-bold" >
+                    If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!
+                </h3>
+                
+                `,
+                image: "../Images/bar.png",
+                next: 2,
+                prev: 1,
+                isFinish: false,
+            },
+        };
+        this.expressionTutorialStep= {
+            1: {
+                title: "Welcome to the tutorial",
+                text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
+                body: `
+                 <h2 class="text-2xl font-semibold "> This short tutorial will walk you through all the features of this application.</h2>
+                <h3 class="font-bold" >
+                    If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!
+                </h3>
+                
+                `,
+                image: "../Images/bar.png",
+                next: 2,
+                prev: 1,
+                isFinish: false,
+            },
+        };
+
     }
 
     init() {
@@ -114,8 +182,15 @@ class Tutorial {
     }
 
     show() {
+        let selectedTutorialStep=[];
+        if(this.tutorialType==="sort"){
+           selectedTutorialStep = this.sortTutorialStep[this.selectedStep];
+        }else if(this.tutorialType==='grid'){
+             selectedTutorialStep = this.gridTutorialStep[this.selectedStep];
+        }
+
         let tutorial = document.getElementById("tutorial");
-        let selectedTutorialStep = this.sortTutorialStep[this.selectedStep];
+
         console.log(selectedTutorialStep);
         let title = document.getElementById("tutorial-title");
         let body = document.getElementById("tutorial-body");
@@ -143,11 +218,12 @@ class Tutorial {
         document.getElementById("tutorial").style.display = "none";
     }
 
-    setTutorial(number) {
+    setTutorial(number,type) {
         if(number === "-1"){
             this.hide();
             return;
         }
+        this.tutorialType = type;
         this.selectedStep = number;
 
         this.show();
