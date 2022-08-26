@@ -46,7 +46,7 @@ const setPosition = (e) => {
       position.y,
       position.x,
       position.y,
-      "red",
+      "",
       circleCount
     );
   }
