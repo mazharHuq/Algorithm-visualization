@@ -21,11 +21,8 @@ class Dom {
     $("#r" + counter + 1).remove();
     $("#a" + counter).remove();
     if (counter >= 0) {
-      //document.getElementById("top_element").innerHTML = arr[counter];
-    } else {
-      //  document.getElementById("top_element").innerHTML = "";
+      this.show_message_on_display("Popped element is : " + popValue);
     }
-    //document.getElementById("pointer").innerHTML = counter;
   }
 
   pop_frontside(front_element, popValue, queueCounter) {
@@ -56,7 +53,7 @@ class Dom {
       document.getElementById("push-btn").removeAttribute("disabled");
     }, 500);
     document.getElementById("array-wrapper").innerHTML =
-      "<h1>" + message + "</h1>";
+      "<h2 class=\"text-2xl font-bold\" style=\"text-align: center; color: #000000; margin-top: 10px; text-shadow: 2px 2px 5px #c5bfbf;\">"+ message + "</h2>";
 
     document.getElementById("push-btn").setAttribute("disabled", "disabled");
   }
@@ -67,6 +64,7 @@ class Dom {
     }, 500);
     document.getElementById("push-item").style.border = "2px solid #bb3371";
   }
+
   peak_element(value) {
     this.show_message_on_display("Peak element is : " + value);
   }

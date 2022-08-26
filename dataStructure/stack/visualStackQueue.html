@@ -1,57 +1,63 @@
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <title>Stack using Array</title>
 
-    <link rel="stylesheet" href="/dataStructure/stack/style.css" />
+    <link rel="stylesheet" href="/dataStructure/stack/style.css"/>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
-      body {
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
 
-        font-family: 'IBM Plex Mono', monospace;
-      }
+        body {
+
+            font-family: 'IBM Plex Mono', monospace;
+        }
 
     </style>
     <link
             href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Raleway:100,300,400,600,700"
             rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+          integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
 
-  </head>
-
-  <body >
-    <nav class="shadow bg-white">
-      <div class="mx-auto container">
+<body>
+<nav class="shadow bg-white">
+    <div class="mx-auto container">
         <div class="flex justify-between items-center px-4 py-2">
-          <div class="flex items-center">
-            <h1 class="font-bold text-2xl ml-2">VisualAlgorithm</h1>
-          </div>
+            <div class="flex items-center">
+                <h1 class="font-bold text-2xl ml-2">VisualAlgorithm</h1>
+            </div>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" id="save">
+                Stack
+            </button>
 
         </div>
-      </div>
-    </nav>
-    <!-- Wrapper for whole HTML document -->
-    <div id="container"  class="container mx-auto">
-      <div class="container1">
+    </div>
+</nav>
+
+<!-- Wrapper for whole HTML document -->
+<div id="container" class="container mx-auto" style="margin-top: 100px;">
+    <div class="container1">
         <!-- ======= This is Canvas area ========= -->
         <div id="canvas" class="box box-full">
-          <h1 class="text-3xl font-bold" style="text-align: center; color: #000000">
-            Implementation of stack using array
-          </h1>
+            <h1 class="text-3xl font-bold" style="text-align: center; color: #000000">
+                Implementation of stack using array
+            </h1>
 
-          <!-- Canvas Element to draw Animations -->
-          <div id="canvas-wrapper">
-            <div id="target">
-              <div id="array-mother">
-                <div id="array-wrapper">
-                  <div id="array"></div>
-                  <span
-                          style="
+            <!-- Canvas Element to draw Animations -->
+            <div id="canvas-wrapper">
+                <div id="target">
+                    <div id="array-mother">
+                        <div id="array-wrapper">
+                            <div id="array"></div>
+                            <span
+                                    style="
                   position: relative;
                   display: block;
                   font-size: 20px;
@@ -59,116 +65,164 @@
                   color: #000000;
                   margin: 10px 250px;
                 "
-                  >Array</span
-                  >
+                            >Array</span
+                            >
 
+                        </div>
                     </div>
-              </div>
 
-              <div id="lowerbound" class="pb-4 ">
-                <div class="relative " id="stack-wrapper">
-                  <div class="" id="stack"></div>
-                  <span class="absolute font-bold text-2xl ml-3 text-black">Stack</span>
+                    <div id="lowerbound" class="pb-4 ">
+                        <div class="relative " id="stack-wrapper">
+                            <div class="" id="stack"></div>
+                            <span class="absolute font-bold text-2xl ml-3 text-black">Stack</span>
+                        </div>
+
+                        <!-- =============== current step explanation =============== -->
+                        <div id="algo-box">
+                            <li id="current_algo" class="algo-steps">
+                                INIT_STACK (STACK, TOP) <br/>
+                                <br/>
+
+                                Algorithm to initialize a stack using array. <br/>
+                                TOP points to the top-most element of stack.<br/>
+                                <br/><br/>
+                            </li>
+                        </div>
+                    </div>
                 </div>
-
-                <!-- =============== current step explanation =============== -->
-                <div id="algo-box">
-                  <li id="current_algo" class="algo-steps">
-                    >> INIT_STACK (STACK, TOP) <br />
-                    <br />
-
-                    Algorithm to initialize a stack using array. <br />
-                    TOP points to the top-most element of stack.<br />
-                    <br /><br />
-                  </li>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
         <!--======== Canvas area ends here ====== -->
 
         <!-- ================ input box =============== -->
-        <div class="container1 shadow bg-white " >
-          <!-- Form Inputs -->
-          <div class="inputs">
-            <h2 style="text-align: center; color: #000000; padding-top: 5px">
-              Enter the values to perform Stack Operations
-            </h2>
-            <!-- ====== pushing element ====== -->
-            <div class="form-row">
-              <input
-                type="text"
-                id="push-item"
-                name="push-item"
-                class="input"
-                placeholder="Enter Element"
-                required
-              />
-            </div>
+        <div class="container1 shadow bg-white ">
+            <!-- Form Inputs -->
+            <div class="inputs">
+                <h2 class="text-2xl font-thin" style="text-align: center; color: #000000; margin-top: 60px!important;">
+                    Enter the values </br>to </br>perform Stack Operations
+                </h2>
+                <!-- ====== pushing element ====== -->
+                <div class="form-row">
+                    <input
+                            type="text"
+                            id="push-item"
+                            name="push-item"
+                            class="input"
+                            placeholder="Enter Element"
+                            required
+                    />
+                </div>
 
-            <!-- ======== popping element ======== -->
-            <div class="form-row">
-              <input
-                type="submit"
-                id="push-btn"
-                name="push-btn"
-                value="Push"
-                class="btn btn-green push-btn"
-              />
-              <input
-                type="button"
-                id="pop-back-item"
-                name="pop-item"
-                value="Pop "
-                class="btn btn-red pop-btn"
-              />
-            </div>
+                <!-- ======== popping element ======== -->
+                <div class="form-row">
 
-            <!-- ========== InputForm ========== -->
-            <div class="form-row">
-              <input
-                type="button"
-                id="isPeak-item"
-                name="ispeak"
-                value="Peak"
-                class="btn btn-yellow"
-              />
-              <input
-                type="button"
-                id="isEmpty-item"
-                name="isempty"
-                value="IsEmpty?"
-                class="btn btn-blue"
-              />
-            </div>
+                    <input
+                            type="submit"
+                            id="push-btn"
+                            name="push-btn"
+                            value="Push"
+                            class="btn btn-green push-btn"
+                    />
+                    <input
+                            type="button"
+                            id="pop-back-item"
+                            name="pop-item"
+                            value="Pop "
+                            class="btn btn-red pop-btn"
+                    />
+                </div>
 
-            <!--<div class="form-row">
-              <input
-                type="button"
-                id="pop-front-item"
-                name="pop-front-item"
-                value="Pop_front"
-                class="btn btn-red"
-              />
-            </div>-->
-          </div>
+                <!-- ========== InputForm ========== -->
+                <div class="form-row">
+                    <input
+                            type="button"
+                            id="isPeak-item"
+                            name="ispeak"
+                            value="Peak"
+                            class="btn btn-yellow"
+                    />
+                    <input
+                            type="button"
+                            id="isEmpty-item"
+                            name="isempty"
+                            value="IsEmpty?"
+                            class="btn btn-blue"
+                    />
+                </div>
+
+            </div>
         </div>
-        <!-- =============== draggable box ends here ============ -->
-
-        <!-- ========= code area ends here ======== -->
-      </div>
     </div>
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.js"
-      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+</div>
 
-    <script src="../stack/container.js"></script>
-    <script src="../stack/operationExplaination.js"></script>
+<div style="" class="mediaControl shadow bg-white bottom-0 w-full">
+    <div class="container flex justify-center mx-auto">
+        <div class="flex items-center px-4 py-2">
+            <div class="flex items-center space-x-8">
+                <i class="fa-solid fa-square" style="color: #2B7CE9"></i> <span>Array Element</span>
+                <i class="fa-solid fa-square" style="color: #ffa500"></i> <span>Stack Element</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <script src="../stack/stack.js"></script>
-  </body>
+<!-- Algorithm Details -->
+<div class="details shadow bg-white p-4 mx-auto ">
+    <div class="intro-y px-4 my-3 bg-green-500 py-4 text-3xl font-bold">
+        <h4 id="algorithm-title">Stack</h4>
+    </div>
+    <div class="grid grid-cols-12 space-x-2">
+        <div class="col-span-7 ">
+            <div class="intro-y text-2xl font-bold p-3 border-b">
+                <h2>Algorithm</h2>
+            </div>
+            <div class="intro-y px-4 my-3  py-4 text-xl font-medium">
+                <div class="algo-steps">
+                    The stack supports the following operations:
+
+                    <li>push inserts an item at the top of the stack (i.e., above its current top element).</li>
+                    <li>pop removes the object at the top of the stack and returns that object from the function. The
+                        stack
+                        size will be decremented by one.
+                    </li>
+                    <li>isEmpty tests if the stack is empty or not.</li>
+                    <li>isFull tests if the stack is full or not.</li>
+                    <li>peek returns the object at the top of the stack without removing it from the stack or modifying
+                        the
+                        stack in any way.
+                    </li>
+                    <li>size returns the total number of elements present in the stack.</li>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="col-span-5 bg-gray-50">
+            <div class="intro-y text-2xl font-bold p-3 border-b">
+                <h2>Description</h2>
+            </div>
+            <div class="intro-y px-4 my-3  py-4 text-xl ">
+                The expression tree is a binary tree in which each internal node corresponds to the operator and each
+                leaf node corresponds to the operand in the expression. </br>
+                Inorder traversal of expression tree produces infix version of given postfix expression (same with
+                postorder traversal it gives postfix expression). <a
+                    href="https://www.geeksforgeeks.org/expression-tree/">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script
+        src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"
+></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+<script src="../stack/container.js"></script>
+<script src="../stack/operationExplaination.js"></script>
+<script src="../stack/stack.js"></script>
+</body>
 </html>
