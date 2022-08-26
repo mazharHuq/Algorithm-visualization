@@ -14,9 +14,9 @@ class Sort {
         this.bar = [];
         this.step = [];
         this.color = {
-            initialColor: 'gray',
+            initialColor: '#c2bc46',
             targetColor: 'blue',
-            visitedColor: '#0000ff',
+            visitedColor: 'teal',
             finalColor: 'green',
         }
         this.render();

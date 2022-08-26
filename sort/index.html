@@ -10,30 +10,104 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+
         body {
 
             font-family: 'IBM Plex Mono', monospace;
         }
 
     </style>
+    <style>
+        .tutorial-container {
+            display: none;
+
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.8);
+
+
+        }
+        .tutorial {
+
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.5rem;
+            color: black;
+            text-align: center;
+            position: fixed;
+            z-index: 4555;
+
+            width: 70%;
+            height: 80%;
+            top: 10%;
+            left: 15%;
+           background: white;
+            display: block;
+            border: 2px solid teal;
+            border-radius: 10px;
+
+        }
+
+
+    </style>
+
+
     <link
             href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Raleway:100,300,400,600,700"
             rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+          integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
 </head>
 
 <body class="bg-blue-100">
+<!-- Algorithm Tut -->
+<div class="tutorial-container "  id="tutorial">
+    <div class="tutorial">
+        <div id="tutorial-title" class="tutorial-header  mt-8 py-8 text-teal-500 text-6xl font-bold ">
+
+        </div>
+        <div class="tutorial-body p-4 text-2xl space-y-4">
+            <div id="tutorial-body">
+
+            </div>
+
+            <div class=" flex items-center justify-center">
+                <img id="tutorial-image" class="pt-4" src="../Images/bar.png" alt="">
+            </div>
+
+        </div>
+        <div class="tutorial-footer absolute bottom-0 p-3  flex justify-between w-full">
+            <button id="tutorial-skip" class="button bg-teal-500 px-2 hover:bg-green-400  text-white">
+                Skip Tutorial
+            </button>
+            <div>
+                <button id="tutorial-prev" data-val="0" class="button bg-teal-500 px-2 hover:bg-green-400  text-white">
+                    Prev
+                </button>
+                <button data-val="2" class="button bg-teal-500 px-2 hover:bg-green-400  text-white" id="tutorial-next">
+                    Next
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <nav class=" shadow bg-white">
     <div class="mx-auto container">
         <div class="flex justify-between items-center px-4 py-2">
             <div class="flex items-center">
-                <h1 class=" font-bold text-2xl ml-2" >VisualAlgorithm</h1>
+                <h1 class=" font-bold text-2xl ml-2">VisualAlgorithm</h1>
             </div>
             <div class="flex items-center space-x-2 ">
                 <div class="font-bold text-lg">
-                    <label>Select Algorithm</label>
+
                     <select id="selectAlgorithm" class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2">
                         <option value="">Select An Algorithm</option>
                         <option value="bubbleSort">Bubble Sort</option>
@@ -42,14 +116,28 @@
                         <option value="mergeSort">Merge Sort</option>
                     </select>
                 </div>
+                <div class="font-bold text-lg">
 
-                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg" id="startVisualize">
+                    <select id="speed" class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2">
+
+                        <option value="10">Speed: Super Fast</option>
+                        <option value="100" selected>Speed: Fast</option>
+                        <option value="500">Speed: Medium</option>
+                        <option value="1000">Speed: Slow</option>
+                        <option value="2000">Speed: Super Slow</option>
+
+                    </select>
+                </div>
+
+                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
+                        id="startVisualize">
                     Visualize
                 </button>
 
                 <div>
                     <!-- Button for creating random array -->
-                    <button type="button" id="randomArray" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
+                    <button type="button" id="randomArray"
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
                         Random Array
                     </button>
                 </div>
@@ -99,7 +187,7 @@
                 <button id="play" class="">
                     <i class="fa-solid fa-circle-play fa-2x"></i>
                 </button>
-                <button  id="sortArrayPause" class="hidden">
+                <button id="sortArrayPause" class="hidden">
 
                     <i class="fa-solid fa-circle-pause fa-2x"></i>
                 </button>
@@ -161,6 +249,8 @@
 <script type="module">
     import Sort from "../js/sort/sort.js"
     import sortingAlgorithmDetails from "../js/sort/sortingAlgorithmDetails.js"
+    import Tutorial from "../js/sort/tutorial.js"
+
     $(document).ready(function () {
         let sortButtonPause = $('#sortArrayPause');
         let sortButtonResume = $('#sortArrayResume');
@@ -169,25 +259,27 @@
         var selectedAlgorithm = "";
         var currentStep = 0;
 
+        var tutorial = new Tutorial(container);
+
+      tutorial.show();
 
         let sort = new Sort(container, []);
         $('#speed').on('change', function () {
             let speed = $(this).val();
-            sort.speed = speed+1;
+            sort.speed = speed + 1;
 
         });
         startVisualize.on('click', function () {
-            selectedAlgorithm=$("#selectAlgorithm").val();
-            if(selectedAlgorithm){
+            selectedAlgorithm = $("#selectAlgorithm").val();
+            if (selectedAlgorithm) {
                 sort.setAlgorithm(selectedAlgorithm);
                 sort.startVisualize();
                 $("#sortArrayPause").removeClass('hidden');
                 $("#play").addClass('hidden');
-            }else {
+            } else {
                 alert("Please select an algorithm");
             }
         });
-
 
 
         $("#sortArrayPause").click(function () {
@@ -206,7 +298,7 @@
             }
         );
         $("#previous").click(function () {
-                let  status=sort.visualizeStatus;
+                let status = sort.visualizeStatus;
                 sort.setVisualizeStatus(false);
                 sort.goBack();
 
@@ -214,7 +306,7 @@
         );
         $("#next").click(function () {
 
-                let  status=sort.visualizeStatus;
+                let status = sort.visualizeStatus;
                 sort.setVisualizeStatus(false);
                 sort.goForward();
 
@@ -227,9 +319,9 @@
         $("#selectAlgorithm").on('change', function () {
 
                 let algorithm = $(this).val();
-                if(algorithm){
+                if (algorithm) {
                     $("#algorithmDetails").removeClass()
-                }else {
+                } else {
                     $("#algorithmDetails").addClass('hidden')
                 }
                 let selectedAlgorithm = new sortingAlgorithmDetails(algorithm);
@@ -254,12 +346,12 @@
         var previousInput = '';
         $("#array-input").on('keydown', function (event) {
                 var key = window.event ? event.keyCode : event.which;
-                if (event.keyCode === 8 || event.keyCode === 46 || event.keyCode===188) {
+                if (event.keyCode === 8 || event.keyCode === 46 || event.keyCode === 188) {
                     previousInput = $(this).val();
-                    if((previousInput.length===0 || previousInput[previousInput.length-1]===',')&&event.keyCode===188) return false;
+                    if ((previousInput.length === 0 || previousInput[previousInput.length - 1] === ',') && event.keyCode === 188) return false;
                     else return true;
 
-                } else if ( key < 48 || key > 57) {
+                } else if (key < 48 || key > 57) {
                     console.log(key);
                     return false;
                 } else {
@@ -267,8 +359,20 @@
                 }
             }
         );
-
-
+        //###################################################//
+        //###################################################//
+        $("#tutorial-next").click(function () {
+                tutorial.setTutorial(document.getElementById("tutorial-next").dataset.val);
+            }
+        );
+        $("#tutorial-prev").click(function () {
+                tutorial.setTutorial(document.getElementById("tutorial-prev").dataset.val);
+            }
+        );
+        $("#tutorial-skip").click(function () {
+                tutorial.hide();
+            }
+        );
 
 
     });
