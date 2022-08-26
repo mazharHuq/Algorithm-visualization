@@ -43,7 +43,8 @@ class sortingAlgorithmDetails {
             worstTime: "O(n^2)",
             bestTime: "O(n)",
             spaceComplexity: "O(1)",
-        }), (this.selectionSort = {
+        }),
+            (this.selectionSort = {
             name: "Selection Sort",
             algorithm: "Selection Sort is a sorting algorithm in which the smallest element is selected from the array and swapped with the first element. The same is repeated for the remaining elements. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
             complexity: "",
@@ -83,7 +84,8 @@ class sortingAlgorithmDetails {
             worstTime: "O(n^2)",
             bestTime: "O(n^2)",
             spaceComplexity: "O(1)",
-        }), (this.insertionSort = {
+        }),
+            (this.insertionSort = {
             name: "Insertion Sort",
             algorithm: "Insertion Sort is a sorting algorithm in which the smallest element is selected from the array and swapped with the first element. The same is repeated for the remaining elements. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
             complexity: "",
@@ -124,7 +126,8 @@ class sortingAlgorithmDetails {
             worstTime: "O(n^2)",
             bestTime: "O(n)",
             spaceComplexity: "O(1)",
-        }), (this.BreadthFirstSearch = {
+        }),
+            (this.BreadthFirstSearch = {
             name: "Breadth First Search",
             algorithm: "Breadth First Search is a search algorithm that traverses nodes in a tree level by level.",
             complexity: "",
