@@ -205,6 +205,9 @@
                 <h4 class="text-sm" id="bestCase"></h4>
             </div>
             <div class="intro-y px-4 my-3 py-4 text-xl">
+                <h2>Space Complexity</h2>
+                <h4 class="text-sm" id="spaceComplexity">
+                </h4>
             </div>
         </div>
     </div>
@@ -426,25 +429,37 @@
         let source = $("#startNode").val();
         let destination = $("#endNode").val();
         let select = $("#selectAlgorithm").val();
-
+        console.log(destination);
+        if (source == "") {
+            alert("Please select source node");
+            return;
+        }
         if (select == "BFS") {
+            graph.setGraphInfo(false, true);
             steps = graph.getUnWeightedBfsSteps(source, destination);
             visDfs.setSteps(steps);
             visDfs.init(container, graph.getGraph(), options);
+
+            visualize(graph.pathNode, source);
         } else if (select == "DFS") {
+            graph.setGraphInfo(true, false);
             steps = graph.getUnWeightedDfsSteps(source, destination);
             visDfs.setSteps(steps);
             visDfs.init(container, graph.getGraph(), options);
+
+            visualize(graph.pathNode, source);
         } else if (select == "Dijkstra") {
+            graph.setGraphInfo(true, true);
             steps = graph.getWeightedDijkstraSteps(source, destination);
             visDfs.setSteps(steps);
             visDfs.init(container, graph.getGraph(), options);
+
+            visualize(graph.pathNode, source);
+            return;
         } else {
             alert("Please select an algorithm");
             return;
         }
-
-        visualize(graph.pathNode, source);
     });
 
     $("#selectAlgorithm").on("change", function () {
@@ -508,6 +523,13 @@
             visDfs.pathNodeColor(nodes);
             if (visDfs.steps.length == 0) {
                 visDfs.colorNode(source, visDfs.visitedNodeColor);
+            }
+            if ($("#selectAlgorithm").val() == "Dijkstra") {
+                if (graph.isFound) {
+                    alert("Path found with minimum cost :" + graph.shortestCost);
+                } else {
+                    alert("Total Cost of Every Path is " + graph.shortestCost);
+                }
             }
         }
 

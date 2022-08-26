@@ -15,7 +15,6 @@
   }
 
   .wrapper {
-
     margin: 0;
     padding: 0;
     width: 100vw;
@@ -74,18 +73,17 @@
     padding: 20px 30px;
     border-radius: 25px;
     background: rgb(201, 188, 188);
-    box-shadow: 5px 5px 10px #181818, -5px -5px 10px #2c2c2cd8;
   }
 
 
 
 
   #canvas {
-    background-image:linear-gradient(to right, #86b2d0 0%, #89a5c2  51%, #97b2c4  100%);
+    background-image:linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 51%, rgb(255, 255, 255) 100%);
     grid-column: 2/4;
     grid-row: 1/2;
     order: 2;
-    width: 900px;
+    width: 800px;
     max-width: 1200px;
     display: flex;
     flex-direction: column;
@@ -145,6 +143,7 @@
 
   .input {
     align-items: center;
+    margin-top: 300px;
     background-image:linear-gradient(to right, #E0EAFC 0%, #CFDEF3  51%, #E0EAFC  100%);
     width: 70%;
     margin: 10px 20px;
@@ -350,71 +349,7 @@
   .code-line.active {
     background: #4caf5023;
   }
-  #l1,
-  #l2,
-  #l3,
-  #l4,
-  #l5,
-  #l6,
-  #l7 {
-    border-radius: 5px;
-    transition: 0.5s ease;
-  }
 
-  /* ============ draggable div functionality ============= */
-  .drag {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: move;
-  }
-  .drag img {
-    display: inline;
-    width: 30px;
-    margin: 15px;
-    cursor: move;
-  }
-
-  .drag:hover,
-  .drag:focus {
-    color: rgb(255, 208, 0);
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  .current-step {
-    display: block;
-    height: 150px;
-    margin-top: 10px;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 18px;
-    line-height: 22px;
-    letter-spacing: 2px;
-    font-weight: 400;
-    color: #4caf50;
-    background: #4caf5023;
-    overflow: scroll;
-  }
-
-  .check {
-    margin-top: 10px;
-    font-size: 16px;
-    line-height: 40px;
-    letter-spacing: 2px;
-    font-family: "Sen", sans-serif;
-    background: #ffee0023;
-    border-radius: 10px;
-  }
-
-  .hide {
-    visibility: hidden;
-    display: none;
-  }
-  .show {
-    visibility: visible;
-  }
 
   /* ================ Dashboard Data Card like Designs for Live Data =============== */
   #step-tracker {
@@ -444,69 +379,15 @@
     animation-fill-mode: forwards;
     transform-origin: 50%;
   }
-  .step-box h3 {
-    text-align: left;
-    color: #eee;
-    font-weight: 400;
-    text-shadow: none;
-    font-size: 16px;
-    line-height: 28px;
-  }
-  .box-title .highlight {
-    font-size: 22px;
-    line-height: 30px;
-    font-weight: 700;
-    text-shadow: 2px 2px 5px #181818, -2px -2px 5px #2c2c2cd8;
-  }
-  #start-step {
-    background: rgba(0, 185, 43, 0.2);
-    color: #4caf50;
-  }
-  #start-step .highlight {
-    color: #4caf50;
-  }
-  #mid-step {
-    background: rgba(255, 208, 0, 0.2);
-    color: #ffd000;
-  }
-  #mid-step .highlight {
-    color: #ffd000;
-  }
-  #last-step {
-    background: rgba(255, 7, 48, 0.2);
-    color: #ff0730;
-  }
-  #last-step .highlight {
-    color: #ff0730;
-  }
-  #blue-box{
-    background: rgba(0, 122, 255, 0.2);
-    color: rgb(0, 122, 255);
-  }
-  #blue-box .highlight{
-    color: rgb(0, 122, 255);
-  }
+
   .box-value {
     font-size: 48px;
     margin: auto 10px;
     transition: 0.6s ease;
   }
-  #start-val {
-    color: #4caf50;
-  }
-  #mid {
-    color: #ffd000;
-  }
-  #last {
-    color: #ff0730;
-  }
+
 
   /* =========== array box designs ========== */
-  .index {
-    margin-top: -40px;
-    margin-bottom: 40px;
-    color: #ffd000;
-  }
   .array_box {
     padding: 10px;
     font-size: 22px;
@@ -514,66 +395,8 @@
     letter-spacing: 2px;
     color: #ffd000;
   }
-  .ansbox {
-    background-color: #444;
-    height: 50px;
-    width: 50px;
-    margin: 2px;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    box-shadow: 5px 5px 5px #181818, -5px -5px 10px #5050503a;
-    text-align: center;
-    vertical-align: middle;
-  }
-  .high {
-    margin-left: -10px;
-    margin-top: 40px;
-    padding: 20px 25px;
-    padding-right: 40px;
-    font-size: 22px;
-    font-weight: 700;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 1px 1px 10px #181818, -1px -1px 10px #181818;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 22px;
-    color: rgb(0, 122, 255);
-    background: rgb(0, 122, 255, 0.2);
-  }
-
   /* ============= draggable div ============= */
-  #moveable {
-    position: absolute;
-    top: 50px;
-    right: 15px;
-    width: 360px;
-    height: 320px;
-    background: #111;
-    border-radius: 25px;
-    box-shadow: 10px 10px 10px #0f0f0f,
-                -5px -5px 10px #2c2c2cd8;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-top: none;
-  }
-  #handle {
-    width: 358px;
-    height: 25px;
-    margin: 1px;
-    cursor: move;
-    background: rgb(255, 196, 0);
-    border-radius: 20px 20px 0px 0px;
-  }
-  .dragcontent{
-    text-align: center;
-    display: block;
-    font-size: 14px;
-    letter-spacing: 2px;
-    padding: 5px;
-    color: #000;
-    font-weight: 700;
-  }
+
   .form-row {
     display: flex;
     align-items: flex-start;
@@ -605,26 +428,27 @@
     display: block;
     height: 60px;
     padding: 5px;
-    background-image:linear-gradient(to right, #91a8b7 0%, #8bbccf  100%, #86abc3  100%);
-    width: 540px;
+    text-align: center;
+    background-image:linear-gradient(to right, #f0f6fc 0%, #cfd6d9 100%, #dde3e8 100%);
+    width: 100%;
     border-radius: 20px;
     margin-bottom: 10px;
-    box-shadow: 10px 10px 10px #181818, -5px -5px 10px #4e4e4e4f;
   }
   #array {
     display: flex;
+    weight: 100%;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
   }
   .array_box {
     height: 40px;
-    width: 40px;
+    width: 100px;
     padding: 5px;
     margin: 5px;
     border-radius: 10px;
-    background: rgba(234, 229, 181, 0.766);
-    color: rgb(75, 75, 173);
+    background: rgb(43, 124, 233);
+    color: rgb(255, 253, 253);
     font-size: 25px;
     text-align: center;
     font-weight: 700;
@@ -638,34 +462,27 @@
     transform-origin: 50%;
   }
   #stack-wrapper {
-    display: block;
-    height: 280px;
-    padding: 10px 50px;
-    width: 200px;
+  text-align: initial;
   }
   #stack {
     display: table-cell;
     text-align: center;
-    width: 200px;
+    width: 200px!important;
     height: 350px;
     vertical-align: bottom;
-    background-image:linear-gradient(to right, #91a8b7 0%, #8bbccf  100%, #86abc3  100%);
+    background-image:linear-gradient(to right, #f0f6fc 0%, #cfd6d9 100%, #dde3e8 100%);
     border-radius: 20px;
-    box-shadow: 5px 5px 10px #181818, -5px -5px 10px #4e4e4e4f;
-    margin-left: 0px;
-    margin-bottom: 0px;
   }
   .stack_box {
     height: 30px;
     line-height: 30px;
     width: 180px;
     padding: 0px;
-    margin: 0px 10px;
-    margin-bottom: 8px;
+    margin: 0px 10px 8px;
     border-radius: 5px;
     box-shadow: 0 1px 6px rgba(253, 253, 253, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
-    background: rgba(234, 229, 181, 0.766);
-    color: rgb(75, 75, 173);
+    background: rgb(255, 165, 0);
+    color: rgb(255, 255, 255);
     font-size: 20px;
     text-align: center;
     font-weight: 700;
@@ -676,89 +493,24 @@
     animation-fill-mode: forwards;
     transform-origin: 50%;
   }
-  #pushed{
-    color: #4caf50;
-  }
-  #popped{
-    color: #ff0730;
-  }
-  #pointer{
-    color: #ffd000;
-  }
-  #top_element{
-    color: rgb(0, 122, 255);
-  }
+
+
   #algo-box{
-    margin: 0px;
-    margin-top: 60px;
     padding: 20px 30px;
-    height: 250px;
+    height: 350px;
     width: 450px;
     max-width: 500px;
-    background-image:linear-gradient(to right, #91a8b7 0%, #8bbccf  100%, #86abc3  100%);
+    background-image:linear-gradient(to right, #f0f6fc 0%, #cfd6d9 100%, #dde3e8 100%);
+
     color: #000;
     border-radius: 25px;
-    box-shadow: 5px 5px 10px #000c00a8,
-                -2px -2px 10px #3aff4428;
-    overflow: scroll;
   }
   .algo-steps{
     list-style-type: none;
     font-size: 20px;
-    font-weight: 700px;
     line-height: 28px;
   }
 
-  /* ================= styles for question popup =============== */
-  .question-modal{
-    display: none;
-    z-index: 1;
-    position: absolute;
-    top: 100px;
-    left: 25%;
-    margin: 50px;
-    height: 350px;
-    width: 600px;
-    background: #111;
-    border-radius: 20px;
-    box-shadow: 5px 5px 10px #181818, -5px -5px 10px #2c2c2cd8;
-  }
-  #modal-head{
-    padding: 20px 30px;
-    background: #ffd000;
-    height: 30px;
-    display: flex;
-    justify-content: space-between;
-    border-radius: 20px 20px 0px 0px;
-  }
-  .close-btn {
-    color: rgb(255, 0, 0);
-    float: right;
-    font-size: 30px;
-    font-weight: bold;
-    visibility: hidden;
-  }
-  .close-btn:hover,
-  .close-btn:focus {
-    color: #000000;
-    transition: 0.5s ease;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  #modal-content{
-    padding: 15px 30px;
-  }
-  #question{
-    font-size: 20px;
-    line-height: 30px;
-    height: 100px;
-    width: 540px;
-    text-align: justify;
-  }
-  #answer{
-    display: flex;
-    justify-content: space-between;
-  }
   .option{
     background: #222;
     padding: 10px 20px;
@@ -769,29 +521,15 @@
     width: 200px;
     margin: 10px;
   }
-  .wrong{
-    background: #ff0730;
-    color: #fff;
-    border: 3px solid #eee;
-  }
-  .correct{
-    background: #0caa31;
-    color: #fff;
-    border: 3px solid #eee;
-  }
-  .blur{
-    filter: blur(20px);
-  }
-
-  .container1{
-
-
-    display: grid;
+ .container1{
+   border: #f5ecec solid 1px;
+   box-shadow: #6b9dc5 0px 0px 10px;
+    display: flex;
     grid-template-columns: 1fr 3fr 1fr;
 
   }
 
-  
+
   
   
   /* ************** CSS Animations ************ */

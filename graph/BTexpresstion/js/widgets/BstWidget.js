@@ -23,6 +23,7 @@ var BST = function (ex) {
    */
 
   var internalBst = {};
+
   var amountVertex = 0;
   internalBst["root"] = null;
 
@@ -47,6 +48,7 @@ var BST = function (ex) {
       if (value == "|") return 0;
       return -2;
     }
+
     function isOperator(value) {
       if (value == "^") return true;
       if (value == "*") return true;
@@ -61,12 +63,14 @@ var BST = function (ex) {
       if (value == "<") return true;
       return false;
     }
+
     function isOperand(value) {
       if (value >= "a" && value <= "z") return true;
       if (value >= "A" && value <= "Z") return true;
       if (value >= "0" && value <= "9") return true;
       return false;
     }
+
     function getPostFix(expression) {
       let stack = [];
       let postfix = "";
@@ -95,11 +99,13 @@ var BST = function (ex) {
       }
       return postfix;
     }
+
     function equationToTree(str) {
       let postfix = getPostFix(str);
       let stack = [];
       let grid = [];
       let nodeNumber = 0;
+
       for (let i = 0; i < postfix.length; i++) {
         grid[i] = [
           [0, 0],
@@ -107,6 +113,7 @@ var BST = function (ex) {
           [0, 0],
         ];
       }
+
       for (let i = 0; i < postfix.length; i++) {
         if (postfix[i] == " ") continue;
         else if (isOperator(postfix[i])) {
@@ -135,8 +142,10 @@ var BST = function (ex) {
     }
 
     var gettree = equationToTree(expression);
+
     var tree = gettree[0];
     var rootNode = gettree[1];
+
     internalBst["root"] = parseInt(rootNode);
     internalBst[rootNode] = {
       parent: null,
@@ -147,6 +156,7 @@ var BST = function (ex) {
       vertexClassNumber: amountVertex,
     };
     amountVertex++;
+
     function buildx(node, parent) {
       if (tree[node] == null) return;
       let L = tree[node][0];
@@ -179,6 +189,7 @@ var BST = function (ex) {
       }
     }
     buildx(rootNode, rootNode);
+
     recalculatePosition();
 
     for (key in internalBst) {

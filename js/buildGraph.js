@@ -86,6 +86,8 @@ class buildGraph {
         this.labelMap = [];
         this.ugrid = [];
         this.pathNode = [];
+        this.shortestCost = 0;
+        this.isFound = false;
     }
 
 
@@ -284,12 +286,11 @@ class buildGraph {
                     }
                 }
             }
-        } else {
+        } else if(destination == ""){
             for (var i = 0; i < steps.length; i++) {
                 steps[i]["isPath"] = true;
             }
         }
-        dbg(steps);
         return steps;
     }
 
@@ -445,7 +446,7 @@ class buildGraph {
                     }
                 }
             }
-        } else {
+        } else if(destination == ""){
             for (var i = 0; i < steps.length; i++) {
                 steps[i]["isPath"] = true;
             }
@@ -468,7 +469,8 @@ class buildGraph {
         let stepStack = [];
         let parent = [];
         var costs = [];
-
+        this.shortestCost = 0;
+        this.isFound = false;
         for (let node in this.grid) {
             parent[node] = null;
             costs[node] = Number.MAX_VALUE;
@@ -491,9 +493,12 @@ class buildGraph {
                 step["isPath"] = false;
                 steps.push(step);
                 path[u] = parent[u] + "";
+                this.shortestCost += 0;
             }
             if (u == destination) {
+                this.shortestCost = cost;
                 flag = 1;
+                this.isFound = true;
                 break;
             }
             this.visited[source] = true;
@@ -539,12 +544,11 @@ class buildGraph {
                     }
                 }
             }
-        }else {
+        }else if (destination == ""){
             for (var i = 0; i < steps.length; i++) {
                 steps[i]["isPath"] = true;
             }
         }
-
         return steps;
     }
 }
