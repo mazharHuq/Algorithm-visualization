@@ -1,171 +1,177 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Graph Test</title>
     <script
-            type="text/javascript"
-            src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"
+      type="text/javascript"
+      src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"
     ></script>
 
     <style type="text/css">
-        #container {
-            margin: 0 auto;
-            width: 80%;
-            height: 600px;
-            border: 1px solid lightgray;
-            border-radius: 6px;
-        }
+      #container {
+        margin: 0 auto;
+        width: 80%;
+        height: 600px;
+        border: 1px solid lightgray;
+        border-radius: 6px;
+      }
     </style>
-    <link rel="stylesheet" href="/CSS/sort.css"/>
+    <link rel="stylesheet" href="/CSS/sort.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
 
-        body {
-            font-family: "IBM Plex Mono", monospace;
-        }
+      body {
+        font-family: "IBM Plex Mono", monospace;
+      }
     </style>
     <style>
-        .div.vis-network {
-            background-color: red;
-        }
+      .div.vis-network {
+        background-color: red;
+      }
 
-        #grid {
-            border: 1px solid rgb(24, 179, 114);
+      #grid {
+        border: 1px solid rgb(24, 179, 114);
 
-            display: grid;
-        }
+        display: grid;
+      }
 
-        .cell {
-            border: 1px solid #e6eff6;
-            text-align: center;
-            align-items: center;
-            justify-content: center;
-        }
+      .cell {
+        border: 1px solid #e6eff6;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+      }
 
-        .control {
-            padding: 10px;
-            background: #afd8f8;
-            border: 1px solid #afd8f8;
-            text-align: center;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 1px 1px 1px 1px #afd8f8;
-        }
+      .control {
+        padding: 10px;
+        background: #afd8f8;
+        border: 1px solid #afd8f8;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 1px 1px 1px 1px #afd8f8;
+      }
 
-        #editor {
-            min-height: 400px;
-            min-width: 100%;
-        }
+      #editor {
+        min-height: 400px;
+        min-width: 100%;
+      }
     </style>
     <!-- style for tutorial -->
     <style>
-        .tutorial-container {
-            width: 100%;
-            height: 100%;
-            position: fixed;
-            top: 0;
-            z-index: 9999;
-            background: rgba(0, 0, 0, 0.8);
+      .tutorial-container {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        z-index: 9999;
+        background: rgba(0, 0, 0, 0.8);
+      }
+      .tutorial {
+        font-family: "Baloo 2", cursive;
+        font-size: 1.5rem;
+        color: black;
+        text-align: center;
+        position: fixed;
+        z-index: 4555;
 
-
-        }
-        .tutorial {
-
-            font-family: 'Baloo 2', cursive;
-            font-size: 1.5rem;
-            color: black;
-            text-align: center;
-            position: fixed;
-            z-index: 4555;
-
-            width: 70%;
-            height: 80%;
-            top: 10%;
-            left: 15%;
-            background: white;
-            display: block;
-            border: 2px solid teal;
-            border-radius: 10px;
-
-        }
-
-
+        width: 70%;
+        height: 80%;
+        top: 10%;
+        left: 15%;
+        background: white;
+        display: block;
+        border: 2px solid teal;
+        border-radius: 10px;
+      }
     </style>
 
     <link
-            href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Raleway:100,300,400,600,700"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Raleway:100,300,400,600,700"
+      rel="stylesheet"
     />
     <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-            integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <!-- JS -->
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-</head>
+  </head>
 
-<body>
-
-<!-- Algorithm Tut -->
-<div class="tutorial-container "  id="tutorial">
-    <div class="tutorial">
-        <div id="tutorial-title" class="tutorial-header  mt-8 py-8 text-teal-500 text-6xl font-bold ">
-
-        </div>
+  <body>
+    <!-- Algorithm Tut -->
+    <div class="tutorial-container" id="tutorial">
+      <div class="tutorial">
+        <div
+          id="tutorial-title"
+          class="tutorial-header mt-8 py-8 text-teal-500 text-6xl font-bold"
+        ></div>
         <div class="tutorial-body p-4 text-2xl space-y-4">
-            <div id="tutorial-body">
+          <div id="tutorial-body"></div>
 
-            </div>
-
-            <div class=" flex items-center justify-center">
-                <img id="tutorial-image" class="pt-4" src="../Images/bar.png" alt="">
-            </div>
-
+          <div class="flex items-center justify-center">
+            <img
+              id="tutorial-image"
+              class="pt-4"
+              src="../Images/bar.png"
+              alt=""
+            />
+          </div>
         </div>
-        <div class="tutorial-footer absolute bottom-0 p-3  flex justify-between w-full">
-            <button id="tutorial-skip" class="button bg-teal-500 px-2 hover:bg-green-400  text-white">
-                Skip Tutorial
+        <div
+          class="tutorial-footer absolute bottom-0 p-3 flex justify-between w-full"
+        >
+          <button
+            id="tutorial-skip"
+            class="button bg-teal-500 px-2 hover:bg-green-400 text-white"
+          >
+            Skip Tutorial
+          </button>
+          <div>
+            <button
+              id="tutorial-prev"
+              data-val="0"
+              class="button bg-teal-500 px-2 hover:bg-green-400 text-white"
+            >
+              Prev
             </button>
-            <div>
-                <button id="tutorial-prev" data-val="0" class="button bg-teal-500 px-2 hover:bg-green-400  text-white">
-                    Prev
-                </button>
-                <button data-val="2" class="button bg-teal-500 px-2 hover:bg-green-400  text-white" id="tutorial-next">
-                    Next
-                </button>
-
-            </div>
+            <button
+              data-val="2"
+              class="button bg-teal-500 px-2 hover:bg-green-400 text-white"
+              id="tutorial-next"
+            >
+              Next
+            </button>
+          </div>
         </div>
-
+      </div>
     </div>
-</div>
 
-<nav class="shadow bg-white">
-    <div class="mx-auto container">
+    <nav class="shadow bg-white">
+      <div class="mx-auto container">
         <div class="flex justify-between items-center px-4 py-2">
-            <div class="flex items-center">
-                <a href="../index.html">
-                    <h1 class="font-bold text-2xl ml-2">VisualAlgorithm</h1>
-                </a>
+          <div class="flex items-center">
+            <a href="../index.html">
+              <h1 class="font-bold text-2xl ml-2">VisualAlgorithm</h1>
+            </a>
+          </div>
+          <div class="flex items-center space-x-2">
+            <div class="font-bold text-lg">
+              <select
+                id="selectAlgorithm"
+                class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2"
+              >
+                <option value="">Select An Algorithm</option>
+                <option value="BFS">Breadth-first search</option>
+                <option value="DFS">Depth-first search</option>
+                <option value="Dijkstra">Dijkstra</option>
+              </select>
             </div>
-            <div class="flex items-center space-x-2">
-                <div class="font-bold text-lg">
-
-                    <select
-                            id="selectAlgorithm"
-                            class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2"
-                    >
-                        <option value="">Select An Algorithm</option>
-                        <option value="BFS">Breadth-first search</option>
-                        <option value="DFS">Depth-first search</option>
-                        <option value="Dijkstra">Dijkstra</option>
-                    </select>
-                </div>
-                <!--     <input
+            <!--     <input
                        type="text"
                        id="startNode"
                        value="Source"
@@ -177,469 +183,486 @@
                        value="Destination"
                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
                      />-->
-                <select id="startNode" class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2">
-                    <option value="">Select Source</option>
-
-                </select>
-                <select id="endNode" class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2">
-                    <option value="">Select Destination</option>
-
-                </select>
-                <button
-                        id="start"
-                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
-                >
-                    Visualize
-                </button>
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" id="save">
-                    Download Graph
-                </button>
-            </div>
+            <select
+              id="startNode"
+              class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2"
+            >
+              <option value="">Select Source</option>
+            </select>
+            <select
+              id="endNode"
+              class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2"
+            >
+              <option value="">Select Destination</option>
+            </select>
+            <button
+              id="start"
+              class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
+            >
+              Visualize
+            </button>
+            <button
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
+              id="save"
+            >
+              Download Graph
+            </button>
+          </div>
         </div>
-    </div>
-</nav>
-<div class="shadow grid grid-cols-12 space-x-2">
-
-    <div class="col-span-2" style="margin-left: 100px">
+      </div>
+    </nav>
+    <div class="shadow grid grid-cols-12 space-x-2">
+      <div class="col-span-2" style="margin-left: 100px">
         <!-- Take Graph  Input and generate from Here -->
         <div>
-            <input type="checkbox" name="" id="isDirected" value="">
-            <label for="isDirected">
-                Directed Graph
-            </label>
+          <input type="checkbox" name="" id="isDirected" value="" />
+          <label for="isDirected"> Directed Graph </label>
         </div>
         <div>
-            <input type="checkbox" name="" id="isWeighted" value="">
-            <label for="isWeighted">
-                Weighted Graph
-            </label>
+          <input type="checkbox" name="" id="isWeighted" value="" />
+          <label for="isWeighted"> Weighted Graph </label>
         </div>
-        <div>
-            <strong>Node Count :</strong> <span id="nodeCount">5</span>
-        </div>
+        <div><strong>Node Count :</strong> <span id="nodeCount">5</span></div>
         Graph Data :
         <div
-                class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2"
+          class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2"
         >
-            <div id="editor"></div>
+          <div id="editor"></div>
         </div>
-    </div>
-    <div class="col-span-10">
+      </div>
+      <div class="col-span-10">
         <div id="container"></div>
+      </div>
     </div>
-</div>
 
-<div style="" class="mediaControl shadow bg-white bottom-0 w-full">
-    <div class="container flex justify-center mx-auto">
+    <div style="" class="mediaControl shadow bg-white bottom-0 w-full">
+      <div class="container flex justify-center mx-auto">
         <div class="flex items-center px-4 py-2">
-            <div class="flex items-center space-x-8">
-                <i class="fa-solid fa-square" style="color: #97C2FC"></i> <span>Default Node</span>
-                <i class="fa-solid fa-square" style="color: #0caa31"></i> <span>Selected</span>
-                <i class="fa-solid fa-square" style="color: #2ebbd1"></i> <span>Queue</span>
-                <i class="fa-solid fa-square" style="color: #2B7CE9"></i> <span>Visited</span>
-                <i class="fa-solid fa-square" style="color: #848484"></i> <span>Default Edge</span>
-                <i class="fa-solid fa-square" style="color: #ffa500"></i> <span>Path</span>
-            </div>
+          <div class="flex items-center space-x-8">
+            <i class="fa-solid fa-square" style="color: #97c2fc"></i>
+            <span>Default Node</span>
+            <i class="fa-solid fa-square" style="color: #0caa31"></i>
+            <span>Selected</span>
+            <i class="fa-solid fa-square" style="color: #2ebbd1"></i>
+            <span>Queue</span>
+            <i class="fa-solid fa-square" style="color: #2b7ce9"></i>
+            <span>Visited</span>
+            <i class="fa-solid fa-square" style="color: #848484"></i>
+            <span>Default Edge</span>
+            <i class="fa-solid fa-square" style="color: #ffa500"></i>
+            <span>Path</span>
+          </div>
         </div>
+      </div>
     </div>
-</div>
 
-<!-- Algorithm Details -->
-<div class="details shadow bg-white p-4 mx-auto">
-    <div class="intro-y px-4 my-3 bg-green-500 py-4 text-3xl font-bold">
+    <!-- Algorithm Details -->
+    <div class="details shadow bg-white p-4 mx-auto">
+      <div class="intro-y px-4 my-3 bg-green-500 py-4 text-3xl font-bold">
         <h2 id="algorithm-title">Graph Algorithms</h2>
-    </div>
-    <div class="grid grid-cols-12 space-x-2">
+      </div>
+      <div class="grid grid-cols-12 space-x-2">
         <div class="col-span-8 bg-gray-100">
-            <div class="intro-y px-4 my-3 py-4 text-xl font-bold">
-                <h2>Algorithm</h2>
-                <p class="text-sm" id="algorithm-summary"></p>
-            </div>
-            <div class="intro-y px-4 my-3 py-4 text-xl font-medium">
-                <h2>Description</h2>
-                <p class="text-sm font-thin" id="algorithm-description">
-                </p>
-            </div>
+          <div class="intro-y px-4 my-3 py-4 text-xl font-bold">
+            <h2>Algorithm</h2>
+            <p class="text-sm" id="algorithm-summary"></p>
+          </div>
+          <div class="intro-y px-4 my-3 py-4 text-xl font-medium">
+            <h2>Description</h2>
+            <p class="text-sm font-thin" id="algorithm-description"></p>
+          </div>
         </div>
         <div class="col-span-4 bg-gray-100">
-            <div class="intro-y text-2xl font-bold p-3 border-b">
-                <h2>Performance</h2>
-            </div>
-            <div class="intro-y px-4 my-3 py-4 text-xl font-bold">
-                <h2>Time Complexity</h2>
-                <h4 class="text-sm" id="worstCase">
-
-                </h4>
-                <h4 class="text-sm" id="averageCase">
-
-                </h4>
-                <h4 class="text-sm" id="bestCase"></h4>
-            </div>
-            <div class="intro-y px-4 my-3 py-4 text-xl">
-                <h2>Space Complexity</h2>
-                <h4 class="text-sm" id="spaceComplexity">
-                </h4>
-            </div>
+          <div class="intro-y text-2xl font-bold p-3 border-b">
+            <h2>Performance</h2>
+          </div>
+          <div class="intro-y px-4 my-3 py-4 text-xl font-bold">
+            <h2>Time Complexity</h2>
+            <h4 class="text-sm" id="worstCase"></h4>
+            <h4 class="text-sm" id="averageCase"></h4>
+            <h4 class="text-sm" id="bestCase"></h4>
+          </div>
+          <div class="intro-y px-4 my-3 py-4 text-xl">
+            <h2>Space Complexity</h2>
+            <h4 class="text-sm" id="spaceComplexity"></h4>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<canvas id="canvas"></canvas>
-<script
-        src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-        crossorigin="anonymous"
-></script>
-<script type="text/javascript" src="./js/grid.js"></script>
-<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-<script
-        src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.6/ace.js"
-        integrity="sha512-czfWedq9cnMibaqVP2Sw5Aw1PTTabHxMuTOkYkL15cbCYiatPIbxdV0zwhfBZKNODg0zFqmbz8f7rKmd6tfR/Q=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-></script>
-<script type="text/javascript" src="/graph/js/helper.js"></script>
-<script
-        type="text/javascript"
-        src="../graph/js/graphAlgorithmDetails.js"
-></script>
-<script type="text/javascript" src="../js/buildGraph.js"></script>
-<script type="text/javascript" src="../js/visualizeGraphAlog.js"></script>
-<script type="text/javascript">
-    let grid = {};
-    let ugrid = {};
+    <canvas id="canvas"></canvas>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="./js/grid.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.6/ace.js"
+      integrity="sha512-czfWedq9cnMibaqVP2Sw5Aw1PTTabHxMuTOkYkL15cbCYiatPIbxdV0zwhfBZKNODg0zFqmbz8f7rKmd6tfR/Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script type="text/javascript" src="/graph/js/helper.js"></script>
+    <script
+      type="text/javascript"
+      src="../graph/js/graphAlgorithmDetails.js"
+    ></script>
+    <script type="text/javascript" src="../js/buildGraph.js"></script>
+    <script type="text/javascript" src="../js/visualizeGraphAlog.js"></script>
+    <script type="text/javascript">
+      let grid = {};
+      let ugrid = {};
 
-    let graphInfob = {
+      let graphInfob = {
         edgeColor: "#848484",
         isDirected: true,
         isWeighted: true,
-    };
+      };
 
-    var options = {
-
+      var options = {
         edges: {
-            arrowStrikethrough: true,
-            chosen: true,
-            dashes: false,
-            font: {
-                size: 20, // px
-                background: 'none',
-                strokeWidth: 5, // px
-                strokeColor: '#ffffff',
-                align: 'horizontal',
-            },
-            hidden: false,
-            hoverWidth: 2,
-            label: undefined,
-            labelHighlightBold: true,
-            physics: true,
-            selectionWidth: 2.5,
-            selfReferenceSize: 20,
-            selfReference: {
-                size: 20,
-                angle: Math.PI / 4,
-                renderBehindTheNode: true
-            },
-            shadow: {
-                enabled: true,
-                color: 'rgba(0,0,0,0.5)',
-                size: 20,
-                x: 5,
-                y: 5
-            },
-            smooth: {
-                enabled: true,
-                type: "dynamic",
-                roundness: 10
-            },
-            title: undefined,
-            value: undefined,
-            width: 4,
-            widthConstraint: true
+          arrowStrikethrough: true,
+          chosen: true,
+          dashes: false,
+          font: {
+            size: 20, // px
+            background: "none",
+            strokeWidth: 5, // px
+            strokeColor: "#ffffff",
+            align: "horizontal",
+          },
+          hidden: false,
+          hoverWidth: 2,
+          label: undefined,
+          labelHighlightBold: true,
+          physics: true,
+          selectionWidth: 2.5,
+          selfReferenceSize: 20,
+          selfReference: {
+            size: 20,
+            angle: Math.PI / 4,
+            renderBehindTheNode: true,
+          },
+          shadow: {
+            enabled: true,
+            color: "rgba(0,0,0,0.5)",
+            size: 20,
+            x: 5,
+            y: 5,
+          },
+          smooth: {
+            enabled: true,
+            type: "dynamic",
+            roundness: 10,
+          },
+          title: undefined,
+          value: undefined,
+          width: 4,
+          widthConstraint: true,
         },
         nodes: {
-            borderWidth: 3,
-            borderWidthSelected: 2,
-            brokenImage: undefined,
-            chosen: true,
-            color: {
-                border: '#3f76c9',
-                background: '#97C2FC',
-                highlight: {
-                    border: '#0c6721',
-                    background: '#0caa31'
-                },
-                hover: {
-                    border: '#2B7CE9',
-                    background: '#D2E5FF'
-                }
+          borderWidth: 3,
+          borderWidthSelected: 2,
+          brokenImage: undefined,
+          chosen: true,
+          color: {
+            border: "#3f76c9",
+            background: "#97C2FC",
+            highlight: {
+              border: "#0c6721",
+              background: "#0caa31",
             },
-            opacity: 1,
-            fixed: {
-                x: false,
-                y: false
+            hover: {
+              border: "#2B7CE9",
+              background: "#D2E5FF",
             },
-            font: {
-                color: '#000000',
-                size: 25, // px
-                face: 'ubuntu',
-                background: 'none',
-                strokeWidth: 0.5, // px
-                strokeColor: '#000000   ',
-                align: 'center',
-            },
-            group: undefined,
-            heightConstraint: false,
-            hidden: false,
+          },
+          opacity: 1,
+          fixed: {
+            x: false,
+            y: false,
+          },
+          font: {
+            color: "#000000",
+            size: 25, // px
+            face: "ubuntu",
+            background: "none",
+            strokeWidth: 0.5, // px
+            strokeColor: "#000000   ",
+            align: "center",
+          },
+          group: undefined,
+          heightConstraint: false,
+          hidden: false,
 
-            label: undefined,
-            labelHighlightBold: true,
-            level: undefined,
-            mass: 2,
-            physics: true,
-            scaling: {
-                min: 10,
-                max: 30,
-                label: {
-                    enabled: false,
-                    min: 14,
-                    max: 30,
-                    maxVisible: 30,
-                    drawThreshold: 5
-                },
-                customScalingFunction: function (min, max, total, value) {
-                    if (max === min) {
-                        return 0.5;
-                    } else {
-                        let scale = 1 / (max - min);
-                        return Math.max(0, (value - min) * scale);
-                    }
-                }
+          label: undefined,
+          labelHighlightBold: true,
+          level: undefined,
+          mass: 2,
+          physics: true,
+          scaling: {
+            min: 10,
+            max: 30,
+            label: {
+              enabled: false,
+              min: 14,
+              max: 30,
+              maxVisible: 30,
+              drawThreshold: 5,
             },
-            shadow: {
-                enabled: true,
-                color: 'rgba(0,0,0,0.5)',
-                size: 10,
-                x: 5,
-                y: 5
+            customScalingFunction: function (min, max, total, value) {
+              if (max === min) {
+                return 0.5;
+              } else {
+                let scale = 1 / (max - min);
+                return Math.max(0, (value - min) * scale);
+              }
             },
-            shape: 'ellipse',
+          },
+          shadow: {
+            enabled: true,
+            color: "rgba(0,0,0,0.5)",
+            size: 10,
+            x: 5,
+            y: 5,
+          },
+          shape: "ellipse",
         },
-    }
+      };
 
-    grid["1"] = [
+      grid["1"] = [
         [2, 10],
         [3, 5],
-    ];
-    grid["2"] = [
+      ];
+      grid["2"] = [
         [4, 3],
         [5, 3],
-    ];
-    grid["3"] = [[4, 2]];
-    grid["4"] = [[5, 2]];
-    grid["5"] = [];
+      ];
+      grid["3"] = [[4, 2]];
+      grid["4"] = [[5, 2]];
+      grid["5"] = [];
 
-    const setSourceOption = (nodes, selectElement, optionText) => {
-        let option = '<option value="">' + optionText + '</option>';
+      const setSourceOption = (nodes, selectElement, optionText) => {
+        let option = '<option value="">' + optionText + "</option>";
         for (let i = 0; i < nodes.length; i++) {
-            option += '<option value="' + nodes[i] + '">' + nodes[i] + '</option>';
+          option +=
+            '<option value="' + nodes[i] + '">' + nodes[i] + "</option>";
         }
         selectElement.innerHTML = option;
-    }
+      };
 
-    let nodeList = [1, 2, 3, 4, 5];
-    setSourceOption(nodeList, document.getElementById('startNode'), 'Select Source');
-    setSourceOption(nodeList, document.getElementById('endNode'), 'Select Destination');
+      let nodeList = [1, 2, 3, 4, 5];
+      setSourceOption(
+        nodeList,
+        document.getElementById("startNode"),
+        "Select Source"
+      );
+      setSourceOption(
+        nodeList,
+        document.getElementById("endNode"),
+        "Select Destination"
+      );
 
-    var graph = new buildGraph(graphInfob, grid);
-    var steps = [];//graph.getUnWeightedDfsSteps(1, 5);
+      var graph = new buildGraph(graphInfob, grid);
+      var steps = []; //graph.getUnWeightedDfsSteps(1, 5);
 
-    var container = document.getElementById("container");
-    //let visDfs = new visualizeGraphAlog(steps, "#2B7CE9", "#ffa500", true);
-    let visDfs = new visualizeGraphAlog(steps, "#97C2FC", "#848484", true);
-    visDfs.init(container, graph.getGraph(), options);
+      var container = document.getElementById("container");
+      //let visDfs = new visualizeGraphAlog(steps, "#2B7CE9", "#ffa500", true);
+      let visDfs = new visualizeGraphAlog(steps, "#97C2FC", "#848484", true);
+      visDfs.init(container, graph.getGraph(), options);
 
-    var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/light");
-    //   editor.session.setMode("ace/mode/algorithm");
-    document.getElementById("editor").style.fontSize = "19px";
-    editor.setOptions({
+      var editor = ace.edit("editor");
+      editor.setTheme("ace/theme/light");
+      //   editor.session.setMode("ace/mode/algorithm");
+      document.getElementById("editor").style.fontSize = "19px";
+      editor.setOptions({
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true,
-    });
+      });
 
-    function dbg(value) {
+      function dbg(value) {
         console.log(value); // eslint-disable-line no-console
-    }
+      }
 
-    editor.on("change", function (delta) {
+      editor.on("change", function (delta) {
         let value = editor.getValue();
 
         if (value.length == undefined) {
         } else if (value.length > 0) {
+          grid = getGrid(value);
+          ugrid = getUnDirectedGrid(value);
 
-            grid = getGrid(value);
-            ugrid = getUnDirectedGrid(value);
+          let op = [];
+          for (let val in grid) {
+            op.push(val.valueOf());
+          }
 
-            let op = [];
-            for (let val in grid) {
-                op.push(val.valueOf());
-            }
+          setNodeCount(op.length);
+          setSourceOption(
+            op,
+            document.getElementById("startNode"),
+            "Select Source"
+          );
+          setSourceOption(
+            op,
+            document.getElementById("endNode"),
+            "Select Destination"
+          );
 
-            setNodeCount(op.length);
-            setSourceOption(op, document.getElementById('startNode'), 'Select Source');
-            setSourceOption(op, document.getElementById('endNode'), 'Select Destination');
-
-            graph.setGraphInfo(isWeighted(), isDirected());
-            graph.setGrid(grid, ugrid);
-            visDfs.init(container, graph.getGraph(), options);
+          graph.setGraphInfo(isWeighted(), isDirected());
+          graph.setGrid(grid, ugrid);
+          visDfs.init(container, graph.getGraph(), options);
         }
-    });
+      });
 
-    $("#start").click(function () {
+      $("#start").click(function () {
         //select start node and end node and calling method;
         let source = $("#startNode").val();
         let destination = $("#endNode").val();
         let select = $("#selectAlgorithm").val();
         console.log(destination);
         if (source == "") {
-            alert("Please select source node");
-            return;
+          alert("Please select source node");
+          return;
         }
         if (select == "BFS") {
+          graph.setGraphInfo(false, true);
+          steps = graph.getUnWeightedBfsSteps(source, destination);
+          visDfs.setSteps(steps);
+          visDfs.init(container, graph.getGraph(), options);
+
+          visualize(graph.pathNode, source);
+        } else if (select == "DFS") {
+          graph.setGraphInfo(true, false);
+          steps = graph.getUnWeightedDfsSteps(source, destination);
+          visDfs.setSteps(steps);
+          visDfs.init(container, graph.getGraph(), options);
+
+          visualize(graph.pathNode, source);
+        } else if (select == "Dijkstra") {
+          graph.setGraphInfo(true, true);
+          steps = graph.getWeightedDijkstraSteps(source, destination);
+          if (!isWeighted()) {
             graph.setGraphInfo(false, true);
             steps = graph.getUnWeightedBfsSteps(source, destination);
-            visDfs.setSteps(steps);
-            visDfs.init(container, graph.getGraph(), options);
+          }
+          visDfs.setSteps(steps);
+          visDfs.init(container, graph.getGraph(), options);
 
-            visualize(graph.pathNode, source);
-        } else if (select == "DFS") {
-            graph.setGraphInfo(true, false);
-            steps = graph.getUnWeightedDfsSteps(source, destination);
-            visDfs.setSteps(steps);
-            visDfs.init(container, graph.getGraph(), options);
-
-            visualize(graph.pathNode, source);
-        } else if (select == "Dijkstra") {
-            graph.setGraphInfo(true, true);
-            steps = graph.getWeightedDijkstraSteps(source, destination);
-            if (!isWeighted()) {
-                graph.setGraphInfo(false, true);
-                steps = graph.getUnWeightedBfsSteps(source, destination);
-            }
-            visDfs.setSteps(steps);
-            visDfs.init(container, graph.getGraph(), options);
-
-            visualize(graph.pathNode, source);
-            return;
+          visualize(graph.pathNode, source);
+          return;
         } else {
-            alert("Please select an algorithm");
-            return;
+          alert("Please select an algorithm");
+          return;
         }
-    });
+      });
 
-    $("#selectAlgorithm").on("change", function () {
+      $("#selectAlgorithm").on("change", function () {
         let algorithm = $(this).val();
         let selectedAlgorithm = new graphAlgorithmDetails(algorithm);
         $("#algorithm-title").html(selectedAlgorithm.algorithmName);
         $("#algorithm-summary").html(selectedAlgorithm.algorithmSummary);
         $("#algorithm-description").html(
-            selectedAlgorithm.algorithmDescription
+          selectedAlgorithm.algorithmDescription
         );
         $("#worstCase").html(selectedAlgorithm.bestTime);
         $("#averageCase").html(selectedAlgorithm.averageTime);
         $("#bestCase").html(selectedAlgorithm.worstTime);
         $("#spaceComplexity").html(selectedAlgorithm.spaceComplexity);
-    });
+      });
 
-    $("#isDirected").on("change", function () {
+      $("#isDirected").on("change", function () {
         graph.setGraphInfo(isWeighted(), isDirected());
         visDfs.init(container, graph.getGraph(), options);
-    });
+      });
 
-    $("#isWeighted").on("change", function () {
-            graph.setGraphInfo(isWeighted(), isDirected());
-            visDfs.init(container, graph.getGraph(), options);
-        }
-    );
+      $("#isWeighted").on("change", function () {
+        graph.setGraphInfo(isWeighted(), isDirected());
+        visDfs.init(container, graph.getGraph(), options);
+      });
 
-    function setNodeCount(count) {
+      function setNodeCount(count) {
         document.getElementById("nodeCount").innerHTML = count;
-    }
+      }
 
-    function isWeighted() {
+      function isWeighted() {
         return document.getElementById("isWeighted").checked;
-    }
+      }
 
-    function isDirected() {
+      function isDirected() {
         return document.getElementById("isDirected").checked;
-    }
+      }
 
-    function visualize(nodes, source) {
+      function visualize(nodes, source) {
         let isFirstStep = true;
 
         function startAnimation() {
-            if (!isFirstStep) {
-                visDfs.releaseStep();
-            }
+          if (!isFirstStep) {
+            visDfs.releaseStep();
+          }
 
-            if (!visDfs.isStepAvailable()) {
-                clearInt();
-                return;
-            }
+          if (!visDfs.isStepAvailable()) {
+            clearInt();
+            return;
+          }
 
-            visDfs.nextStep();
-            isFirstStep = false;
+          visDfs.nextStep();
+          isFirstStep = false;
         }
 
         let myInt = setInterval(startAnimation, 1000);
 
         function clearInt() {
-            clearInterval(myInt);
-            visDfs.pathNodeColor(nodes);
-            if (visDfs.steps.length == 0) {
-                visDfs.colorNode(source, visDfs.visitedNodeColor);
+          clearInterval(myInt);
+          visDfs.pathNodeColor(nodes);
+          if (visDfs.steps.length == 0) {
+            visDfs.colorNode(source, visDfs.visitedNodeColor);
+          }
+          if ($("#selectAlgorithm").val() == "Dijkstra") {
+            if (graph.isFound) {
+              alert("Path found with minimum cost :" + graph.shortestCost);
+            } else {
+              alert("Total Cost of Every Path is " + graph.shortestCost);
             }
-            if ($("#selectAlgorithm").val() == "Dijkstra") {
-                if (graph.isFound) {
-                    alert("Path found with minimum cost :" + graph.shortestCost);
-                } else {
-                    alert("Total Cost of Every Path is " + graph.shortestCost);
-                }
-            }
+          }
         }
+      }
 
-    }
-
-    document.getElementById("save").onclick = function () {
+      document.getElementById("save").onclick = function () {
         var canvas = document.getElementsByTagName("canvas")[0];
         //set a background color for the canvas
         canvas.style.backgroundColor = "#ffffff";
-        var link = document.createElement('a');
-        link.download = 'my-network.jpg';
+        var link = document.createElement("a");
+        link.download = "my-network.jpg";
         link.href = canvas.toDataURL("image/jpeg", 1.0);
         link.click();
-    };
-</script>
+      };
+    </script>
 
-<!-- Tutorial Modal JS -->
-<script type="module">
-    import Tutorial from "../../js/sort/tutorial.js";
-    $(document).ready(function () {
-        var tutorial = new Tutorial("");
+    <!-- Tutorial Modal JS -->
+    <script type="module">
+      import Tutorial from "../../js/sort/tutorial.js";
+      $(document).ready(function () {
+        var tutorial = new Tutorial("hi");
+        tutorial.setTutorial(1, "graph");
         tutorial.show();
         $("#tutorial-next").click(function () {
-                tutorial.setTutorial(document.getElementById("tutorial-next").dataset.val,"graph");
-            }
-        );
+          tutorial.setTutorial(
+            document.getElementById("tutorial-next").dataset.val,
+            "graph"
+          );
+        });
         $("#tutorial-prev").click(function () {
-                tutorial.setTutorial(document.getElementById("tutorial-prev").dataset.val,"graph");
-            }
-        );
+          tutorial.setTutorial(
+            document.getElementById("tutorial-prev").dataset.val,
+            "graph"
+          );
+        });
         $("#tutorial-skip").click(function () {
-                tutorial.hide();
-            }
-        );
-    });
-</script>
-</body>
+          tutorial.hide();
+        });
+      });
+    </script>
+  </body>
 </html>

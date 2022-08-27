@@ -108,7 +108,7 @@ class Tutorial {
     };
     this.gridTutorialStep = {
       1: {
-        title: "Welcome to the tutorial",
+        title: "Welcome to the grid tutorial",
         text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
         body: `
                  <h2 class="text-2xl font-semibold "> This short tutorial will walk you through all the features of this application.</h2>
@@ -117,30 +117,94 @@ class Tutorial {
                 </h3>
                 
                 `,
-        image: "../Images/bar.png",
+        image: "/Images/graph/gg7.png",
         next: 2,
         prev: 1,
         isFinish: false,
       },
       2: {
-        title: "Welcome to the tutorial 2",
+        title: "Welcome to the grid tutorial",
         text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
         body: `
-                 <h2 class="text-2xl font-semibold "> This short tutorial will walk you through all the features of this application.</h2>
+                 <h2 class="text-2xl font-semibold "> select a algorithm from dropdown menu.</h2>
                 <h3 class="font-bold" >
-                    If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!
+                    which you want to visualize!
                 </h3>
                 
                 `,
-        image: "../Images/bar.png",
+        image: "/Images/graph/gg1.png",
         next: 3,
         prev: 1,
         isFinish: false,
       },
+      3: {
+        title: "Welcome to the grid tutorial",
+        text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
+        body: `
+                 <h2 class="text-2xl font-semibold ">Set the animation speed from here.</h2>
+                <h3 class="font-bold" >
+                    and enjoy it!
+                </h3>
+                
+                `,
+        image: "/Images/graph/ggs.png",
+        next: 4,
+        prev: 2,
+        isFinish: false,
+      },
+      4: {
+        title: "Welcome to the grid tutorial",
+        text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
+        body: `
+                 <h2 class="text-2xl font-semibold ">Set the obstacle and made it more difficult to reach the destination</h2>
+                <h3 class="font-bold" >
+                    so click this obstacle button!
+                </h3>
+                
+                `,
+        image: "/Images/graph/gg3.png",
+        next: 5,
+        prev: 3,
+        isFinish: false,
+      },
+      5: {
+        title: "Welcome to the grid tutorial",
+        text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
+        body: `
+                 <h2 class="text-2xl font-semibold ">Oh! Don't forget to click the visualize button</h2>
+          `,
+        image: "/Images/graph/gg4.png",
+        next: 6,
+        prev: 4,
+        isFinish: false,
+      },
+      6: {
+        title: "Welcome to the grid tutorial",
+        text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
+        body: `
+                 <h2 class="text-2xl font-semibold ">Another important tips is after click obstacle button you can create obstacle on grid using mouse.Just hold the mouse on grid area obstacle gonna create by themeselve by following your mouse pointer</h2>
+          `,
+        image: "/Images/graph/gg5.png",
+        next: 7,
+        prev: 6,
+        isFinish: false,
+      },
+      7: {
+        title: "Welcome to the grid tutorial",
+        text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
+        body: `
+                 <h2 class="text-2xl font-semibold ">Congratulations! you'r good to go. Go and play, don't forget to look the down left and right box to learn more about the algorithm</h2>
+          `,
+        image:
+          "https://teresas.ac.in/wp-content/uploads/2020/11/360_F_215944418_bd7YIht4fl2OJDNmokCkRDo72pIdYV60.jpg",
+        next: -1,
+        prev: 5,
+        isFinish: true,
+      },
     };
     this.graphTutorialStep = {
       1: {
-        title: "Welcome to the tutorial",
+        title: "Welcome to the graph tutorial",
         text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
         body: `
                  <h2 class="text-2xl font-semibold "> This short tutorial will walk you through all the features of this application.</h2>
@@ -149,8 +213,30 @@ class Tutorial {
                 </h3>
                 
                 `,
-        image: "../Images/bar.png",
+        image: "/Images/graphNode/gnc.png",
         next: 2,
+        prev: 1,
+        isFinish: false,
+      },
+      2: {
+        title: "Welcome to the graph tutorial",
+        text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
+        body: `
+                 <h2 class="text-2xl font-semibold ">Select an algorithm from the dropdown menu</h2>  
+                `,
+        image: "/Images/graphNode/gn1.png",
+        next: 3,
+        prev: 1,
+        isFinish: false,
+      },
+      3: {
+        title: "Welcome to the graph tutorial",
+        text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
+        body: `
+                 <h2 class="text-2xl font-semibold ">Select an algorithm from the dropdown menu</h2>  
+                `,
+        image: "/Images/graphNode/gn1.png",
+        next: 3,
         prev: 1,
         isFinish: false,
       },
@@ -217,6 +303,24 @@ class Tutorial {
         isFinish: true,
       },
     };
+    this.stackArrayTutorialStep = {
+      1: {
+        title: "Welcome to Expression Stack Array tutorial",
+        text: "This is a tutorial to help you get started with the Expression Tree. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
+        body: `
+                 <h2 class="text-2xl font-semibold "> This short tutorial will walk you through all the features of this application.</h2>
+                <h3 class="font-bold" >
+                    If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!
+                </h3>
+                
+                `,
+        image:
+          "https://www.sanfoundry.com/wp-content/uploads/2018/07/expression-tree-questions-answers-q11.png",
+        next: 2,
+        prev: 1,
+        isFinish: false,
+      },
+    };
   }
 
   init() {
@@ -231,6 +335,10 @@ class Tutorial {
       selectedTutorialStep = this.gridTutorialStep[this.selectedStep];
     } else if (this.tutorialType === "expressionTree") {
       selectedTutorialStep = this.expressionTutorialStep[this.selectedStep];
+    } else if (this.tutorialType === "stackArray") {
+      selectedTutorialStep = this.stackArrayTutorialStep[this.selectedStep];
+    } else if (this.tutorialType === "graph") {
+      selectedTutorialStep = this.graphTutorialStep[this.selectedStep];
     }
 
     let tutorial = document.getElementById("tutorial");

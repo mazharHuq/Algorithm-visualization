@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sorting</title>
+    <title>Graph</title>
     <link rel="stylesheet" href="/CSS/sort.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -56,7 +56,6 @@
     <style>
         .tutorial-container {
             display: none;
-
             width: 100%;
             height: 100%;
             position: fixed;
@@ -67,14 +66,12 @@
 
         }
         .tutorial {
-
             font-family: 'Baloo 2', cursive;
             font-size: 1.5rem;
             color: black;
             text-align: center;
             position: fixed;
             z-index: 4555;
-
             width: 70%;
             height: 80%;
             top: 10%;
@@ -218,7 +215,7 @@
 
     <script type="module">
         import sortingAlgorithmDetails from "../js/sort/sortingAlgorithmDetails.js"
-        import Tutorial from "../js/sort/tutorial.js"
+       
         $(document).ready(function () {
 
             const startButton = $("#start");
@@ -236,9 +233,7 @@
             const width = 20;
             const cellSize = 5;
 
-            var tutorial = new Tutorial("mazharul Boss");
-
-            tutorial.show();
+            
             const grid = new Grid(height, width, cellSize,startButton,START_X,START_Y,END_X,END_Y);
           
             var isRunning = false;
@@ -309,21 +304,41 @@
             );
             //###################################################//
             //###################################################//
-
-            $("#tutorial-next").click(function () {
-                    tutorial.setTutorial(document.getElementById("tutorial-next").dataset.val,"grid");
-                }
-            );
-            $("#tutorial-prev").click(function () {
-                    tutorial.setTutorial(document.getElementById("tutorial-prev").dataset.val,"grid");
-                }
-            );
-            $("#tutorial-skip").click(function () {
-                    tutorial.hide();
-                }
-            );
+            
+            // $("#tutorial-next").click(function () {
+            //         tutorial.setTutorial(document.getElementById("tutorial-next").dataset.val,"grid");
+            //     }
+            // );
+            // $("#tutorial-prev").click(function () {
+            //         tutorial.setTutorial(document.getElementById("tutorial-prev").dataset.val,"grid");
+            //     }
+            // );
+            // $("#tutorial-skip").click(function () {
+            //         tutorial.hide();
+            //     }
+            // );
 
         });
+    </script>
+    <script type="module">
+        import Tutorial from "../js/sort/tutorial.js";
+    $(document).ready(function () {
+        var tutorial = new Tutorial("");
+        tutorial.setTutorial(1,"grid");
+        tutorial.show();
+        $("#tutorial-next").click(function () {
+                tutorial.setTutorial(document.getElementById("tutorial-next").dataset.val,"grid");
+            }
+        );
+        $("#tutorial-prev").click(function () {
+                tutorial.setTutorial(document.getElementById("tutorial-prev").dataset.val,"grid");
+            }
+        );
+        $("#tutorial-skip").click(function () {
+                tutorial.hide();
+            }
+        );
+    });
     </script>
 </body>
 
