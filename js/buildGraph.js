@@ -217,7 +217,8 @@ class buildGraph {
         this.dbg(destination);
         // queue structure using array
         var queue = [];
-
+        this.shortestCost =0;
+        this.isFound = false;
         this.visited = {};
         this.visited[source] = true;
 
@@ -262,7 +263,7 @@ class buildGraph {
         let nodeOrder = [];
         if (flag) {
             // shortest path exist
-
+            this.isFound = true;
             let stack = [];
             stack.push(destination);
             nodeOrder.push(destination + "");
@@ -375,7 +376,8 @@ class buildGraph {
     getUnWeightedDfsSteps(source, destination) {
         // stack structure using array
         let stack = [];
-
+        this.shortestCost = 0;
+        this.isFound = false;
         this.visited = {};
         this.visited[source] = true;
 
@@ -423,7 +425,7 @@ class buildGraph {
         let nodeOrder = [];
         if (flag) {
             // shortest path exist
-
+            this.isFound = true;
             let stack = [];
             stack.push(destination);
             nodeOrder.push(destination + "");
@@ -469,6 +471,8 @@ class buildGraph {
         let stepStack = [];
         let parent = [];
         var costs = [];
+        let nodeCost = [];
+
         this.shortestCost = 0;
         this.isFound = false;
         for (let node in this.grid) {
@@ -509,7 +513,7 @@ class buildGraph {
                     let v = grid[u][i][0];
                     let newCost = grid[u][i][1];
                     if (newCost < costs[v] - cost) {
-
+                        nodeCost[v] = newCost;
                         costs[v] = newCost + cost;
                         parent[v] = u;
                         priorityQueue.enqueue([v, costs[v]]);
@@ -521,7 +525,6 @@ class buildGraph {
         let nodeOrder = [];
         if (flag) {
             // shortest path exist
-
             let stack = [];
             stack.push(destination);
             nodeOrder.push(destination + "");
@@ -545,6 +548,11 @@ class buildGraph {
                 }
             }
         }else if (destination == ""){
+            this.shortestCost = 0;
+            for (let i in nodeCost) {
+                this.shortestCost += parseInt(costs[i]);
+            }
+            dbg("costs " + nodeCost);
             for (var i = 0; i < steps.length; i++) {
                 steps[i]["isPath"] = true;
             }

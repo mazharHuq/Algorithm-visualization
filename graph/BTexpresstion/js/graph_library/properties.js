@@ -8,7 +8,7 @@
  */
 
 var MAIN_SVG_WIDTH = window.innerWidth * 0.9;
-const MAIN_SVG_HEIGHT = window.innerHeight*0.6;
+const MAIN_SVG_HEIGHT = window.innerHeight * 0.7;
 
 /*
  * GraphVertexWidget
