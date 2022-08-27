@@ -1,19 +1,18 @@
 class sortingAlgorithmDetails {
-  constructor(sortFunction) {
-    this.sortFunction = sortFunction;
-    this.algorithmName = "";
-    this.algorithmDescription = "";
-    this.algorithmSummary = "";
-    this.bestTime = "";
-    this.averageTime = "";
-    this.worstTime = "";
-    this.spaceComplexity = "";
-    (this.bubbleSort = {
-      name: "Bubble Sort",
-      algorithm:
-        "Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
-      complexity: "",
-      description: `<div class="card">
+    constructor(sortFunction) {
+        this.sortFunction = sortFunction;
+        this.algorithmName = "";
+        this.algorithmDescription = "";
+        this.algorithmSummary = "";
+        this.bestTime = "";
+        this.averageTime = "";
+        this.worstTime = "";
+        this.spaceComplexity = "";
+        this.bubbleSort = {
+            name: "Bubble Sort",
+            algorithm: "Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
+            complexity: "",
+            description: `<div class="card">
             How Bubble Sort Works?<br>
                 Consider an array arr[] = {5, 1, 4, 2, 8}<br>
                 First Pass: <br>
@@ -39,19 +38,6 @@ class sortingAlgorithmDetails {
                 ( 1 2 4 5 8 ) –> ( 1 2 4 5 8 ) <br>
                 ( 1 2 4 5 8 ) –> ( 1 2 4 5 8 )<br>
                     </div>`,
-<<<<<<< HEAD
-      averageTime: "O(n^2)",
-      worstTime: "O(n^2)",
-      bestTime: "O(n)",
-      spaceComplexity: "O(1)",
-    }),
-      (this.selectionSort = {
-        name: "Selection Sort",
-        algorithm:
-          "Selection Sort is a sorting algorithm in which the smallest element is selected from the array and swapped with the first element. The same is repeated for the remaining elements. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
-        complexity: "",
-        description: `<div class="card">
-=======
             averageTime: "O(n^2)",
             worstTime: "O(n^2)",
             bestTime: "O(n)",
@@ -62,7 +48,6 @@ class sortingAlgorithmDetails {
             algorithm: "Selection Sort is a sorting algorithm in which the smallest element is selected from the array and swapped with the first element. The same is repeated for the remaining elements. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
             complexity: "",
             description: `<div class="card">
->>>>>>> 8c39fd9d909691270c1a868f6d0bc6e2cb9217e4
         How Selection Sort Works?<br>
         Lets consider the following array as an example: arr[] = {64, 25, 12, 22, 11}<br>
 
@@ -94,19 +79,6 @@ class sortingAlgorithmDetails {
         At last the largest value present in the array automatically get placed at the last position in the array<br>
         The resulted array is the sorted array. <br>
            `,
-<<<<<<< HEAD
-        averageTime: "O(n^2)",
-        worstTime: "O(n^2)",
-        bestTime: "O(n^2)",
-        spaceComplexity: "O(1)",
-      }),
-      (this.insertionSort = {
-        name: "Insertion Sort",
-        algorithm:
-          "Insertion Sort is a sorting algorithm in which the smallest element is selected from the array and swapped with the first element. The same is repeated for the remaining elements. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
-        complexity: "",
-        description: `<div class="card">
-=======
             averageTime: "O(n^2)",
             worstTime: "O(n^2)",
             bestTime: "O(n^2)",
@@ -117,7 +89,6 @@ class sortingAlgorithmDetails {
             algorithm: "Insertion Sort is a sorting algorithm in which the smallest element is selected from the array and swapped with the first element. The same is repeated for the remaining elements. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
             complexity: "",
             description: `<div class="card">
->>>>>>> 8c39fd9d909691270c1a868f6d0bc6e2cb9217e4
         How Insertion Sort Works?<br>
         Lets consider the following array as an example: arr[] = {64, 25, 12, 22, 11}<br>
         <br>
@@ -150,19 +121,6 @@ class sortingAlgorithmDetails {
         automatically get placed at the last position in the array<br>
         The resulted array is the sorted array. <br>
         `,
-<<<<<<< HEAD
-        averageTime: "O(n^2)",
-        worstTime: "O(n^2)",
-        bestTime: "O(n)",
-        spaceComplexity: "O(1)",
-      }),
-      (this.BreadthFirstSearch = {
-        name: "Breadth First Search",
-        algorithm:
-          "Breadth First Search is a search algorithm that traverses nodes in a tree level by level.",
-        complexity: "",
-        description: `<div class="card">
-=======
             averageTime: "O(n^2)",
             worstTime: "O(n^2)",
             bestTime: "O(n)",
@@ -187,17 +145,17 @@ class sortingAlgorithmDetails {
                         href="https://www.geeksforgeeks.org/expression-tree/">
                     <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             `,
-            averageTime: "",
-            worstTime: "",
-            bestTime: "",
-            spaceComplexity: "O(V+E)",
+            averageTime: "O(V^2)",
+            worstTime: "   ss",
+            bestTime: "O(V^2)",
+            spaceComplexity: "O(|V|)",
         };
         this.BreadthFirstSearch = {
             name: "Breadth First Search",
             algorithm: "Breadth First Search is a search algorithm that traverses nodes in a tree level by level.",
-            complexity: "",
+            complexity: "O(V+E)",
+            spaceComplexity: "O(|V|)",
             description: `<div class="card">
->>>>>>> 8c39fd9d909691270c1a868f6d0bc6e2cb9217e4
            Breadth-First Traversal (or Search) for a graph is similar to Breadth-First Traversal of a tree (See method 2 of this post). 
 
             The only catch here is, that, unlike trees, graphs may contain cycles, so we may come to the same node again.
@@ -231,7 +189,6 @@ class sortingAlgorithmDetails {
                 3. If the sought vertex is not found in the queue, return false.
                 <br>
                 <br>
-                The algorithm for searching a vertex u is as follows:
                
             `,
         };
@@ -281,90 +238,6 @@ class sortingAlgorithmDetails {
                     <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             
             `,
-<<<<<<< HEAD
-      }),
-      (this.DepthFirstSearch = {
-        name: "Depth First Search",
-        algorithm:
-          "Depth First Search is a search algorithm that traverses nodes in a tree level by level.",
-        complexity: "",
-        description: `<div class="card">
-           Breadth-First Traversal (or Search) for a graph is similar to Breadth-First Traversal of a tree (See method 2 of this post). 
-
-            The only catch here is, that, unlike trees, graphs may contain cycles, so we may come to the same node again.
-             To avoid processing a node more than once, we divide the vertices into two categories:
-                <br>
-                1. The ones that are already processed.
-                <br>
-                2. The ones that are not processed yet.
-                <br>
-                <br>
-                The algorithm for searching a vertex u is as follows:
-                <br>
-                1. Mark u as processed.
-                <br>
-                2. Add u to the queue.
-                <br>
-                3. While the queue is not empty:
-                <br>
-                a. Remove the first vertex from the queue.
-                <br>
-                b. If the removed vertex is the sought vertex, return true.
-                <br>
-                c. Otherwise, for each neighbor v of u:
-                <br>
-                i. If v is not processed:
-                <br>
-                1. Mark v as processed.
-                <br>
-                2. Add v to the queue.
-                <br>
-                3. If the sought vertex is not found in the queue, return false.
-                <br>
-                <br>
-                The algorithm for searching a vertex u is as follows:
-                
-            
-            
-            `,
-      });
-    this.render();
-  }
-
-  render() {
-    if (this.sortFunction == "bubbleSort") {
-      this.algorithmName = this.bubbleSort.name;
-      this.algorithmDescription = this.bubbleSort.description;
-      this.algorithmSummary = this.bubbleSort.algorithm;
-      this.bestTime = this.bubbleSort.bestTime;
-      this.worstTime = this.bubbleSort.worstTime;
-      this.averageTime = this.bubbleSort.averageTime;
-      this.spaceComplexity = this.bubbleSort.spaceComplexity;
-    } else if (this.sortFunction == "selectionSort") {
-      this.algorithmName = this.selectionSort.name;
-      this.algorithmDescription = this.selectionSort.description;
-      this.algorithmSummary = this.selectionSort.algorithm;
-      this.bestTime = this.selectionSort.bestTime;
-      this.averageTime = this.selectionSort.averageTime;
-      this.worstTime = this.selectionSort.worstTime;
-      this.spaceComplexity = this.selectionSort.spaceComplexity;
-    } else if (this.sortFunction == "insertionSort") {
-      this.algorithmName = this.insertionSort.name;
-      this.algorithmDescription = this.insertionSort.description;
-      this.algorithmSummary = this.insertionSort.algorithm;
-      this.bestTime = this.insertionSort.bestTime;
-      this.averageTime = this.insertionSort.averageTime;
-      this.worstTime = this.insertionSort.worstTime;
-      this.spaceComplexity = this.insertionSort.spaceComplexity;
-    } else if (this.sortFunction == "bfs") {
-      this.algorithmName = this.BreadthFirstSearch.name;
-      this.algorithmDescription = this.BreadthFirstSearch.description;
-      this.algorithmSummary = this.BreadthFirstSearch.algorithm;
-    } else if (this.sortFunction == "dfs") {
-      this.algorithmName = this.DepthFirstSearch.name;
-      this.algorithmDescription = this.DepthFirstSearch.description;
-      this.algorithmSummary = this.DepthFirstSearch.algorithm;
-=======
         };
         this.gridDFS = {
             name: "Depth First Search",
@@ -390,7 +263,7 @@ class sortingAlgorithmDetails {
         this.gridBFS = {
             name: "Breadth First Search",
             algorithm:
-            "",
+                "",
             complexity: "O(ROW * COL)",
             description: `
             <div class="card">
@@ -437,17 +310,17 @@ Add the element positions from left, right, down and up from the current element
             this.averageTime = this.insertionSort.averageTime;
             this.worstTime = this.insertionSort.worstTime;
             this.spaceComplexity = this.insertionSort.spaceComplexity;
-        } else if (this.sortFunction == "bfs") {
+        } else if (this.sortFunction == "BFS") {
             this.algorithmName = this.BreadthFirstSearch.name;
             this.algorithmDescription = this.BreadthFirstSearch.description;
             this.algorithmSummary = this.BreadthFirstSearch.algorithm;
         }
-        else if (this.sortFunction == "dfs") {
+        else if (this.sortFunction == "DFS") {
             this.algorithmName = this.DepthFirstSearch.name;
             this.algorithmDescription = this.DepthFirstSearch.description;
             this.algorithmSummary = this.DepthFirstSearch.algorithm;
         }
-        else if (this.sortFunction == "dijkstra") {
+        else if (this.sortFunction == "Dijkstra") {
             this.algorithmName = this.Dijkstra.name;
             this.algorithmDescription = this.Dijkstra.description;
             this.algorithmSummary = this.Dijkstra.algorithm;
@@ -456,7 +329,7 @@ Add the element positions from left, right, down and up from the current element
             this.worstTime = this.Dijkstra.worstTime;
             this.spaceComplexity = this.Dijkstra.spaceComplexity;
         }
-        else if (this.gridBFS == "gridBFS") {
+        else if (this.sortFunction == "gridBFS") {
             this.algorithmName = this.gridBFS.name;
             this.algorithmDescription = this.gridBFS.description;
             this.algorithmSummary = this.gridBFS.algorithm;
@@ -465,7 +338,7 @@ Add the element positions from left, right, down and up from the current element
             this.worstTime = this.gridBFS.worstTime;
             this.spaceComplexity = this.gridBFS.spaceComplexity;
         }
-        else if (this.gridDFS == "gridDFS") {
+        else if (this.sortFunction == "gridDFS") {
             this.algorithmName = this.gridDFS.name;
             this.algorithmDescription = this.gridDFS.description;
             this.algorithmSummary = this.gridDFS.algorithm;
@@ -474,9 +347,7 @@ Add the element positions from left, right, down and up from the current element
             this.worstTime = this.gridDFS.worstTime;
             this.spaceComplexity = this.gridDFS.spaceComplexity;
         }
->>>>>>> 8c39fd9d909691270c1a868f6d0bc6e2cb9217e4
     }
-  }
 }
 
 export default sortingAlgorithmDetails;
