@@ -16,7 +16,7 @@ class Bar{
         el.style.width = '25px';
         el.style.left = this.left+'px';
         let randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
-        el.style.backgroundColor = randomColor;
+        el.style.backgroundColor = '#97C2FC';
         el.setAttribute('data-value',this.value);
         el.setAttribute('data-left',this.left);
         el.setAttribute('data-top',this.top);

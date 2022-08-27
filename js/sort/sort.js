@@ -43,7 +43,10 @@ class Sort {
 
     generateRandomArray() {
         let limit = Math.round(Math.random(2, 122) * 30) + 1;
-        limit = 10;
+        while (limit<10){
+            limit = Math.round(Math.random(2, 122) * 30) + 1;
+        }
+        //limit = 10;
         while (limit) {
             if (limit === 0) break;
             this.arr.push(Math.round(Math.random(2, 122) * 50) + 1)
@@ -141,6 +144,13 @@ class Sort {
                     await this.colorNodes(i, this.color.finalColor, parseInt(this.speed / 10));
                 }
             }
+            else if (swappingNode.type === 'colorTillFirst') {
+                for (let i = 0; i < this.bar.length; i++) {
+                    if (i < swappingNode.firstNode) {
+                        await this.colorNodes(i, this.color.finalColor, parseInt(this.speed / 10));
+                    }
+                }
+            }
             this.currentStep++;
         }
     }
@@ -198,8 +208,8 @@ class Sort {
     async actionWithStep(action) {
         let time = 10;
         if (action.type === 'check') {
-            await this.colorNodes(action.firstNode, this.color.visitedColor, time);
-            await this.colorNodes(action.secondNode, this.color.visitedColor, time);
+            await this.colorNodes(action.firstNode, this.color.traverseColor, time);
+            await this.colorNodes(action.secondNode, this.color.traverseColor, time);
         } else if (action.type === 'swap') {
             await this.swap(action.firstNode, action.secondNode, this.color.targetColor, time);
         } else if (action.type === 'sorted') {
@@ -359,12 +369,19 @@ class Sort {
             this.step.push({
                 type: 'goUp', firstNode: i,
             });
+            this.step.push({
+                type:'colorTillFirst',
+                firstNode: i,
+            });
 
             for (j; j >= 0; j--) {
                 if (this.arr[j] > currentValue) {
                     this.arr[j + 1] = this.arr[j];
                     this.step.push({
                         firstNode: j, secondNode: j + 1, type: 'swap',
+                    });
+                    this.step.push({
+                        firstNode: j+1, type: 'sorted',
                     });
                     if (j === 0) {
                         this.step.push({

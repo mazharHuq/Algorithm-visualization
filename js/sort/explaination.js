@@ -7,11 +7,6 @@ class Explanation{
         let body=document.body;
         let div=document.createElement('div');
         div.setAttribute('id','explanation');
-        div.style.position='absolute';
-        div.style.bottom='0';
-        div.style.right='0';
-        div.style.width='25%';
-        div.style.height='30%';
         div.style.backgroundColor='lightblue';
         div.style.zIndex='100';
         div.style.display='none';

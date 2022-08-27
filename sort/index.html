@@ -52,6 +52,28 @@
 
 
     </style>
+    <!-- Explanation Details -->
+    <style>
+        #explanation{
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 25%;
+            height: 300px;
+            background: rgba(218, 194, 194, 0.8);
+            z-index: 100;
+        }
+        #explanation-bar{
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width:40px;
+            height: 300px;
+            background: rgba(10, 2, 2, 0.8);
+            z-index: 100;
+        }
+    </style>
+
 
 
     <link
@@ -65,7 +87,14 @@
 </head>
 
 <body class="bg-blue-100 js-container">
-<div class=" container" ></div>
+<div id="explanation">
+
+</div>
+<div id="explanation-bar" class="flex justify-center">
+<button>
+    <i class="fa-solid fa-left-to-line font-bold text-white"></i>
+</button>
+</div>
 
 <!-- Algorithm Tut -->
 <div class="tutorial-container "  id="tutorial">
@@ -163,20 +192,23 @@
     <div class="mother absolute bottom-0" style="border-bottom: 5px solid black;">
 
     </div>
-    <div class="explanation bg-gray-100 h-60 p-2" style="position: absolute;right:0;">
-        <div class="explanation-container">
-            <div class="explanation-title">
-                <h1 class="font-bold text-2xl">Explanation</h1>
-            </div>
-            <div class="explanation-content">
-                <p class="text-lg">
-                    This is the explanation of the algorithm.
-                </p>
+
+</div>
+
+    <div style="" class="mediaControl shadow bg-white bottom-0 w-full my-3">
+        <div class="container flex justify-center mx-auto">
+            <div class="flex items-center px-4 py-2">
+                <div class="flex items-center space-x-8">
+                    <i class="fa-solid fa-square" style="color: #97C2FC"></i> <span>Default Node</span>
+                    <i class="fa-solid fa-square" style="color: #0caa31"></i> <span>Selected</span>
+                    <i class="fa-solid fa-square" style="color: #2ebbd1"></i> <span>Queue</span>
+                    <i class="fa-solid fa-square" style="color: #2B7CE9"></i> <span>Visited</span>
+                    <i class="fa-solid fa-square" style="color: #848484"></i> <span>Default Edge</span>
+                    <i class="fa-solid fa-square" style="color: #ffa500"></i> <span>Visiting</span>
+                </div>
             </div>
         </div>
-
     </div>
-</div>
 
 <div style="" class="mediaControl  shadow bg-white  bottom-0 w-full">
     <div class="container flex justify-center mx-auto">
@@ -315,7 +347,7 @@
         var currentStep = 0;
 
         var tutorial = new Tutorial(container);
-        // tutorial.show();
+       // tutorial.show();
 
         let sort = new Sort(container, []);
         $('#speed').on('change', function () {
