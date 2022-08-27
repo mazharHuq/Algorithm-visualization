@@ -22,17 +22,16 @@ border-radius: 10px;
     bottom: 0;
     display: flex;
     align-items: baseline;
-    justify-content: space-between;
-    padding-left: .5rem;
+    justify-content: center;
+
     color: antiquewhite;
 
 }
 li>span {
     font-weight: 600;
-    vertical-align: top;
     transform: rotate(-180deg);
     -moz-transform: rotate(-180deg);
-    margin-right: 3px;
+
 }
 #status {
     bottom: 255px;

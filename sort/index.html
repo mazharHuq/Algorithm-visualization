@@ -57,20 +57,25 @@
         #explanation{
             position: fixed;
             bottom: 0;
-            right: 0;
+            right: 32px;
             width: 25%;
             height: 300px;
-            background: rgba(218, 194, 194, 0.8);
+            background: rgba(217, 164, 164, 0.5);
+
             z-index: 100;
+
         }
         #explanation-bar{
             position: fixed;
             bottom: 0;
             right: 0;
-            width:40px;
+            width:30px;
             height: 300px;
             background: rgba(10, 2, 2, 0.8);
             z-index: 100;
+        }
+        #explanation-bar>*:hover{
+            background: rgba(145, 133, 72, 0.8);
         }
     </style>
 
@@ -87,12 +92,35 @@
 </head>
 
 <body class="bg-blue-100 js-container">
-<div id="explanation">
+<div id="explanation" class="bg-orange-500">
+    <P id="codeChange" class="p-2 font-bold bg-orange-300">
+        Show Code
+    </P>
 
+    <div id="pseudocode"   class="bg-gray-500 text-small text-white  ">
+
+    </div>
 </div>
 <div id="explanation-bar" class="flex justify-center">
-<button>
-    <i class="fa-solid fa-left-to-line font-bold text-white"></i>
+<button id="explanation_toogler" class="text-white font-bold w-full h-full bg-black" onclick="f();function f() {
+  let explanation = document.getElementById('explanation');
+  let button=document.getElementById('explanation_toogler');
+    if (explanation.style.display === 'none') {
+        explanation.style.display = 'block';
+       document.getElementById('arrowLeft').classList.remove('hidden');
+        document.getElementById('arrowRight').classList.add('hidden');
+
+    } else {
+        explanation.style.display = 'none';
+
+
+            document.getElementById('arrowLeft').classList.add('hidden');
+        document.getElementById('arrowRight').classList.remove('hidden');
+
+    }
+}">
+    <i id="arrowLeft" class="fa-solid fa-angles-left"></i>
+    <i id="arrowRight" class="fa-solid fa-angles-right hidden"></i>
 </button>
 </div>
 
@@ -151,7 +179,7 @@
 
                     <select id="speed" class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2">
 
-                        <option value="50">Speed: Super Fast</option>
+                        <option value="5">Speed: Super Fast</option>
                         <option value="250" selected>Speed: Fast</option>
                         <option value="500">Speed: Medium</option>
                         <option value="1000">Speed: Slow</option>
@@ -352,7 +380,8 @@
         let sort = new Sort(container, []);
         $('#speed').on('change', function () {
             let speed = $(this).val();
-            sort.speed = speed;
+            sort.speed = parseInt(speed);
+            console.log(sort.speed);
 
         });
         startVisualize.on('click', function () {
@@ -429,6 +458,7 @@
                 $('#averageCase').html(selectedAlgorithm.averageTime);
                 $('#bestCase').html(selectedAlgorithm.worstTime);
                 $('#spaceComplexity').html(selectedAlgorithm.spaceComplexity);
+                $("#pseudocode").html(selectedAlgorithm.pseudoCode);
               sort.reset();
 
             }

@@ -10,6 +10,7 @@ class Sort {
     **/
     constructor(container, arr) {
         this.container = container;
+        this.barLeft = 0;
         this.arr = arr;
         this.bar = [];
         this.step = [];
@@ -21,6 +22,7 @@ class Sort {
         this.currentStep = 0;
         this.speed = 200;
         this.explanation = new Explanation(this.container);
+        this.selectedAlgorithm = '';
 
     }
 
@@ -33,18 +35,20 @@ class Sort {
         this.container.innerHTML = '';
         let left = 0;
         let top = 250;
+        let width= (window.innerWidth*.8)/this.arr.length;
+        this.barLeft=(width+5);
         for (let i = 0; i < this.arr.length; i++) {
-            left += 30;
-            let bar = new Bar(this.container, this.arr[i], left, top, i, this.color.initialColor);
+            left += width+5;
+            let bar = new Bar(this.container, this.arr[i], left, top, i, this.color.initialColor,width);
             this.bar.push(bar);
         }
 
     }
 
     generateRandomArray() {
-        let limit = Math.round(Math.random(2, 122) * 30) + 1;
-        while (limit<10){
-            limit = Math.round(Math.random(2, 122) * 30) + 1;
+        let limit = Math.round(Math.random(2, 122) * 90) + 1;
+        while (limit<20){
+            limit = Math.round(Math.random(2, 122) * 90) + 1;
         }
         //limit = 10;
         while (limit) {
@@ -119,19 +123,47 @@ class Sort {
             let swappingNode = this.step[i];
             if (swappingNode.type === 'check') {
                 await this.colorNodes(swappingNode.firstNode, this.color.visitedColor, this.speed);
+                if(swappingNode.secondNode !== undefined){
                 await this.colorNodes(swappingNode.secondNode, this.color.visitedColor, this.speed);
+                this.explanation.setMessage(`${swappingNode.firstNode} and ${swappingNode.secondNode} are checked`);
+                }else {
+                    let nodeElement = document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
+                    if (this.algorithm === 'insertionSort') {
+                        this.explanation.setMessage(`Check if `+nodeElement.innerHTML + ` is in the right position`);
+                    }else if(this.algorithm === 'selectionSort'){
+                        this.explanation.setMessage(`Check if `+nodeElement.innerHTML + ` is the smallest element`);
+                    }
+                }
+
             } else if (swappingNode.type === 'swap') {
                 await this.swap(swappingNode.firstNode, swappingNode.secondNode, this.color.targetColor, this.speed);
+                let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
+                let el2=document.querySelector(`[data-index="${swappingNode.secondNode}"]`);
+                this.explanation.setMessage(`Swap ${el1.innerHTML} and ${el2.innerHTML}`);
+
+                if(this.algorithm ==='selectionSort'){
+
+                   await this.colorNodes(swappingNode.secondNode, this.color.visitedColor, this.speed);
+                     await this.colorNodes(swappingNode.firstNode, this.color.finalColor, this.speed);
+                }
             } else if (swappingNode.type === 'sorted') {
                 await this.colorNodes(swappingNode.firstNode, this.color.finalColor, this.speed);
+                let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
+                this.explanation.setMessage(`${el1.innerHTML} is sorted`);
             } else if (swappingNode.type === 'reset') {
                 await this.reset();
             } else if (swappingNode.type === 'goUp') {
                 await this.goUp(swappingNode.firstNode, this.speed, this.color.targetColor);
+                let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
+                this.explanation.setMessage(`Finding position for ${el1.innerHTML}`);
             } else if (swappingNode.type === 'goDown') {
                 await this.goDown(swappingNode.firstNode, this.speed, this.color.finalColor);
+                let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
+                this.explanation.setMessage(`${el1.innerHTML} is in the right position`);
             } else if (swappingNode.type === 'min') {
                 await this.colorNodes(swappingNode.firstNode, this.color.targetColor, parseInt(this.speed / 2));
+                let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
+                this.explanation.setMessage(`${el1.innerHTML} is the minimum`);
 
             }else if (swappingNode.type === 'max') {
                 await this.colorNodes(swappingNode.firstNode, this.color.targetColor, parseInt(this.speed / 2));
@@ -143,6 +175,7 @@ class Sort {
                 for (let i = 0; i < this.bar.length; i++) {
                     await this.colorNodes(i, this.color.finalColor, parseInt(this.speed / 10));
                 }
+                this.explanation.setMessage(`All elements are sorted`);
             }
             else if (swappingNode.type === 'colorTillFirst') {
                 for (let i = 0; i < this.bar.length; i++) {
@@ -402,12 +435,14 @@ class Sort {
             type:'allSorted',
         });
         this.currentStep = 0;
+        this.selectedAlgorithm = 'insertionSort';
         await this.visualize();
 
     }
 
     async selectionSort() {
         this.step = [];
+
         for (let i = 0; i < this.arr.length; i++) {
             let min = i;
             this.step.push({
@@ -439,6 +474,10 @@ class Sort {
                 });
             }
         }
+        this.step.push({
+            type:'allSorted',
+        });
+
         this.visualizeStatus = true;
         this.currentStep = 0;
         await this.visualize();
@@ -569,7 +608,7 @@ class Sort {
             el.setAttribute('id', i);
             el.setAttribute('data-left', startingLeft);
 
-            startingLeft += 30;
+            startingLeft +=  this.barLeft;
 
         }
 
