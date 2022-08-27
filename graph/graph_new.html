@@ -645,6 +645,7 @@
       import Tutorial from "../../js/sort/tutorial.js";
       $(document).ready(function () {
         var tutorial = new Tutorial("");
+        tutorial.setTutorial(1, "graph");
         tutorial.show();
         $("#tutorial-next").click(function () {
           tutorial.setTutorial(
