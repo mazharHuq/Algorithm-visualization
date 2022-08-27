@@ -459,8 +459,8 @@
     visDfs.init(container, graph.getGraph(), options);
 
     var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/light");
-    //   editor.session.setMode("ace/mode/algorithm");
+
+    editor.setTheme("ace/theme/xcode");
     document.getElementById("editor").style.fontSize = "19px";
     editor.setOptions({
         enableBasicAutocompletion: true,
@@ -537,19 +537,7 @@
         }
     });
 
-    $("#selectAlgorithm").on("change", function () {
-        let algorithm = $(this).val();
-        let selectedAlgorithm = new graphAlgorithmDetails(algorithm);
-        $("#algorithm-title").html(selectedAlgorithm.algorithmName);
-        $("#algorithm-summary").html(selectedAlgorithm.algorithmSummary);
-        $("#algorithm-description").html(
-            selectedAlgorithm.algorithmDescription
-        );
-        $("#worstCase").html(selectedAlgorithm.bestTime);
-        $("#averageCase").html(selectedAlgorithm.averageTime);
-        $("#bestCase").html(selectedAlgorithm.worstTime);
-        $("#spaceComplexity").html(selectedAlgorithm.spaceComplexity);
-    });
+
 
     $("#isDirected").on("change", function () {
         graph.setGraphInfo(isWeighted(), isDirected());
@@ -624,6 +612,10 @@
 <!-- Tutorial Modal JS -->
 <script type="module">
     import Tutorial from "../../js/sort/tutorial.js";
+
+
+    import sortingAlgorithmDetails from "../js/sort/sortingAlgorithmDetails.js"
+
     $(document).ready(function () {
         var tutorial = new Tutorial("");
         tutorial.show();
@@ -640,6 +632,29 @@
             }
         );
     });
+
+    $("#selectAlgorithm").on('change', function () {
+
+            let algorithm = $(this).val();
+            if (algorithm) {
+                $("#algorithmDetails").removeClass()
+            } else {
+                $("#algorithmDetails").addClass('hidden');
+                return;
+            }
+
+           let selectedAlgorithm = new sortingAlgorithmDetails(algorithm);
+            $('#algorithm-title').html(selectedAlgorithm.algorithmName);
+            $('#algorithm-summary').html(selectedAlgorithm.algorithmSummary);
+            $('#algorithm-description').html(selectedAlgorithm.algorithmDescription);
+            $('#worstCase').html(selectedAlgorithm.complexity);
+            $('#averageCase').html(selectedAlgorithm.averageTime);
+            $('#bestCase').html(selectedAlgorithm.worstTime);
+            $('#spaceComplexity').html(selectedAlgorithm.spaceComplexity);
+
+        }
+    );
 </script>
+
 </body>
 </html>
