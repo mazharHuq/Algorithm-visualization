@@ -157,15 +157,16 @@ class sortingAlgorithmDetails {
                         href="https://www.geeksforgeeks.org/expression-tree/">
                     <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             `,
-            averageTime: "",
-            worstTime: "",
-            bestTime: "",
-            spaceComplexity: "O(V+E)",
+            averageTime: "O(V^2)",
+            worstTime: "   ss",
+            bestTime: "O(V^2)",
+            spaceComplexity: "O(|V|)",
         };
         this.BreadthFirstSearch = {
             name: "Breadth First Search",
             algorithm: "Breadth First Search is a search algorithm that traverses nodes in a tree level by level.",
-            complexity: "",
+            complexity: "O(V+E)",
+            spaceComplexity: "O(|V|)",
             description: `<div class="card">
            Breadth-First Traversal (or Search) for a graph is similar to Breadth-First Traversal of a tree (See method 2 of this post). 
 
@@ -200,7 +201,6 @@ class sortingAlgorithmDetails {
                 3. If the sought vertex is not found in the queue, return false.
                 <br>
                 <br>
-                The algorithm for searching a vertex u is as follows:
                
             `,
         };
@@ -324,17 +324,17 @@ Add the element positions from left, right, down and up from the current element
             this.averageTime = this.insertionSort.averageTime;
             this.worstTime = this.insertionSort.worstTime;
             this.spaceComplexity = this.insertionSort.spaceComplexity;
-        } else if (this.sortFunction == "bfs") {
+        } else if (this.sortFunction == "BFS") {
             this.algorithmName = this.BreadthFirstSearch.name;
             this.algorithmDescription = this.BreadthFirstSearch.description;
             this.algorithmSummary = this.BreadthFirstSearch.algorithm;
         }
-        else if (this.sortFunction == "dfs") {
+        else if (this.sortFunction == "DFS") {
             this.algorithmName = this.DepthFirstSearch.name;
             this.algorithmDescription = this.DepthFirstSearch.description;
             this.algorithmSummary = this.DepthFirstSearch.algorithm;
         }
-        else if (this.sortFunction == "dijkstra") {
+        else if (this.sortFunction == "Dijkstra") {
             this.algorithmName = this.Dijkstra.name;
             this.algorithmDescription = this.Dijkstra.description;
             this.algorithmSummary = this.Dijkstra.algorithm;
@@ -343,7 +343,7 @@ Add the element positions from left, right, down and up from the current element
             this.worstTime = this.Dijkstra.worstTime;
             this.spaceComplexity = this.Dijkstra.spaceComplexity;
         }
-        else if (this.gridBFS == "gridBFS") {
+        else if (this.sortFunction == "gridBFS") {
             this.algorithmName = this.gridBFS.name;
             this.algorithmDescription = this.gridBFS.description;
             this.algorithmSummary = this.gridBFS.algorithm;
@@ -352,7 +352,7 @@ Add the element positions from left, right, down and up from the current element
             this.worstTime = this.gridBFS.worstTime;
             this.spaceComplexity = this.gridBFS.spaceComplexity;
         }
-        else if (this.gridDFS == "gridDFS") {
+        else if (this.sortFunction == "gridDFS") {
             this.algorithmName = this.gridDFS.name;
             this.algorithmDescription = this.gridDFS.description;
             this.algorithmSummary = this.gridDFS.algorithm;
