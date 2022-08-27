@@ -52,6 +52,33 @@
 
 
     </style>
+    <!-- Explanation Details -->
+    <style>
+        #explanation{
+            position: fixed;
+            bottom: 0;
+            right: 32px;
+            width: 25%;
+            height: 300px;
+            background: rgba(217, 164, 164, 0.5);
+
+            z-index: 100;
+
+        }
+        #explanation-bar{
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width:30px;
+            height: 300px;
+            background: rgba(10, 2, 2, 0.8);
+            z-index: 100;
+        }
+        #explanation-bar>*:hover{
+            background: rgba(145, 133, 72, 0.8);
+        }
+    </style>
+
 
 
     <link
@@ -64,7 +91,39 @@
 
 </head>
 
-<body class="bg-blue-100">
+<body class="bg-blue-100 js-container">
+<div id="explanation" class="bg-orange-500">
+    <P id="codeChange" class="p-2 font-bold bg-orange-300">
+        Show Code
+    </P>
+
+    <div id="pseudocode"   class="bg-gray-500 text-small text-white  ">
+
+    </div>
+</div>
+<div id="explanation-bar" class="flex justify-center">
+<button id="explanation_toogler" class="text-white font-bold w-full h-full bg-black" onclick="f();function f() {
+  let explanation = document.getElementById('explanation');
+  let button=document.getElementById('explanation_toogler');
+    if (explanation.style.display === 'none') {
+        explanation.style.display = 'block';
+       document.getElementById('arrowLeft').classList.remove('hidden');
+        document.getElementById('arrowRight').classList.add('hidden');
+
+    } else {
+        explanation.style.display = 'none';
+
+
+            document.getElementById('arrowLeft').classList.add('hidden');
+        document.getElementById('arrowRight').classList.remove('hidden');
+
+    }
+}">
+    <i id="arrowLeft" class="fa-solid fa-angles-left"></i>
+    <i id="arrowRight" class="fa-solid fa-angles-right hidden"></i>
+</button>
+</div>
+
 <!-- Algorithm Tut -->
 <div class="tutorial-container "  id="tutorial">
     <div class="tutorial">
@@ -120,8 +179,8 @@
 
                     <select id="speed" class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2">
 
-                        <option value="10">Speed: Super Fast</option>
-                        <option value="100" selected>Speed: Fast</option>
+                        <option value="5">Speed: Super Fast</option>
+                        <option value="250" selected>Speed: Fast</option>
                         <option value="500">Speed: Medium</option>
                         <option value="1000">Speed: Slow</option>
                         <option value="2000">Speed: Super Slow</option>
@@ -157,31 +216,34 @@
         </button>
     </div>
 </div>
-<div class="shadow p-4 m-4  bg-white" style="position: relative; bottom: 0;min-width: 90vh;min-height:40vh;">
+<div id="barContainer" class="shadow p-4 m-4  bg-white" style="position: relative; bottom: 0;min-width: 90vh;min-height:40vh;">
     <div class="mother absolute bottom-0" style="border-bottom: 5px solid black;">
 
     </div>
-    <div class="explanation bg-gray-100 h-60 p-2" style="position: absolute;right:0;">
-        <div class="explanation-container">
-            <div class="explanation-title">
-                <h1 class="font-bold text-2xl">Explanation</h1>
-            </div>
-            <div class="explanation-content">
-                <p class="text-lg">
-                    This is the explanation of the algorithm.
-                </p>
+
+</div>
+
+    <div style="" class="mediaControl shadow bg-white bottom-0 w-full my-3">
+        <div class="container flex justify-center mx-auto">
+            <div class="flex items-center px-4 py-2">
+                <div class="flex items-center space-x-8">
+                    <i class="fa-solid fa-square" style="color: #97C2FC"></i> <span>Default Node</span>
+                    <i class="fa-solid fa-square" style="color: #0caa31"></i> <span>Selected</span>
+                    <i class="fa-solid fa-square" style="color: #2ebbd1"></i> <span>Queue</span>
+                    <i class="fa-solid fa-square" style="color: #2B7CE9"></i> <span>Visited</span>
+                    <i class="fa-solid fa-square" style="color: #848484"></i> <span>Default Edge</span>
+                    <i class="fa-solid fa-square" style="color: #ffa500"></i> <span>Visiting</span>
+                </div>
             </div>
         </div>
-
     </div>
-</div>
 
 <div style="" class="mediaControl  shadow bg-white  bottom-0 w-full">
     <div class="container flex justify-center mx-auto">
         <div class="flex  items-center px-4 py-2">
             <div class="flex items-center space-x-8 ">
 
-                <button class="">
+                <button class="" id="previous">
                     <i class="fa-solid fa-backward-step fa-2x"></i>
                 </button>
                 <button id="play" class="">
@@ -192,7 +254,7 @@
                     <i class="fa-solid fa-circle-pause fa-2x"></i>
                 </button>
 
-                <button class="">
+                <button class="" id="next">
                     <i class="fa-solid fa-forward-step fa-2x"></i>
                 </button>
             </div>
@@ -251,7 +313,60 @@
     import sortingAlgorithmDetails from "../js/sort/sortingAlgorithmDetails.js"
     import Tutorial from "../js/sort/tutorial.js"
 
-    $(document).ready(function () {
+    $(document).ready(function (show) {
+
+
+        const Confettiful = function(el) {
+            this.el = el;
+            this.containerEl = null;
+
+            this.confettiFrequency = 3;
+            this.confettiColors = ['#EF2964', '#00C09D', '#2D87B0', '#48485E','#EFFF1D'];
+            this.confettiAnimations = ['slow', 'medium', 'fast'];
+
+            this._setupElements();
+            this._renderConfetti();
+        };
+
+        Confettiful.prototype._setupElements = function() {
+            const containerEl = document.createElement('div');
+            const elPosition = this.el.style.position;
+
+            if (elPosition !== 'relative' || elPosition !== 'absolute') {
+                this.el.style.position = 'relative';
+            }
+
+            containerEl.classList.add('confetti-container');
+
+            this.el.appendChild(containerEl);
+
+            this.containerEl = containerEl;
+        };
+
+        Confettiful.prototype._renderConfetti = function() {
+
+            this.confettiInterval = setInterval(() => {
+                const confettiEl = document.createElement('div');
+                const confettiSize = (Math.floor(Math.random() * 3) + 7) + 'px';
+                const confettiBackground = this.confettiColors[Math.floor(Math.random() * this.confettiColors.length)];
+                const confettiLeft = (Math.floor(Math.random() * this.el.offsetWidth)) + 'px';
+                const confettiAnimation = this.confettiAnimations[Math.floor(Math.random() * this.confettiAnimations.length)];
+
+                confettiEl.classList.add('confetti', 'confetti--animation-' + confettiAnimation);
+                confettiEl.style.left = confettiLeft;
+                confettiEl.style.width = confettiSize;
+                confettiEl.style.height = confettiSize;
+                confettiEl.style.backgroundColor = confettiBackground;
+
+                confettiEl.removeTimeout = setTimeout(function() {
+                    confettiEl.parentNode.removeChild(confettiEl);
+                }, 3000);
+
+                this.containerEl.appendChild(confettiEl);
+                
+            }, this.confettiFrequency);
+        };
+
         let sortButtonPause = $('#sortArrayPause');
         let sortButtonResume = $('#sortArrayResume');
         let startVisualize = $('#startVisualize');
@@ -260,13 +375,13 @@
         var currentStep = 0;
 
         var tutorial = new Tutorial(container);
-
-      tutorial.show();
+       // tutorial.show();
 
         let sort = new Sort(container, []);
         $('#speed').on('change', function () {
             let speed = $(this).val();
-            sort.speed = speed + 1;
+            sort.speed = parseInt(speed);
+            console.log(sort.speed);
 
         });
         startVisualize.on('click', function () {
@@ -290,6 +405,11 @@
 
         });
         $("#play").click(function () {
+            let status= sort.visualizeStatus;
+            if(!status){
+                alert("Please click visualize to start sorting");
+                return;
+            }
                 sort.setVisualizeStatus(true);
                 sort.visuaLizeBubbleSort();
                 $(this).addClass('hidden');
@@ -298,17 +418,23 @@
             }
         );
         $("#previous").click(function () {
-                let status = sort.visualizeStatus;
-                sort.setVisualizeStatus(false);
+            sort.setVisualizeStatus(false);
+            $("#sortArrayPause").addClass('hidden');
+            $("#play").removeClass('hidden');
+            sort.setVisualizeStatus(false);
                 sort.goBack();
+                console.log("previous");
 
             }
         );
         $("#next").click(function () {
-
-                let status = sort.visualizeStatus;
+            sort.setVisualizeStatus(false);
+            $("#sortArrayPause").addClass('hidden');
+            $("#play").removeClass('hidden');
+            sort.setVisualizeStatus(false);
                 sort.setVisualizeStatus(false);
                 sort.goForward();
+                console.log("next");
 
             }
         );
@@ -332,6 +458,8 @@
                 $('#averageCase').html(selectedAlgorithm.averageTime);
                 $('#bestCase').html(selectedAlgorithm.worstTime);
                 $('#spaceComplexity').html(selectedAlgorithm.spaceComplexity);
+                $("#pseudocode").html(selectedAlgorithm.pseudoCode);
+              sort.reset();
 
             }
         );

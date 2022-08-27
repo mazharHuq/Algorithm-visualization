@@ -8,6 +8,7 @@ class sortingAlgorithmDetails {
         this.averageTime = "";
         this.worstTime = "";
         this.spaceComplexity = "";
+        this.pseudoCode = "";
         this.bubbleSort = {
             name: "Bubble Sort",
             algorithm: "Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
@@ -42,8 +43,19 @@ class sortingAlgorithmDetails {
             worstTime: "O(n^2)",
             bestTime: "O(n)",
             spaceComplexity: "O(1)",
-        };
-        this.selectionSort = {
+            pseudoCode: `<pre>
+    <code>
+    begin BubbleSort(list)
+       for all elements of list
+          if list[i] > list[i+1]
+             swap(list[i], list[i+1])
+          end if
+       end for
+       return list
+    end BubbleSort
+    </code>
+            </pre>`
+        }, this.selectionSort = {
             name: "Selection Sort",
             algorithm: "Selection Sort is a sorting algorithm in which the smallest element is selected from the array and swapped with the first element. The same is repeated for the remaining elements. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
             complexity: "",
@@ -79,16 +91,16 @@ class sortingAlgorithmDetails {
         At last the largest value present in the array automatically get placed at the last position in the array<br>
         The resulted array is the sorted array. <br>
            `,
-            averageTime: "O(n^2)",
-            worstTime: "O(n^2)",
-            bestTime: "O(n^2)",
-            spaceComplexity: "O(1)",
-        };
+        averageTime: "O(n^2)",
+        worstTime: "O(n^2)",
+        bestTime: "O(n^2)",
+        spaceComplexity: "O(1)",
+    },
         this.insertionSort = {
-            name: "Insertion Sort",
-            algorithm: "Insertion Sort is a sorting algorithm in which the smallest element is selected from the array and swapped with the first element. The same is repeated for the remaining elements. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
-            complexity: "",
-            description: `<div class="card">
+        name: "Insertion Sort",
+        algorithm: "Insertion Sort is a sorting algorithm in which the smallest element is selected from the array and swapped with the first element. The same is repeated for the remaining elements. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
+        complexity: "",
+        description: `<div class="card">
         How Insertion Sort Works?<br>
         Lets consider the following array as an example: arr[] = {64, 25, 12, 22, 11}<br>
         <br>
@@ -238,6 +250,7 @@ class sortingAlgorithmDetails {
                     <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             
             `,
+            pseudoCode: '',
         };
         this.gridDFS = {
             name: "Depth First Search",
@@ -294,6 +307,7 @@ Add the element positions from left, right, down and up from the current element
             this.worstTime = this.bubbleSort.worstTime;
             this.averageTime = this.bubbleSort.averageTime;
             this.spaceComplexity = this.bubbleSort.spaceComplexity;
+            this.pseudoCode = this.bubbleSort.pseudoCode;
         } else if (this.sortFunction == "selectionSort") {
             this.algorithmName = this.selectionSort.name;
             this.algorithmDescription = this.selectionSort.description;
