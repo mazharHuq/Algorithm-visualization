@@ -42,7 +42,7 @@
 </nav>
 
 <!-- Wrapper for whole HTML document -->
-<div id="container" class="container mx-auto" style="margin-top: 100px;">
+<div id="container" class="container mx-auto" style="margin-top: 60px; margin-right: 7%;">
     <div class="container1">
         <!-- ======= This is Canvas area ========= -->
         <div id="canvas" class="box box-full">
@@ -74,7 +74,8 @@
                     <div id="lowerbound" class="pb-4 ">
                         <div class="relative " id="stack-wrapper">
                             <div class="" id="stack"></div>
-                            <span class="absolute font-bold text-2xl ml-3 text-black">Stack</span>
+                            <span class="absolute font-bold text-2xl ml-3 text-black"
+                                  style="margin-left: 28%">Stack</span>
                         </div>
 
                         <!-- =============== current step explanation =============== -->
@@ -159,8 +160,10 @@
     <div class="container flex justify-center mx-auto">
         <div class="flex items-center px-4 py-2">
             <div class="flex items-center space-x-8">
-                <i class="fa-solid fa-square" style="color: #2B7CE9"></i> <span>Array Element</span>
-                <i class="fa-solid fa-square" style="color: #ffa500"></i> <span>Stack Element</span>
+                <i class="fa-solid fa-square" style="color: #2B7CE9"></i> <span
+                    style="color: black">Array Element</span>
+                <i class="fa-solid fa-square" style="color: #ffa500"></i> <span
+                    style="color: black">Stack Element</span>
             </div>
         </div>
     </div>
@@ -169,30 +172,26 @@
 <!-- Algorithm Details -->
 <div class="details shadow bg-white p-4 mx-auto ">
     <div class="intro-y px-4 my-3 bg-green-500 py-4 text-3xl font-bold">
-        <h4 id="algorithm-title">Stack</h4>
+        <h4 id="algorithm-title" style="text-align: left">Stack</h4>
     </div>
     <div class="grid grid-cols-12 space-x-2">
         <div class="col-span-7 ">
             <div class="intro-y text-2xl font-bold p-3 border-b">
-                <h2>Algorithm</h2>
+                <h2 style="text-align: left">Algorithm</h2>
             </div>
-            <div class="intro-y px-4 my-3  py-4 text-xl font-medium">
-                <div class="algo-steps">
-                    The stack supports the following operations:
+            <div class="intro-y px-4 my-3  py-4 text-xl" style="color: black">
+                The stack supports the following operations:
 
-                    <li>push inserts an item at the top of the stack (i.e., above its current top element).</li>
-                    <li>pop removes the object at the top of the stack and returns that object from the function. The
-                        stack
-                        size will be decremented by one.
-                    </li>
-                    <li>isEmpty tests if the stack is empty or not.</li>
-                    <li>isFull tests if the stack is full or not.</li>
-                    <li>peek returns the object at the top of the stack without removing it from the stack or modifying
-                        the
-                        stack in any way.
-                    </li>
-                    <li>size returns the total number of elements present in the stack.</li>
-                </div>
+                <li>push inserts an item at the top of the stack</li>
+                <li>pop removes the object at the top of the stack and returns that object from the function. The
+                    stack
+                    size will be decremented by one.
+                </li>
+                <li>isEmpty tests if the stack is empty or not.</li>
+                <li>peek returns the object at the top of the stack without removing it from the stack or modifying
+                    the
+                    stack in any way.
+                </li>
 
             </div>
 
@@ -200,14 +199,23 @@
         </div>
         <div class="col-span-5 bg-gray-50">
             <div class="intro-y text-2xl font-bold p-3 border-b">
-                <h2>Description</h2>
+                <h2 style="text-align: left">Description</h2>
             </div>
-            <div class="intro-y px-4 my-3  py-4 text-xl ">
-                The expression tree is a binary tree in which each internal node corresponds to the operator and each
-                leaf node corresponds to the operand in the expression. </br>
-                Inorder traversal of expression tree produces infix version of given postfix expression (same with
-                postorder traversal it gives postfix expression). <a
-                    href="https://www.geeksforgeeks.org/expression-tree/">
+            <div class="intro-y px-4 my-3  py-4 text-xl" style="color: black">
+                <li>A stack is an Abstract Data Type (ADT), commonly used in most programming languages. It is named
+                    stack
+                    as it behaves like a real-world stack, for example – a deck of cards or a pile of plates, etc.
+                </li>
+
+                </br>
+                A real-world stack allows operations at one end only. For example, we can place or remove a card or
+                plate from the top of the stack only. Likewise, Stack ADT allows all data operations at one end only. At
+                any given time, we can only access the top element of a stack.</br
+
+                This feature makes it LIFO data structure. LIFO stands for Last-in-first-out. Here, the element which is
+                placed (inserted or added) last, is accessed first. In stack terminology, insertion operation is called
+                PUSH operation and removal operation is called POP operation. <a
+                    href="https://www.tutorialspoint.com/data_structures_algorithms/stack_algorithm.htm">
                 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
         </div>
