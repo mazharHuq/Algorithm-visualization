@@ -158,7 +158,7 @@ class Tutorial {
         this.expressionTutorialStep= {
             1: {
                 title: "Welcome to the tutorial",
-                text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
+                text: "This is a tutorial to help you get started with the Expression Tree. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
                 body: `
                  <h2 class="text-2xl font-semibold "> This short tutorial will walk you through all the features of this application.</h2>
                 <h3 class="font-bold" >

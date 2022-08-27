@@ -58,6 +58,41 @@
             min-width: 100%;
         }
     </style>
+    <!-- style for tutorial -->
+    <style>
+        .tutorial-container {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.8);
+
+
+        }
+        .tutorial {
+
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.5rem;
+            color: black;
+            text-align: center;
+            position: fixed;
+            z-index: 4555;
+
+            width: 70%;
+            height: 80%;
+            top: 10%;
+            left: 15%;
+            background: white;
+            display: block;
+            border: 2px solid teal;
+            border-radius: 10px;
+
+        }
+
+
+    </style>
+
     <link
             href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Raleway:100,300,400,600,700"
             rel="stylesheet"
@@ -74,6 +109,41 @@
 </head>
 
 <body>
+
+<!-- Algorithm Tut -->
+<div class="tutorial-container "  id="tutorial">
+    <div class="tutorial">
+        <div id="tutorial-title" class="tutorial-header  mt-8 py-8 text-teal-500 text-6xl font-bold ">
+
+        </div>
+        <div class="tutorial-body p-4 text-2xl space-y-4">
+            <div id="tutorial-body">
+
+            </div>
+
+            <div class=" flex items-center justify-center">
+                <img id="tutorial-image" class="pt-4" src="../Images/bar.png" alt="">
+            </div>
+
+        </div>
+        <div class="tutorial-footer absolute bottom-0 p-3  flex justify-between w-full">
+            <button id="tutorial-skip" class="button bg-teal-500 px-2 hover:bg-green-400  text-white">
+                Skip Tutorial
+            </button>
+            <div>
+                <button id="tutorial-prev" data-val="0" class="button bg-teal-500 px-2 hover:bg-green-400  text-white">
+                    Prev
+                </button>
+                <button data-val="2" class="button bg-teal-500 px-2 hover:bg-green-400  text-white" id="tutorial-next">
+                    Next
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <nav class="shadow bg-white">
     <div class="mx-auto container">
         <div class="flex justify-between items-center px-4 py-2">
@@ -187,7 +257,8 @@
             </div>
             <div class="intro-y px-4 my-3 py-4 text-xl font-medium">
                 <h2>Description</h2>
-                <p class="text-sm font-thin" id="algorithm-description"></p>
+                <p class="text-sm font-thin" id="algorithm-description">
+                </p>
             </div>
         </div>
         <div class="col-span-4 bg-gray-100">
@@ -451,6 +522,10 @@
         } else if (select == "Dijkstra") {
             graph.setGraphInfo(true, true);
             steps = graph.getWeightedDijkstraSteps(source, destination);
+            if (!isWeighted()) {
+                graph.setGraphInfo(false, true);
+                steps = graph.getUnWeightedBfsSteps(source, destination);
+            }
             visDfs.setSteps(steps);
             visDfs.init(container, graph.getGraph(), options);
 
@@ -544,6 +619,27 @@
         link.href = canvas.toDataURL("image/jpeg", 1.0);
         link.click();
     };
+</script>
+
+<!-- Tutorial Modal JS -->
+<script type="module">
+    import Tutorial from "../../js/sort/tutorial.js";
+    $(document).ready(function () {
+        var tutorial = new Tutorial("");
+        tutorial.show();
+        $("#tutorial-next").click(function () {
+                tutorial.setTutorial(document.getElementById("tutorial-next").dataset.val,"graph");
+            }
+        );
+        $("#tutorial-prev").click(function () {
+                tutorial.setTutorial(document.getElementById("tutorial-prev").dataset.val,"graph");
+            }
+        );
+        $("#tutorial-skip").click(function () {
+                tutorial.hide();
+            }
+        );
+    });
 </script>
 </body>
 </html>

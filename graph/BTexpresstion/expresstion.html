@@ -16,9 +16,6 @@
             font-family: 'IBM Plex Mono', monospace;
         }
     </style>
-    <style>
-        @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css);
-    </style>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Raleway:100,300,400,600,700"
           rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
@@ -34,6 +31,40 @@
     <link rel="stylesheet" href="css/viz.css">
 
     <link rel="stylesheet" href="css/bst.css">
+
+    <style>
+        .tutorial-container {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.8);
+
+
+        }
+        .tutorial {
+
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.5rem;
+            color: black;
+            text-align: center;
+            position: fixed;
+            z-index: 4555;
+
+            width: 70%;
+            height: 80%;
+            top: 10%;
+            left: 15%;
+            background: white;
+            display: block;
+            border: 2px solid teal;
+            border-radius: 10px;
+
+        }
+
+
+    </style>
 
     <!--js-->
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
@@ -60,6 +91,41 @@
     </div>
 
 </nav>
+
+<!-- Algorithm Tut -->
+<div class="tutorial-container "  id="tutorial">
+    <div class="tutorial">
+        <div id="tutorial-title" class="tutorial-header  mt-8 py-8 text-teal-500 text-6xl font-bold ">
+
+        </div>
+        <div class="tutorial-body p-4 text-2xl space-y-4">
+            <div id="tutorial-body">
+
+            </div>
+
+            <div class=" flex items-center justify-center">
+                <img id="tutorial-image" class="pt-4" src="../Images/bar.png" alt="">
+            </div>
+
+        </div>
+        <div class="tutorial-footer absolute bottom-0 p-3  flex justify-between w-full">
+            <button id="tutorial-skip" class="button bg-teal-500 px-2 hover:bg-green-400  text-white">
+                Skip Tutorial
+            </button>
+            <div>
+                <button id="tutorial-prev" data-val="0" class="button bg-teal-500 px-2 hover:bg-green-400  text-white">
+                    Prev
+                </button>
+                <button data-val="2" class="button bg-teal-500 px-2 hover:bg-green-400  text-white" id="tutorial-next">
+                    Next
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <div class="top-bar shadow mt-2 bg-white">
     <div class="array-container container mx-auto flex space-x-3 items-center font-mono">
         <label for="expression-Input" class="font-bold text-xl">Enter Expression</label>
@@ -131,25 +197,27 @@
     let ex = "((E+N)+(G+I))+((N+E)+(E+R))"
     let bstWidget = new BST(ex);
 
+    let positionX = window.innerWidth * 0.2;
+    let positionY = window.innerHeight * 0.8;
 
     var xp = mainSvg.append("text")
-        .attr("x", 300)
-        .attr("y", 455)
-        .attr("text-anchor", "middle")
+        .attr("x", positionX)
+        .attr("y", positionY * 0.657)
+        .attr("text-anchor", "end")
         .style("font-size", "20px")
         .text("Prefix expression :");
 
     var yp = mainSvg.append("text")
-        .attr("x", 300)
-        .attr("y", 505)
-        .attr("text-anchor", "middle")
+        .attr("x", positionX)
+        .attr("y", positionY * 0.707)
+        .attr("text-anchor", "end")
         .style("font-size", "20px")
         .text("Infix expression :");
 
     var zp = mainSvg.append("text")
-        .attr("x", 300)
-        .attr("y", 555)
-        .attr("text-anchor", "middle")
+        .attr("x", positionX)
+        .attr("y", positionY * 0.757)
+        .attr("text-anchor", "end")
         .style("font-size", "20px")
         .text("Postfix expression :");
 
@@ -172,23 +240,23 @@
         edgeWeightPathSvg = mainSvg.append("g").attr("id", "edgeWeightPath");
 
         xp = mainSvg.append("text")
-            .attr("x", 300)
-            .attr("y", 455)
-            .attr("text-anchor", "middle")
+            .attr("x", positionX)
+            .attr("y", positionY * 0.65)
+            .attr("text-anchor", "end")
             .style("font-size", "20px")
             .text("Prefix expression :");
 
         yp = mainSvg.append("text")
-            .attr("x", 300)
-            .attr("y", 505)
-            .attr("text-anchor", "middle")
+            .attr("x", positionX)
+            .attr("y", positionY * 0.7)
+            .attr("text-anchor", "end")
             .style("font-size", "20px")
             .text("Infix expression :");
 
         zp = mainSvg.append("text")
-            .attr("x", 300)
-            .attr("y", 555)
-            .attr("text-anchor", "middle")
+            .attr("x", positionX)
+            .attr("y", positionY * 0.75)
+            .attr("text-anchor", "end")
             .style("font-size", "20px")
             .text("Postfix expression :");
 
@@ -212,6 +280,27 @@
         });
     };
 
+</script>
+
+<!-- Tutorial Modal JS -->
+<script type="module">
+    import Tutorial from "../../js/sort/tutorial.js";
+    $(document).ready(function () {
+        var tutorial = new Tutorial("");
+        tutorial.show();
+        $("#tutorial-next").click(function () {
+                tutorial.setTutorial(document.getElementById("tutorial-next").dataset.val,"expressionTree");
+            }
+        );
+        $("#tutorial-prev").click(function () {
+                tutorial.setTutorial(document.getElementById("tutorial-prev").dataset.val,"expressionTree");
+            }
+        );
+        $("#tutorial-skip").click(function () {
+                tutorial.hide();
+            }
+        );
+    });
 </script>
 
 </body>
