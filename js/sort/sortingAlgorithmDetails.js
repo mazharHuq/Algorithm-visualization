@@ -276,7 +276,7 @@ class sortingAlgorithmDetails {
         this.gridBFS = {
             name: "Breadth First Search",
             algorithm:
-            "",
+                "",
             complexity: "O(ROW * COL)",
             description: `
             <div class="card">
