@@ -3,26 +3,18 @@ class Dom {
 
   push_backside(value, counter) {
     console.log(value);
-    // document.getElementById("pointer").innerHTML = counter;
     $("#stack").prepend(
       '<div id="r' + counter + 1 + '" class="stack_box">  ' + value + " </div>"
     );
-    // document.getElementById("pushed").innerHTML = value;
-    // document.getElementById("top_element").innerHTML = value;
 
     $("#array").append(
       '<div id="a' + counter + '" class="array_box">  ' + value + " </div>"
     );
-    //document.getElementById("push-item").value = "";
-    //document.getElementById("popped").innerHTML = "";
   }
 
   pop_backside(top_element, popValue, counter) {
     $("#r" + counter + 1).remove();
     $("#a" + counter).remove();
-    if (counter >= 0) {
-      this.show_message_on_display("Popped element is : " + popValue);
-    }
   }
 
   pop_frontside(front_element, popValue, queueCounter) {

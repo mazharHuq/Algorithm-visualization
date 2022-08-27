@@ -823,7 +823,7 @@
   }
   
   .container{
-    
+    color:black;
     margin: 200px 20px;
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
