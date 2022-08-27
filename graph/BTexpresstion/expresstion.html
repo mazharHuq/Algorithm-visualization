@@ -34,6 +34,7 @@
 
     <style>
         .tutorial-container {
+            display: none;
             width: 100%;
             height: 100%;
             position: fixed;
@@ -287,6 +288,7 @@
     import Tutorial from "../../js/sort/tutorial.js";
     $(document).ready(function () {
         var tutorial = new Tutorial("");
+        tutorial.setTutorial(1,"expressionTree");
         tutorial.show();
         $("#tutorial-next").click(function () {
                 tutorial.setTutorial(document.getElementById("tutorial-next").dataset.val,"expressionTree");
