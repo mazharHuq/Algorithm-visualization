@@ -550,7 +550,7 @@ class buildGraph {
         }else if (destination == ""){
             this.shortestCost = 0;
             for (let i in nodeCost) {
-                this.shortestCost += costs[i];
+                this.shortestCost += parseInt(costs[i]);
             }
             dbg("costs " + nodeCost);
             for (var i = 0; i < steps.length; i++) {

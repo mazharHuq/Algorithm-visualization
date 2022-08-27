@@ -217,8 +217,10 @@ var BST = function (ex) {
       );
     }
 
-    var xIncrement = 400;
-    var yIncrement = 450;
+    let positionY = window.innerHeight * 0.8;
+    let positionX = window.innerWidth * 0.22;
+    var xIncrement = positionX;
+    var yIncrement = positionY * 0.65;
     function getNewNode(node) {
       let newNode = {
         parent: null,
@@ -279,11 +281,11 @@ var BST = function (ex) {
     }
 
     preOrder(rootNode);
-    xIncrement = 400;
-    yIncrement = 500;
+    xIncrement = positionX;
+    yIncrement = positionY * 0.7;
     inOrder(rootNode);
-    xIncrement = 400;
-    yIncrement = 550;
+    xIncrement = positionX;
+    yIncrement = positionY * 0.75;
     postOrder(rootNode);
   }
 
