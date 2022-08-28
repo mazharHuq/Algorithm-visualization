@@ -55,6 +55,7 @@
     <!-- Explanation Details -->
     <style>
         #explanation{
+            display: none;
             position: fixed;
             bottom: 0;
             right: 32px;
@@ -97,7 +98,7 @@
         Show Code
     </P>
 
-    <div id="pseudocode"   class="bg-gray-500 text-small text-white  ">
+    <div id="pseudocode"   class="bg-gray-500 text-small text-white p-2 ">
 
     </div>
 </div>
@@ -105,22 +106,22 @@
 <button id="explanation_toogler" class="text-white font-bold w-full h-full bg-black" onclick="f();function f() {
   let explanation = document.getElementById('explanation');
   let button=document.getElementById('explanation_toogler');
-    if (explanation.style.display === 'none') {
+
+    if (explanation.style.display === 'none' || explanation.style.display === '') {
         explanation.style.display = 'block';
        document.getElementById('arrowLeft').classList.remove('hidden');
         document.getElementById('arrowRight').classList.add('hidden');
 
+
     } else {
         explanation.style.display = 'none';
-
-
             document.getElementById('arrowLeft').classList.add('hidden');
         document.getElementById('arrowRight').classList.remove('hidden');
 
     }
 }">
-    <i id="arrowLeft" class="fa-solid fa-angles-left"></i>
-    <i id="arrowRight" class="fa-solid fa-angles-right hidden"></i>
+    <i id="arrowLeft" class="fa-solid fa-angles-left hidden"></i>
+    <i id="arrowRight" class="fa-solid fa-angles-right "></i>
 </button>
 </div>
 
@@ -405,15 +406,15 @@
 
         });
         $("#play").click(function () {
-            let status= sort.visualizeStatus;
-            if(!status){
+            let currentStep = sort.step;
+            if(currentStep == 0){
                 alert("Please click visualize to start sorting");
                 return;
             }
                 sort.setVisualizeStatus(true);
-                sort.visuaLizeBubbleSort();
                 $(this).addClass('hidden');
                 $('#sortArrayPause').removeClass('hidden');
+                sort.visualize();
 
             }
         );
@@ -439,7 +440,7 @@
             }
         );
         $("#randomArray").click(function () {
-                sort.reset();
+                sort.randomReset();
             }
         );
         $("#selectAlgorithm").on('change', function () {
@@ -460,6 +461,12 @@
                 $('#spaceComplexity').html(selectedAlgorithm.spaceComplexity);
                 $("#pseudocode").html(selectedAlgorithm.pseudoCode);
               sort.reset();
+                let exp = document.querySelector('#explanation');
+                if(exp.style.display == 'none'){
+                    $('#explanation_toogler').click();
+
+                }
+
 
             }
         );
@@ -467,6 +474,12 @@
                 //take input from user
                 let input = $('#array-input').val();
                 let array = input.split(',');
+
+                for (let i = 0; i < array.length; i++) {
+                    array[i] = parseInt(array[i]);
+                }
+            console.log(array);
+
 
                 sort.setArray(array);
             }

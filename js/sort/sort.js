@@ -15,7 +15,7 @@ class Sort {
         this.bar = [];
         this.step = [];
         this.color = {
-            initialColor: '#1fbfb8', targetColor: 'blue', visitedColor: 'teal', finalColor: 'green',traverseColor: 'red',
+            initialColor: '#1fbfb8', targetColor: 'red', visitedColor: 'teal', finalColor: 'green',traverseColor: 'red',
         }
         this.render();
         this.visualizeStatus = false;
@@ -36,9 +36,9 @@ class Sort {
         let left = 0;
         let top = 250;
         let width= (window.innerWidth*.8)/this.arr.length;
-        this.barLeft=(width+5);
+        this.barLeft=(width+2);
         for (let i = 0; i < this.arr.length; i++) {
-            left += width+5;
+            left += this.barLeft;
             let bar = new Bar(this.container, this.arr[i], left, top, i, this.color.initialColor,width);
             this.bar.push(bar);
         }
@@ -225,6 +225,8 @@ class Sort {
             let swappingNode = this.step[this.currentStep];
             await this.actionWithStep(swappingNode);
 
+        }else{
+            this.explanation.setMessage(`No more steps`);
         }
     }
 
@@ -238,28 +240,70 @@ class Sort {
         }
     }
 
-    async actionWithStep(action) {
+    async actionWithStep(swappingNode) {
         let time = 10;
-        if (action.type === 'check') {
-            await this.colorNodes(action.firstNode, this.color.traverseColor, time);
-            await this.colorNodes(action.secondNode, this.color.traverseColor, time);
-        } else if (action.type === 'swap') {
-            await this.swap(action.firstNode, action.secondNode, this.color.targetColor, time);
-        } else if (action.type === 'sorted') {
-            await this.colorNodes(action.firstNode, this.color.finalColor, time);
-        } else if (action.type === 'reset') {
-            await this.reset();
-        } else if (action.type === 'goUp') {
-            await this.goUp(action.firstNode, time, this.color.finalColor);
-        } else if (action.type === 'goDown') {
-            await this.goDown(action.firstNode, time, this.color.targetColor);
-        }else if (action.type === 'min') {
-            await this.colorNodes(action.firstNode, this.color.targetColor, time);
+        if (swappingNode.type === 'check') {
+            await this.colorNodes(swappingNode.firstNode, this.color.visitedColor, this.speed);
+            if(swappingNode.secondNode !== undefined){
+                await this.colorNodes(swappingNode.secondNode, this.color.visitedColor, this.speed);
+                this.explanation.setMessage(`${swappingNode.firstNode} and ${swappingNode.secondNode} are checked`);
+            }else {
+                let nodeElement = document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
+                if (this.algorithm === 'insertionSort') {
+                    this.explanation.setMessage(`Check if `+nodeElement.innerHTML + ` is in the right position`);
+                }else if(this.algorithm === 'selectionSort'){
+                    this.explanation.setMessage(`Check if `+nodeElement.innerHTML + ` is the smallest element`);
+                }
+            }
 
-        }else if (action.type === 'max') {
-            await this.colorNodes(action.firstNode, this.color.targetColor, time);
-        }else if (action.type === 'initialColor') {
-            await this.colorNodes(action.firstNode, this.color.initialColor, time);
+        } else if (swappingNode.type === 'swap') {
+            await this.swap(swappingNode.firstNode, swappingNode.secondNode, this.color.targetColor, this.speed);
+            let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
+            let el2=document.querySelector(`[data-index="${swappingNode.secondNode}"]`);
+            this.explanation.setMessage(`Swap ${el1.innerHTML} and ${el2.innerHTML}`);
+
+            if(this.algorithm ==='selectionSort'){
+
+                await this.colorNodes(swappingNode.secondNode, this.color.visitedColor, this.speed);
+                await this.colorNodes(swappingNode.firstNode, this.color.finalColor, this.speed);
+            }
+        } else if (swappingNode.type === 'sorted') {
+            await this.colorNodes(swappingNode.firstNode, this.color.finalColor, this.speed);
+            let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
+            this.explanation.setMessage(`${el1.innerHTML} is sorted`);
+        } else if (swappingNode.type === 'reset') {
+            await this.reset();
+        } else if (swappingNode.type === 'goUp') {
+            await this.goUp(swappingNode.firstNode, this.speed, this.color.targetColor);
+            let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
+            this.explanation.setMessage(`Finding position for ${el1.innerHTML}`);
+        } else if (swappingNode.type === 'goDown') {
+            await this.goDown(swappingNode.firstNode, this.speed, this.color.finalColor);
+            let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
+            this.explanation.setMessage(`${el1.innerHTML} is in the right position`);
+        } else if (swappingNode.type === 'min') {
+            await this.colorNodes(swappingNode.firstNode, this.color.targetColor, parseInt(this.speed / 2));
+            let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
+            this.explanation.setMessage(`${el1.innerHTML} is the minimum`);
+
+        }else if (swappingNode.type === 'max') {
+            await this.colorNodes(swappingNode.firstNode, this.color.targetColor, parseInt(this.speed / 2));
+        }else if (swappingNode.type === 'initialColor') {
+            await this.colorNodes(swappingNode.firstNode, this.color.initialColor, parseInt(this.speed / 2));
+        }else if (swappingNode.type === 'traverse') {
+            await this.colorNodes(swappingNode.firstNode, this.color.traverseColor, parseInt(this.speed / 2));
+        }else if (swappingNode.type === 'allSorted') {
+            for (let i = 0; i < this.bar.length; i++) {
+                await this.colorNodes(i, this.color.finalColor, parseInt(this.speed / 10));
+            }
+            this.explanation.setMessage(`All elements are sorted`);
+        }
+        else if (swappingNode.type === 'colorTillFirst') {
+            for (let i = 0; i < this.bar.length; i++) {
+                if (i < swappingNode.firstNode) {
+                    await this.colorNodes(i, this.color.finalColor, parseInt(this.speed / 10));
+                }
+            }
         }
 
     }
@@ -268,9 +312,8 @@ class Sort {
     async reset() {
         this.visualizeStatus = false;
         this.currentStep = 0;
-        this.arr = [];
         this.step = [];
-        this.render();
+        this.render(false);
     }
 
     async colorNodes(index2, color, time) {
@@ -359,13 +402,13 @@ class Sort {
     }
 
 
-    setArray(array) {
+   async setArray(array) {
         this.arr = [];
         this.arr = array;
         this.visualizeStatus = false;
         this.currentStep = 0;
         this.step = [];
-        this.render(false);
+       await this.render(false);
 
     }
 
@@ -471,6 +514,10 @@ class Sort {
                 this.arr[min] = temp;
                 this.step.push({
                     firstNode: i, secondNode: min, type: 'swap',
+                });
+            }else {
+                this.step.push({
+                    type: 'sorted', firstNode: i,
                 });
             }
         }
@@ -646,6 +693,14 @@ class Sort {
             }, number);
         });
 
+    }
+
+    randomReset() {
+        this.arr = [];
+        this.step = [];
+        this.currentStep = 0;
+        this.visualizeStatus = false;
+       this.render();
     }
 }
 
