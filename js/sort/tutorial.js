@@ -106,9 +106,9 @@ class Tutorial {
         isFinish: true,
       },
     };
-    this.gridTutorialStep = {
+    this.pathFindingTutorialStep = {
       1: {
-        title: "Welcome to the grid tutorial",
+        title: "Welcome to the path finding tutorial",
         text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
         body: `
                  <h2 class="text-2xl font-semibold "> This short tutorial will walk you through all the features of this application.</h2>
@@ -117,13 +117,14 @@ class Tutorial {
                 </h3>
                 
                 `,
-        image: "/Images/graph/gg7.png",
+        image:
+          "https://media.geeksforgeeks.org/wp-content/uploads/a_-search-algorithm-1.png",
         next: 2,
         prev: 1,
         isFinish: false,
       },
       2: {
-        title: "Welcome to the grid tutorial",
+        title: "Welcome to the path finding tutorial",
         text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
         body: `
                  <h2 class="text-2xl font-semibold "> select a algorithm from dropdown menu.</h2>
@@ -138,7 +139,7 @@ class Tutorial {
         isFinish: false,
       },
       3: {
-        title: "Welcome to the grid tutorial",
+        title: "Welcome to the path finding tutorial",
         text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
         body: `
                  <h2 class="text-2xl font-semibold ">Set the animation speed from here.</h2>
@@ -153,7 +154,7 @@ class Tutorial {
         isFinish: false,
       },
       4: {
-        title: "Welcome to the grid tutorial",
+        title: "Welcome to the path finding tutorial",
         text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
         body: `
                  <h2 class="text-2xl font-semibold ">Set the obstacle and made it more difficult to reach the destination</h2>
@@ -168,7 +169,7 @@ class Tutorial {
         isFinish: false,
       },
       5: {
-        title: "Welcome to the grid tutorial",
+        title: "Welcome to the path finding tutorial",
         text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
         body: `
                  <h2 class="text-2xl font-semibold ">Oh! Don't forget to click the visualize button</h2>
@@ -179,7 +180,7 @@ class Tutorial {
         isFinish: false,
       },
       6: {
-        title: "Welcome to the grid tutorial",
+        title: "Welcome to the path finding tutorial",
         text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
         body: `
                  <h2 class="text-2xl font-semibold ">Another important tips is after click obstacle button you can create obstacle on grid using mouse.Just hold the mouse on grid area obstacle gonna create by themeselve by following your mouse pointer</h2>
@@ -190,7 +191,7 @@ class Tutorial {
         isFinish: false,
       },
       7: {
-        title: "Welcome to the grid tutorial",
+        title: "Welcome to the path finding tutorial",
         text: "This is a tutorial to help you get started with the  sorting system. You can skip this tutorial at any time by clicking the 'Skip Tutorial' button. You can also click the 'Next' button to go to the next step in the tutorial.",
         body: `
                  <h2 class="text-2xl font-semibold ">Congratulations! you'r good to go. Go and play, don't forget to look the down left and right box to learn more about the algorithm</h2>
@@ -433,7 +434,7 @@ class Tutorial {
     if (this.tutorialType === "sort") {
       selectedTutorialStep = this.sortTutorialStep[this.selectedStep];
     } else if (this.tutorialType === "grid") {
-      selectedTutorialStep = this.gridTutorialStep[this.selectedStep];
+      selectedTutorialStep = this.pathFindingTutorialStep[this.selectedStep];
     } else if (this.tutorialType === "expressionTree") {
       selectedTutorialStep = this.expressionTutorialStep[this.selectedStep];
     } else if (this.tutorialType === "stackArray") {
