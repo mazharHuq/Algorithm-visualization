@@ -46,9 +46,9 @@ class Sort {
     }
 
     generateRandomArray() {
-        let limit = Math.round(Math.random(2, 122) * 90) + 1;
-        while (limit<20){
-            limit = Math.round(Math.random(2, 122) * 90) + 1;
+        let limit = Math.round(Math.random(2, 122) * 35) + 1;
+        while (limit<15){
+            limit = Math.round(Math.random(2, 122) * 35) + 1;
         }
         //limit = 10;
         while (limit) {
@@ -185,6 +185,7 @@ class Sort {
                 }
             }
             this.currentStep++;
+            console.log(this.currentStep);
         }
     }
 
@@ -313,7 +314,30 @@ class Sort {
         this.visualizeStatus = false;
         this.currentStep = 0;
         this.step = [];
-        this.render(false);
+       await this.render(false);
+    }
+   async resetToNew() {
+        return new Promise((resolve, reject) => {
+            this.visualizeStatus = false;
+            this.currentStep = 0;
+            this.step = [];
+            let input = $('#array-input').val();
+            let array = input.split(',');
+
+            for (let i = 0; i < array.length; i++) {
+                array[i] = parseInt(array[i]);
+            }
+
+            this.setVisualizeStatus(false);
+            this.setArray(array);
+
+
+            this.render(false).then(() => {
+
+                resolve();
+
+            });
+        });
     }
 
     async colorNodes(index2, color, time) {
@@ -411,27 +435,33 @@ class Sort {
        await this.render(false);
 
     }
+    //function for windows clear interval
+
 
     setAlgorithm(selectedAlgorithm) {
         this.algorithm = selectedAlgorithm;
         console.log()
     }
 
-    startVisualize() {
+    async startVisualize() {
+        this.visualizeStatus = false;
+        this.currentStep = 0;
+        this.step = [];
+        await this.render(false);
+
         if (this.algorithm === 'bubbleSort') {
             this.bubbleSort();
             this.visualizeStatus = true;
-            this.visuaLizeBubbleSort();
+         await   this.visuaLizeBubbleSort();
         } else if (this.algorithm === 'insertionSort') {
-            this.insertionSort();
-            // this.visualizeStatus = true;
-            //this.visuaLizeInsertionSort();
+          await  this.insertionSort();
+
         } else if (this.algorithm === 'selectionSort') {
-            this.selectionSort();
+          await  this.selectionSort();
             // this.visualizeStatus = true;
             //this.visuaLizeSelectionSort();
         } else if (this.algorithm === 'mergeSort') {
-            this.mergeSort();
+           await this.mergeSort();
             // this.visualizeStatus = true;
             //this.visuaLizeMergeSort();
         }
@@ -532,16 +562,17 @@ class Sort {
 
 
     async mergeSort() {
+
         this.step = [];
         this.currentStep = 0;
-        this.visualizeStatus = false;
+        this.visualizeStatus = true;
         this.arr = await this.mergeSortHelper(this.arr, 0, this.arr.length - 1);
-        console.log(this.step);
 
 
     }
 
     async mergeSortHelper(arr, left, right) {
+        if(this.visualizeStatus === false) return ;
 
         if (left < right) {
             let mid = Math.floor((left + right) / 2);
@@ -571,6 +602,7 @@ class Sort {
     }
 
     async merge(arr, left, mid, right) {
+        if(this.visualizeStatus === false) return ;
         let positionChange = [];
 
 
@@ -609,6 +641,7 @@ class Sort {
 
         }
         while (i < leftArr.length) {
+            if(this.visualizeStatus === false) return ;
             positionChange.push({
                 index: k, changedValue: left + i,
             });
@@ -628,6 +661,7 @@ class Sort {
 
         }
         while (j < rightArr.length) {
+            if(this.visualizeStatus === false) return ;
             positionChange.push({
                 index: k, changedValue: mid + j + 1,
             });
@@ -644,11 +678,13 @@ class Sort {
         }
         console.log(positionChange);
         for (let i = 0; i < positionChange.length; i++) {
+            if(this.visualizeStatus === false) return ;
             let el = document.querySelector(`[id="${positionChange[i].changedValue}"]`);
             el.setAttribute('data-index', positionChange[i].index);
 
         }
         for (let i = left; i <= right; i++) {
+            if(this.visualizeStatus === false) return ;
             await this.colorNodes(i, "black", this.speed);
             await this.goTopLeft(i, 300, startingLeft, this.speed);
             let el = document.querySelector(`[data-index="${i}"]`);

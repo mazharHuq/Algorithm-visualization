@@ -151,6 +151,10 @@
                             class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">
                         Set Obstacles
                     </button>
+                    <button id="clean"
+                            class="bg-red-500  hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg">
+                        Clean
+                    </button>
                     <div class="font-bold text-lg">
                         <label>Speed</label>
                         <select id="speed"
@@ -234,7 +238,7 @@
             const cellSize = 5;
 
             
-            const grid = new Grid(height, width, cellSize,startButton,START_X,START_Y,END_X,END_Y);
+            var grid = new Grid(height, width, cellSize,startButton,START_X,START_Y,END_X,END_Y);
           
             var isRunning = false;
             var isHoverable = false;
@@ -257,12 +261,15 @@
             speed.change(function () {
                 grid.setSpeed(speed.val());
             }).trigger("change");
+            $("#clean").click(function () {
+               grid.reset(height, width, cellSize,startButton,START_X,START_Y,END_X,END_Y)
+            });
             startButton.click(() => {
                 let algorithm = $("#selectAlgorithm").val();
-                if (algorithm == "bfs") {
+                if (algorithm === "gridBFS") {
                     isBfs = true;
                     isDfs = false;
-                } else if (algorithm == "dfs") {
+                } else if (algorithm === "gridDFS") {
                     isDfs = true;
                     isBfs = false;
                 } else {
@@ -302,21 +309,6 @@
 
                 }
             );
-            //###################################################//
-            //###################################################//
-            
-            // $("#tutorial-next").click(function () {
-            //         tutorial.setTutorial(document.getElementById("tutorial-next").dataset.val,"grid");
-            //     }
-            // );
-            // $("#tutorial-prev").click(function () {
-            //         tutorial.setTutorial(document.getElementById("tutorial-prev").dataset.val,"grid");
-            //     }
-            // );
-            // $("#tutorial-skip").click(function () {
-            //         tutorial.hide();
-            //     }
-            // );
 
         });
     </script>
