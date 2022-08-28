@@ -91,10 +91,10 @@ class sortingAlgorithmDetails {
         At last the largest value present in the array automatically get placed at the last position in the array<br>
         The resulted array is the sorted array. <br>
            `,
-        averageTime: "O(n^2)",
-        worstTime: "O(n^2)",
-        bestTime: "O(n^2)",
-        spaceComplexity: "O(1)",
+            averageTime: "O(n^2)",
+            worstTime: "O(n^2)",
+            bestTime: "O(n^2)",
+            spaceComplexity: "O(1)",
             pseudoCode: `
             <pre>
 repeat (numOfElements - 1) times
@@ -110,12 +110,11 @@ repeat (numOfElements - 1) times
             </pre>
             
             `
-    },
-        this.insertionSort = {
-        name: "Insertion Sort",
-        algorithm: "Insertion Sort is a sorting algorithm in which the smallest element is selected from the array and swapped with the first element. The same is repeated for the remaining elements. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
-        complexity: "",
-        description: `<div class="card">
+        }, this.insertionSort = {
+            name: "Insertion Sort",
+            algorithm: "Insertion Sort is a sorting algorithm in which the smallest element is selected from the array and swapped with the first element. The same is repeated for the remaining elements. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
+            complexity: "",
+            description: `<div class="card">
         How Insertion Sort Works?<br>
         Lets consider the following array as an example: arr[] = {64, 25, 12, 22, 11}<br>
         <br>
@@ -152,16 +151,12 @@ repeat (numOfElements - 1) times
             worstTime: "O(n^2)",
             bestTime: "O(n)",
             spaceComplexity: "O(1)",
-
+            pseudoCode: ` `,
         };
         this.Dijkstra = {
             name: "Dijkstra's Algorithm",
-            algorithm:
-                "Dijkstra's algorithm allows us to find the shortest path between any two vertices of a graph.",
-            complexity:
-                "O(E Log V)\n" +
-                "\n" +
-                "where, E is the number of edges and V is the number of vertices.",
+            algorithm: "Dijkstra's algorithm allows us to find the shortest path between any two vertices of a graph.",
+            complexity: "",
             description: `
             <div class="card">
                     <li>Dijkstra's Algorithm basically starts at the node that you choose (the source node) and it analyzes the graph to find the shortest path between that node and all the other nodes in the graph.
@@ -170,19 +165,18 @@ repeat (numOfElements - 1) times
                     <li>The process continues until all the nodes in the graph have been added to the path. This way, we have a path that connects the source node to all other nodes following the shortest path possible to reach each node.</li>
                 </div>
                 <a
-                        href="https://www.geeksforgeeks.org/expression-tree/">
+                        href="https://www.freecodecamp.org/news/dijkstras-shortest-path-algorithm-visual-introduction/">
                     <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             `,
-            averageTime: "O(V^2)",
-            worstTime: "   ss",
-            bestTime: "O(V^2)",
-            spaceComplexity: "O(|V|)",
+            averageTime: "O(VLogV + E)\n" + " where, |V| is the number of vertices and |E| is the number of edges.",
+            worstTime: "",
+            bestTime: "",
+            spaceComplexity: "O(|V| + |E|)\n" + "\n" + "where, |V| is the number of vertices and |E| is the number of edges.",
         };
         this.BreadthFirstSearch = {
             name: "Breadth First Search",
             algorithm: "Breadth First Search is a search algorithm that traverses nodes in a tree level by level.",
             complexity: "O(V+E)",
-            spaceComplexity: "O(|V|)",
             description: `<div class="card">
            Breadth-First Traversal (or Search) for a graph is similar to Breadth-First Traversal of a tree (See method 2 of this post). 
 
@@ -214,16 +208,24 @@ repeat (numOfElements - 1) times
                 <br>
                 2. Add v to the queue.
                 <br>
-                3. If the sought vertex is not found in the queue, return false.
+                3. If the source vertex is not found in the queue, return false.
                 <br>
                 <br>
-               
+                </div>
+                
+                <a
+                        href="https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                
             `,
+            averageTime: "O(|V| + |E|)\n" + " where, |V| is the number of vertices and |E| is the number of edges.",
+            worstTime: "",
+            bestTime: "",
+            spaceComplexity: "O(|V| + |E|)\n" + "\n" + "where, |V| is the number of vertices and |E| is the number of edges.",
         };
         this.DepthFirstSearch = {
             name: "Depth First Search",
-            algorithm:
-                "Depth First Search is a search algorithm that traverses nodes in a tree level by level.",
+            algorithm: "DFS (Depth-first search) is technique used for traversing tree or graph. Here backtracking is used for traversal. In this traversal first the deepest node is visited and then backtracks to it’s parent node if no sibling of that node exist. ",
             complexity: "",
             description: `<div class="card">
            Depth-first Traversal (or Search) for a graph is similar to Depth-First Traversal of a tree. 
@@ -236,11 +238,11 @@ repeat (numOfElements - 1) times
                 2. Traverse all the adjacent and unmarked nodes and call the recursive function with the index of the adjacent node.
                 <br>
                 <br>
-                The algorithm for searching a vertex u is as follows:
+                The algorithm for searching a vertex from u is as follows:
                 <br>
                 1. Mark u as processed.
                 <br>
-                2. Add u to the astck.
+                2. Add u to the stack.
                 <br>
                 3. While the stack is not empty:
                 <br>
@@ -254,61 +256,68 @@ repeat (numOfElements - 1) times
                 <br>
                 1. Mark v as processed.
                 <br>
-                2. Add v to the queue.
+                2. Add v to the stack.
                 <br>
-                3. If the sought vertex is not found in the queue, return false.
+                3. If the source vertex is not found in the stack, return false.
                 <br>
-                <br>
-                The algorithm for searching a vertex u is as follows:
                 
             <a
-                        href="https://www.geeksforgeeks.org/expression-tree/">
+                        href="https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/?ref=lbp">
                     <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             
             `,
+            averageTime: "O(V)\n" + " where, |V| is the number of vertices",
+            worstTime: "",
+            bestTime: "",
+            spaceComplexity: "O(|V| + |E|)\n" + "\n" + "where, |V| is the number of vertices and |E| is the number of edges.",
             pseudoCode: '',
         };
         this.gridDFS = {
             name: "Depth First Search",
-            algorithm:
-                "The algorithm starts at the Starting node and explores as far as possible along each branch before backtracking. Extra memory, usually a stack, is needed to keep track of the nodes discovered so far along a specified branch which helps in backtracking of the graph.",
+            algorithm: " Find the source index of the cell in each matrix and then recursively find a path from source index to destination in the matrix. " + "The algorithm involves recursively finding all the paths until a final path is found to the destination.",
             complexity: "O(ROW * COL)",
             description: `
             <div class="card">
             The following algorithm can be followed to perform grid traversal using dfs:
             </br>
-            1. Initialize the grid with false values to indicate that no cell is visited. </br>
-            2. Start the traversal using the cell in the grid. </br>
-            3. Mark the cell as visited. </br>
-            4. Use the direction vectors to generate the neighbors of the cell. </br>
-            5. If the generated coordinates are within the matrix (the isvalid() function must return true) and the cell represented by the coordinate is unvisited, then make a recursive call to the traversal function using this coordinate.</br>
-            6. Repeat the steps 2–5 until all the cells in the grid have been visited. </br>
+            <li>Traverse the matrix and find the starting index of the matrix.</li>
+            <li>Create a recursive function that takes the index and visited matrix.</li>
+            <li>Mark the current cell and check if the current cell is a destination or not. If the current cell is destination return true.</li>
+            <li>Call the recursion function for all adjacent empty and unvisited cells.</li>
+            <li>If any of the recursive functions returns true then unmark the cell and return true else unmark the cell and return false.</li>
             <a
-                        href="https://www.geeksforgeeks.org/expression-tree/">
+                        href="https://www.geeksforgeeks.org/find-whether-path-two-cells-matrix/">
                     <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>`,
             spaceComplexity: "O(ROW * COL)",
+            averageTime: "O(ROW * COL)",
+            worstTime: "O(ROW * COL)",
+            bestTime: "O(ROW * COL)",
+            pseudoCode: ''
+
         }
         this.gridBFS = {
             name: "Breadth First Search",
-            algorithm:
-                "",
+            algorithm: "The idea is to use Breadth-First Search. Consider each cell as a node and each boundary between any" + "two adjacent cells be an edge. so the total number of Node is ROW * COL. \n" + "So the idea is to do a breadth-first search from the starting cell till the ending cell is found. \n",
             complexity: "O(ROW * COL)",
             description: `
             <div class="card">
-            Initialize queue.   </br>
-Initialize 2d boolean array, the same size as the original array. This will help us in avoiding traversal to go in loops. </br>
-Add the first element position (element at (source coordinate)) to queue </br>
-Now until the queue is not empty or find destination  </br>
-Take out the position from the queue and check if indexes are within the range of given matrix and marked false in the visited[] array, if not then ignore it and get the next position from the queue. </br>
-Mark the element in the visited array.</div>
-Add the element positions from left, right, down and up from the current element into the queue . </br>
-<a
-                        href="https://www.geeksforgeeks.org/expression-tree/">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-            
-            </div>`,
+            <li>Create an empty Graph having N*N node(Vertex), 
+            push all nodes into a graph, and note down the source and sink vertex.</li>
+            <li>Now apply BFS on the graph, create a queue and insert the source node in the queue</li>
+            <li>Run a loop till the size of the queue is greater than 0</li>
+            <li>Remove the front node of the queue and check if the node is the destination if the destination returns true. mark the node</li>
+            <li>Check all adjacent cells if unvisited and blank insert them in the queue.</li>
+            <li>If the destination is not reached return true.</li>
+            </div>
+
+            <a href="https://www.geeksforgeeks.org/find-whether-path-two-cells-matrix/">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`,
             spaceComplexity: "O(ROW * COL)",
+            averageTime: "O(ROW * COL)",
+            worstTime: "O(ROW * COL)",
+            bestTime: "O(ROW * COL)",
+            pseudoCode: '',
 
         }
         this.render();
@@ -345,13 +354,20 @@ Add the element positions from left, right, down and up from the current element
             this.algorithmName = this.BreadthFirstSearch.name;
             this.algorithmDescription = this.BreadthFirstSearch.description;
             this.algorithmSummary = this.BreadthFirstSearch.algorithm;
-        }
-        else if (this.sortFunction == "DFS") {
+            this.bestTime = this.BreadthFirstSearch.bestTime;
+            this.averageTime = this.BreadthFirstSearch.averageTime;
+            this.worstTime = this.BreadthFirstSearch.worstTime;
+            this.spaceComplexity = this.BreadthFirstSearch.spaceComplexity;
+
+        } else if (this.sortFunction == "DFS") {
             this.algorithmName = this.DepthFirstSearch.name;
             this.algorithmDescription = this.DepthFirstSearch.description;
             this.algorithmSummary = this.DepthFirstSearch.algorithm;
-        }
-        else if (this.sortFunction == "Dijkstra") {
+            this.bestTime = this.DepthFirstSearch.bestTime;
+            this.averageTime = this.DepthFirstSearch.averageTime;
+            this.worstTime = this.DepthFirstSearch.worstTime;
+            this.spaceComplexity = this.DepthFirstSearch.spaceComplexity;
+        } else if (this.sortFunction == "Dijkstra") {
             this.algorithmName = this.Dijkstra.name;
             this.algorithmDescription = this.Dijkstra.description;
             this.algorithmSummary = this.Dijkstra.algorithm;
@@ -359,8 +375,7 @@ Add the element positions from left, right, down and up from the current element
             this.averageTime = this.Dijkstra.averageTime;
             this.worstTime = this.Dijkstra.worstTime;
             this.spaceComplexity = this.Dijkstra.spaceComplexity;
-        }
-        else if (this.sortFunction == "gridBFS") {
+        } else if (this.sortFunction == "gridBFS") {
             this.algorithmName = this.gridBFS.name;
             this.algorithmDescription = this.gridBFS.description;
             this.algorithmSummary = this.gridBFS.algorithm;
@@ -368,8 +383,7 @@ Add the element positions from left, right, down and up from the current element
             this.averageTime = this.gridBFS.averageTime;
             this.worstTime = this.gridBFS.worstTime;
             this.spaceComplexity = this.gridBFS.spaceComplexity;
-        }
-        else if (this.sortFunction == "gridDFS") {
+        } else if (this.sortFunction == "gridDFS") {
             this.algorithmName = this.gridDFS.name;
             this.algorithmDescription = this.gridDFS.description;
             this.algorithmSummary = this.gridDFS.algorithm;
