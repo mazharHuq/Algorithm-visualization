@@ -151,7 +151,21 @@ repeat (numOfElements - 1) times
             worstTime: "O(n^2)",
             bestTime: "O(n)",
             spaceComplexity: "O(1)",
-            pseudoCode: ` `,
+            pseudoCode: ` <pre>
+ mark first element as sorted
+
+for each unsorted element X
+
+  'extract' the element X
+
+  for j = lastSortedIndex down to 0
+
+    if current element j > X
+
+      move sorted element to the right by 1
+
+    break loop and insert X here
+</pre>`,
         };
         this.Dijkstra = {
             name: "Dijkstra's Algorithm",
