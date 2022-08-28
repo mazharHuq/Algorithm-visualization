@@ -152,6 +152,22 @@ repeat (numOfElements - 1) times
             worstTime: "O(n^2)",
             bestTime: "O(n)",
             spaceComplexity: "O(1)",
+            pseudoCode: `
+            <pre>
+            mark first element as sorted
+
+for each unsorted element X
+  'extract' the element X
+  for j = lastSortedIndex down to 0
+   if current element j > X
+      move sorted element to the right by 1
+    break loop and insert X here
+            
+            
+            </pre>
+            
+            
+            `
 
         };
         this.Dijkstra = {
@@ -341,6 +357,7 @@ Add the element positions from left, right, down and up from the current element
             this.averageTime = this.insertionSort.averageTime;
             this.worstTime = this.insertionSort.worstTime;
             this.spaceComplexity = this.insertionSort.spaceComplexity;
+            this.pseudoCode = this.insertionSort.pseudoCode;
         } else if (this.sortFunction == "BFS") {
             this.algorithmName = this.BreadthFirstSearch.name;
             this.algorithmDescription = this.BreadthFirstSearch.description;

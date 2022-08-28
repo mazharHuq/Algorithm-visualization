@@ -385,17 +385,31 @@
             console.log(sort.speed);
 
         });
-        startVisualize.on('click', function () {
-            selectedAlgorithm = $("#selectAlgorithm").val();
-            if (selectedAlgorithm) {
-                sort.setAlgorithm(selectedAlgorithm);
-                sort.startVisualize();
-                $("#sortArrayPause").removeClass('hidden');
-                $("#play").addClass('hidden');
-            } else {
-                alert("Please select an algorithm");
+
+            const startSorting = async () => {
+                selectedAlgorithm = $("#selectAlgorithm").val();
+                if(selectedAlgorithm){
+                    if(sort.currentStep>0){
+                        // Set a fake timeout to get the highest timeout id
+                        var highestTimeoutId = setTimeout(";");
+                        for (var i = 0 ; i < highestTimeoutId ; i++) {
+                            clearTimeout(i);
+                        }
+                      await sort.resetToNew();
+                    }
+
+                   sort.setAlgorithm(selectedAlgorithm);
+                    $('#sortArrayPause').removeClass('hidden');
+                    $("#play").addClass("hidden");
+                   await sort.startVisualize();
+
+
+                }else  alert("Please select an algorithm");
             }
-        });
+            startVisualize.on('click', startSorting);
+
+
+
 
 
         $("#sortArrayPause").click(function () {
@@ -443,7 +457,7 @@
                 sort.randomReset();
             }
         );
-        $("#selectAlgorithm").on('change', function () {
+        $("#selectAlgorithm").on('change',async function () {
 
                 let algorithm = $(this).val();
                 if (algorithm) {
@@ -460,12 +474,16 @@
                 $('#bestCase').html(selectedAlgorithm.worstTime);
                 $('#spaceComplexity').html(selectedAlgorithm.spaceComplexity);
                 $("#pseudocode").html(selectedAlgorithm.pseudoCode);
-              sort.reset();
+                await  sort.resetToNew();
+
                 let exp = document.querySelector('#explanation');
-                if(exp.style.display == 'none'){
+                if(exp.style.display == 'none' || exp.style.display == ''){
                     $('#explanation_toogler').click();
 
                 }
+            for (var i = 0 ; i < highestTimeoutId ; i++) {
+                clearTimeout(i);
+            }
 
 
             }

@@ -27,6 +27,25 @@ class Grid {
         this.endY = endY;
         this.init();
     }
+    reset(width, height, cellSize, startButton, startX, startY, endX, endY) {
+       document.getElementById("grid").innerHTML = "";
+        confirm("Are you sure you want to reset the grid?");
+
+        this.startIcon = "🏍";
+        this.endIcon = "🏁";
+        this.width = width;
+        this.height = height;
+        this.cellSize = cellSize;
+        this.cells = [];
+        this.color = {
+            path: "yellow", start: "green", current: "blue", visited: "#afd8f8",
+        }
+        this.startX = startX;
+        this.startY = startY;
+        this.endX = endX;
+        this.endY = endY;
+        this.init();
+    }
 
     init() {
 
