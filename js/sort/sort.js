@@ -117,107 +117,10 @@ class Sort {
     }
 
 
-    async visualize() {
-        for (let i = this.currentStep; i < this.step.length; i++) {
-            if (this.visualizeStatus === false) break;
-            let swappingNode = this.step[i];
-            if (swappingNode.type === 'check') {
-                await this.colorNodes(swappingNode.firstNode, this.color.visitedColor, this.speed);
-                if(swappingNode.secondNode !== undefined){
-                await this.colorNodes(swappingNode.secondNode, this.color.visitedColor, this.speed);
-                this.explanation.setMessage(`${swappingNode.firstNode} and ${swappingNode.secondNode} are checked`);
-                }else {
-                    let nodeElement = document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
-                    if (this.algorithm === 'insertionSort') {
-                        this.explanation.setMessage(`Check if `+nodeElement.innerHTML + ` is in the right position`);
-                    }else if(this.algorithm === 'selectionSort'){
-                        this.explanation.setMessage(`Check if `+nodeElement.innerHTML + ` is the smallest element`);
-                    }
-                }
-
-            } else if (swappingNode.type === 'swap') {
-                await this.swap(swappingNode.firstNode, swappingNode.secondNode, this.color.targetColor, this.speed);
-                let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
-                let el2=document.querySelector(`[data-index="${swappingNode.secondNode}"]`);
-                this.explanation.setMessage(`Swap ${el1.innerHTML} and ${el2.innerHTML}`);
-
-                if(this.algorithm ==='selectionSort'){
-
-                   await this.colorNodes(swappingNode.secondNode, this.color.visitedColor, this.speed);
-                     await this.colorNodes(swappingNode.firstNode, this.color.finalColor, this.speed);
-                }
-            } else if (swappingNode.type === 'sorted') {
-                await this.colorNodes(swappingNode.firstNode, this.color.finalColor, this.speed);
-                let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
-                this.explanation.setMessage(`${el1.innerHTML} is sorted`);
-            } else if (swappingNode.type === 'reset') {
-                await this.reset();
-            } else if (swappingNode.type === 'goUp') {
-                await this.goUp(swappingNode.firstNode, this.speed, this.color.targetColor);
-                let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
-                this.explanation.setMessage(`Finding position for ${el1.innerHTML}`);
-            } else if (swappingNode.type === 'goDown') {
-                await this.goDown(swappingNode.firstNode, this.speed, this.color.finalColor);
-                let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
-                this.explanation.setMessage(`${el1.innerHTML} is in the right position`);
-            } else if (swappingNode.type === 'min') {
-                await this.colorNodes(swappingNode.firstNode, this.color.targetColor, parseInt(this.speed / 2));
-                let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
-                this.explanation.setMessage(`${el1.innerHTML} is the minimum`);
-
-            }else if (swappingNode.type === 'max') {
-                await this.colorNodes(swappingNode.firstNode, this.color.targetColor, parseInt(this.speed / 2));
-            }else if (swappingNode.type === 'initialColor') {
-                await this.colorNodes(swappingNode.firstNode, this.color.initialColor, parseInt(this.speed / 2));
-            }else if (swappingNode.type === 'traverse') {
-                await this.colorNodes(swappingNode.firstNode, this.color.traverseColor, parseInt(this.speed / 2));
-            }else if (swappingNode.type === 'allSorted') {
-                for (let i = 0; i < this.bar.length; i++) {
-                    await this.colorNodes(i, this.color.finalColor, parseInt(this.speed / 10));
-                }
-                this.explanation.setMessage(`All elements are sorted`);
-            }
-            else if (swappingNode.type === 'colorTillFirst') {
-                for (let i = 0; i < this.bar.length; i++) {
-                    if (i < swappingNode.firstNode) {
-                        await this.colorNodes(i, this.color.finalColor, parseInt(this.speed / 10));
-                    }
-                }
-            }
-            this.currentStep++;
-            console.log(this.currentStep);
-        }
-    }
 
 
-    bubbleSort() {
-
-        for (let i = 0; i < this.arr.length - 1; i++) {
-            for (let j = 0; j < this.arr.length - i - 1; j++) {
-                let action = {
-                    firstNode: j, secondNode: j + 1, type: 'check',
 
 
-                }
-                this.step.push(action);
-                if (this.arr[j] > this.arr[j + 1]) {
-                    let swappingNode = {
-                        firstNode: j, secondNode: j + 1, type: 'swap',
-                    }
-                    this.step.push(swappingNode);
-                    let temp = this.arr[j];
-                    this.arr[j] = this.arr[j + 1];
-                    this.arr[j + 1] = temp;
-                }
-                if (this.arr.length - i - 2 === j) {
-                    let action = {
-                        firstNode: j + 1, secondNode: j + 1, type: 'sorted',
-                    }
-                    this.step.push(action);
-                }
-            }
-        }
-    }
 
     async goBack() {
         if (this.currentStep > 0) {
@@ -443,6 +346,81 @@ class Sort {
         console.log()
     }
 
+    async visualize() {
+        for (let i = this.currentStep; i < this.step.length; i++) {
+            if (this.visualizeStatus === false) break;
+            let swappingNode = this.step[i];
+            if (swappingNode.type === 'check') {
+                await this.colorNodes(swappingNode.firstNode, this.color.visitedColor, this.speed);
+                if(swappingNode.secondNode !== undefined){
+                    await this.colorNodes(swappingNode.secondNode, this.color.visitedColor, this.speed);
+                    this.explanation.setMessage(`${swappingNode.firstNode} and ${swappingNode.secondNode} are checked`);
+                }else {
+                    let nodeElement = document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
+                    if (this.algorithm === 'insertionSort') {
+                        this.explanation.setMessage(`Check if `+nodeElement.innerHTML + ` is in the right position`);
+                    }else if(this.algorithm === 'selectionSort'){
+                        this.explanation.setMessage(`Check if `+nodeElement.innerHTML + ` is the smallest element`);
+                    }
+                }
+
+            } else if (swappingNode.type === 'swap') {
+                await this.swap(swappingNode.firstNode, swappingNode.secondNode, this.color.targetColor, this.speed);
+                let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
+                let el2=document.querySelector(`[data-index="${swappingNode.secondNode}"]`);
+                this.explanation.setMessage(`Swap ${el1.innerHTML} and ${el2.innerHTML}`);
+
+                if(this.algorithm ==='selectionSort'){
+
+                    await this.colorNodes(swappingNode.secondNode, this.color.visitedColor, this.speed);
+                    await this.colorNodes(swappingNode.firstNode, this.color.finalColor, this.speed);
+                }else if(this.algorithm ==='bubbleSort'){
+                    await this.colorNodes(swappingNode.firstNode, this.color.visitedColor, this.speed);
+                    await this.colorNodes(swappingNode.secondNode, this.color.finalColor, this.speed);
+                }
+            } else if (swappingNode.type === 'sorted') {
+                await this.colorNodes(swappingNode.firstNode, this.color.finalColor, this.speed);
+                let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
+                this.explanation.setMessage(`${el1.innerHTML} is sorted`);
+            } else if (swappingNode.type === 'reset') {
+                await this.reset();
+            } else if (swappingNode.type === 'goUp') {
+                await this.goUp(swappingNode.firstNode, this.speed, this.color.targetColor);
+                let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
+                this.explanation.setMessage(`Finding position for ${el1.innerHTML}`);
+            } else if (swappingNode.type === 'goDown') {
+                await this.goDown(swappingNode.firstNode, this.speed, this.color.finalColor);
+                let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
+                this.explanation.setMessage(`${el1.innerHTML} is in the right position`);
+            } else if (swappingNode.type === 'min') {
+                await this.colorNodes(swappingNode.firstNode, this.color.targetColor, parseInt(this.speed / 2));
+                let el1=document.querySelector(`[data-index="${swappingNode.firstNode}"]`);
+                this.explanation.setMessage(`${el1.innerHTML} is the minimum`);
+
+            }else if (swappingNode.type === 'max') {
+                await this.colorNodes(swappingNode.firstNode, this.color.targetColor, parseInt(this.speed / 2));
+            }else if (swappingNode.type === 'initialColor') {
+                await this.colorNodes(swappingNode.firstNode, this.color.initialColor, parseInt(this.speed / 2));
+            }else if (swappingNode.type === 'traverse') {
+                await this.colorNodes(swappingNode.firstNode, this.color.traverseColor, parseInt(this.speed / 2));
+            }else if (swappingNode.type === 'allSorted') {
+                for (let i = 0; i < this.bar.length; i++) {
+                    await this.colorNodes(i, this.color.finalColor, parseInt(this.speed / 10));
+                }
+                this.explanation.setMessage(`All elements are sorted`);
+            }
+            else if (swappingNode.type === 'colorTillFirst') {
+                for (let i = 0; i < this.bar.length; i++) {
+                    if (i < swappingNode.firstNode) {
+                        await this.colorNodes(i, this.color.finalColor, parseInt(this.speed / 10));
+                    }
+                }
+            }
+            this.currentStep++;
+            console.log(this.currentStep);
+        }
+    }
+
     async startVisualize() {
         this.visualizeStatus = false;
         this.currentStep = 0;
@@ -450,9 +428,8 @@ class Sort {
         await this.render(false);
 
         if (this.algorithm === 'bubbleSort') {
-            this.bubbleSort();
-            this.visualizeStatus = true;
-         await   this.visuaLizeBubbleSort();
+            await  this.bubbleSort();
+            this.visualizeStatus = false;
         } else if (this.algorithm === 'insertionSort') {
           await  this.insertionSort();
 
@@ -465,6 +442,37 @@ class Sort {
             // this.visualizeStatus = true;
             //this.visuaLizeMergeSort();
         }
+    }
+    async  bubbleSort() {
+
+        for (let i = 0; i < this.arr.length - 1; i++) {
+            for (let j = 0; j < this.arr.length - i - 1; j++) {
+                let action = {
+                    firstNode: j, secondNode: j + 1, type: 'check',
+                }
+                this.step.push(action);
+                if (this.arr[j] > this.arr[j + 1]) {
+                    let swappingNode = {
+                        firstNode: j, secondNode: j + 1, type: 'swap',
+                    }
+                    this.step.push(swappingNode);
+                    let temp = this.arr[j];
+                    this.arr[j] = this.arr[j + 1];
+                    this.arr[j + 1] = temp;
+                }
+                if (this.arr.length - i - 2 === j) {
+                    let action = {
+                        firstNode: j + 1, secondNode: j + 1, type: 'sorted',
+                    }
+                    this.step.push(action);
+                }
+            }
+        }
+        this.step.push({type: 'allSorted'});
+        this.visualizeStatus = true;
+        this.currentStep = 0;
+        await this.visualize();
+
     }
 
     async insertionSort() {
