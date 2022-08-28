@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expression Tree</title>
-    <link rel="stylesheet" href="/CSS/sort.css">
+    <link rel="stylesheet" href="CSS/sort.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
@@ -27,10 +27,10 @@
     <title>Visualizations - Expression Tree</title>
 
     <!--css-->
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/viz.css">
+    <link rel="stylesheet" href="CSS/common.css">
+    <link rel="stylesheet" href="CSS/viz.css">
 
-    <link rel="stylesheet" href="css/bst.css">
+    <link rel="stylesheet" href="CSS/bst.css">
 
     <style>
         .tutorial-container {
@@ -192,6 +192,7 @@
 <script src="js/graph_library/GraphVertexWidget.js"></script>
 <script src="js/graph_library/GraphEdgeWidget.js"></script>
 <script src="js/widgets/BstWidget.js"></script>
+<script src="js/tutorial.js"></script>
 
 <script type="text/javascript">
 
@@ -284,8 +285,8 @@
 </script>
 
 <!-- Tutorial Modal JS -->
-<script type="module">
-    import Tutorial from "../../js/sort/tutorial.js";
+<script >
+
     $(document).ready(function () {
         var tutorial = new Tutorial("");
         tutorial.setTutorial(1,"expressionTree");

@@ -6,7 +6,7 @@
 
     <title>Stack Finale using Array</title>
 
-    <link rel="stylesheet" href="/dataStructure/stack/style.css"/>
+    <link rel="stylesheet" href="CSS/stack.css"/>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
@@ -67,9 +67,10 @@
             <div class="flex items-center">
                 <h1 class="font-bold text-2xl ml-2">VisualAlgorithm</h1>
             </div>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" id="save">
-                Stack
-            </button>
+            <div class="text-large font-bold text-black">
+                <span>Data Structure : Stack </span>
+            </div>
+
 
         </div>
     </div>
@@ -310,12 +311,13 @@
 ></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
-<script src="../stack/container.js"></script>
-<script src="../stack/operationExplaination.js"></script>
-<script src="../stack/stack.js"></script>
+<script src="js/stack/container.js"></script>
+<script src="js/stack/operationExplaination.js"></script>
+<script src="js/stack/stack.js"></script>
+<script src="js/tutorial.js"></script>
 <!-- Tutorial Modal JS -->
-<script type="module">
-    import Tutorial from "../../js/sort/tutorial.js";
+<script >
+
     $(document).ready(function () {
         var tutorial = new Tutorial("");
         tutorial.setTutorial(1,"stackArray");
