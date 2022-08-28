@@ -293,13 +293,15 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
 ></script>
-<script type="text/javascript" src="./js/graph/helper.js"></script>
+<script type="text/javascript" src="js/graph/helper.js"></script>
 
-<script type="text/javascript" src="./js/graph/buildGraph.js"></script>
-<script type="text/javascript" src="./js/graph/visualizeGraphAlog.js"></script>
-<script type="module">
+<script type="text/javascript" src="js/graph/buildGraph.js"></script>
+<script type="text/javascript" src="js/graph/visualizeGraphAlog.js"></script>
+<script src="js/tutorial.js"></script>
+<script src="js/sortingAlgorithmDetails.js"></script>
+<script >
 
-  import sortingAlgorithmDetails from "./js/sortingAlgorithmDetails.js"
+
   $("#selectAlgorithm").on("change", function () {
     let algorithm = $(this).val();
     let selectedAlgorithm = new sortingAlgorithmDetails(algorithm);
@@ -631,8 +633,8 @@
 </script>
 
 <!-- Tutorial Modal JS -->
-<script type="module">
-  import Tutorial from "./js/tutorial.js";
+<script >
+
   $(document).ready(function () {
     var tutorial = new Tutorial("");
     tutorial.setTutorial(1, "graph");

@@ -409,4 +409,3 @@ for each unsorted element X
     }
 }
 
-export default sortingAlgorithmDetails;
