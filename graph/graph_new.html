@@ -117,7 +117,7 @@
             <img
               id="tutorial-image"
               class="pt-4"
-              src="../Images/bar.png"
+              src="../Images/graphNode/gnc.png"
               alt=""
             />
           </div>
@@ -171,18 +171,6 @@
                 <option value="Dijkstra">Dijkstra</option>
               </select>
             </div>
-            <!--     <input
-                       type="text"
-                       id="startNode"
-                       value="Source"
-                       class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
-                     />
-                     <input
-                       type="text"
-                       id="endNode"
-                       value="Destination"
-                       class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
-                     />-->
             <select
               id="startNode"
               class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2"
@@ -290,6 +278,8 @@
       </div>
     </div>
     <canvas id="canvas"></canvas>
+
+    <!-- Scripts -->
     <script
       src="https://code.jquery.com/jquery-3.6.0.js"
       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -310,6 +300,23 @@
     ></script>
     <script type="text/javascript" src="../js/buildGraph.js"></script>
     <script type="text/javascript" src="../js/visualizeGraphAlog.js"></script>
+    <script type="module">
+
+      import sortingAlgorithmDetails from "../js/sort/sortingAlgorithmDetails.js"
+      $("#selectAlgorithm").on("change", function () {
+        let algorithm = $(this).val();
+        let selectedAlgorithm = new sortingAlgorithmDetails(algorithm);
+        $("#algorithm-title").html(selectedAlgorithm.algorithmName);
+        $("#algorithm-summary").html(selectedAlgorithm.algorithmSummary);
+        $("#algorithm-description").html(
+                selectedAlgorithm.algorithmDescription
+        );
+        $("#worstCase").html(selectedAlgorithm.bestTime);
+        $("#averageCase").html(selectedAlgorithm.averageTime);
+        $("#bestCase").html(selectedAlgorithm.worstTime);
+        $("#spaceComplexity").html(selectedAlgorithm.spaceComplexity);
+      });
+    </script>
     <script type="text/javascript">
       let grid = {};
       let ugrid = {};
@@ -534,7 +541,7 @@
 
           visualize(graph.pathNode, source);
         } else if (select == "DFS") {
-          graph.setGraphInfo(true, false);
+          graph.setGraphInfo(false, true);
           steps = graph.getUnWeightedDfsSteps(source, destination);
           visDfs.setSteps(steps);
           visDfs.init(container, graph.getGraph(), options);
@@ -556,20 +563,6 @@
           alert("Please select an algorithm");
           return;
         }
-      });
-
-      $("#selectAlgorithm").on("change", function () {
-        let algorithm = $(this).val();
-        let selectedAlgorithm = new graphAlgorithmDetails(algorithm);
-        $("#algorithm-title").html(selectedAlgorithm.algorithmName);
-        $("#algorithm-summary").html(selectedAlgorithm.algorithmSummary);
-        $("#algorithm-description").html(
-          selectedAlgorithm.algorithmDescription
-        );
-        $("#worstCase").html(selectedAlgorithm.bestTime);
-        $("#averageCase").html(selectedAlgorithm.averageTime);
-        $("#bestCase").html(selectedAlgorithm.worstTime);
-        $("#spaceComplexity").html(selectedAlgorithm.spaceComplexity);
       });
 
       $("#isDirected").on("change", function () {
