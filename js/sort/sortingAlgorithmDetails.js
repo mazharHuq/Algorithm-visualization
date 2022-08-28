@@ -95,6 +95,21 @@ class sortingAlgorithmDetails {
         worstTime: "O(n^2)",
         bestTime: "O(n^2)",
         spaceComplexity: "O(1)",
+            pseudoCode: `
+            <pre>
+repeat (numOfElements - 1) times
+
+    set the first unsorted element as the minimum
+
+    for each of the unsorted elements
+
+        if element < currentMinimum
+         set element as new minimum
+        swap minimum with first unsorted position
+                     
+            </pre>
+            
+            `
     },
         this.insertionSort = {
         name: "Insertion Sort",
@@ -137,6 +152,7 @@ class sortingAlgorithmDetails {
             worstTime: "O(n^2)",
             bestTime: "O(n)",
             spaceComplexity: "O(1)",
+
         };
         this.Dijkstra = {
             name: "Dijkstra's Algorithm",
@@ -316,6 +332,7 @@ Add the element positions from left, right, down and up from the current element
             this.averageTime = this.selectionSort.averageTime;
             this.worstTime = this.selectionSort.worstTime;
             this.spaceComplexity = this.selectionSort.spaceComplexity;
+            this.pseudoCode = this.selectionSort.pseudoCode;
         } else if (this.sortFunction == "insertionSort") {
             this.algorithmName = this.insertionSort.name;
             this.algorithmDescription = this.insertionSort.description;

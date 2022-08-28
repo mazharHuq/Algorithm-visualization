@@ -1,552 +1,523 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sorting</title>
-    <link rel="stylesheet" href="../CSS/sort.css" />
+    <link rel="stylesheet" href="../CSS/sort.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
 
-      body {
-        font-family: "IBM Plex Mono", monospace;
-      }
+        body {
+
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
     </style>
     <style>
-      .tutorial-container {
-        display: none;
+        .tutorial-container {
+            display: none;
 
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        z-index: 2;
-        background: rgba(0, 0, 0, 0.8);
-      }
-      .tutorial {
-        font-family: "Baloo 2", cursive;
-        font-size: 1.5rem;
-        color: black;
-        text-align: center;
-        position: fixed;
-        z-index: 4555;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.8);
 
-        width: 70%;
-        height: 80%;
-        top: 10%;
-        left: 15%;
-        background: white;
-        display: block;
-        border: 2px solid teal;
-        border-radius: 10px;
-      }
+
+        }
+        .tutorial {
+
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.5rem;
+            color: black;
+            text-align: center;
+            position: fixed;
+            z-index: 4555;
+
+            width: 70%;
+            height: 80%;
+            top: 10%;
+            left: 15%;
+           background: white;
+            display: block;
+            border: 2px solid teal;
+            border-radius: 10px;
+
+        }
+
+
     </style>
     <!-- Explanation Details -->
     <style>
-      #explanation {
-        position: fixed;
-        bottom: 0;
-        right: 32px;
-        width: 25%;
-        height: 300px;
-        background: rgba(217, 164, 164, 0.5);
+        #explanation{
+            display: none;
+            position: fixed;
+            bottom: 0;
+            right: 32px;
+            width: 25%;
+            height: 300px;
+            background: rgba(217, 164, 164, 0.5);
 
-        z-index: 100;
-      }
-      #explanation-bar {
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        width: 30px;
-        height: 300px;
-        background: rgba(10, 2, 2, 0.8);
-        z-index: 100;
-      }
-      #explanation-bar > *:hover {
-        background: rgba(145, 133, 72, 0.8);
-      }
+            z-index: 100;
+
+        }
+        #explanation-bar{
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width:30px;
+            height: 300px;
+            background: rgba(10, 2, 2, 0.8);
+            z-index: 100;
+        }
+        #explanation-bar>*:hover{
+            background: rgba(145, 133, 72, 0.8);
+        }
     </style>
 
-    <link
-      href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Raleway:100,300,400,600,700"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
 
-  <body class="bg-blue-100 js-container">
-    <div id="explanation" class="bg-orange-500">
-      <p id="codeChange" class="p-2 font-bold bg-orange-300">Show Code</p>
 
-      <div id="pseudocode" class="bg-gray-500 text-small text-white"></div>
+    <link
+            href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Raleway:100,300,400,600,700"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+          integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+</head>
+
+<body class="bg-blue-100 js-container">
+<div id="explanation" class="bg-orange-500">
+    <P id="codeChange" class="p-2 font-bold bg-orange-300">
+        Show Code
+    </P>
+
+    <div id="pseudocode"   class="bg-gray-500 text-small text-white p-2 ">
+
     </div>
-    <div id="explanation-bar" class="flex justify-center">
-      <button
-        id="explanation_toogler"
-        class="text-white font-bold w-full h-full bg-black"
-        onclick="f();function f() {
+</div>
+<div id="explanation-bar" class="flex justify-center">
+<button id="explanation_toogler" class="text-white font-bold w-full h-full bg-black" onclick="f();function f() {
   let explanation = document.getElementById('explanation');
   let button=document.getElementById('explanation_toogler');
-    if (explanation.style.display === 'none') {
+
+    if (explanation.style.display === 'none' || explanation.style.display === '') {
         explanation.style.display = 'block';
        document.getElementById('arrowLeft').classList.remove('hidden');
         document.getElementById('arrowRight').classList.add('hidden');
 
+
     } else {
         explanation.style.display = 'none';
-
-
             document.getElementById('arrowLeft').classList.add('hidden');
         document.getElementById('arrowRight').classList.remove('hidden');
 
     }
-}"
-      >
-        <i id="arrowLeft" class="fa-solid fa-angles-left"></i>
-        <i id="arrowRight" class="fa-solid fa-angles-right hidden"></i>
-      </button>
-    </div>
+}">
+    <i id="arrowLeft" class="fa-solid fa-angles-left hidden"></i>
+    <i id="arrowRight" class="fa-solid fa-angles-right "></i>
+</button>
+</div>
 
-    <!-- Algorithm Tut -->
-    <div class="tutorial-container" id="tutorial">
-      <div class="tutorial">
-        <div
-          id="tutorial-title"
-          class="tutorial-header mt-8 py-8 text-teal-500 text-6xl font-bold"
-        ></div>
+<!-- Algorithm Tut -->
+<div class="tutorial-container "  id="tutorial">
+    <div class="tutorial">
+        <div id="tutorial-title" class="tutorial-header  mt-8 py-8 text-teal-500 text-6xl font-bold ">
+
+        </div>
         <div class="tutorial-body p-4 text-2xl space-y-4">
-          <div id="tutorial-body"></div>
+            <div id="tutorial-body">
 
-          <div class="flex items-center justify-center">
-            <img
-              id="tutorial-image"
-              class="pt-4"
-              src="../Images/bar.png"
-              alt=""
-            />
-          </div>
+            </div>
+
+            <div class=" flex items-center justify-center">
+                <img id="tutorial-image" class="pt-4" src="../Images/bar.png" alt="">
+            </div>
+
         </div>
-        <div
-          class="tutorial-footer absolute bottom-0 p-3 flex justify-between w-full"
-        >
-          <button
-            id="tutorial-skip"
-            class="button bg-teal-500 px-2 hover:bg-green-400 text-white"
-          >
-            Skip Tutorial
-          </button>
-          <div>
-            <button
-              id="tutorial-prev"
-              data-val="0"
-              class="button bg-teal-500 px-2 hover:bg-green-400 text-white"
-            >
-              Prev
+        <div class="tutorial-footer absolute bottom-0 p-3  flex justify-between w-full">
+            <button id="tutorial-skip" class="button bg-teal-500 px-2 hover:bg-green-400  text-white">
+                Skip Tutorial
             </button>
-            <button
-              data-val="2"
-              class="button bg-teal-500 px-2 hover:bg-green-400 text-white"
-              id="tutorial-next"
-            >
-              Next
-            </button>
-          </div>
+            <div>
+                <button id="tutorial-prev" data-val="0" class="button bg-teal-500 px-2 hover:bg-green-400  text-white">
+                    Prev
+                </button>
+                <button data-val="2" class="button bg-teal-500 px-2 hover:bg-green-400  text-white" id="tutorial-next">
+                    Next
+                </button>
+
+            </div>
         </div>
-      </div>
+
+    </div>
+</div>
+
+<nav class=" shadow bg-white">
+    <div class="mx-auto container">
+        <div class="flex justify-between items-center px-4 py-2">
+            <div class="flex items-center">
+                <a href="../"><h1 class=" font-bold text-2xl ml-2">AlgorithmDaVisualizer</h1></a>
+            </div>
+            <div class="flex items-center space-x-2 ">
+                <div class="font-bold text-lg">
+
+                    <select id="selectAlgorithm" class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2">
+                        <option value="">Select An Algorithm</option>
+                        <option value="bubbleSort">Bubble Sort</option>
+                        <option value="selectionSort">Selection Sort</option>
+                        <option value="insertionSort">Insertion Sort</option>
+                        <option value="mergeSort">Merge Sort</option>
+                    </select>
+                </div>
+                <div class="font-bold text-lg">
+
+                    <select id="speed" class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2">
+
+                        <option value="5">Speed: Super Fast</option>
+                        <option value="250" selected>Speed: Fast</option>
+                        <option value="500">Speed: Medium</option>
+                        <option value="1000">Speed: Slow</option>
+                        <option value="2000">Speed: Super Slow</option>
+
+                    </select>
+                </div>
+
+                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
+                        id="startVisualize">
+                    Visualize
+                </button>
+
+                <div>
+                    <!-- Button for creating random array -->
+                    <button type="button" id="randomArray"
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
+                        Random Array
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <nav class="shadow bg-white">
-      <div class="mx-auto container">
-        <div class="flex justify-between items-center px-4 py-2">
-          <div class="flex items-center">
-            <a href="../"
-              ><h1 class="font-bold text-2xl ml-2">AlgorithmDaVisualizer</h1></a
-            >
-          </div>
-          <div class="flex items-center space-x-2">
-            <div class="font-bold text-lg">
-              <select
-                id="selectAlgorithm"
-                class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2"
-              >
-                <option value="">Select An Algorithm</option>
-                <option value="bubbleSort">Bubble Sort</option>
-                <option value="selectionSort">Selection Sort</option>
-                <option value="insertionSort">Insertion Sort</option>
-                <option value="mergeSort">Merge Sort</option>
-              </select>
-            </div>
-            <div class="font-bold text-lg">
-              <select
-                id="speed"
-                class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2"
-              >
-                <option value="5">Speed: Super Fast</option>
-                <option value="250" selected>Speed: Fast</option>
-                <option value="500">Speed: Medium</option>
-                <option value="1000">Speed: Slow</option>
-                <option value="2000">Speed: Super Slow</option>
-              </select>
-            </div>
-
-            <button
-              class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
-              id="startVisualize"
-            >
-              Visualize
-            </button>
-
-            <div>
-              <!-- Button for creating random array -->
-              <button
-                type="button"
-                id="randomArray"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
-              >
-                Random Array
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <div class="top-bar shadow mt-2 bg-white">
-      <div
-        class="array-container container mx-auto flex space-x-3 items-center font-mono"
-      >
+</nav>
+<div class="top-bar shadow mt-2 bg-white">
+    <div class="array-container container mx-auto flex space-x-3 items-center font-mono">
         <label for="array-input" class="font-bold text-xl">Array</label>
 
-        <input
-          id="array-input"
-          type="text"
-          class="w-full text-lg bg-gray-100 p-3"
-          value=""
-        />
+        <input id="array-input" type="text" class="w-full text-lg bg-gray-100  p-3" value="">
 
-        <button
-          class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
-          id="generateBar"
-        >
-          Generate Bar
+        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg" id="generateBar">
+            Generate Bar
         </button>
-      </div>
     </div>
-    <div
-      id="barContainer"
-      class="shadow p-4 m-4 bg-white"
-      style="position: relative; bottom: 0; min-width: 90vh; min-height: 40vh"
-    >
-      <div
-        class="mother absolute bottom-0"
-        style="border-bottom: 5px solid black"
-      ></div>
+</div>
+<div id="barContainer" class="shadow p-4 m-4  bg-white" style="position: relative; bottom: 0;min-width: 90vh;min-height:40vh;">
+    <div class="mother absolute bottom-0" style="border-bottom: 5px solid black;">
+
     </div>
+
+</div>
 
     <div style="" class="mediaControl shadow bg-white bottom-0 w-full my-3">
-      <div class="container flex justify-center mx-auto">
-        <div class="flex items-center px-4 py-2">
-          <div class="flex items-center space-x-8">
-            <i class="fa-solid fa-square" style="color: #97c2fc"></i>
-            <span>Default Node</span>
-            <i class="fa-solid fa-square" style="color: #0caa31"></i>
-            <span>Selected</span>
-            <i class="fa-solid fa-square" style="color: #2ebbd1"></i>
-            <span>Queue</span>
-            <i class="fa-solid fa-square" style="color: #2b7ce9"></i>
-            <span>Visited</span>
-            <i class="fa-solid fa-square" style="color: #848484"></i>
-            <span>Default Edge</span>
-            <i class="fa-solid fa-square" style="color: #ffa500"></i>
-            <span>Visiting</span>
-          </div>
+        <div class="container flex justify-center mx-auto">
+            <div class="flex items-center px-4 py-2">
+                <div class="flex items-center space-x-8">
+                    <i class="fa-solid fa-square" style="color: #97C2FC"></i> <span>Default Node</span>
+                    <i class="fa-solid fa-square" style="color: #0caa31"></i> <span>Selected</span>
+                    <i class="fa-solid fa-square" style="color: #2ebbd1"></i> <span>Queue</span>
+                    <i class="fa-solid fa-square" style="color: #2B7CE9"></i> <span>Visited</span>
+                    <i class="fa-solid fa-square" style="color: #848484"></i> <span>Default Edge</span>
+                    <i class="fa-solid fa-square" style="color: #ffa500"></i> <span>Visiting</span>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
-    <div style="" class="mediaControl shadow bg-white bottom-0 w-full">
-      <div class="container flex justify-center mx-auto">
-        <div class="flex items-center px-4 py-2">
-          <div class="flex items-center space-x-8">
-            <button class="" id="previous">
-              <i class="fa-solid fa-backward-step fa-2x"></i>
-            </button>
-            <button id="play" class="">
-              <i class="fa-solid fa-circle-play fa-2x"></i>
-            </button>
-            <button id="sortArrayPause" class="hidden">
-              <i class="fa-solid fa-circle-pause fa-2x"></i>
-            </button>
+<div style="" class="mediaControl  shadow bg-white  bottom-0 w-full">
+    <div class="container flex justify-center mx-auto">
+        <div class="flex  items-center px-4 py-2">
+            <div class="flex items-center space-x-8 ">
 
-            <button class="" id="next">
-              <i class="fa-solid fa-forward-step fa-2x"></i>
-            </button>
-          </div>
+                <button class="" id="previous">
+                    <i class="fa-solid fa-backward-step fa-2x"></i>
+                </button>
+                <button id="play" class="">
+                    <i class="fa-solid fa-circle-play fa-2x"></i>
+                </button>
+                <button id="sortArrayPause" class="hidden">
+
+                    <i class="fa-solid fa-circle-pause fa-2x"></i>
+                </button>
+
+                <button class="" id="next">
+                    <i class="fa-solid fa-forward-step fa-2x"></i>
+                </button>
+            </div>
         </div>
-      </div>
     </div>
+</div>
 
-    <!-- Algorithm Details -->
-    <div
-      id="algorithmDetails"
-      class="details hidden shadow bg-white p-4 mx-auto"
-    >
-      <div class="intro-y px-4 my-3 bg-green-500 py-4 text-3xl font-bold">
+<!-- Algorithm Details -->
+<div id="algorithmDetails" class="details hidden shadow bg-white p-4 mx-auto ">
+    <div class="intro-y px-4 my-3 bg-green-500 py-4 text-3xl font-bold">
         <h2 id="algorithm-title">Bubble Sort</h2>
-      </div>
-      <div class="grid grid-cols-12 space-x-2">
+    </div>
+    <div class="grid grid-cols-12 space-x-2">
         <div class="col-span-8 bg-gray-100">
-          <div class="intro-y px-4 my-3 py-4 text-xl font-bold">
-            <h2>Algorithm</h2>
-            <p class="text-sm" id="algorithm-summary"></p>
-          </div>
-          <div class="intro-y px-4 my-3 py-4 text-xl font-medium">
-            <h2>Description</h2>
-            <p class="text-sm font-thin" id="algorithm-description"></p>
-          </div>
+            <div class="intro-y px-4 my-3  py-4 text-xl font-bold">
+                <h2>Algorithm</h2>
+                <p class="text-sm" id="algorithm-summary">
+
+                </p>
+            </div>
+            <div class="intro-y px-4 my-3  py-4 text-xl font-medium">
+                <h2>Description</h2>
+                <p class="text-sm font-thin" id="algorithm-description">
+
+                </p>
+            </div>
+
         </div>
         <div class="col-span-4 bg-gray-100">
-          <div class="intro-y text-2xl font-bold p-3 border-b">
-            <h2>Performance</h2>
-          </div>
-          <div class="intro-y px-4 my-3 py-4 text-xl font-bold">
-            <h2>Time Complexity</h2>
-            <h4 class="text-sm" id="worstCase">
-              Worst Case : O(n <sup>2</sup>)
-            </h4>
-            <h4 class="text-sm" id="averageCase">
-              Average Case : O(n <sup>2</sup>)
-            </h4>
-            <h4 class="text-sm" id="bestCase">Best Case : O(n <sup>2</sup>)</h4>
-          </div>
-          <div class="intro-y px-4 my-3 py-4 text-xl">
-            <h2>Space Complexity</h2>
-            <h4 class="text-sm" id="spaceComplexity">
-              Worst Case : O(n <sup>2</sup>)
-            </h4>
-          </div>
+            <div class="intro-y text-2xl font-bold p-3 border-b">
+                <h2>Performance</h2>
+            </div>
+            <div class="intro-y px-4 my-3  py-4 text-xl font-bold">
+                <h2>Time Complexity</h2>
+                <h4 class="text-sm" id="worstCase">Worst Case : O(n <sup>2</sup>)</h4>
+                <h4 class="text-sm" id="averageCase">Average Case : O(n <sup>2</sup>)</h4>
+                <h4 class="text-sm" id="bestCase">Best Case : O(n <sup>2</sup>)</h4>
+            </div>
+            <div class="intro-y px-4 my-3  py-4 text-xl ">
+                <h2>Space Complexity</h2>
+                <h4 class="text-sm" id="spaceComplexity">Worst Case : O(n <sup>2</sup>)</h4>
+
+            </div>
         </div>
-      </div>
     </div>
+</div>
 
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.js"
-      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
-    <script type="module">
-      import Sort from "../js/sort/sort.js";
-      import sortingAlgorithmDetails from "../js/sort/sortingAlgorithmDetails.js";
-      import Tutorial from "../js/sort/tutorial.js";
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
-      $(document).ready(function (show) {
-        const Confettiful = function (el) {
-          this.el = el;
-          this.containerEl = null;
 
-          this.confettiFrequency = 3;
-          this.confettiColors = [
-            "#EF2964",
-            "#00C09D",
-            "#2D87B0",
-            "#48485E",
-            "#EFFF1D",
-          ];
-          this.confettiAnimations = ["slow", "medium", "fast"];
+<script type="module">
+    import Sort from "../js/sort/sort.js"
+    import sortingAlgorithmDetails from "../js/sort/sortingAlgorithmDetails.js"
+    import Tutorial from "../js/sort/tutorial.js"
 
-          this._setupElements();
-          this._renderConfetti();
+    $(document).ready(function (show) {
+
+
+        const Confettiful = function(el) {
+            this.el = el;
+            this.containerEl = null;
+
+            this.confettiFrequency = 3;
+            this.confettiColors = ['#EF2964', '#00C09D', '#2D87B0', '#48485E','#EFFF1D'];
+            this.confettiAnimations = ['slow', 'medium', 'fast'];
+
+            this._setupElements();
+            this._renderConfetti();
         };
 
-        Confettiful.prototype._setupElements = function () {
-          const containerEl = document.createElement("div");
-          const elPosition = this.el.style.position;
+        Confettiful.prototype._setupElements = function() {
+            const containerEl = document.createElement('div');
+            const elPosition = this.el.style.position;
 
-          if (elPosition !== "relative" || elPosition !== "absolute") {
-            this.el.style.position = "relative";
-          }
+            if (elPosition !== 'relative' || elPosition !== 'absolute') {
+                this.el.style.position = 'relative';
+            }
 
-          containerEl.classList.add("confetti-container");
+            containerEl.classList.add('confetti-container');
 
-          this.el.appendChild(containerEl);
+            this.el.appendChild(containerEl);
 
-          this.containerEl = containerEl;
+            this.containerEl = containerEl;
         };
 
-        Confettiful.prototype._renderConfetti = function () {
-          this.confettiInterval = setInterval(() => {
-            const confettiEl = document.createElement("div");
-            const confettiSize = Math.floor(Math.random() * 3) + 7 + "px";
-            const confettiBackground =
-              this.confettiColors[
-                Math.floor(Math.random() * this.confettiColors.length)
-              ];
-            const confettiLeft =
-              Math.floor(Math.random() * this.el.offsetWidth) + "px";
-            const confettiAnimation =
-              this.confettiAnimations[
-                Math.floor(Math.random() * this.confettiAnimations.length)
-              ];
+        Confettiful.prototype._renderConfetti = function() {
 
-            confettiEl.classList.add(
-              "confetti",
-              "confetti--animation-" + confettiAnimation
-            );
-            confettiEl.style.left = confettiLeft;
-            confettiEl.style.width = confettiSize;
-            confettiEl.style.height = confettiSize;
-            confettiEl.style.backgroundColor = confettiBackground;
+            this.confettiInterval = setInterval(() => {
+                const confettiEl = document.createElement('div');
+                const confettiSize = (Math.floor(Math.random() * 3) + 7) + 'px';
+                const confettiBackground = this.confettiColors[Math.floor(Math.random() * this.confettiColors.length)];
+                const confettiLeft = (Math.floor(Math.random() * this.el.offsetWidth)) + 'px';
+                const confettiAnimation = this.confettiAnimations[Math.floor(Math.random() * this.confettiAnimations.length)];
 
-            confettiEl.removeTimeout = setTimeout(function () {
-              confettiEl.parentNode.removeChild(confettiEl);
-            }, 3000);
+                confettiEl.classList.add('confetti', 'confetti--animation-' + confettiAnimation);
+                confettiEl.style.left = confettiLeft;
+                confettiEl.style.width = confettiSize;
+                confettiEl.style.height = confettiSize;
+                confettiEl.style.backgroundColor = confettiBackground;
 
-            this.containerEl.appendChild(confettiEl);
-          }, this.confettiFrequency);
+                confettiEl.removeTimeout = setTimeout(function() {
+                    confettiEl.parentNode.removeChild(confettiEl);
+                }, 3000);
+
+                this.containerEl.appendChild(confettiEl);
+                
+            }, this.confettiFrequency);
         };
 
-        let sortButtonPause = $("#sortArrayPause");
-        let sortButtonResume = $("#sortArrayResume");
-        let startVisualize = $("#startVisualize");
-        const container = document.querySelector(".mother");
+        let sortButtonPause = $('#sortArrayPause');
+        let sortButtonResume = $('#sortArrayResume');
+        let startVisualize = $('#startVisualize');
+        const container = document.querySelector('.mother');
         var selectedAlgorithm = "";
         var currentStep = 0;
 
         var tutorial = new Tutorial(container);
-        // tutorial.show();
+       // tutorial.show();
 
         let sort = new Sort(container, []);
-        $("#speed").on("change", function () {
-          let speed = $(this).val();
-          sort.speed = parseInt(speed);
-          console.log(sort.speed);
+        $('#speed').on('change', function () {
+            let speed = $(this).val();
+            sort.speed = parseInt(speed);
+            console.log(sort.speed);
+
         });
-        startVisualize.on("click", function () {
-          selectedAlgorithm = $("#selectAlgorithm").val();
-          if (selectedAlgorithm) {
-            sort.setAlgorithm(selectedAlgorithm);
-            sort.startVisualize();
-            $("#sortArrayPause").removeClass("hidden");
-            $("#play").addClass("hidden");
-          } else {
-            alert("Please select an algorithm");
-          }
+        startVisualize.on('click', function () {
+            selectedAlgorithm = $("#selectAlgorithm").val();
+            if (selectedAlgorithm) {
+                sort.setAlgorithm(selectedAlgorithm);
+                sort.startVisualize();
+                $("#sortArrayPause").removeClass('hidden');
+                $("#play").addClass('hidden');
+            } else {
+                alert("Please select an algorithm");
+            }
         });
+
 
         $("#sortArrayPause").click(function () {
-          sort.setVisualizeStatus(false);
-          $(this).addClass("hidden");
-          $("#play").removeClass("hidden");
-          console.log(sort.step);
+            sort.setVisualizeStatus(false);
+            $(this).addClass('hidden');
+            $("#play").removeClass('hidden');
+            console.log(sort.step);
+
         });
         $("#play").click(function () {
-          let status = sort.visualizeStatus;
-          if (!status) {
-            alert("Please click visualize to start sorting");
-            return;
-          }
-          sort.setVisualizeStatus(true);
-          sort.visuaLizeBubbleSort();
-          $(this).addClass("hidden");
-          $("#sortArrayPause").removeClass("hidden");
-        });
-        $("#previous").click(function () {
-          sort.setVisualizeStatus(false);
-          $("#sortArrayPause").addClass("hidden");
-          $("#play").removeClass("hidden");
-          sort.setVisualizeStatus(false);
-          sort.goBack();
-          console.log("previous");
-        });
-        $("#next").click(function () {
-          sort.setVisualizeStatus(false);
-          $("#sortArrayPause").addClass("hidden");
-          $("#play").removeClass("hidden");
-          sort.setVisualizeStatus(false);
-          sort.setVisualizeStatus(false);
-          sort.goForward();
-          console.log("next");
-        });
-        $("#randomArray").click(function () {
-          sort.reset();
-        });
-        $("#selectAlgorithm").on("change", function () {
-          let algorithm = $(this).val();
-          if (algorithm) {
-            $("#algorithmDetails").removeClass();
-          } else {
-            $("#algorithmDetails").addClass("hidden");
-          }
-          let selectedAlgorithm = new sortingAlgorithmDetails(algorithm);
-          $("#algorithm-title").html(selectedAlgorithm.algorithmName);
-          $("#algorithm-summary").html(selectedAlgorithm.algorithmSummary);
-          $("#algorithm-description").html(
-            selectedAlgorithm.algorithmDescription
-          );
-          $("#worstCase").html(selectedAlgorithm.bestTime);
-          $("#averageCase").html(selectedAlgorithm.averageTime);
-          $("#bestCase").html(selectedAlgorithm.worstTime);
-          $("#spaceComplexity").html(selectedAlgorithm.spaceComplexity);
-          $("#pseudocode").html(selectedAlgorithm.pseudoCode);
-          sort.reset();
-        });
-        $("#generateBar").on("click", function () {
-          //take input from user
-          let input = $("#array-input").val();
-          let array = input.split(",");
+            let currentStep = sort.step;
+            if(currentStep == 0){
+                alert("Please click visualize to start sorting");
+                return;
+            }
+                sort.setVisualizeStatus(true);
+                $(this).addClass('hidden');
+                $('#sortArrayPause').removeClass('hidden');
+                sort.visualize();
 
-          sort.setArray(array);
-        });
-        var previousInput = "";
-        $("#array-input").on("keydown", function (event) {
-          var key = window.event ? event.keyCode : event.which;
-          if (
-            event.keyCode === 8 ||
-            event.keyCode === 46 ||
-            event.keyCode === 188
-          ) {
-            previousInput = $(this).val();
-            if (
-              (previousInput.length === 0 ||
-                previousInput[previousInput.length - 1] === ",") &&
-              event.keyCode === 188
-            )
-              return false;
-            else return true;
-          } else if (key < 48 || key > 57) {
-            console.log(key);
-            return false;
-          } else {
-            return true;
-          }
-        });
+            }
+        );
+        $("#previous").click(function () {
+            sort.setVisualizeStatus(false);
+            $("#sortArrayPause").addClass('hidden');
+            $("#play").removeClass('hidden');
+            sort.setVisualizeStatus(false);
+                sort.goBack();
+                console.log("previous");
+
+            }
+        );
+        $("#next").click(function () {
+            sort.setVisualizeStatus(false);
+            $("#sortArrayPause").addClass('hidden');
+            $("#play").removeClass('hidden');
+            sort.setVisualizeStatus(false);
+                sort.setVisualizeStatus(false);
+                sort.goForward();
+                console.log("next");
+
+            }
+        );
+        $("#randomArray").click(function () {
+                sort.randomReset();
+            }
+        );
+        $("#selectAlgorithm").on('change', function () {
+
+                let algorithm = $(this).val();
+                if (algorithm) {
+                    $("#algorithmDetails").removeClass()
+                } else {
+                    $("#algorithmDetails").addClass('hidden')
+                }
+                let selectedAlgorithm = new sortingAlgorithmDetails(algorithm);
+                $('#algorithm-title').html(selectedAlgorithm.algorithmName);
+                $('#algorithm-summary').html(selectedAlgorithm.algorithmSummary);
+                $('#algorithm-description').html(selectedAlgorithm.algorithmDescription);
+                $('#worstCase').html(selectedAlgorithm.bestTime);
+                $('#averageCase').html(selectedAlgorithm.averageTime);
+                $('#bestCase').html(selectedAlgorithm.worstTime);
+                $('#spaceComplexity').html(selectedAlgorithm.spaceComplexity);
+                $("#pseudocode").html(selectedAlgorithm.pseudoCode);
+              sort.reset();
+                let exp = document.querySelector('#explanation');
+                if(exp.style.display == 'none'){
+                    $('#explanation_toogler').click();
+
+                }
+
+
+            }
+        );
+        $("#generateBar").on('click', function () {
+                //take input from user
+                let input = $('#array-input').val();
+                let array = input.split(',');
+
+                for (let i = 0; i < array.length; i++) {
+                    array[i] = parseInt(array[i]);
+                }
+            console.log(array);
+
+
+                sort.setArray(array);
+            }
+        );
+        var previousInput = '';
+        $("#array-input").on('keydown', function (event) {
+                var key = window.event ? event.keyCode : event.which;
+                if (event.keyCode === 8 || event.keyCode === 46 || event.keyCode === 188) {
+                    previousInput = $(this).val();
+                    if ((previousInput.length === 0 || previousInput[previousInput.length - 1] === ',') && event.keyCode === 188) return false;
+                    else return true;
+
+                } else if (key < 48 || key > 57) {
+                    console.log(key);
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        );
         //###################################################//
         //###################################################//
         $("#tutorial-next").click(function () {
-          tutorial.setTutorial(
-            document.getElementById("tutorial-next").dataset.val,
-            "sort"
-          );
-        });
+                tutorial.setTutorial(document.getElementById("tutorial-next").dataset.val,"sort");
+            }
+        );
         $("#tutorial-prev").click(function () {
-          tutorial.setTutorial(
-            document.getElementById("tutorial-prev").dataset.val,
-            "sort"
-          );
-        });
+                tutorial.setTutorial(document.getElementById("tutorial-prev").dataset.val,"sort");
+            }
+        );
         $("#tutorial-skip").click(function () {
-          tutorial.hide();
-        });
-      });
-    </script>
-  </body>
+                tutorial.hide();
+            }
+        );
+
+
+    });
+</script>
+</body>
+
 </html>
