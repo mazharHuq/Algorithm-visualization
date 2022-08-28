@@ -72,7 +72,6 @@ class Grid {
                 this.cells[i][j] = new Cell(i, j, this.cellSize);
 
                 let el = document.createElement("div");
-                el.addEventListener("mouseenter", this.dragStart);
                 el.addEventListener("dragstart", this.dragStart);
                 el.addEventListener("dragover", this.allowDrop);
                 el.addEventListener("dragend", this.dragEnd);
@@ -106,7 +105,7 @@ class Grid {
 
     //function for drag and drop the start and end cell
     dragStart(event) {
-        console.log("dragstart");
+
         event.dataTransfer.setData("text", event.target.id);
     }
 
@@ -158,8 +157,14 @@ class Grid {
     }
 
     onHover(event) {
+        console.log(event)
+        let element = document.querySelector("[data-x='" + event.target.dataset.x + "'][data-y='" + event.target.dataset.y + "']");
+        if(element.dataset.isStart === "true" || element.dataset.isEnd === "true") {
+            event.preventDefault();return;
+        }
+
         if ($("#start").attr("canHover") === "true") {
-            let element = document.querySelector("[data-x='" + event.target.dataset.x + "'][data-y='" + event.target.dataset.y + "']");
+
             let isObstacle = element.dataset.isObstacle;
             let x = parseInt(event.target.dataset.x);
             let y = parseInt(event.target.dataset.y);
@@ -183,10 +188,16 @@ class Grid {
     //set the start and end cell
     setStart(x, y) {
         document.querySelector("[data-x='" + x + "'][data-y='" + y + "']").innerHTML = this.startIcon;
+
+        let element = document.querySelector("[data-x='" + x + "'][data-y='" + y + "']");
+        element.attributes.draggable = "true";
         document.querySelector("[data-x='" + x + "'][data-y='" + y + "']").dataset.isStart = "true";
     }
 
     setEnd(x, y) {
+        let element = document.querySelector("[data-x='" + x + "'][data-y='" + y + "']");
+       element.attributes.draggable = "true";
+
         document.querySelector("[data-x='" + x + "'][data-y='" + y + "']").innerHTML = this.endIcon;
         document.querySelector("[data-x='" + x + "'][data-y='" + y + "']").dataset.isEnd = "true";
 
@@ -210,6 +221,14 @@ class Grid {
 
     //color cell with bfs algorithm  until finding the end cell
     async bfsUntilEnd(color, x, y, a, b) {
+        x=$("#start").attr("data-startX");
+        y=$("#start").attr("data-startY");
+        a=$("#start").attr("data-endX");
+        b=$("#start").attr("data-endY");
+        x=parseInt(x);
+        y=parseInt(y);
+        a=parseInt(a);
+        b=parseInt(b);
         let colorSequence = [];
         let queue = [];
         let pathTrack = [];
@@ -297,6 +316,14 @@ class Grid {
 
     //color cell with dfs algorithm  until finding the end cell
     async DfsUntilEnd(color, x, y, a, b) {
+        x=$("#start").attr("data-startX");
+        y=$("#start").attr("data-startY");
+        a=$("#start").attr("data-endX");
+        b=$("#start").attr("data-endY");
+        x=parseInt(x);
+        y=parseInt(y);
+        a=parseInt(a);
+        b=parseInt(b);
         let colorSequence = [];
         let isPathFound = false;
         let queue = [];
