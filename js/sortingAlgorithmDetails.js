@@ -9,7 +9,7 @@ class sortingAlgorithmDetails {
         this.worstTime = "";
         this.spaceComplexity = "";
         this.pseudoCode = "";
-        this.bubbleSort = {
+        (this.bubbleSort = {
             name: "Bubble Sort",
             algorithm: "Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
             complexity: "",
@@ -54,8 +54,8 @@ class sortingAlgorithmDetails {
        return list
     end BubbleSort
     </code>
-            </pre>`
-        }, this.selectionSort = {
+            </pre>`,
+        }), (this.selectionSort = {
             name: "Selection Sort",
             algorithm: "Selection Sort is a sorting algorithm in which the smallest element is selected from the array and swapped with the first element. The same is repeated for the remaining elements. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
             complexity: "",
@@ -109,8 +109,8 @@ repeat (numOfElements - 1) times
                      
             </pre>
             
-            `
-        }, this.insertionSort = {
+            `,
+        }), (this.insertionSort = {
             name: "Insertion Sort",
             algorithm: "Insertion Sort is a sorting algorithm in which the smallest element is selected from the array and swapped with the first element. The same is repeated for the remaining elements. This algorithm is not suitable for large data sets as its average and worst-case time complexity is quite high.",
             complexity: "",
@@ -166,6 +166,44 @@ for each unsorted element X
 
     break loop and insert X here
 </pre>`,
+        });
+        this.mergeSort = {
+            name: "Merge Sort",
+            algorithm: "Merge Sort is one of the most popular sorting algorithms that is based on the principle of Divide and Conquer Algorithm.",
+            complexity: "",
+            description: `<div class="card">
+      Using the Divide and Conquer technique, we divide a problem into subproblems. When the solution to each subproblem is ready, we 'combine' the results from the subproblems to solve the main problem. </br></br>
+Suppose we had to sort an array A. A subproblem would be to sort a sub-section of this array starting at index p and ending at index r, denoted as A[p..r].</br>
+
+</br><strong>Divide</strong> </br>
+
+If q is the half-way point between p and r, then we can split the subarray A[p..r] into two arrays A[p..q] and A[q+1, r].
+</br>
+</br><strong>Conquer</strong> </br>
+In the conquer step, we try to sort both the subarrays A[p..q] and A[q+1, r]. If we haven't yet reached the base case, we again divide both these subarrays and try to sort them.
+</br>
+</br><strong>Combine</strong></br>
+When the conquer step reaches the base step and we get two sorted subarrays A[p..q] and A[q+1, r] for array A[p..r], we combine the results by creating a sorted array A[p..r] from two sorted subarrays A[p..q] and A[q+1, r].
+
+ <br>
+      </div><a
+      href="https://www.programiz.com/dsa/merge-sort">
+  <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+
+          `,
+            averageTime: "O(Nlog(N))",
+            worstTime: "O(Nlog(N))",
+            bestTime: "O(Nlog(N))",
+            spaceComplexity: "O(N)",
+            pseudoCode: ` <pre>
+MergeSort(A, p, r):
+    if p > r 
+        return
+        q = (p+r)/2
+    mergeSort(A, p, q)
+    mergeSort(A, q+1, r)
+    merge(A, p, q, r)
+  </pre>`,
         };
         this.Dijkstra = {
             name: "Dijkstra's Algorithm",
@@ -237,6 +275,7 @@ for each unsorted element X
             bestTime: "",
             spaceComplexity: "O(|V| + |E|)\n" + "\n" + "where, |V| is the number of vertices and |E| is the number of edges.",
         };
+
         this.DepthFirstSearch = {
             name: "Depth First Search",
             algorithm: "DFS (Depth-first search) is technique used for traversing tree or graph. Here backtracking is used for traversal. In this traversal first the deepest node is visited and then backtracks to it’s parent node if no sibling of that node exist. ",
@@ -284,7 +323,7 @@ for each unsorted element X
             worstTime: "",
             bestTime: "",
             spaceComplexity: "O(|V| + |E|)\n" + "\n" + "where, |V| is the number of vertices and |E| is the number of edges.",
-            pseudoCode: '',
+            pseudoCode: "",
         };
         this.gridDFS = {
             name: "Depth First Search",
@@ -307,9 +346,8 @@ for each unsorted element X
             averageTime: "O(ROW * COL)",
             worstTime: "O(ROW * COL)",
             bestTime: "O(ROW * COL)",
-            pseudoCode: ''
-
-        }
+            pseudoCode: "",
+        };
         this.gridBFS = {
             name: "Breadth First Search",
             algorithm: "The idea is to use Breadth-First Search. Consider each cell as a node and each boundary between any" + "two adjacent cells be an edge. so the total number of Node is ROW * COL. \n" + "So the idea is to do a breadth-first search from the starting cell till the ending cell is found. \n",
@@ -331,9 +369,8 @@ for each unsorted element X
             averageTime: "O(ROW * COL)",
             worstTime: "O(ROW * COL)",
             bestTime: "O(ROW * COL)",
-            pseudoCode: '',
-
-        }
+            pseudoCode: "",
+        };
         this.render();
     }
 
@@ -364,6 +401,16 @@ for each unsorted element X
             this.averageTime = this.insertionSort.averageTime;
             this.worstTime = this.insertionSort.worstTime;
             this.spaceComplexity = this.insertionSort.spaceComplexity;
+            this.pseudoCode = this.insertionSort.pseudoCode;
+        } else if (this.sortFunction == "mergeSort") {
+            this.algorithmName = this.mergeSort.name;
+            this.algorithmDescription = this.mergeSort.description;
+            this.algorithmSummary = this.mergeSort.algorithm;
+            this.bestTime = this.mergeSort.bestTime;
+            this.averageTime = this.mergeSort.averageTime;
+            this.worstTime = this.mergeSort.worstTime;
+            this.spaceComplexity = this.mergeSort.spaceComplexity;
+            this.pseudoCode = this.mergeSort.pseudoCode;
         } else if (this.sortFunction == "BFS") {
             this.algorithmName = this.BreadthFirstSearch.name;
             this.algorithmDescription = this.BreadthFirstSearch.description;
@@ -372,7 +419,6 @@ for each unsorted element X
             this.averageTime = this.BreadthFirstSearch.averageTime;
             this.worstTime = this.BreadthFirstSearch.worstTime;
             this.spaceComplexity = this.BreadthFirstSearch.spaceComplexity;
-
         } else if (this.sortFunction == "DFS") {
             this.algorithmName = this.DepthFirstSearch.name;
             this.algorithmDescription = this.DepthFirstSearch.description;
@@ -408,4 +454,3 @@ for each unsorted element X
         }
     }
 }
-

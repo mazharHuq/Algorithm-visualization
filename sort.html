@@ -180,11 +180,11 @@
 
                     <select id="speed" class="bg-white border border-gray-400 rounded-lg shadow-md px-4 py-2">
 
-                        <option value="5">Speed: Super Fast</option>
-                        <option value="250" selected>Speed: Fast</option>
-                        <option value="500">Speed: Medium</option>
-                        <option value="1000">Speed: Slow</option>
-                        <option value="2000">Speed: Super Slow</option>
+                        <option value="50">Speed: Super Fast</option>
+                        <option value="200" selected>Speed: Fast</option>
+                        <option value="400">Speed: Medium</option>
+                        <option value="800">Speed: Slow</option>
+                        <option value="1200">Speed: Super Slow</option>
 
                     </select>
                 </div>
@@ -224,22 +224,22 @@
 
 </div>
 
-    <div style="" class="mediaControl shadow bg-white bottom-0 w-full my-3">
+    <div style="" class="mediaControl shadow bg-white bottom-0 w-full my-3" >
         <div class="container flex justify-center mx-auto">
             <div class="flex items-center px-4 py-2">
                 <div class="flex items-center space-x-8">
                     <i class="fa-solid fa-square" style="color: #97C2FC"></i> <span>Default Node</span>
-                    <i class="fa-solid fa-square" style="color: #0caa31"></i> <span>Selected</span>
-                    <i class="fa-solid fa-square" style="color: #2ebbd1"></i> <span>Queue</span>
-                    <i class="fa-solid fa-square" style="color: #2B7CE9"></i> <span>Visited</span>
-                    <i class="fa-solid fa-square" style="color: #848484"></i> <span>Default Edge</span>
-                    <i class="fa-solid fa-square" style="color: #ffa500"></i> <span>Visiting</span>
+                    <i class="fa-solid fa-square" style="color: #0caa31"></i> <span>Sorted</span>
+                    <i class="fa-solid fa-square" style="color: #2ebbd1"></i> <span>Unsorted</span>
+                    <i class="fa-solid fa-square" style="color: #2B7CE9"></i> <span>Swapping</span>
+              <!--      <i class="fa-solid fa-square" style="color: #848484"></i> <span>Default Edge</span>
+                    <i class="fa-solid fa-square" style="color: #ffa500"></i> <span>Visiting</span>-->
                 </div>
             </div>
         </div>
     </div>
 
-<div style="" class="mediaControl  shadow bg-white  bottom-0 w-full">
+<div style="" id="media-controls" class="mediaControl  shadow bg-white  bottom-0 w-full">
     <div class="container flex justify-center mx-auto">
         <div class="flex  items-center px-4 py-2">
             <div class="flex items-center space-x-8 ">
@@ -265,7 +265,7 @@
 
 <!-- Algorithm Details -->
 <div id="algorithmDetails" class="details  shadow bg-white p-4 mx-auto ">
-    <div class="intro-y px-4 my-3 bg-green-500 py-4 text-3xl font-bold">
+    <div class="intro-y px-4 my-3 bg-green-500 py-4 text-3xl text-center font-bold">
         <h2 id="algorithm-title">Sorting Algorithm</h2>
     </div>
     <div class="grid grid-cols-12 space-x-2">
@@ -278,7 +278,7 @@
             </div>
             <div class="intro-y px-4 my-3  py-4 text-xl font-medium">
                 <h2>Description</h2>
-                <p class="text-sm font-thin" id="algorithm-description">
+                <p class="text-sm font-thin bg-gray-100 " id="algorithm-description">
 
                 </p>
             </div>
@@ -290,9 +290,9 @@
             </div>
             <div class="intro-y px-4 my-3  py-4 text-xl font-bold">
                 <h2>Time Complexity</h2>
-                <h4 class="text-sm" id="worstCase">Worst Case : O(n <sup>2</sup>)</h4>
-                <h4 class="text-sm" id="averageCase">Average Case : O(n <sup>2</sup>)</h4>
-                <h4 class="text-sm" id="bestCase">Best Case : O(n <sup>2</sup>)</h4>
+                Worst Case : <span class="text-sm" id="worstCase"> O(n <sup>2</sup>)</span><br>
+                Average Case :  <span class="text-sm" id="averageCase"> O(n <sup>2</sup>)</span><br>
+                Best Case :  <span class="text-sm" id="bestCase"> O(n <sup>2</sup>)</span><br>
             </div>
             <div class="intro-y px-4 my-3  py-4 text-xl ">
                 <h2>Space Complexity</h2>
@@ -378,7 +378,7 @@
         var currentStep = 0;
 
         var tutorial = new Tutorial(container);
-       // tutorial.show();
+        tutorial.show();
 
         let sort = new Sort(container, []);
         $('#speed').on('change', function () {
