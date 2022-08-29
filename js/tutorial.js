@@ -62,7 +62,7 @@ class Tutorial {
                 </div>
                 
                 `,
-        image: "Images/tutorial-sort/visualize.png",
+        image: "Images/tutorial-sort/vis.png",
         next: 5,
         prev: 3,
         isFinish: false,
@@ -77,7 +77,7 @@ class Tutorial {
                     You can see the algorithm details by clicking the "Algorithm Details" button.
                     </h3>
                     <div class="flex justify-center">
-                        <img src="" alt="" class="w-full">
+                        <img src="Images/tutorial-sort/details.png" alt="" class="w-full">
                     </div>
                     
                     `,
@@ -87,22 +87,54 @@ class Tutorial {
         isFinish: false,
       },
       6: {
+        title: "You can see the explanation!",
+        body: `
+                    <h2 class="text-2xl font-semibold ">
+                    <span>Explanation will show how element are being sorted </span>
+                    </h2>
+                    <h3 class="font-bold" >
+                    
+                    </h3>
+                    
+                    
+                    `,
+        image: "Images/tutorial-sort/explanation.png",
+        next: 8,
+        prev: 5,
+        isFinish: false,
+      },
+      8: {
+        title: "You can control the speed of the animation",
+        body: `
+                    <h2 class="text-2xl font-semibold ">
+                    <span>This speed button will control the speed of the animation   </span>
+                    </h2>
+                    <h3 class="font-bold" >
+                    
+                    </h3>
+                    
+                    
+                    `,
+        image: "Images/tutorial-sort/speed.png",
+        next: 9,
+        prev: 7,
+        isFinish: false,
+      },
+      9: {
         title: "You are done! Array is  sorted!",
         body: `
                     <h2 class="text-2xl font-semibold ">
-                    Click the "visualize" button to see the array being sorted.
+                    <span>Congratulations Your array is now Sorted </span>
                     </h2>
                     <h3 class="font-bold" >
-                    You can see the algorithm details by clicking the "Algorithm Details" button.
+                    
                     </h3>
-                    <div class="flex justify-center">
-                        <img src="" alt="" class="w-full">
-                    </div>
+                    
                     
                     `,
-        image: "Images/tutorial-sort/algorithm_details.png",
+        image: "Images/tutorial-sort/sorted.png",
         next: -1,
-        prev: 4,
+        prev: 8,
         isFinish: true,
       },
     };
@@ -463,6 +495,8 @@ class Tutorial {
     tutorial.style.display = "block";
     if (selectedTutorialStep.isFinish) {
       next.innerHTML = "Finish Tutorial";
+    }else {
+        next.innerHTML = "Next";
     }
   }
 

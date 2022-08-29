@@ -14,7 +14,11 @@ class Sort {
         this.bar = [];
         this.step = [];
         this.color = {
-            initialColor: '#1fbfb8', targetColor: 'red', visitedColor: 'teal', finalColor: 'green',traverseColor: 'red',
+            initialColor: '#1fbfb8',
+            targetColor: '#2B7CE9',
+            visitedColor: 'teal',
+            finalColor: 'green',
+            traverseColor: 'red',
         }
         this.render();
         this.visualizeStatus = false;
@@ -421,6 +425,7 @@ class Sort {
     }
 
     async startVisualize() {
+        $("#media-controls").show();
         this.visualizeStatus = false;
         this.currentStep = 0;
         this.step = [];
@@ -443,7 +448,7 @@ class Sort {
         }
     }
     async  bubbleSort() {
-
+    $("#media-controls").show();
         for (let i = 0; i < this.arr.length - 1; i++) {
             for (let j = 0; j < this.arr.length - i - 1; j++) {
                 let action = {
@@ -569,11 +574,14 @@ class Sort {
 
 
     async mergeSort() {
-
+        $("#media-controls").addClass("hidden");
         this.step = [];
         this.currentStep = 0;
         this.visualizeStatus = true;
+        this.explanation.setMessage(`Lets Call Merge Sort Helper Function`);
+
         this.arr = await this.mergeSortHelper(this.arr, 0, this.arr.length - 1);
+        console.log(this.step);
 
 
     }
@@ -589,7 +597,7 @@ class Sort {
                 });
                 await this.colorNodes(i, this.color.targetColor, this.speed);
             }
-
+            this.explanation.setMessage(`Merge Partitions ` + arr[left] + ' from  ' + arr[mid]);
             await this.mergeSortHelper(arr, left, mid);
 
             for (let i = mid + 1; i <= right; i++) {
@@ -598,12 +606,13 @@ class Sort {
                 });
                 await this.colorNodes(i, "red", this.speed);
             }
-
+            this.explanation.setMessage(`Merge Partitions ` + arr[mid+1] + ' from  ' + arr[right]);
             await this.mergeSortHelper(arr, mid + 1, right);
-
+            this.explanation.setMessage(`Merge Partitions ` + arr[left] + ' and ' + arr[mid+1] + ' from  ' + arr[right]);
             await this.merge(arr, left, mid, right);
 
         }
+        this.explanation.setMessage(`All Partitions are sorted`);
 
         return arr;
     }
@@ -620,6 +629,7 @@ class Sort {
         let k = left;
         let leftElement = document.querySelector(`[data-index="${left}"]`);
         let startingLeft = parseInt(leftElement.dataset.left);
+        this.explanation.setMessage("Merge array  " + leftArr +  ' and  ' + rightArr);
         while (i < leftArr.length && j < rightArr.length) {
             if (leftArr[i] <= rightArr[j]) {
                 positionChange.push({
@@ -692,7 +702,7 @@ class Sort {
         }
         for (let i = left; i <= right; i++) {
             if(this.visualizeStatus === false) return ;
-            await this.colorNodes(i, "black", this.speed);
+            await this.colorNodes(i, this.color.finalColor, this.speed);
             await this.goTopLeft(i, 300, startingLeft, this.speed);
             let el = document.querySelector(`[data-index="${i}"]`);
             el.setAttribute('id', i);
