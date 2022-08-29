@@ -470,7 +470,7 @@ class buildGraph {
         let path = {};
         let stepStack = [];
         let parent = [];
-        var costs = [];
+        let costs = [];
         let nodeCost = [];
 
         this.shortestCost = 0;
@@ -497,12 +497,11 @@ class buildGraph {
                 step["isPath"] = false;
                 steps.push(step);
                 path[u] = parent[u] + "";
-                this.shortestCost += 0;
             }
             if (u == destination) {
-                this.shortestCost = cost;
                 flag = 1;
                 this.isFound = true;
+                this.shortestCost = cost;
                 break;
             }
             this.visited[source] = true;
@@ -549,10 +548,9 @@ class buildGraph {
             }
         }else if (destination == ""){
             this.shortestCost = 0;
-            for (let i in nodeCost) {
+            for (let i = 0; i < costs.length; i++){
                 this.shortestCost += parseInt(costs[i]);
             }
-            dbg("costs " + nodeCost);
             for (var i = 0; i < steps.length; i++) {
                 steps[i]["isPath"] = true;
             }

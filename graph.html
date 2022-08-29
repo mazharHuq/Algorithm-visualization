@@ -543,6 +543,10 @@
       alert("Please select source node");
       return;
     }
+    if (destination == "") {
+      alert("Please select destination node");
+      return;
+    }
     if (select == "BFS") {
       graph.setGraphInfo(false, true);
       steps = graph.getUnWeightedBfsSteps(source, destination);
