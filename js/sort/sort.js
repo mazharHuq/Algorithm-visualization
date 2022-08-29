@@ -50,6 +50,7 @@ class Sort {
 
     generateRandomArray() {
         let limit = Math.round(Math.random(2, 122) * 35) + 1;
+        limit=20;
         while (limit<15){
             limit = Math.round(Math.random(2, 122) * 35) + 1;
         }
