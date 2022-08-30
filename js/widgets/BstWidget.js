@@ -1,5 +1,4 @@
 // Defines a BST object; keeps implementation of BST internally and interact with GraphWidget to display BST visualizations
-// Also includes AVL tree
 
 var BST = function (ex) {
   clearScreen();
@@ -86,7 +85,7 @@ var BST = function (ex) {
         } else {
           while (
             stack.length > 0 &&
-            rank(stack[stack.length - 1]) > rank(expression[i]) &&
+            rank(stack[stack.length - 1]) >= rank(expression[i]) &&
             stack[stack.length - 1] != "("
           ) {
             postfix += stack.pop();
