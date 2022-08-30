@@ -14,7 +14,7 @@ class Bar{
 
         let el=document.createElement('li');
     
-        el.style.height = this.value*7+'px';
+        el.style.height = this.value*6+'px';
         el.style.width = this.width+'px';
         el.style.left = this.left+'px';
         let randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
